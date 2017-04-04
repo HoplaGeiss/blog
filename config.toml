@@ -1,0 +1,66 @@
+# title = "Gabriel Muller's Blog"
+# languageCode = "en-us"
+# baseurl = "http://muller.tech"
+# theme = "bleak"
+# PygmentsCodeFences = true
+# pygmentsstyle = "monokai"
+# pygmentslinenos= "inline"
+#
+# [params]
+#   disqus = "mullertech"
+#   googleAnalyticsUserID = "UA-69583716-1"
+#   custom_css = ["/css/custom.css"]
+#   cover = "/images/cover.jpg"
+#   credits = false
+#   logo = "/images/logo.png"
+#   Subtitle = "Practical and actionnable advise, tips and guidance on real life Angular.js development."
+#   description = "Practical and actionnable advise, tips and guidance on real life Angular.js development."
+
+
+baseurl = "http://www.muller.tech/"
+
+languageCode = "en-gb"
+title = "Gabriel Muller - JavaScript and Angular articles"
+paginate = 9
+theme = "bleak"
+
+PygmentsCodeFences = true
+pygmentsstyle = "monokai"
+pygmentslinenos= "inline"
+
+SectionPagesMenu = "Main"
+
+[permalinks]
+  post = "/post/:year/:month/:day/:slug/"
+
+[indexes]
+  tag = "tags"
+
+[params]
+  # Warning Keys are case sensitives
+  Subtitle = "Practical and actionnable advise on real life Angular.js development."
+  description = "Practical and actionnable advise on real life Angular.js development."
+  cover = "/images/cover.jpg"
+  credits = false
+
+  # Google analytics
+  googleAnalyticsUserID = "UA-69583716-1"
+  # domainVerification = "fc173d84e3a4de948ed4bda2908afd3e"
+  disqus = "mullertech"
+
+  logo = "/images/logo.png"
+  custom_css = ["/css/custom.css"]
+
+  [params.author]
+    firstName = "Gabriel"
+    lastName = "Muller"
+    # gender = "male"
+    # userName = "zenithar"
+    # image = "//www.gravatar.com/avatar/1a2807faf3cca1667ff6f04bf5886eff.png"
+    # website = "http://zenithar.org"
+    # twitter = "zenithar"
+    # github = "zenithar"
+    # facebook = "zenithar"
+    # linkedin = "zenithar"
+    # gplus = "thibault.normand"
+    # gravatarHash = "1a2807faf3cca1667ff6f04bf5886eff"
