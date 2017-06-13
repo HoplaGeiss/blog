@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Node.Js on Gabriel Muller - JavaScript and Angular articles</title>
+    <link>http://www.muller.tech/tags/node.js/</link>
+    <description>Recent content in Node.Js on Gabriel Muller - JavaScript and Angular articles</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-gb</language>
+    <lastBuildDate>Tue, 13 Jun 2017 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="http://www.muller.tech/tags/node.js/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Node.js - Package.json scripts</title>
+      <link>http://www.muller.tech/post/2017/06/13/node-package-json-scripts/</link>
+      <pubDate>Tue, 13 Jun 2017 00:00:00 +0000</pubDate>
+      
+      <guid>http://www.muller.tech/post/2017/06/13/node-package-json-scripts/</guid>
+      <description>If you are developing an angular application, chances are you are using @angular/cli. It is a fantastic tools which comes packed with awesome time saving features. Now recently I had to work on a node.js backend project and I dearly missed @angular/cli, so this post is about a couple tricks I found to mock @angular/cli&amp;rsquo;s features.
+ng test Usually angular&amp;rsquo;s unit test are along side the file they refer to, in node sadly most of the time it is not the case.</description>
+    </item>
+    
+  </channel>
+</rss>

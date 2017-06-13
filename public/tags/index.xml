@@ -1,0 +1,249 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Tags on Gabriel Muller - JavaScript and Angular articles</title>
+    <link>http://www.muller.tech/tags/</link>
+    <description>Recent content in Tags on Gabriel Muller - JavaScript and Angular articles</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-gb</language>
+    <lastBuildDate>Mon, 03 Apr 2017 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="http://www.muller.tech/tags/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Accordion</title>
+      <link>http://www.muller.tech/tags/accordion/</link>
+      <pubDate>Mon, 03 Apr 2017 00:00:00 +0000</pubDate>
+      
+      <guid>http://www.muller.tech/tags/accordion/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Angular 1.4</title>
+      <link>http://www.muller.tech/tags/angular-1.4/</link>
+      <pubDate>Tue, 10 Jan 2017 00:00:00 +0000</pubDate>
+      
+      <guid>http://www.muller.tech/tags/angular-1.4/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Angular2</title>
+      <link>http://www.muller.tech/tags/angular2/</link>
+      <pubDate>Tue, 07 Mar 2017 00:00:00 +0000</pubDate>
+      
+      <guid>http://www.muller.tech/tags/angular2/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Angular4</title>
+      <link>http://www.muller.tech/tags/angular4/</link>
+      <pubDate>Mon, 03 Apr 2017 00:00:00 +0000</pubDate>
+      
+      <guid>http://www.muller.tech/tags/angular4/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Atom</title>
+      <link>http://www.muller.tech/tags/atom/</link>
+      <pubDate>Fri, 17 Feb 2017 00:00:00 +0000</pubDate>
+      
+      <guid>http://www.muller.tech/tags/atom/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Cheat Sheet</title>
+      <link>http://www.muller.tech/tags/cheat-sheet/</link>
+      <pubDate>Tue, 17 Jan 2017 00:00:00 +0000</pubDate>
+      
+      <guid>http://www.muller.tech/tags/cheat-sheet/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Components</title>
+      <link>http://www.muller.tech/tags/components/</link>
+      <pubDate>Mon, 23 Jan 2017 00:00:00 +0000</pubDate>
+      
+      <guid>http://www.muller.tech/tags/components/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Controllers</title>
+      <link>http://www.muller.tech/tags/controllers/</link>
+      <pubDate>Fri, 23 Dec 2016 00:00:00 +0000</pubDate>
+      
+      <guid>http://www.muller.tech/tags/controllers/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Deployment</title>
+      <link>http://www.muller.tech/tags/deployment/</link>
+      <pubDate>Tue, 17 Jan 2017 00:00:00 +0000</pubDate>
+      
+      <guid>http://www.muller.tech/tags/deployment/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Events</title>
+      <link>http://www.muller.tech/tags/events/</link>
+      <pubDate>Mon, 09 Jan 2017 00:00:00 +0000</pubDate>
+      
+      <guid>http://www.muller.tech/tags/events/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Git</title>
+      <link>http://www.muller.tech/tags/git/</link>
+      <pubDate>Tue, 17 Jan 2017 00:00:00 +0000</pubDate>
+      
+      <guid>http://www.muller.tech/tags/git/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Github</title>
+      <link>http://www.muller.tech/tags/github/</link>
+      <pubDate>Tue, 17 Jan 2017 00:00:00 +0000</pubDate>
+      
+      <guid>http://www.muller.tech/tags/github/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Http.Get</title>
+      <link>http://www.muller.tech/tags/http.get/</link>
+      <pubDate>Tue, 10 Jan 2017 00:00:00 +0000</pubDate>
+      
+      <guid>http://www.muller.tech/tags/http.get/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Ide</title>
+      <link>http://www.muller.tech/tags/ide/</link>
+      <pubDate>Fri, 17 Feb 2017 00:00:00 +0000</pubDate>
+      
+      <guid>http://www.muller.tech/tags/ide/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Jasmine</title>
+      <link>http://www.muller.tech/tags/jasmine/</link>
+      <pubDate>Tue, 10 Jan 2017 00:00:00 +0000</pubDate>
+      
+      <guid>http://www.muller.tech/tags/jasmine/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Loading</title>
+      <link>http://www.muller.tech/tags/loading/</link>
+      <pubDate>Tue, 07 Mar 2017 00:00:00 +0000</pubDate>
+      
+      <guid>http://www.muller.tech/tags/loading/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Mock</title>
+      <link>http://www.muller.tech/tags/mock/</link>
+      <pubDate>Fri, 23 Dec 2016 00:00:00 +0000</pubDate>
+      
+      <guid>http://www.muller.tech/tags/mock/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Modal</title>
+      <link>http://www.muller.tech/tags/modal/</link>
+      <pubDate>Mon, 03 Apr 2017 00:00:00 +0000</pubDate>
+      
+      <guid>http://www.muller.tech/tags/modal/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Node.Js</title>
+      <link>http://www.muller.tech/tags/node.js/</link>
+      <pubDate>Tue, 13 Jun 2017 00:00:00 +0000</pubDate>
+      
+      <guid>http://www.muller.tech/tags/node.js/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Npm</title>
+      <link>http://www.muller.tech/tags/npm/</link>
+      <pubDate>Tue, 07 Mar 2017 00:00:00 +0000</pubDate>
+      
+      <guid>http://www.muller.tech/tags/npm/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Observable</title>
+      <link>http://www.muller.tech/tags/observable/</link>
+      <pubDate>Thu, 16 Feb 2017 00:00:00 +0000</pubDate>
+      
+      <guid>http://www.muller.tech/tags/observable/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Pipe</title>
+      <link>http://www.muller.tech/tags/pipe/</link>
+      <pubDate>Mon, 23 Jan 2017 00:00:00 +0000</pubDate>
+      
+      <guid>http://www.muller.tech/tags/pipe/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Pre Bootstrap</title>
+      <link>http://www.muller.tech/tags/pre-bootstrap/</link>
+      <pubDate>Tue, 07 Mar 2017 00:00:00 +0000</pubDate>
+      
+      <guid>http://www.muller.tech/tags/pre-bootstrap/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Promises</title>
+      <link>http://www.muller.tech/tags/promises/</link>
+      <pubDate>Fri, 23 Dec 2016 00:00:00 +0000</pubDate>
+      
+      <guid>http://www.muller.tech/tags/promises/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Resolve</title>
+      <link>http://www.muller.tech/tags/resolve/</link>
+      <pubDate>Fri, 23 Dec 2016 00:00:00 +0000</pubDate>
+      
+      <guid>http://www.muller.tech/tags/resolve/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Unit Test</title>
+      <link>http://www.muller.tech/tags/unit-test/</link>
+      <pubDate>Tue, 10 Jan 2017 00:00:00 +0000</pubDate>
+      
+      <guid>http://www.muller.tech/tags/unit-test/</guid>
+      <description></description>
+    </item>
+    
+  </channel>
+</rss>

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Components on Gabriel Muller - JavaScript and Angular articles</title>
+    <link>http://www.muller.tech/tags/components/</link>
+    <description>Recent content in Components on Gabriel Muller - JavaScript and Angular articles</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-gb</language>
+    <lastBuildDate>Mon, 23 Jan 2017 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="http://www.muller.tech/tags/components/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Angular2 components - Share data between components</title>
+      <link>http://www.muller.tech/post/2017/01/23/angular2-share-data-between-components/</link>
+      <pubDate>Mon, 23 Jan 2017 00:00:00 +0000</pubDate>
+      
+      <guid>http://www.muller.tech/post/2017/01/23/angular2-share-data-between-components/</guid>
+      <description>For my first post on angular2, I would like to analyse how to share data between components. Sharing data between a parent component and a child component is fairly straight forward, but doing so between sibling components is a lot more work.
+I am going to take a real life example of a home page with an search bar that drives a list of trainers. Here the parent component is the home.</description>
+    </item>
+    
+  </channel>
+</rss>

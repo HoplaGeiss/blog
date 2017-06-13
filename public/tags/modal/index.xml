@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Modal on Gabriel Muller - JavaScript and Angular articles</title>
+    <link>http://www.muller.tech/tags/modal/</link>
+    <description>Recent content in Modal on Gabriel Muller - JavaScript and Angular articles</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-gb</language>
+    <lastBuildDate>Mon, 03 Apr 2017 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="http://www.muller.tech/tags/modal/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Angular 4 - Create a modal</title>
+      <link>http://www.muller.tech/post/2017/04/03/angular4-create-modal/</link>
+      <pubDate>Mon, 03 Apr 2017 00:00:00 +0000</pubDate>
+      
+      <guid>http://www.muller.tech/post/2017/04/03/angular4-create-modal/</guid>
+      <description>After my previous post about creating a simple accordion with angular 4, I will now walk you through my implementation of a modal in angular 4. To create the modal I used two files modal.component.ts and modal.service.ts and organised it in the usual component based architecture.
+Now let&amp;rsquo;s take a look at both files.
+import { Component, Input, OnInit, HostListener } from &amp;#39;@angular/core&amp;#39;; import { ModalService } from &amp;#39;./modal.service&amp;#39;; @Component({ selector: &amp;#39;modal&amp;#39;, styleUrls: [&amp;#39;.</description>
+    </item>
+    
+  </channel>
+</rss>

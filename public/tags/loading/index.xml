@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Loading on Gabriel Muller - JavaScript and Angular articles</title>
+    <link>http://www.muller.tech/tags/loading/</link>
+    <description>Recent content in Loading on Gabriel Muller - JavaScript and Angular articles</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-gb</language>
+    <lastBuildDate>Tue, 07 Mar 2017 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="http://www.muller.tech/tags/loading/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Angular2 - pre bootstrap loading animation</title>
+      <link>http://www.muller.tech/post/2017/03/07/create-pre-bootstrap-animation/</link>
+      <pubDate>Tue, 07 Mar 2017 00:00:00 +0000</pubDate>
+      
+      <guid>http://www.muller.tech/post/2017/03/07/create-pre-bootstrap-animation/</guid>
+      <description>After a while it gets annoying to see angular2&amp;rsquo;s native loading.. everytime to start your app. Today&amp;rsquo;s post will show you how to change this. It is fairly easy to do, first let&amp;rsquo;s take a look at our index.html file. I am going to use a pre-bootstrap wrapper to position our animation pre-bootstrap-spinner and a small label pre-bootstrap-text.
+&amp;lt;!doctype html&amp;gt; &amp;lt;html&amp;gt; &amp;lt;head&amp;gt; &amp;lt;meta charset=&amp;quot;utf-8&amp;quot;&amp;gt; &amp;lt;title&amp;gt;XapiDemo&amp;lt;/title&amp;gt; &amp;lt;base href=&amp;quot;/&amp;quot;&amp;gt; &amp;lt;meta name=&amp;quot;viewport&amp;quot; content=&amp;quot;width=device-width, initial-scale=1&amp;quot;&amp;gt; &amp;lt;link rel=&amp;quot;icon&amp;quot; type=&amp;quot;image/x-icon&amp;quot; href=&amp;quot;favicon.</description>
+    </item>
+    
+  </channel>
+</rss>

@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Unit Test on Gabriel Muller - JavaScript and Angular articles</title>
+    <link>http://www.muller.tech/tags/unit-test/</link>
+    <description>Recent content in Unit Test on Gabriel Muller - JavaScript and Angular articles</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-gb</language>
+    <lastBuildDate>Tue, 10 Jan 2017 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="http://www.muller.tech/tags/unit-test/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Unit test $http.post with parameters</title>
+      <link>http://www.muller.tech/post/2017/01/10/unit-test-http-post-with-param/</link>
+      <pubDate>Tue, 10 Jan 2017 00:00:00 +0000</pubDate>
+      
+      <guid>http://www.muller.tech/post/2017/01/10/unit-test-http-post-with-param/</guid>
+      <description>Scenario In this example I will demonstrate how to unit $http.post when used with parameters.
+This is a real life example of an application, calling the backend with $http.post to register a new device. The difficulty here is, that the post includes a parameter, we need to find a way to access it.
+registerDevice: function (token) { return $http.post(configuration.getFrontEndUrl(&amp;#39;notification_devices&amp;#39;), { notification_device: { device_token: token } }); } }  There are two assertions we need to check: * A call has been made to configuration.</description>
+    </item>
+    
+    <item>
+      <title>Unit test $http.get</title>
+      <link>http://www.muller.tech/post/2017/01/09/unit-test-http-get/</link>
+      <pubDate>Mon, 09 Jan 2017 00:00:00 +0000</pubDate>
+      
+      <guid>http://www.muller.tech/post/2017/01/09/unit-test-http-get/</guid>
+      <description>Scenario In this example I will demonstrate how to unit $http.get.
+This is a real life example of an application, calling the backend with $http.get to retrieve the count of notifications. The difficulty here is, that when our call gets resolved we don&amp;rsquo;t assign a value to our scope, we just return the result. So we need to find a way to access this.
+getUnreadNotificationsCount: function (employeeId) { return $http.</description>
+    </item>
+    
+    <item>
+      <title>Unit test events</title>
+      <link>http://www.muller.tech/post/2017/01/09/unit-test-events/</link>
+      <pubDate>Mon, 09 Jan 2017 00:00:00 +0000</pubDate>
+      
+      <guid>http://www.muller.tech/post/2017/01/09/unit-test-events/</guid>
+      <description>Scenario In this example I will demonstrate how to unit test an event. The difficulty here, is to set the element&amp;rsquo;s target.
+$scope.toggleRadioButton = function (e) { e.stopImmediatePropagation(); if (angular.element(e.target).hasClass(&amp;#39;my-radio-button&amp;#39;)) { $scope.selectedButton = true; } };  Solution it(&amp;#39;stopImmediatePropagation is called and $scope.selectedButton is set to true&amp;#39;, function () { elem = angular.element(&amp;#39;&amp;lt;div class=&amp;quot;my-radio-button&amp;quot;&amp;gt;&amp;lt;/div&amp;gt;&amp;#39;); event = { target: elem, stopImmediatePropagation: function () {} }; spyOn(event, &amp;#39;stopImmediatePropagation&amp;#39;); scope.toggleRadioButton(event); expect(event.stopImmediatePropagation).toHaveBeenCalled(); expect(scope.selectedButton).toEqual(true); });  Analysis  We create an element with the class my-radio-button We create an event with two parameters, the element we just created and a fake stopImmediatePropagation function We spy on event.</description>
+    </item>
+    
+    <item>
+      <title>Unit test - Mock promises</title>
+      <link>http://www.muller.tech/post/2016/12/23/unit-test-mock-promises/</link>
+      <pubDate>Fri, 23 Dec 2016 00:00:00 +0000</pubDate>
+      
+      <guid>http://www.muller.tech/post/2016/12/23/unit-test-mock-promises/</guid>
+      <description>When first writing Javascript and specially when unit testing it, promises can be one of the hardest thing to understand.
+Scenario In this example we would like to mock a simple service returning a promise.
+This is a real life example, of an application, calling an employeeService to retrieve the notificationCount.
+employeeService.getEmployee().then(function (employee) { $scope.unreadNotifications = employee.notificationCount; });  Usually to mock a function, we would just do:
+employeeService.getEmployee = function () { return { notification: 2 } }  However that wouldn&amp;rsquo;t work here since employeeService.</description>
+    </item>
+    
+    <item>
+      <title>Unit test controllers</title>
+      <link>http://www.muller.tech/post/2016/12/23/unit-test-controllers/</link>
+      <pubDate>Fri, 23 Dec 2016 00:00:00 +0000</pubDate>
+      
+      <guid>http://www.muller.tech/post/2016/12/23/unit-test-controllers/</guid>
+      <description>Scenario We want to unit test a very basic controller with Jasmine.
+(function () { &amp;#39;use strict&amp;#39;; /** * @ngdoc controller * @name fuji.app.controllers:AboutCtrl * @description */ angular .module(&amp;#39;fuji.app.controllers&amp;#39;) .controller(&amp;#39;AboutCtrl&amp;#39;, AboutCtrl); function AboutCtrl ($scope, configuration, appVersion) { $scope.viewClassName = &amp;#39;wps-view-about&amp;#39;; $scope.accountCode = configuration.getAccountServiceConfig(); $scope.buildVersion = appVersion.buildVersion(); } })();  This controller is doing one thing.
+ Initialize some scope variables $scope.viewClassName, $scope.accountCode and $scope.buildVersion  Solution We have 3 test we need to do:</description>
+    </item>
+    
+    <item>
+      <title>Unit test controllers with resolved variables</title>
+      <link>http://www.muller.tech/post/2016/12/23/unit-test-controllers-with-resolved-variable-from-routing/</link>
+      <pubDate>Fri, 23 Dec 2016 00:00:00 +0000</pubDate>
+      
+      <guid>http://www.muller.tech/post/2016/12/23/unit-test-controllers-with-resolved-variable-from-routing/</guid>
+      <description>Scenario Today&amp;rsquo;s post is about testing a controller that uses variables from a resolve function in the routing.
+This is a real life example used in translations, say we want to handle different languages, we need to load the available languages and the selected one from a service.
+$stateProvider.state(&amp;#39;locales&amp;#39;, { url: &amp;#39;/locales&amp;#39;, templateUrl: &amp;#39;views/locales.html&amp;#39;, controller: &amp;#39;LocaleCtrl&amp;#39;, data: { secure: true, backState: &amp;#39;settings&amp;#39; }, resolve: { availableLocales: function (i18n) { return i18n.</description>
+    </item>
+    
+    <item>
+      <title>Unit test the removal of a class</title>
+      <link>http://www.muller.tech/post/2016/12/22/unit-test-removal-of-a-class/</link>
+      <pubDate>Thu, 22 Dec 2016 00:00:00 +0000</pubDate>
+      
+      <guid>http://www.muller.tech/post/2016/12/22/unit-test-removal-of-a-class/</guid>
+      <description>Scenario My app loads with a splash screen, this splash screen disappears after a timeout. I would like to unit test the disparition of the splash screen.
+Splash screen:
+&amp;lt;div class=&amp;quot;splash on&amp;quot;&amp;gt;&amp;lt;/div&amp;gt;  Code driving the disparition of the splash screen:
+$timeout(function () { angular .element(&amp;#39;.splash&amp;#39;) .removeClass(&amp;#39;on&amp;#39;); }, 2000);  Solution First we need a way to create find the element in the DOM. We need to assert the element has the close on, then wait for the $timeout to finish and finally assert again that class on disappeared.</description>
+    </item>
+    
+  </channel>
+</rss>

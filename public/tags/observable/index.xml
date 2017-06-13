@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Observable on Gabriel Muller - JavaScript and Angular articles</title>
+    <link>http://www.muller.tech/tags/observable/</link>
+    <description>Recent content in Observable on Gabriel Muller - JavaScript and Angular articles</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-gb</language>
+    <lastBuildDate>Thu, 16 Feb 2017 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="http://www.muller.tech/tags/observable/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Angular2 observable - Stream continuation</title>
+      <link>http://www.muller.tech/post/2017/02/16/angular2-observable-stream-continuation/</link>
+      <pubDate>Thu, 16 Feb 2017 00:00:00 +0000</pubDate>
+      
+      <guid>http://www.muller.tech/post/2017/02/16/angular2-observable-stream-continuation/</guid>
+      <description>Keeping an observable stream up and running is a common use case for many application. Lets take the example of an application with an input field taking a location as parameter which then calls foursquare&amp;rsquo;s API at each key stroke to query the recommended location nearby. If an HTTP call to foursquare fails, we want our observable stream to stay up and running.
+// home.component.ts @Component({ selector: &amp;#39;vs-home&amp;#39;, template: ` &amp;lt;div class=&amp;quot;home&amp;quot;&amp;gt; &amp;lt;form [formGroup]=&amp;quot;form&amp;quot;&amp;gt; &amp;lt;md-input-container class=&amp;quot;form-group&amp;quot; &amp;gt; &amp;lt;input md-input class=&amp;quot;form-control&amp;quot; formControlName=&amp;quot;location&amp;quot; placeholder=&amp;quot;Choose a Location&amp;quot;&amp;gt; &amp;lt;/md-input-container&amp;gt; &amp;lt;/form&amp;gt; &amp;lt;h2&amp;gt;Recommended venues close to this location:&amp;lt;/h2&amp;gt; &amp;lt;div *ngFor=&amp;quot;let venue of venues | async&amp;quot; &amp;gt; &amp;lt;vs-venue [venue]=&amp;quot;venue&amp;quot;&amp;gt;&amp;lt;/vs-venue&amp;gt; &amp;lt;/div&amp;gt; &amp;lt;/div&amp;gt; ` }) export class HomeComponent implements OnInit { venues: Observable&amp;lt;Venue[]&amp;gt;; form: any; constructor( private venueService: VenueService, private formBuilder: FormBuilder ) {} ngOnInit() { this.</description>
+    </item>
+    
+  </channel>
+</rss>

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Atom on Gabriel Muller - JavaScript and Angular articles</title>
+    <link>http://www.muller.tech/tags/atom/</link>
+    <description>Recent content in Atom on Gabriel Muller - JavaScript and Angular articles</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-gb</language>
+    <lastBuildDate>Fri, 17 Feb 2017 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="http://www.muller.tech/tags/atom/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Atom - plugin</title>
+      <link>http://www.muller.tech/post/2017/02/17/atom-plugin/</link>
+      <pubDate>Fri, 17 Feb 2017 00:00:00 +0000</pubDate>
+      
+      <guid>http://www.muller.tech/post/2017/02/17/atom-plugin/</guid>
+      <description>IDE configuration can save programmers a lot of time and effort, in this post I would like to share my personal configuration of Atom to developer angular2 apps.
+   Plugin Description     atom-typescript typescript styling &amp;amp; autocomplete   linter-tslint linters for typescript   markdown-preview-plus IDE preview of markdown files   open-in-browsers opens HTML file in browsers from IDE   todo-show lists TODO in the IDE   auto-save Saves changes on blur    </description>
+    </item>
+    
+  </channel>
+</rss>

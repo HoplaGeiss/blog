@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Angular2 on Gabriel Muller - JavaScript and Angular articles</title>
+    <link>http://www.muller.tech/tags/angular2/</link>
+    <description>Recent content in Angular2 on Gabriel Muller - JavaScript and Angular articles</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-gb</language>
+    <lastBuildDate>Tue, 07 Mar 2017 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="http://www.muller.tech/tags/angular2/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Angular2 - Create a npm package</title>
+      <link>http://www.muller.tech/post/2017/03/07/create-npm-package/</link>
+      <pubDate>Tue, 07 Mar 2017 00:00:00 +0000</pubDate>
+      
+      <guid>http://www.muller.tech/post/2017/03/07/create-npm-package/</guid>
+      <description>Creating a npm package out of your application can prove very useful. Whether you want to reuse a component you created in another of your application or if you just want to share your work with the opensource community, npm is the way to go. In this post I will describe how to create an npm package out of you angular 2 application. (created with angular cli)
+You need to make sure your package.</description>
+    </item>
+    
+    <item>
+      <title>Angular2 - pre bootstrap loading animation</title>
+      <link>http://www.muller.tech/post/2017/03/07/create-pre-bootstrap-animation/</link>
+      <pubDate>Tue, 07 Mar 2017 00:00:00 +0000</pubDate>
+      
+      <guid>http://www.muller.tech/post/2017/03/07/create-pre-bootstrap-animation/</guid>
+      <description>After a while it gets annoying to see angular2&amp;rsquo;s native loading.. everytime to start your app. Today&amp;rsquo;s post will show you how to change this. It is fairly easy to do, first let&amp;rsquo;s take a look at our index.html file. I am going to use a pre-bootstrap wrapper to position our animation pre-bootstrap-spinner and a small label pre-bootstrap-text.
+&amp;lt;!doctype html&amp;gt; &amp;lt;html&amp;gt; &amp;lt;head&amp;gt; &amp;lt;meta charset=&amp;quot;utf-8&amp;quot;&amp;gt; &amp;lt;title&amp;gt;XapiDemo&amp;lt;/title&amp;gt; &amp;lt;base href=&amp;quot;/&amp;quot;&amp;gt; &amp;lt;meta name=&amp;quot;viewport&amp;quot; content=&amp;quot;width=device-width, initial-scale=1&amp;quot;&amp;gt; &amp;lt;link rel=&amp;quot;icon&amp;quot; type=&amp;quot;image/x-icon&amp;quot; href=&amp;quot;favicon.</description>
+    </item>
+    
+    <item>
+      <title>Angular2 observable - Stream continuation</title>
+      <link>http://www.muller.tech/post/2017/02/16/angular2-observable-stream-continuation/</link>
+      <pubDate>Thu, 16 Feb 2017 00:00:00 +0000</pubDate>
+      
+      <guid>http://www.muller.tech/post/2017/02/16/angular2-observable-stream-continuation/</guid>
+      <description>Keeping an observable stream up and running is a common use case for many application. Lets take the example of an application with an input field taking a location as parameter which then calls foursquare&amp;rsquo;s API at each key stroke to query the recommended location nearby. If an HTTP call to foursquare fails, we want our observable stream to stay up and running.
+// home.component.ts @Component({ selector: &amp;#39;vs-home&amp;#39;, template: ` &amp;lt;div class=&amp;quot;home&amp;quot;&amp;gt; &amp;lt;form [formGroup]=&amp;quot;form&amp;quot;&amp;gt; &amp;lt;md-input-container class=&amp;quot;form-group&amp;quot; &amp;gt; &amp;lt;input md-input class=&amp;quot;form-control&amp;quot; formControlName=&amp;quot;location&amp;quot; placeholder=&amp;quot;Choose a Location&amp;quot;&amp;gt; &amp;lt;/md-input-container&amp;gt; &amp;lt;/form&amp;gt; &amp;lt;h2&amp;gt;Recommended venues close to this location:&amp;lt;/h2&amp;gt; &amp;lt;div *ngFor=&amp;quot;let venue of venues | async&amp;quot; &amp;gt; &amp;lt;vs-venue [venue]=&amp;quot;venue&amp;quot;&amp;gt;&amp;lt;/vs-venue&amp;gt; &amp;lt;/div&amp;gt; &amp;lt;/div&amp;gt; ` }) export class HomeComponent implements OnInit { venues: Observable&amp;lt;Venue[]&amp;gt;; form: any; constructor( private venueService: VenueService, private formBuilder: FormBuilder ) {} ngOnInit() { this.</description>
+    </item>
+    
+    <item>
+      <title>Angular2 components - Share data between components</title>
+      <link>http://www.muller.tech/post/2017/01/23/angular2-share-data-between-components/</link>
+      <pubDate>Mon, 23 Jan 2017 00:00:00 +0000</pubDate>
+      
+      <guid>http://www.muller.tech/post/2017/01/23/angular2-share-data-between-components/</guid>
+      <description>For my first post on angular2, I would like to analyse how to share data between components. Sharing data between a parent component and a child component is fairly straight forward, but doing so between sibling components is a lot more work.
+I am going to take a real life example of a home page with an search bar that drives a list of trainers. Here the parent component is the home.</description>
+    </item>
+    
+    <item>
+      <title>Angular2 pipe - Force pipes to detect changes</title>
+      <link>http://www.muller.tech/post/2017/01/23/angular2-pipe-does-not-detect-change/</link>
+      <pubDate>Mon, 23 Jan 2017 00:00:00 +0000</pubDate>
+      
+      <guid>http://www.muller.tech/post/2017/01/23/angular2-pipe-does-not-detect-change/</guid>
+      <description>The goal of this post, is to explore how pipe work and to make them do what we expect of them! Before futher due, let&amp;rsquo;s see an example. The example I am going to use, is a list of trainers filtered by sports, this list is driven by an input field.
+Scenario &amp;lt;md-card *ngFor=&amp;quot;let trainer of trainers | criteria:&amp;#39;sport&amp;#39;:sportSearch&amp;quot;&amp;gt; {{ trainer.name }} {{ trainer.sport }} &amp;lt;/md-card&amp;gt;  The behavior you would expect, is that every time you modify the list of sportSearch, the list of trainers gets updated.</description>
+    </item>
+    
+  </channel>
+</rss>

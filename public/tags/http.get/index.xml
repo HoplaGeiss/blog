@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Http.Get on Gabriel Muller - JavaScript and Angular articles</title>
+    <link>http://www.muller.tech/tags/http.get/</link>
+    <description>Recent content in Http.Get on Gabriel Muller - JavaScript and Angular articles</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-gb</language>
+    <lastBuildDate>Tue, 10 Jan 2017 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="http://www.muller.tech/tags/http.get/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Unit test $http.post with parameters</title>
+      <link>http://www.muller.tech/post/2017/01/10/unit-test-http-post-with-param/</link>
+      <pubDate>Tue, 10 Jan 2017 00:00:00 +0000</pubDate>
+      
+      <guid>http://www.muller.tech/post/2017/01/10/unit-test-http-post-with-param/</guid>
+      <description>Scenario In this example I will demonstrate how to unit $http.post when used with parameters.
+This is a real life example of an application, calling the backend with $http.post to register a new device. The difficulty here is, that the post includes a parameter, we need to find a way to access it.
+registerDevice: function (token) { return $http.post(configuration.getFrontEndUrl(&amp;#39;notification_devices&amp;#39;), { notification_device: { device_token: token } }); } }  There are two assertions we need to check: * A call has been made to configuration.</description>
+    </item>
+    
+    <item>
+      <title>Unit test $http.get</title>
+      <link>http://www.muller.tech/post/2017/01/09/unit-test-http-get/</link>
+      <pubDate>Mon, 09 Jan 2017 00:00:00 +0000</pubDate>
+      
+      <guid>http://www.muller.tech/post/2017/01/09/unit-test-http-get/</guid>
+      <description>Scenario In this example I will demonstrate how to unit $http.get.
+This is a real life example of an application, calling the backend with $http.get to retrieve the count of notifications. The difficulty here is, that when our call gets resolved we don&amp;rsquo;t assign a value to our scope, we just return the result. So we need to find a way to access this.
+getUnreadNotificationsCount: function (employeeId) { return $http.</description>
+    </item>
+    
+  </channel>
+</rss>

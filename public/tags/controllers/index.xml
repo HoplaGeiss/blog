@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Controllers on Gabriel Muller - JavaScript and Angular articles</title>
+    <link>http://www.muller.tech/tags/controllers/</link>
+    <description>Recent content in Controllers on Gabriel Muller - JavaScript and Angular articles</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-gb</language>
+    <lastBuildDate>Fri, 23 Dec 2016 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="http://www.muller.tech/tags/controllers/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Unit test controllers</title>
+      <link>http://www.muller.tech/post/2016/12/23/unit-test-controllers/</link>
+      <pubDate>Fri, 23 Dec 2016 00:00:00 +0000</pubDate>
+      
+      <guid>http://www.muller.tech/post/2016/12/23/unit-test-controllers/</guid>
+      <description>Scenario We want to unit test a very basic controller with Jasmine.
+(function () { &amp;#39;use strict&amp;#39;; /** * @ngdoc controller * @name fuji.app.controllers:AboutCtrl * @description */ angular .module(&amp;#39;fuji.app.controllers&amp;#39;) .controller(&amp;#39;AboutCtrl&amp;#39;, AboutCtrl); function AboutCtrl ($scope, configuration, appVersion) { $scope.viewClassName = &amp;#39;wps-view-about&amp;#39;; $scope.accountCode = configuration.getAccountServiceConfig(); $scope.buildVersion = appVersion.buildVersion(); } })();  This controller is doing one thing.
+ Initialize some scope variables $scope.viewClassName, $scope.accountCode and $scope.buildVersion  Solution We have 3 test we need to do:</description>
+    </item>
+    
+    <item>
+      <title>Unit test controllers with resolved variables</title>
+      <link>http://www.muller.tech/post/2016/12/23/unit-test-controllers-with-resolved-variable-from-routing/</link>
+      <pubDate>Fri, 23 Dec 2016 00:00:00 +0000</pubDate>
+      
+      <guid>http://www.muller.tech/post/2016/12/23/unit-test-controllers-with-resolved-variable-from-routing/</guid>
+      <description>Scenario Today&amp;rsquo;s post is about testing a controller that uses variables from a resolve function in the routing.
+This is a real life example used in translations, say we want to handle different languages, we need to load the available languages and the selected one from a service.
+$stateProvider.state(&amp;#39;locales&amp;#39;, { url: &amp;#39;/locales&amp;#39;, templateUrl: &amp;#39;views/locales.html&amp;#39;, controller: &amp;#39;LocaleCtrl&amp;#39;, data: { secure: true, backState: &amp;#39;settings&amp;#39; }, resolve: { availableLocales: function (i18n) { return i18n.</description>
+    </item>
+    
+  </channel>
+</rss>

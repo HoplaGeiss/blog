@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Pipe on Gabriel Muller - JavaScript and Angular articles</title>
+    <link>http://www.muller.tech/tags/pipe/</link>
+    <description>Recent content in Pipe on Gabriel Muller - JavaScript and Angular articles</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-gb</language>
+    <lastBuildDate>Mon, 23 Jan 2017 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="http://www.muller.tech/tags/pipe/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Angular2 pipe - Force pipes to detect changes</title>
+      <link>http://www.muller.tech/post/2017/01/23/angular2-pipe-does-not-detect-change/</link>
+      <pubDate>Mon, 23 Jan 2017 00:00:00 +0000</pubDate>
+      
+      <guid>http://www.muller.tech/post/2017/01/23/angular2-pipe-does-not-detect-change/</guid>
+      <description>The goal of this post, is to explore how pipe work and to make them do what we expect of them! Before futher due, let&amp;rsquo;s see an example. The example I am going to use, is a list of trainers filtered by sports, this list is driven by an input field.
+Scenario &amp;lt;md-card *ngFor=&amp;quot;let trainer of trainers | criteria:&amp;#39;sport&amp;#39;:sportSearch&amp;quot;&amp;gt; {{ trainer.name }} {{ trainer.sport }} &amp;lt;/md-card&amp;gt;  The behavior you would expect, is that every time you modify the list of sportSearch, the list of trainers gets updated.</description>
+    </item>
+    
+  </channel>
+</rss>

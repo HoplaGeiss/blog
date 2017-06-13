@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Accordion on Gabriel Muller - JavaScript and Angular articles</title>
+    <link>http://www.muller.tech/tags/accordion/</link>
+    <description>Recent content in Accordion on Gabriel Muller - JavaScript and Angular articles</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-gb</language>
+    <lastBuildDate>Mon, 03 Apr 2017 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="http://www.muller.tech/tags/accordion/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Angular 4 - create an accordion</title>
+      <link>http://www.muller.tech/post/2017/04/03/create-angular4-accordion/</link>
+      <pubDate>Mon, 03 Apr 2017 00:00:00 +0000</pubDate>
+      
+      <guid>http://www.muller.tech/post/2017/04/03/create-angular4-accordion/</guid>
+      <description>After looking for a while for a simple accordion component on npm I was very surprised not to find any. So I began implementing my own. To create the accordion I used two components AccordionComponent and AccordionGroupComponent and organised it in the usual component based architecture.
+Now let&amp;rsquo;s take a look at both files.
+import { Component, Input } from &amp;#39;@angular/core&amp;#39;; import { AccordionGroupComponent } from &amp;#39;./accordion-group/accordion-group.component&amp;#39;; @Component({ selector: &amp;#39;accordion&amp;#39;, styleUrls: [&amp;#39;.</description>
+    </item>
+    
+  </channel>
+</rss>

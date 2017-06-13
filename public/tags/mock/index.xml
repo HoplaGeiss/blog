@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Mock on Gabriel Muller - JavaScript and Angular articles</title>
+    <link>http://www.muller.tech/tags/mock/</link>
+    <description>Recent content in Mock on Gabriel Muller - JavaScript and Angular articles</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-gb</language>
+    <lastBuildDate>Fri, 23 Dec 2016 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="http://www.muller.tech/tags/mock/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Unit test - Mock promises</title>
+      <link>http://www.muller.tech/post/2016/12/23/unit-test-mock-promises/</link>
+      <pubDate>Fri, 23 Dec 2016 00:00:00 +0000</pubDate>
+      
+      <guid>http://www.muller.tech/post/2016/12/23/unit-test-mock-promises/</guid>
+      <description>When first writing Javascript and specially when unit testing it, promises can be one of the hardest thing to understand.
+Scenario In this example we would like to mock a simple service returning a promise.
+This is a real life example, of an application, calling an employeeService to retrieve the notificationCount.
+employeeService.getEmployee().then(function (employee) { $scope.unreadNotifications = employee.notificationCount; });  Usually to mock a function, we would just do:
+employeeService.getEmployee = function () { return { notification: 2 } }  However that wouldn&amp;rsquo;t work here since employeeService.</description>
+    </item>
+    
+  </channel>
+</rss>
