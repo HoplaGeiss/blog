@@ -27,8 +27,8 @@ We will use nodemon to watch for file changes and jasmine as development framewo
 
 2- configure jasmine
 
+spec/support/jasmine.json
 ``` json
-// spec/support/jasmine.json
 {
   "spec_dir": "",
   "spec_files": [
@@ -43,8 +43,10 @@ We will use nodemon to watch for file changes and jasmine as development framewo
 3- Configure scripts in package.json
 
 ``` json
-"scripts": {
-  "test": "./node_modules/nodemon/bin/nodemon.js --exec ./node_modules/jasmine/bin/jasmine.js",
+{
+  "scripts": {
+    "test": "./node_modules/nodemon/bin/nodemon.js --exec ./node_modules/jasmine/bin/jasmine.js",
+  }
 }
 ```
 
@@ -57,7 +59,7 @@ Running the test and generating the coverage report with istanbul is another awe
 
 2- configure istanbul
 
-```
+``` yaml
 # .istanbul.yml
 instrumentation:
   include-all-sources: true
@@ -73,9 +75,11 @@ Two very important settings here that I struggled to find:
 
 3- Configure scripts in package.json
 
-```
-"scripts": {
-  "coverage": "node_modules/istanbul/lib/cli.js cover node_modules/jasmine/bin/jasmine.js"
+``` json
+{
+  "scripts": {
+    "coverage": "node_modules/istanbul/lib/cli.js cover node_modules/jasmine/bin/jasmine.js"
+  }
 }
 ```
 
@@ -96,7 +100,9 @@ Anyhow make sure you have an eslint configuration at the root folder
 3- Configure scripts in package.json
 
 ``` json
-"scripts": {
-  "lint": "node_modules/.bin/eslint **/*.js"
+{
+  "scripts": {
+    "lint": "node_modules/.bin/eslint **/*.js"
+  }
 }
 ```
