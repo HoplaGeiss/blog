@@ -164,24 +164,24 @@ html{font-family:sans-serif;line-height:1.15;-ms-text-size-adjust:100%;-webkit-t
   				
 
 <p>Keeping an observable stream up and running is a common use case for many application. Lets take the example of an application with an input field taking a location as parameter which then calls foursquare&rsquo;s API at each key stroke to query the recommended location nearby. If an HTTP call to foursquare fails, we want our observable stream to stay up and running.</p>
-<div class="highlight" style="background: #272822"><pre style="line-height: 125%"><span style="color: #75715e">// home.component.ts</span>
+<div class="highlight" style="background: #272822"><pre style="line-height: 125%"><span></span><span style="color: #75715e">// home.component.ts</span>
 <span style="color: #66d9ef">@Component</span><span style="color: #f8f8f2">({</span>
   <span style="color: #a6e22e">selector</span><span style="color: #f92672">:</span> <span style="color: #e6db74">&#39;vs-home&#39;</span><span style="color: #f8f8f2">,</span>
-  <span style="color: #a6e22e">template</span><span style="color: #f92672">:</span> <span style="color: #960050; background-color: #1e0010">`</span>
-    <span style="color: #f92672">&lt;</span><span style="color: #a6e22e">div</span> <span style="color: #66d9ef">class</span><span style="color: #f92672">=</span><span style="color: #e6db74">&quot;home&quot;</span><span style="color: #f92672">&gt;</span>
-      <span style="color: #f92672">&lt;</span><span style="color: #a6e22e">form</span> <span style="color: #f8f8f2">[</span><span style="color: #a6e22e">formGroup</span><span style="color: #f8f8f2">]</span><span style="color: #f92672">=</span><span style="color: #e6db74">&quot;form&quot;</span><span style="color: #f92672">&gt;</span>
-        <span style="color: #f92672">&lt;</span><span style="color: #a6e22e">md</span><span style="color: #f92672">-</span><span style="color: #a6e22e">input</span><span style="color: #f92672">-</span><span style="color: #a6e22e">container</span> <span style="color: #66d9ef">class</span><span style="color: #f92672">=</span><span style="color: #e6db74">&quot;form-group&quot;</span> <span style="color: #f92672">&gt;</span>
-          <span style="color: #f92672">&lt;</span><span style="color: #a6e22e">input</span> <span style="color: #a6e22e">md</span><span style="color: #f92672">-</span><span style="color: #a6e22e">input</span> <span style="color: #66d9ef">class</span><span style="color: #f92672">=</span><span style="color: #e6db74">&quot;form-control&quot;</span> <span style="color: #a6e22e">formControlName</span><span style="color: #f92672">=</span><span style="color: #e6db74">&quot;location&quot;</span> <span style="color: #a6e22e">placeholder</span><span style="color: #f92672">=</span><span style="color: #e6db74">&quot;Choose a Location&quot;</span><span style="color: #f92672">&gt;</span>
-        <span style="color: #f92672">&lt;</span><span style="color: #960050; background-color: #1e0010">/md-input-container&gt;</span>
-      <span style="color: #f92672">&lt;</span><span style="color: #960050; background-color: #1e0010">/form&gt;</span>
+  <span style="color: #a6e22e">template</span><span style="color: #f92672">:</span> <span style="color: #e6db74">`</span>
+<span style="color: #e6db74">    &lt;div class=&quot;home&quot;&gt;</span>
+<span style="color: #e6db74">      &lt;form [formGroup]=&quot;form&quot;&gt;</span>
+<span style="color: #e6db74">        &lt;md-input-container class=&quot;form-group&quot; &gt;</span>
+<span style="color: #e6db74">          &lt;input md-input class=&quot;form-control&quot; formControlName=&quot;location&quot; placeholder=&quot;Choose a Location&quot;&gt;</span>
+<span style="color: #e6db74">        &lt;/md-input-container&gt;</span>
+<span style="color: #e6db74">      &lt;/form&gt;</span>
 
-      <span style="color: #f92672">&lt;</span><span style="color: #a6e22e">h2</span><span style="color: #f92672">&gt;</span><span style="color: #a6e22e">Recommended</span> <span style="color: #a6e22e">venues</span> <span style="color: #a6e22e">close</span> <span style="color: #a6e22e">to</span> <span style="color: #66d9ef">this</span> <span style="color: #a6e22e">location</span><span style="color: #f92672">:&lt;</span><span style="color: #960050; background-color: #1e0010">/h2&gt;</span>
+<span style="color: #e6db74">      &lt;h2&gt;Recommended venues close to this location:&lt;/h2&gt;</span>
 
-      <span style="color: #f92672">&lt;</span><span style="color: #a6e22e">div</span> <span style="color: #f92672">*</span><span style="color: #a6e22e">ngFor</span><span style="color: #f92672">=</span><span style="color: #e6db74">&quot;let venue of venues | async&quot;</span> <span style="color: #f92672">&gt;</span>
-        <span style="color: #f92672">&lt;</span><span style="color: #a6e22e">vs</span><span style="color: #f92672">-</span><span style="color: #a6e22e">venue</span> <span style="color: #f8f8f2">[</span><span style="color: #a6e22e">venue</span><span style="color: #f8f8f2">]</span><span style="color: #f92672">=</span><span style="color: #e6db74">&quot;venue&quot;</span><span style="color: #f92672">&gt;&lt;</span><span style="color: #960050; background-color: #1e0010">/vs-venue&gt;</span>
-      <span style="color: #f92672">&lt;</span><span style="color: #960050; background-color: #1e0010">/div&gt;</span>
-    <span style="color: #f92672">&lt;</span><span style="color: #960050; background-color: #1e0010">/div&gt;</span>
-  <span style="color: #960050; background-color: #1e0010">`</span>
+<span style="color: #e6db74">      &lt;div *ngFor=&quot;let venue of venues | async&quot; &gt;</span>
+<span style="color: #e6db74">        &lt;vs-venue [venue]=&quot;venue&quot;&gt;&lt;/vs-venue&gt;</span>
+<span style="color: #e6db74">      &lt;/div&gt;</span>
+<span style="color: #e6db74">    &lt;/div&gt;</span>
+<span style="color: #e6db74">  `</span>
 <span style="color: #f8f8f2">})</span>
 <span style="color: #66d9ef">export</span> <span style="color: #66d9ef">class</span> <span style="color: #a6e22e">HomeComponent</span> <span style="color: #66d9ef">implements</span> <span style="color: #a6e22e">OnInit</span> <span style="color: #f8f8f2">{</span>
   <span style="color: #a6e22e">venues</span>: <span style="color: #66d9ef">Observable</span><span style="color: #f92672">&lt;</span><span style="color: #a6e22e">Venue</span><span style="color: #f8f8f2">[]</span><span style="color: #f92672">&gt;</span><span style="color: #f8f8f2">;</span>
@@ -205,11 +205,11 @@ html{font-family:sans-serif;line-height:1.15;-ms-text-size-adjust:100%;-webkit-t
   <span style="color: #f8f8f2">}</span>
 <span style="color: #f8f8f2">}</span>
 </pre></div>
-<div class="highlight" style="background: #272822"><pre style="line-height: 125%"><span style="color: #75715e">// venue.service.component.ts</span>
+<div class="highlight" style="background: #272822"><pre style="line-height: 125%"><span></span><span style="color: #75715e">// venue.service.component.ts</span>
 <span style="color: #a6e22e">search</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">term</span>: <span style="color: #66d9ef">string</span><span style="color: #f8f8f2">)</span><span style="color: #f92672">:</span> <span style="color: #a6e22e">Observable</span><span style="color: #f92672">&lt;</span><span style="color: #a6e22e">Venue</span><span style="color: #f8f8f2">[]</span><span style="color: #f92672">&gt;</span> <span style="color: #f8f8f2">{</span>
   <span style="color: #66d9ef">const</span> <span style="color: #a6e22e">url</span> <span style="color: #f92672">=</span> <span style="color: #e6db74">&#39;https://api.foursquare.com/v2/venues/explore?section=topPicks&#39;</span><span style="color: #f8f8f2">;</span>
   <span style="color: #66d9ef">return</span> <span style="color: #66d9ef">this</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">http</span>
-    <span style="color: #f8f8f2">.</span><span style="color: #a6e22e">get</span><span style="color: #f8f8f2">(</span><span style="color: #960050; background-color: #1e0010">`</span><span style="color: #a6e22e">$</span><span style="color: #f8f8f2">{</span><span style="color: #a6e22e">url</span><span style="color: #f8f8f2">}</span><span style="color: #f92672">&amp;</span><span style="color: #a6e22e">near</span><span style="color: #f92672">=</span><span style="color: #a6e22e">$</span><span style="color: #f8f8f2">{</span><span style="color: #a6e22e">term</span><span style="color: #f8f8f2">}</span><span style="color: #960050; background-color: #1e0010">`</span><span style="color: #f8f8f2">)</span>
+    <span style="color: #f8f8f2">.</span><span style="color: #a6e22e">get</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">`${</span><span style="color: #a6e22e">url</span><span style="color: #e6db74">}&amp;near=${</span><span style="color: #a6e22e">term</span><span style="color: #e6db74">}`</span><span style="color: #f8f8f2">)</span>
     <span style="color: #f8f8f2">.</span><span style="color: #a6e22e">map</span><span style="color: #f8f8f2">(</span><span style="color: #66d9ef">this</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">extractData</span><span style="color: #f8f8f2">)</span>
     <span style="color: #f8f8f2">.</span><span style="color: #66d9ef">catch</span><span style="color: #f8f8f2">(</span><span style="color: #66d9ef">this</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">handleError</span><span style="color: #f8f8f2">);</span>
 <span style="color: #f8f8f2">}</span>
@@ -235,11 +235,11 @@ html{font-family:sans-serif;line-height:1.15;-ms-text-size-adjust:100%;-webkit-t
 <h4 id="solution-1">Solution 1</h4>
 
 <p>The first solution is to remove the catch and call <code>onErrorResumeNext</code>.</p>
-<div class="highlight" style="background: #272822"><pre style="line-height: 125%"><span style="color: #75715e">// venue.service.component.ts</span>
+<div class="highlight" style="background: #272822"><pre style="line-height: 125%"><span></span><span style="color: #75715e">// venue.service.component.ts</span>
 <span style="color: #a6e22e">search</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">term</span>: <span style="color: #66d9ef">string</span><span style="color: #f8f8f2">)</span><span style="color: #f92672">:</span> <span style="color: #a6e22e">Observable</span><span style="color: #f92672">&lt;</span><span style="color: #a6e22e">Venue</span><span style="color: #f8f8f2">[]</span><span style="color: #f92672">&gt;</span> <span style="color: #f8f8f2">{</span>
   <span style="color: #66d9ef">const</span> <span style="color: #a6e22e">url</span> <span style="color: #f92672">=</span> <span style="color: #e6db74">&#39;https://api.foursquare.com/v2/venues/explore?section=topPicks&#39;</span><span style="color: #f8f8f2">;</span>
   <span style="color: #66d9ef">return</span> <span style="color: #66d9ef">this</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">http</span>
-    <span style="color: #f8f8f2">.</span><span style="color: #a6e22e">get</span><span style="color: #f8f8f2">(</span><span style="color: #960050; background-color: #1e0010">`</span><span style="color: #a6e22e">$</span><span style="color: #f8f8f2">{</span><span style="color: #a6e22e">url</span><span style="color: #f8f8f2">}</span><span style="color: #f92672">&amp;</span><span style="color: #a6e22e">near</span><span style="color: #f92672">=</span><span style="color: #a6e22e">$</span><span style="color: #f8f8f2">{</span><span style="color: #a6e22e">term</span><span style="color: #f8f8f2">}</span><span style="color: #960050; background-color: #1e0010">`</span><span style="color: #f8f8f2">)</span>
+    <span style="color: #f8f8f2">.</span><span style="color: #a6e22e">get</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">`${</span><span style="color: #a6e22e">url</span><span style="color: #e6db74">}&amp;near=${</span><span style="color: #a6e22e">term</span><span style="color: #e6db74">}`</span><span style="color: #f8f8f2">)</span>
     <span style="color: #f8f8f2">.</span><span style="color: #a6e22e">map</span><span style="color: #f8f8f2">(</span><span style="color: #66d9ef">this</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">extractData</span><span style="color: #f8f8f2">)</span>
     <span style="color: #f8f8f2">.</span><span style="color: #a6e22e">onErrorResumeNext</span>
 <span style="color: #f8f8f2">}</span>
@@ -255,11 +255,11 @@ html{font-family:sans-serif;line-height:1.15;-ms-text-size-adjust:100%;-webkit-t
 <h4 id="solution-2">Solution 2</h4>
 
 <p>The second solution is to keep the catch, but return a different Observable without venues.</p>
-<div class="highlight" style="background: #272822"><pre style="line-height: 125%"><span style="color: #75715e">// venue.service.component.ts</span>
+<div class="highlight" style="background: #272822"><pre style="line-height: 125%"><span></span><span style="color: #75715e">// venue.service.component.ts</span>
 <span style="color: #a6e22e">search</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">term</span>: <span style="color: #66d9ef">string</span><span style="color: #f8f8f2">)</span><span style="color: #f92672">:</span> <span style="color: #a6e22e">Observable</span><span style="color: #f92672">&lt;</span><span style="color: #a6e22e">Venue</span><span style="color: #f8f8f2">[]</span><span style="color: #f92672">&gt;</span> <span style="color: #f8f8f2">{</span>
   <span style="color: #66d9ef">const</span> <span style="color: #a6e22e">url</span> <span style="color: #f92672">=</span> <span style="color: #e6db74">&#39;https://api.foursquare.com/v2/venues/explore?section=topPicks&#39;</span><span style="color: #f8f8f2">;</span>
   <span style="color: #66d9ef">return</span> <span style="color: #66d9ef">this</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">http</span>
-    <span style="color: #f8f8f2">.</span><span style="color: #a6e22e">get</span><span style="color: #f8f8f2">(</span><span style="color: #960050; background-color: #1e0010">`</span><span style="color: #a6e22e">$</span><span style="color: #f8f8f2">{</span><span style="color: #a6e22e">url</span><span style="color: #f8f8f2">}</span><span style="color: #f92672">&amp;</span><span style="color: #a6e22e">near</span><span style="color: #f92672">=</span><span style="color: #a6e22e">$</span><span style="color: #f8f8f2">{</span><span style="color: #a6e22e">term</span><span style="color: #f8f8f2">}</span><span style="color: #960050; background-color: #1e0010">`</span><span style="color: #f8f8f2">)</span>
+    <span style="color: #f8f8f2">.</span><span style="color: #a6e22e">get</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">`${</span><span style="color: #a6e22e">url</span><span style="color: #e6db74">}&amp;near=${</span><span style="color: #a6e22e">term</span><span style="color: #e6db74">}`</span><span style="color: #f8f8f2">)</span>
     <span style="color: #f8f8f2">.</span><span style="color: #a6e22e">map</span><span style="color: #f8f8f2">(</span><span style="color: #66d9ef">this</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">extractData</span><span style="color: #f8f8f2">)</span>
     <span style="color: #f8f8f2">.</span><span style="color: #a6e22e">onErrorResumeNext</span>
 <span style="color: #f8f8f2">}</span>

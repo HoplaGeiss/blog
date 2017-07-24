@@ -171,7 +171,7 @@ html{font-family:sans-serif;line-height:1.15;-ms-text-size-adjust:100%;-webkit-t
 <p>Today&rsquo;s post is about testing a controller that uses variables from a resolve function in the routing.</p>
 
 <p>This is a real life example used in translations, say we want to handle different languages, we need to load the available languages and the selected one from a service.</p>
-<div class="highlight" style="background: #272822"><pre style="line-height: 125%"><span style="color: #a6e22e">$stateProvider</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">state</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;locales&#39;</span><span style="color: #f8f8f2">,</span> <span style="color: #f8f8f2">{</span>
+<div class="highlight" style="background: #272822"><pre style="line-height: 125%"><span></span><span style="color: #a6e22e">$stateProvider</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">state</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;locales&#39;</span><span style="color: #f8f8f2">,</span> <span style="color: #f8f8f2">{</span>
   <span style="color: #a6e22e">url</span><span style="color: #f92672">:</span> <span style="color: #e6db74">&#39;/locales&#39;</span><span style="color: #f8f8f2">,</span>
   <span style="color: #a6e22e">templateUrl</span><span style="color: #f92672">:</span> <span style="color: #e6db74">&#39;views/locales.html&#39;</span><span style="color: #f8f8f2">,</span>
   <span style="color: #a6e22e">controller</span><span style="color: #f92672">:</span> <span style="color: #e6db74">&#39;LocaleCtrl&#39;</span><span style="color: #f8f8f2">,</span>
@@ -191,7 +191,7 @@ html{font-family:sans-serif;line-height:1.15;-ms-text-size-adjust:100%;-webkit-t
 </pre></div>
 
 <h3 id="solution">Solution</h3>
-<div class="highlight" style="background: #272822"><pre style="line-height: 125%"><span style="color: #f8f8f2">(</span><span style="color: #66d9ef">function</span> <span style="color: #f8f8f2">()</span> <span style="color: #f8f8f2">{</span>
+<div class="highlight" style="background: #272822"><pre style="line-height: 125%"><span></span><span style="color: #f8f8f2">(</span><span style="color: #66d9ef">function</span> <span style="color: #f8f8f2">()</span> <span style="color: #f8f8f2">{</span>
   <span style="color: #e6db74">&#39;use strict&#39;</span><span style="color: #f8f8f2">;</span>
 
   <span style="color: #a6e22e">describe</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;Controller: LocaleCtrl&#39;</span><span style="color: #f8f8f2">,</span> <span style="color: #66d9ef">function</span> <span style="color: #f8f8f2">()</span> <span style="color: #f8f8f2">{</span>

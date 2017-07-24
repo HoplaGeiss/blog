@@ -169,11 +169,11 @@ html{font-family:sans-serif;line-height:1.15;-ms-text-size-adjust:100%;-webkit-t
 <p>My app loads with a splash screen, this splash screen disappears after a timeout. I would like to unit test the disparition of the splash screen.</p>
 
 <p>Splash screen:</p>
-<div class="highlight" style="background: #272822"><pre style="line-height: 125%"><span style="color: #f8f8f2">&lt;</span><span style="color: #f92672">div</span> <span style="color: #a6e22e">class</span><span style="color: #f92672">=</span><span style="color: #e6db74">&quot;splash on&quot;</span><span style="color: #f8f8f2">&gt;&lt;/</span><span style="color: #f92672">div</span><span style="color: #f8f8f2">&gt;</span>
+<div class="highlight" style="background: #272822"><pre style="line-height: 125%"><span></span><span style="color: #f8f8f2">&lt;</span><span style="color: #f92672">div</span> <span style="color: #a6e22e">class</span><span style="color: #f92672">=</span><span style="color: #e6db74">&quot;splash on&quot;</span><span style="color: #f8f8f2">&gt;&lt;/</span><span style="color: #f92672">div</span><span style="color: #f8f8f2">&gt;</span>
 </pre></div>
 
 <p>Code driving the disparition of the splash screen:</p>
-<div class="highlight" style="background: #272822"><pre style="line-height: 125%"><span style="color: #a6e22e">$timeout</span><span style="color: #f8f8f2">(</span><span style="color: #66d9ef">function</span> <span style="color: #f8f8f2">()</span> <span style="color: #f8f8f2">{</span>
+<div class="highlight" style="background: #272822"><pre style="line-height: 125%"><span></span><span style="color: #a6e22e">$timeout</span><span style="color: #f8f8f2">(</span><span style="color: #66d9ef">function</span> <span style="color: #f8f8f2">()</span> <span style="color: #f8f8f2">{</span>
     <span style="color: #a6e22e">angular</span>
     <span style="color: #f8f8f2">.</span><span style="color: #a6e22e">element</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;.splash&#39;</span><span style="color: #f8f8f2">)</span>
     <span style="color: #f8f8f2">.</span><span style="color: #a6e22e">removeClass</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;on&#39;</span><span style="color: #f8f8f2">);</span>
@@ -183,7 +183,7 @@ html{font-family:sans-serif;line-height:1.15;-ms-text-size-adjust:100%;-webkit-t
 <h3 id="solution">Solution</h3>
 
 <p>First we need a way to create find the element in the DOM. We need to assert the element has the close <code>on</code>, then wait for the <code>$timeout</code> to finish and finally assert again that class <code>on</code> disappeared.</p>
-<div class="highlight" style="background: #272822"><pre style="line-height: 125%">  <span style="color: #66d9ef">var</span> <span style="color: #a6e22e">elem</span> <span style="color: #f92672">=</span> <span style="color: #a6e22e">angular</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">element</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;&lt;div class=&quot;splash on&quot;&gt;&lt;/div&gt;&#39;</span><span style="color: #f8f8f2">);</span>
+<div class="highlight" style="background: #272822"><pre style="line-height: 125%"><span></span>  <span style="color: #66d9ef">var</span> <span style="color: #a6e22e">elem</span> <span style="color: #f92672">=</span> <span style="color: #a6e22e">angular</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">element</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;&lt;div class=&quot;splash on&quot;&gt;&lt;/div&gt;&#39;</span><span style="color: #f8f8f2">);</span>
   <span style="color: #a6e22e">elem</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">appendTo</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;body&#39;</span><span style="color: #f8f8f2">);</span>
 
   <span style="color: #a6e22e">expect</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">elem</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">length</span><span style="color: #f8f8f2">).</span><span style="color: #a6e22e">toBe</span><span style="color: #f8f8f2">(</span><span style="color: #ae81ff">1</span><span style="color: #f8f8f2">);</span>

@@ -167,28 +167,28 @@ To create the modal I used two files <code>modal.component.ts</code> and <code>m
 <p><img src="/images/modal-architecture.png" alt="Component architecture" /></p>
 
 <p>Now let&rsquo;s take a look at both files.</p>
-<div class="highlight" style="background: #272822"><pre style="line-height: 125%"><span style="color: #66d9ef">import</span> <span style="color: #f8f8f2">{</span> <span style="color: #a6e22e">Component</span><span style="color: #f8f8f2">,</span> <span style="color: #a6e22e">Input</span><span style="color: #f8f8f2">,</span> <span style="color: #a6e22e">OnInit</span><span style="color: #f8f8f2">,</span> <span style="color: #a6e22e">HostListener</span> <span style="color: #f8f8f2">}</span> <span style="color: #a6e22e">from</span> <span style="color: #e6db74">&#39;@angular/core&#39;</span><span style="color: #f8f8f2">;</span>
+<div class="highlight" style="background: #272822"><pre style="line-height: 125%"><span></span><span style="color: #66d9ef">import</span> <span style="color: #f8f8f2">{</span> <span style="color: #a6e22e">Component</span><span style="color: #f8f8f2">,</span> <span style="color: #a6e22e">Input</span><span style="color: #f8f8f2">,</span> <span style="color: #a6e22e">OnInit</span><span style="color: #f8f8f2">,</span> <span style="color: #a6e22e">HostListener</span> <span style="color: #f8f8f2">}</span> <span style="color: #a6e22e">from</span> <span style="color: #e6db74">&#39;@angular/core&#39;</span><span style="color: #f8f8f2">;</span>
 <span style="color: #66d9ef">import</span> <span style="color: #f8f8f2">{</span> <span style="color: #a6e22e">ModalService</span> <span style="color: #f8f8f2">}</span> <span style="color: #a6e22e">from</span> <span style="color: #e6db74">&#39;./modal.service&#39;</span><span style="color: #f8f8f2">;</span>
 
 <span style="color: #66d9ef">@Component</span><span style="color: #f8f8f2">({</span>
     <span style="color: #a6e22e">selector</span><span style="color: #f92672">:</span> <span style="color: #e6db74">&#39;modal&#39;</span><span style="color: #f8f8f2">,</span>
     <span style="color: #a6e22e">styleUrls</span><span style="color: #f92672">:</span> <span style="color: #f8f8f2">[</span><span style="color: #e6db74">&#39;./modal.scss&#39;</span><span style="color: #f8f8f2">],</span>
-    <span style="color: #a6e22e">template</span><span style="color: #f92672">:</span> <span style="color: #960050; background-color: #1e0010">`</span>
-      <span style="color: #f92672">&lt;</span><span style="color: #a6e22e">div</span> <span style="color: #f8f8f2">[</span><span style="color: #a6e22e">ngClass</span><span style="color: #f8f8f2">]</span><span style="color: #f92672">=</span><span style="color: #e6db74">&quot;{&#39;closed&#39;: !isOpen}&quot;</span><span style="color: #f92672">&gt;</span>
-        <span style="color: #f92672">&lt;</span><span style="color: #a6e22e">div</span> <span style="color: #66d9ef">class</span><span style="color: #f92672">=</span><span style="color: #e6db74">&quot;modal-overlay&quot;</span> <span style="color: #f8f8f2">(</span><span style="color: #a6e22e">click</span><span style="color: #f8f8f2">)</span><span style="color: #f92672">=</span><span style="color: #e6db74">&quot;close(true)&quot;</span><span style="color: #f92672">&gt;&lt;</span><span style="color: #960050; background-color: #1e0010">/div&gt;</span>
+    <span style="color: #a6e22e">template</span><span style="color: #f92672">:</span> <span style="color: #e6db74">`</span>
+<span style="color: #e6db74">      &lt;div [ngClass]=&quot;{&#39;closed&#39;: !isOpen}&quot;&gt;</span>
+<span style="color: #e6db74">        &lt;div class=&quot;modal-overlay&quot; (click)=&quot;close(true)&quot;&gt;&lt;/div&gt;</span>
 
-        <span style="color: #f92672">&lt;</span><span style="color: #a6e22e">div</span> <span style="color: #66d9ef">class</span><span style="color: #f92672">=</span><span style="color: #e6db74">&quot;modal&quot;</span><span style="color: #f92672">&gt;</span>
-          <span style="color: #f92672">&lt;</span><span style="color: #a6e22e">div</span> <span style="color: #66d9ef">class</span><span style="color: #f92672">=</span><span style="color: #e6db74">&quot;title&quot;</span> <span style="color: #f92672">*</span><span style="color: #a6e22e">ngIf</span><span style="color: #f92672">=</span><span style="color: #e6db74">&quot;modalTitle&quot;</span><span style="color: #f92672">&gt;</span>
-            <span style="color: #f92672">&lt;</span><span style="color: #a6e22e">span</span> <span style="color: #66d9ef">class</span><span style="color: #f92672">=</span><span style="color: #e6db74">&quot;title-text&quot;</span><span style="color: #f92672">&gt;</span><span style="color: #f8f8f2">{{</span> <span style="color: #a6e22e">modalTitle</span> <span style="color: #f8f8f2">}}</span><span style="color: #f92672">&lt;</span><span style="color: #960050; background-color: #1e0010">/span&gt;</span>
-            <span style="color: #f92672">&lt;</span><span style="color: #a6e22e">span</span> <span style="color: #66d9ef">class</span><span style="color: #f92672">=</span><span style="color: #e6db74">&quot;right-align&quot;</span> <span style="color: #f8f8f2">(</span><span style="color: #a6e22e">click</span><span style="color: #f8f8f2">)</span><span style="color: #f92672">=</span><span style="color: #e6db74">&quot;close(true)&quot;</span><span style="color: #f92672">&gt;&lt;</span><span style="color: #a6e22e">i</span> <span style="color: #66d9ef">class</span><span style="color: #f92672">=</span><span style="color: #e6db74">&quot;material-icons md-24&quot;</span><span style="color: #f92672">&gt;</span><span style="color: #a6e22e">clear</span><span style="color: #f92672">&lt;</span><span style="color: #960050; background-color: #1e0010">/i&gt;&lt;/span&gt;</span>
-          <span style="color: #f92672">&lt;</span><span style="color: #960050; background-color: #1e0010">/div&gt;</span>
+<span style="color: #e6db74">        &lt;div class=&quot;modal&quot;&gt;</span>
+<span style="color: #e6db74">          &lt;div class=&quot;title&quot; *ngIf=&quot;modalTitle&quot;&gt;</span>
+<span style="color: #e6db74">            &lt;span class=&quot;title-text&quot;&gt;{{ modalTitle }}&lt;/span&gt;</span>
+<span style="color: #e6db74">            &lt;span class=&quot;right-align&quot; (click)=&quot;close(true)&quot;&gt;&lt;i class=&quot;material-icons md-24&quot;&gt;clear&lt;/i&gt;&lt;/span&gt;</span>
+<span style="color: #e6db74">          &lt;/div&gt;</span>
 
-          <span style="color: #f92672">&lt;</span><span style="color: #a6e22e">div</span> <span style="color: #66d9ef">class</span><span style="color: #f92672">=</span><span style="color: #e6db74">&quot;body&quot;</span><span style="color: #f92672">&gt;</span>
-            <span style="color: #f92672">&lt;</span><span style="color: #a6e22e">ng</span><span style="color: #f92672">-</span><span style="color: #a6e22e">content</span><span style="color: #f92672">&gt;&lt;</span><span style="color: #960050; background-color: #1e0010">/ng-content&gt;</span>
-          <span style="color: #f92672">&lt;</span><span style="color: #960050; background-color: #1e0010">/div&gt;</span>
-        <span style="color: #f92672">&lt;</span><span style="color: #960050; background-color: #1e0010">/div&gt;</span>
-      <span style="color: #f92672">&lt;</span><span style="color: #960050; background-color: #1e0010">/div&gt;</span>
-    <span style="color: #960050; background-color: #1e0010">`</span>
+<span style="color: #e6db74">          &lt;div class=&quot;body&quot;&gt;</span>
+<span style="color: #e6db74">            &lt;ng-content&gt;&lt;/ng-content&gt;</span>
+<span style="color: #e6db74">          &lt;/div&gt;</span>
+<span style="color: #e6db74">        &lt;/div&gt;</span>
+<span style="color: #e6db74">      &lt;/div&gt;</span>
+<span style="color: #e6db74">    `</span>
 <span style="color: #f8f8f2">})</span>
 <span style="color: #66d9ef">export</span> <span style="color: #66d9ef">class</span> <span style="color: #a6e22e">ModalComponent</span> <span style="color: #66d9ef">implements</span> <span style="color: #a6e22e">OnInit</span> <span style="color: #f8f8f2">{</span>
   <span style="color: #66d9ef">@Input</span><span style="color: #f8f8f2">()</span> <span style="color: #a6e22e">modalId</span>: <span style="color: #66d9ef">string</span><span style="color: #f8f8f2">;</span>
@@ -218,7 +218,7 @@ To create the modal I used two files <code>modal.component.ts</code> and <code>m
   <span style="color: #f8f8f2">}</span>
 <span style="color: #f8f8f2">}</span>
 </pre></div>
-<div class="highlight" style="background: #272822"><pre style="line-height: 125%"><span style="color: #66d9ef">import</span> <span style="color: #f8f8f2">{</span> <span style="color: #a6e22e">Injectable</span> <span style="color: #f8f8f2">}</span> <span style="color: #a6e22e">from</span> <span style="color: #e6db74">&#39;@angular/core&#39;</span><span style="color: #f8f8f2">;</span>
+<div class="highlight" style="background: #272822"><pre style="line-height: 125%"><span></span><span style="color: #66d9ef">import</span> <span style="color: #f8f8f2">{</span> <span style="color: #a6e22e">Injectable</span> <span style="color: #f8f8f2">}</span> <span style="color: #a6e22e">from</span> <span style="color: #e6db74">&#39;@angular/core&#39;</span><span style="color: #f8f8f2">;</span>
 <span style="color: #66d9ef">import</span> <span style="color: #f8f8f2">{</span> <span style="color: #a6e22e">ModalComponent</span> <span style="color: #f8f8f2">}</span> <span style="color: #a6e22e">from</span> <span style="color: #e6db74">&#39;./modal.component&#39;</span><span style="color: #f8f8f2">;</span>
 
 <span style="color: #66d9ef">@Injectable</span><span style="color: #f8f8f2">()</span>
@@ -274,13 +274,13 @@ To create the modal I used two files <code>modal.component.ts</code> and <code>m
 <p>As you can see the user can pass the <code>modalTitle</code> and <code>blocking</code> as parameters to the modal. A blocking modal is a modal that can&rsquo;t be closed unless its the user completed an action, a non-blocking modal can be closed by clicking outside of the modal or by clicking the cross on top right.</p>
 
 <p>Now lets see how to use this modal.</p>
-<div class="highlight" style="background: #272822"><pre style="line-height: 125%"><span style="color: #f92672">&lt;</span><span style="color: #a6e22e">modal</span> <span style="color: #f8f8f2">[</span><span style="color: #a6e22e">modalTitle</span><span style="color: #f8f8f2">]</span><span style="color: #f92672">=</span><span style="color: #e6db74">&quot;&#39;Review your transfer&#39;&quot;</span> <span style="color: #f8f8f2">[</span><span style="color: #a6e22e">blocking</span><span style="color: #f8f8f2">]</span><span style="color: #f92672">=</span><span style="color: #66d9ef">false</span> <span style="color: #f8f8f2">[</span><span style="color: #a6e22e">modalId</span><span style="color: #f8f8f2">]</span><span style="color: #f92672">=</span><span style="color: #e6db74">&quot;modalId&quot;</span><span style="color: #f92672">&gt;</span>
+<div class="highlight" style="background: #272822"><pre style="line-height: 125%"><span></span><span style="color: #f92672">&lt;</span><span style="color: #a6e22e">modal</span> <span style="color: #f8f8f2">[</span><span style="color: #a6e22e">modalTitle</span><span style="color: #f8f8f2">]</span><span style="color: #f92672">=</span><span style="color: #e6db74">&quot;&#39;Review your transfer&#39;&quot;</span> <span style="color: #f8f8f2">[</span><span style="color: #a6e22e">blocking</span><span style="color: #f8f8f2">]</span><span style="color: #f92672">=</span><span style="color: #66d9ef">false</span> <span style="color: #f8f8f2">[</span><span style="color: #a6e22e">modalId</span><span style="color: #f8f8f2">]</span><span style="color: #f92672">=</span><span style="color: #e6db74">&quot;modalId&quot;</span><span style="color: #f92672">&gt;</span>
   <span style="color: #f92672">&lt;</span><span style="color: #a6e22e">div</span><span style="color: #f92672">&gt;</span><span style="color: #a6e22e">Text</span> <span style="color: #a6e22e">inside</span> <span style="color: #a6e22e">the</span> <span style="color: #a6e22e">modal</span><span style="color: #f92672">&lt;</span><span style="color: #960050; background-color: #1e0010">/div&gt;</span>
 <span style="color: #f92672">&lt;</span><span style="color: #960050; background-color: #1e0010">/modal&gt;</span>
 </pre></div>
 
 <p>To finish here is some styling for our modal. Note the use of animation to display and hide the modal and the overlay!</p>
-<div class="highlight" style="background: #272822"><pre style="line-height: 125%"><span style="color: #66d9ef">@import</span> <span style="color: #e6db74">&#39;src/theme.scss&#39;</span><span style="color: #f8f8f2">;</span>
+<div class="highlight" style="background: #272822"><pre style="line-height: 125%"><span></span><span style="color: #66d9ef">@import</span> <span style="color: #e6db74">&#39;src/theme.scss&#39;</span><span style="color: #f8f8f2">;</span>
 
 <span style="color: #a6e22e">.modal-overlay</span> <span style="color: #f8f8f2">{</span>
   <span style="color: #f92672">background-color</span><span style="color: #a6e22e">:</span> <span style="color: #f92672">rgba(0,</span> <span style="color: #f92672">0,</span> <span style="color: #f92672">0,</span> <span style="color: #a6e22e">.4</span><span style="color: #f92672">);</span>

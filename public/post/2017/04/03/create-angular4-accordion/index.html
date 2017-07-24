@@ -167,17 +167,17 @@ To create the accordion I used two components <code>AccordionComponent</code> an
 <p><img src="/images/accordion-architecture.png" alt="Component architecture" /></p>
 
 <p>Now let&rsquo;s take a look at both files.</p>
-<div class="highlight" style="background: #272822"><pre style="line-height: 125%"><span style="color: #66d9ef">import</span> <span style="color: #f8f8f2">{</span> <span style="color: #a6e22e">Component</span><span style="color: #f8f8f2">,</span> <span style="color: #a6e22e">Input</span> <span style="color: #f8f8f2">}</span> <span style="color: #a6e22e">from</span> <span style="color: #e6db74">&#39;@angular/core&#39;</span><span style="color: #f8f8f2">;</span>
+<div class="highlight" style="background: #272822"><pre style="line-height: 125%"><span></span><span style="color: #66d9ef">import</span> <span style="color: #f8f8f2">{</span> <span style="color: #a6e22e">Component</span><span style="color: #f8f8f2">,</span> <span style="color: #a6e22e">Input</span> <span style="color: #f8f8f2">}</span> <span style="color: #a6e22e">from</span> <span style="color: #e6db74">&#39;@angular/core&#39;</span><span style="color: #f8f8f2">;</span>
 <span style="color: #66d9ef">import</span> <span style="color: #f8f8f2">{</span> <span style="color: #a6e22e">AccordionGroupComponent</span> <span style="color: #f8f8f2">}</span> <span style="color: #a6e22e">from</span> <span style="color: #e6db74">&#39;./accordion-group/accordion-group.component&#39;</span><span style="color: #f8f8f2">;</span>
 
 <span style="color: #66d9ef">@Component</span><span style="color: #f8f8f2">({</span>
   <span style="color: #a6e22e">selector</span><span style="color: #f92672">:</span> <span style="color: #e6db74">&#39;accordion&#39;</span><span style="color: #f8f8f2">,</span>
   <span style="color: #a6e22e">styleUrls</span><span style="color: #f92672">:</span> <span style="color: #f8f8f2">[</span><span style="color: #e6db74">&#39;./accordion.scss&#39;</span><span style="color: #f8f8f2">],</span>
-  <span style="color: #a6e22e">template</span><span style="color: #f92672">:</span> <span style="color: #960050; background-color: #1e0010">`</span>
-    <span style="color: #f92672">&lt;</span><span style="color: #a6e22e">div</span> <span style="color: #66d9ef">class</span><span style="color: #f92672">=</span><span style="color: #e6db74">&quot;accordion&quot;</span><span style="color: #f92672">&gt;</span>
-      <span style="color: #f92672">&lt;</span><span style="color: #a6e22e">ng</span><span style="color: #f92672">-</span><span style="color: #a6e22e">content</span><span style="color: #f92672">&gt;&lt;</span><span style="color: #960050; background-color: #1e0010">/ng-content&gt;</span>
-    <span style="color: #f92672">&lt;</span><span style="color: #960050; background-color: #1e0010">/div&gt;</span>
-  <span style="color: #960050; background-color: #1e0010">`</span>
+  <span style="color: #a6e22e">template</span><span style="color: #f92672">:</span> <span style="color: #e6db74">`</span>
+<span style="color: #e6db74">    &lt;div class=&quot;accordion&quot;&gt;</span>
+<span style="color: #e6db74">      &lt;ng-content&gt;&lt;/ng-content&gt;</span>
+<span style="color: #e6db74">    &lt;/div&gt;</span>
+<span style="color: #e6db74">  `</span>
 <span style="color: #f8f8f2">})</span>
 <span style="color: #66d9ef">export</span> <span style="color: #66d9ef">class</span> <span style="color: #a6e22e">AccordionComponent</span> <span style="color: #f8f8f2">{</span>
   <span style="color: #a6e22e">groups</span>: <span style="color: #66d9ef">Array</span><span style="color: #f92672">&lt;</span><span style="color: #a6e22e">AccordionGroupComponent</span><span style="color: #f92672">&gt;</span> <span style="color: #f92672">=</span> <span style="color: #f8f8f2">[];</span>
@@ -202,24 +202,24 @@ To create the accordion I used two components <code>AccordionComponent</code> an
   <span style="color: #f8f8f2">}</span>
 <span style="color: #f8f8f2">}</span>
 </pre></div>
-<div class="highlight" style="background: #272822"><pre style="line-height: 125%"><span style="color: #66d9ef">import</span> <span style="color: #f8f8f2">{</span> <span style="color: #a6e22e">Component</span><span style="color: #f8f8f2">,</span> <span style="color: #a6e22e">OnDestroy</span><span style="color: #f8f8f2">,</span> <span style="color: #a6e22e">Input</span><span style="color: #f8f8f2">,</span> <span style="color: #a6e22e">OnChanges</span><span style="color: #f8f8f2">,</span> <span style="color: #a6e22e">SimpleChange</span> <span style="color: #f8f8f2">}</span> <span style="color: #a6e22e">from</span> <span style="color: #e6db74">&#39;@angular/core&#39;</span><span style="color: #f8f8f2">;</span>
+<div class="highlight" style="background: #272822"><pre style="line-height: 125%"><span></span><span style="color: #66d9ef">import</span> <span style="color: #f8f8f2">{</span> <span style="color: #a6e22e">Component</span><span style="color: #f8f8f2">,</span> <span style="color: #a6e22e">OnDestroy</span><span style="color: #f8f8f2">,</span> <span style="color: #a6e22e">Input</span><span style="color: #f8f8f2">,</span> <span style="color: #a6e22e">OnChanges</span><span style="color: #f8f8f2">,</span> <span style="color: #a6e22e">SimpleChange</span> <span style="color: #f8f8f2">}</span> <span style="color: #a6e22e">from</span> <span style="color: #e6db74">&#39;@angular/core&#39;</span><span style="color: #f8f8f2">;</span>
 <span style="color: #66d9ef">import</span> <span style="color: #f8f8f2">{</span> <span style="color: #a6e22e">AccordionComponent</span> <span style="color: #f8f8f2">}</span> <span style="color: #a6e22e">from</span> <span style="color: #e6db74">&#39;../accordion.component&#39;</span><span style="color: #f8f8f2">;</span>
 
 <span style="color: #66d9ef">@Component</span><span style="color: #f8f8f2">({</span>
   <span style="color: #a6e22e">selector</span><span style="color: #f92672">:</span> <span style="color: #e6db74">&#39;accordion-group&#39;</span><span style="color: #f8f8f2">,</span>
   <span style="color: #a6e22e">styleUrls</span><span style="color: #f92672">:</span> <span style="color: #f8f8f2">[</span><span style="color: #e6db74">&#39;./accordion-group.scss&#39;</span><span style="color: #f8f8f2">],</span>
-  <span style="color: #a6e22e">template</span><span style="color: #f92672">:</span> <span style="color: #960050; background-color: #1e0010">`</span>
-    <span style="color: #f92672">&lt;</span><span style="color: #a6e22e">div</span> <span style="color: #66d9ef">class</span><span style="color: #f92672">=</span><span style="color: #e6db74">&quot;accordion-group&quot;</span> <span style="color: #f8f8f2">[</span><span style="color: #a6e22e">ngClass</span><span style="color: #f8f8f2">]</span><span style="color: #f92672">=</span><span style="color: #e6db74">&quot;{&#39;closed&#39;: !isOpen}&quot;</span><span style="color: #f92672">&gt;</span>
-      <span style="color: #f92672">&lt;</span><span style="color: #a6e22e">div</span> <span style="color: #66d9ef">class</span><span style="color: #f92672">=</span><span style="color: #e6db74">&quot;panel-heading&quot;</span> <span style="color: #f8f8f2">(</span><span style="color: #a6e22e">click</span><span style="color: #f8f8f2">)</span><span style="color: #f92672">=</span><span style="color: #e6db74">&quot;toggleOpen()&quot;</span><span style="color: #f92672">&gt;</span>
-          <span style="color: #f92672">&lt;</span><span style="color: #a6e22e">span</span><span style="color: #f92672">&gt;</span><span style="color: #f8f8f2">{{</span><span style="color: #a6e22e">heading</span><span style="color: #f8f8f2">}}</span><span style="color: #f92672">&lt;</span><span style="color: #960050; background-color: #1e0010">/span&gt;</span>
-      <span style="color: #f92672">&lt;</span><span style="color: #960050; background-color: #1e0010">/div&gt;</span>
-      <span style="color: #f92672">&lt;</span><span style="color: #a6e22e">div</span> <span style="color: #66d9ef">class</span><span style="color: #f92672">=</span><span style="color: #e6db74">&quot;panel-collapse&quot;</span><span style="color: #f92672">&gt;</span>
-        <span style="color: #f92672">&lt;</span><span style="color: #a6e22e">div</span> <span style="color: #66d9ef">class</span><span style="color: #f92672">=</span><span style="color: #e6db74">&quot;panel-body&quot;</span><span style="color: #f92672">&gt;</span>
-          <span style="color: #f92672">&lt;</span><span style="color: #a6e22e">ng</span><span style="color: #f92672">-</span><span style="color: #a6e22e">content</span><span style="color: #f92672">&gt;&lt;</span><span style="color: #960050; background-color: #1e0010">/ng-content&gt;</span>
-        <span style="color: #f92672">&lt;</span><span style="color: #960050; background-color: #1e0010">/div&gt;</span>
-      <span style="color: #f92672">&lt;</span><span style="color: #960050; background-color: #1e0010">/div&gt;</span>
-    <span style="color: #f92672">&lt;</span><span style="color: #960050; background-color: #1e0010">/div&gt;</span>
-  <span style="color: #960050; background-color: #1e0010">`</span>
+  <span style="color: #a6e22e">template</span><span style="color: #f92672">:</span> <span style="color: #e6db74">`</span>
+<span style="color: #e6db74">    &lt;div class=&quot;accordion-group&quot; [ngClass]=&quot;{&#39;closed&#39;: !isOpen}&quot;&gt;</span>
+<span style="color: #e6db74">      &lt;div class=&quot;panel-heading&quot; (click)=&quot;toggleOpen()&quot;&gt;</span>
+<span style="color: #e6db74">          &lt;span&gt;{{heading}}&lt;/span&gt;</span>
+<span style="color: #e6db74">      &lt;/div&gt;</span>
+<span style="color: #e6db74">      &lt;div class=&quot;panel-collapse&quot;&gt;</span>
+<span style="color: #e6db74">        &lt;div class=&quot;panel-body&quot;&gt;</span>
+<span style="color: #e6db74">          &lt;ng-content&gt;&lt;/ng-content&gt;</span>
+<span style="color: #e6db74">        &lt;/div&gt;</span>
+<span style="color: #e6db74">      &lt;/div&gt;</span>
+<span style="color: #e6db74">    &lt;/div&gt;</span>
+<span style="color: #e6db74">  `</span>
 <span style="color: #f8f8f2">})</span>
 
 <span style="color: #66d9ef">export</span> <span style="color: #66d9ef">class</span> <span style="color: #a6e22e">AccordionGroupComponent</span> <span style="color: #66d9ef">implements</span> <span style="color: #a6e22e">OnDestroy</span><span style="color: #f8f8f2">,</span> <span style="color: #a6e22e">OnChanges</span> <span style="color: #f8f8f2">{</span>
@@ -258,7 +258,7 @@ To create the accordion I used two components <code>AccordionComponent</code> an
 <p>As you can see most of the logic happens in <code>AccordionGroupComponent</code>, its constructor calls <code>AccordionComponent</code>&rsquo;s <code>addGroup</code> method to initialise the component. Each group has a <code>isOpen</code> attribute handling its state (open / closed) and this is being watched with a <code>ngOnChanges</code> method. The actual toggling of submenues is performed by <code>toggleOpen</code> which in turn calls <code>accordion</code>&rsquo;s <code>closeOthers</code> method.</p>
 
 <p>To finish here is an example of how to use the accordion:</p>
-<div class="highlight" style="background: #272822"><pre style="line-height: 125%"><span style="color: #f92672">&lt;</span><span style="color: #a6e22e">accordion</span><span style="color: #f92672">&gt;</span>
+<div class="highlight" style="background: #272822"><pre style="line-height: 125%"><span></span><span style="color: #f92672">&lt;</span><span style="color: #a6e22e">accordion</span><span style="color: #f92672">&gt;</span>
   <span style="color: #f92672">&lt;</span><span style="color: #a6e22e">accordion</span><span style="color: #f92672">-</span><span style="color: #a6e22e">group</span> <span style="color: #a6e22e">heading</span><span style="color: #f92672">=</span><span style="color: #e6db74">&quot;Heading 1&quot;</span> <span style="color: #f8f8f2">[</span><span style="color: #a6e22e">isOpen</span><span style="color: #f8f8f2">]</span><span style="color: #f92672">=</span><span style="color: #66d9ef">true</span><span style="color: #f92672">&gt;</span>
     <span style="color: #f92672">&lt;</span><span style="color: #a6e22e">span</span><span style="color: #f92672">&gt;</span><span style="color: #a6e22e">Content</span> <span style="color: #ae81ff">1</span><span style="color: #f92672">&lt;</span><span style="color: #960050; background-color: #1e0010">/span&gt;</span>
   <span style="color: #f92672">&lt;</span><span style="color: #960050; background-color: #1e0010">/accordion-group&gt;</span>
@@ -274,7 +274,7 @@ To create the accordion I used two components <code>AccordionComponent</code> an
 </pre></div>
 
 <p>Also you can add some transition on the css to make it more smooth like so:</p>
-<div class="highlight" style="background: #272822"><pre style="line-height: 125%"><span style="color: #a6e22e">.accordion-group</span><span style="color: #f8f8f2">{</span>
+<div class="highlight" style="background: #272822"><pre style="line-height: 125%"><span></span><span style="color: #a6e22e">.accordion-group</span><span style="color: #f8f8f2">{</span>
   <span style="color: #f92672">position</span><span style="color: #a6e22e">:</span> <span style="color: #f92672">relative;</span>
 
   <span style="color: #a6e22e">.panel-collapse</span><span style="color: #f8f8f2">{</span>  

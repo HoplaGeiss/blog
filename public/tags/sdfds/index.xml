@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Sdfds on Gabriel Muller - JavaScript and Angular articles</title>
+    <link>http://www.muller.tech/tags/sdfds/</link>
+    <description>Recent content in Sdfds on Gabriel Muller - JavaScript and Angular articles</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-gb</language>
+    <lastBuildDate>Tue, 13 Jun 2017 00:00:00 +0000</lastBuildDate>
+    <atom:link href="http://www.muller.tech/tags/sdfds/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>Node.js - Package.json scripts</title>
+      <link>http://www.muller.tech/post/2017/06/13/node-package-json-scripts/</link>
+      <pubDate>Tue, 13 Jun 2017 00:00:00 +0000</pubDate>
+      
+      <guid>http://www.muller.tech/post/2017/06/13/node-package-json-scripts/</guid>
+      <description>
+
+&lt;p&gt;If you are developing an angular application, chances are you are using @angular/cli. It is a fantastic tools which comes packed with awesome time saving features. Now recently I had to work on a node.js backend project and I dearly missed @angular/cli, so this post is about a couple tricks I found to mock @angular/cli&amp;rsquo;s features.&lt;/p&gt;
+
+&lt;h1 id=&#34;ng-test:db53ee46823194ad4a153b2985305dd9&#34;&gt;ng test&lt;/h1&gt;
+
+&lt;p&gt;Usually angular&amp;rsquo;s unit test are along side the file they refer to, in node sadly most of the time it is not the case. You have a bit of set up to do configure jasmine to work in this way. Also with &lt;code&gt;ng test&lt;/code&gt; karma implements a watchers that triggers the test every time a file changes, this is extremely useful in a TDD approach.&lt;/p&gt;
+
+&lt;p&gt;Goals:
+- Have the test files side by side with the source files.
+- Have a watcher to reload the test every time a file changes.&lt;/p&gt;
+
+&lt;p&gt;1- Install jasmine and nodemon&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;npm install jasmine nodemon --save-dev&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;We will use nodemon to watch for file changes and jasmine as development framework.&lt;/p&gt;
+
+&lt;p&gt;2- configure jasmine&lt;/p&gt;
+
+&lt;p&gt;spec/support/jasmine.json&lt;/p&gt;
+&lt;div class=&#34;highlight&#34; style=&#34;background: #272822&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span&gt;&lt;/span&gt;&lt;span style=&#34;color: #f8f8f2&#34;&gt;{&lt;/span&gt;
+  &lt;span style=&#34;color: #f92672&#34;&gt;&amp;quot;spec_dir&amp;quot;&lt;/span&gt;&lt;span style=&#34;color: #f8f8f2&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color: #e6db74&#34;&gt;&amp;quot;&amp;quot;&lt;/span&gt;&lt;span style=&#34;color: #f8f8f2&#34;&gt;,&lt;/span&gt;
+  &lt;span style=&#34;color: #f92672&#34;&gt;&amp;quot;spec_files&amp;quot;&lt;/span&gt;&lt;span style=&#34;color: #f8f8f2&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color: #f8f8f2&#34;&gt;[&lt;/span&gt;
+    &lt;span style=&#34;color: #e6db74&#34;&gt;&amp;quot;services/**/*.spec.js&amp;quot;&lt;/span&gt;&lt;span style=&#34;color: #f8f8f2&#34;&gt;,&lt;/span&gt;
+    &lt;span style=&#34;color: #e6db74&#34;&gt;&amp;quot;controllers/**/*.spec.js&amp;quot;&lt;/span&gt;
+  &lt;span style=&#34;color: #f8f8f2&#34;&gt;],&lt;/span&gt;
+  &lt;span style=&#34;color: #f92672&#34;&gt;&amp;quot;stopSpecOnExpectationFailure&amp;quot;&lt;/span&gt;&lt;span style=&#34;color: #f8f8f2&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color: #66d9ef&#34;&gt;false&lt;/span&gt;&lt;span style=&#34;color: #f8f8f2&#34;&gt;,&lt;/span&gt;
+  &lt;span style=&#34;color: #f92672&#34;&gt;&amp;quot;random&amp;quot;&lt;/span&gt;&lt;span style=&#34;color: #f8f8f2&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color: #66d9ef&#34;&gt;false&lt;/span&gt;
+&lt;span style=&#34;color: #f8f8f2&#34;&gt;}&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;3- Configure scripts in package.json&lt;/p&gt;
+&lt;div class=&#34;highlight&#34; style=&#34;background: #272822&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span&gt;&lt;/span&gt;&lt;span style=&#34;color: #f8f8f2&#34;&gt;{&lt;/span&gt;
+  &lt;span style=&#34;color: #f92672&#34;&gt;&amp;quot;scripts&amp;quot;&lt;/span&gt;&lt;span style=&#34;color: #f8f8f2&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color: #f8f8f2&#34;&gt;{&lt;/span&gt;
+    &lt;span style=&#34;color: #f92672&#34;&gt;&amp;quot;test&amp;quot;&lt;/span&gt;&lt;span style=&#34;color: #f8f8f2&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color: #e6db74&#34;&gt;&amp;quot;./node_modules/nodemon/bin/nodemon.js --exec ./node_modules/jasmine/bin/jasmine.js&amp;quot;&lt;/span&gt;&lt;span style=&#34;color: #f8f8f2&#34;&gt;,&lt;/span&gt;
+  &lt;span style=&#34;color: #f8f8f2&#34;&gt;}&lt;/span&gt;
+&lt;span style=&#34;color: #f8f8f2&#34;&gt;}&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+&lt;h1 id=&#34;ng-test-code-coverage:db53ee46823194ad4a153b2985305dd9&#34;&gt;ng test &amp;ndash;code-coverage&lt;/h1&gt;
+
+&lt;p&gt;Running the test and generating the coverage report with istanbul is another awesome feature of @angular/cli. To implement this we just need to install istanbul have set it up!&lt;/p&gt;
+
+&lt;p&gt;1- Install istanbul
+&lt;code&gt;npm install istanbul --save-dev&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;2- configure istanbul&lt;/p&gt;
+&lt;div class=&#34;highlight&#34; style=&#34;background: #272822&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span&gt;&lt;/span&gt;&lt;span style=&#34;color: #75715e&#34;&gt;# .istanbul.yml&lt;/span&gt;
+&lt;span style=&#34;color: #ae81ff&#34;&gt;instrumentation&lt;/span&gt;&lt;span style=&#34;color: #f8f8f2&#34;&gt;:&lt;/span&gt;
+  &lt;span style=&#34;color: #ae81ff&#34;&gt;include-all-sources&lt;/span&gt;&lt;span style=&#34;color: #f8f8f2&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color: #ae81ff&#34;&gt;true&lt;/span&gt;
+  &lt;span style=&#34;color: #ae81ff&#34;&gt;verbose&lt;/span&gt;&lt;span style=&#34;color: #f8f8f2&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color: #ae81ff&#34;&gt;true&lt;/span&gt;
+  &lt;span style=&#34;color: #ae81ff&#34;&gt;excludes&lt;/span&gt;&lt;span style=&#34;color: #f8f8f2&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color: #f8f8f2&#34;&gt;[&lt;/span&gt;&lt;span style=&#34;color: #e6db74&#34;&gt;&amp;quot;**/*.spec.js&amp;quot;&lt;/span&gt;&lt;span style=&#34;color: #f8f8f2&#34;&gt;]&lt;/span&gt;
+&lt;span style=&#34;color: #ae81ff&#34;&gt;reporting&lt;/span&gt;&lt;span style=&#34;color: #f8f8f2&#34;&gt;:&lt;/span&gt;
+  &lt;span style=&#34;color: #ae81ff&#34;&gt;dir&lt;/span&gt;&lt;span style=&#34;color: #f8f8f2&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color: #e6db74&#34;&gt;&amp;quot;coverage&amp;quot;&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;Two very important settings here that I struggled to find:
+- &lt;code&gt;include-all-sources&lt;/code&gt;: this makes sure all the files are included in the report, not just only the one loaded by the spec files.
+- &lt;code&gt;excludes&lt;/code&gt;: this removes the spec files from the report.&lt;/p&gt;
+
+&lt;p&gt;3- Configure scripts in package.json&lt;/p&gt;
+&lt;div class=&#34;highlight&#34; style=&#34;background: #272822&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span&gt;&lt;/span&gt;&lt;span style=&#34;color: #f8f8f2&#34;&gt;{&lt;/span&gt;
+  &lt;span style=&#34;color: #f92672&#34;&gt;&amp;quot;scripts&amp;quot;&lt;/span&gt;&lt;span style=&#34;color: #f8f8f2&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color: #f8f8f2&#34;&gt;{&lt;/span&gt;
+    &lt;span style=&#34;color: #f92672&#34;&gt;&amp;quot;coverage&amp;quot;&lt;/span&gt;&lt;span style=&#34;color: #f8f8f2&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color: #e6db74&#34;&gt;&amp;quot;node_modules/istanbul/lib/cli.js cover node_modules/jasmine/bin/jasmine.js&amp;quot;&lt;/span&gt;
+  &lt;span style=&#34;color: #f8f8f2&#34;&gt;}&lt;/span&gt;
+&lt;span style=&#34;color: #f8f8f2&#34;&gt;}&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;Note: the only difference with @angular/cli is there will be a couple more files in the coverage folder, I didn&amp;rsquo;t find out how to crack this, but I guess it works alright like this.&lt;/p&gt;
+
+&lt;h1 id=&#34;ng-lint:db53ee46823194ad4a153b2985305dd9&#34;&gt;ng lint&lt;/h1&gt;
+
+&lt;p&gt;Linters are fabulous to keep high coding standard in your project. Lets see how to make them available through npm.&lt;/p&gt;
+
+&lt;p&gt;1- Install eslint&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;npm install eslint --save-dev&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;2- Tweak the configuration file&lt;/p&gt;
+
+&lt;p&gt;I advise you to take a look online at the documentation to find all the rules and configuration you can use with linters. There is no point me posting my linters in here as this settings are specific to each developer/teams.
+Anyhow make sure you have an eslint configuration at the root folder&lt;/p&gt;
+
+&lt;p&gt;3- Configure scripts in package.json&lt;/p&gt;
+&lt;div class=&#34;highlight&#34; style=&#34;background: #272822&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span&gt;&lt;/span&gt;&lt;span style=&#34;color: #f8f8f2&#34;&gt;{&lt;/span&gt;
+  &lt;span style=&#34;color: #f92672&#34;&gt;&amp;quot;scripts&amp;quot;&lt;/span&gt;&lt;span style=&#34;color: #f8f8f2&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color: #f8f8f2&#34;&gt;{&lt;/span&gt;
+    &lt;span style=&#34;color: #f92672&#34;&gt;&amp;quot;lint&amp;quot;&lt;/span&gt;&lt;span style=&#34;color: #f8f8f2&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color: #e6db74&#34;&gt;&amp;quot;node_modules/.bin/eslint **/*.js&amp;quot;&lt;/span&gt;
+  &lt;span style=&#34;color: #f8f8f2&#34;&gt;}&lt;/span&gt;
+&lt;span style=&#34;color: #f8f8f2&#34;&gt;}&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>

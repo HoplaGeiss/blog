@@ -181,7 +181,7 @@ html{font-family:sans-serif;line-height:1.15;-ms-text-size-adjust:100%;-webkit-t
 <p>2- configure jasmine</p>
 
 <p>spec/support/jasmine.json</p>
-<div class="highlight" style="background: #272822"><pre style="line-height: 125%"><span style="color: #f8f8f2">{</span>
+<div class="highlight" style="background: #272822"><pre style="line-height: 125%"><span></span><span style="color: #f8f8f2">{</span>
   <span style="color: #f92672">&quot;spec_dir&quot;</span><span style="color: #f8f8f2">:</span> <span style="color: #e6db74">&quot;&quot;</span><span style="color: #f8f8f2">,</span>
   <span style="color: #f92672">&quot;spec_files&quot;</span><span style="color: #f8f8f2">:</span> <span style="color: #f8f8f2">[</span>
     <span style="color: #e6db74">&quot;services/**/*.spec.js&quot;</span><span style="color: #f8f8f2">,</span>
@@ -193,7 +193,7 @@ html{font-family:sans-serif;line-height:1.15;-ms-text-size-adjust:100%;-webkit-t
 </pre></div>
 
 <p>3- Configure scripts in package.json</p>
-<div class="highlight" style="background: #272822"><pre style="line-height: 125%"><span style="color: #f8f8f2">{</span>
+<div class="highlight" style="background: #272822"><pre style="line-height: 125%"><span></span><span style="color: #f8f8f2">{</span>
   <span style="color: #f92672">&quot;scripts&quot;</span><span style="color: #f8f8f2">:</span> <span style="color: #f8f8f2">{</span>
     <span style="color: #f92672">&quot;test&quot;</span><span style="color: #f8f8f2">:</span> <span style="color: #e6db74">&quot;./node_modules/nodemon/bin/nodemon.js --exec ./node_modules/jasmine/bin/jasmine.js&quot;</span><span style="color: #f8f8f2">,</span>
   <span style="color: #f8f8f2">}</span>
@@ -208,7 +208,7 @@ html{font-family:sans-serif;line-height:1.15;-ms-text-size-adjust:100%;-webkit-t
 <code>npm install istanbul --save-dev</code></p>
 
 <p>2- configure istanbul</p>
-<div class="highlight" style="background: #272822"><pre style="line-height: 125%"><span style="color: #75715e"># .istanbul.yml</span>
+<div class="highlight" style="background: #272822"><pre style="line-height: 125%"><span></span><span style="color: #75715e"># .istanbul.yml</span>
 <span style="color: #ae81ff">instrumentation</span><span style="color: #f8f8f2">:</span>
   <span style="color: #ae81ff">include-all-sources</span><span style="color: #f8f8f2">:</span> <span style="color: #ae81ff">true</span>
   <span style="color: #ae81ff">verbose</span><span style="color: #f8f8f2">:</span> <span style="color: #ae81ff">true</span>
@@ -222,7 +222,7 @@ html{font-family:sans-serif;line-height:1.15;-ms-text-size-adjust:100%;-webkit-t
 - <code>excludes</code>: this removes the spec files from the report.</p>
 
 <p>3- Configure scripts in package.json</p>
-<div class="highlight" style="background: #272822"><pre style="line-height: 125%"><span style="color: #f8f8f2">{</span>
+<div class="highlight" style="background: #272822"><pre style="line-height: 125%"><span></span><span style="color: #f8f8f2">{</span>
   <span style="color: #f92672">&quot;scripts&quot;</span><span style="color: #f8f8f2">:</span> <span style="color: #f8f8f2">{</span>
     <span style="color: #f92672">&quot;coverage&quot;</span><span style="color: #f8f8f2">:</span> <span style="color: #e6db74">&quot;node_modules/istanbul/lib/cli.js cover node_modules/jasmine/bin/jasmine.js&quot;</span>
   <span style="color: #f8f8f2">}</span>
@@ -245,7 +245,7 @@ html{font-family:sans-serif;line-height:1.15;-ms-text-size-adjust:100%;-webkit-t
 Anyhow make sure you have an eslint configuration at the root folder</p>
 
 <p>3- Configure scripts in package.json</p>
-<div class="highlight" style="background: #272822"><pre style="line-height: 125%"><span style="color: #f8f8f2">{</span>
+<div class="highlight" style="background: #272822"><pre style="line-height: 125%"><span></span><span style="color: #f8f8f2">{</span>
   <span style="color: #f92672">&quot;scripts&quot;</span><span style="color: #f8f8f2">:</span> <span style="color: #f8f8f2">{</span>
     <span style="color: #f92672">&quot;lint&quot;</span><span style="color: #f8f8f2">:</span> <span style="color: #e6db74">&quot;node_modules/.bin/eslint **/*.js&quot;</span>
   <span style="color: #f8f8f2">}</span>

@@ -176,7 +176,7 @@ Here the parent component is the <code>home.component.ts</code> and the two sibl
 <h4 id="the-shared-service">The shared service</h4>
 
 <p>Our shared service has two methods, <code>setTags</code> to change the tags and <code>getTags</code> to get the tags using <code>asObservable</code>.</p>
-<div class="highlight" style="background: #272822"><pre style="line-height: 125%"><span style="color: #75715e">// /home/shared/searched-tags.service.ts</span>
+<div class="highlight" style="background: #272822"><pre style="line-height: 125%"><span></span><span style="color: #75715e">// /home/shared/searched-tags.service.ts</span>
 
 <span style="color: #66d9ef">import</span> <span style="color: #f8f8f2">{</span> <span style="color: #a6e22e">Injectable</span> <span style="color: #f8f8f2">}</span> <span style="color: #a6e22e">from</span> <span style="color: #e6db74">&#39;@angular/core&#39;</span><span style="color: #f8f8f2">;</span>
 <span style="color: #66d9ef">import</span> <span style="color: #f8f8f2">{</span> <span style="color: #a6e22e">Observable</span> <span style="color: #f8f8f2">}</span> <span style="color: #a6e22e">from</span> <span style="color: #e6db74">&#39;rxjs&#39;</span><span style="color: #f8f8f2">;</span>
@@ -200,25 +200,25 @@ Here the parent component is the <code>home.component.ts</code> and the two sibl
 
 <p>If you ever need to use an input with tags, I encourage you to take a look at <a href="https://github.com/rosslavery/angular2-tag-input">rosslavery/angular2-tag-input</a>.
 Every time the user inputs a new tag we need to send an event to <code>trainer-list.component.ts</code> to notify it to change the filtering on the list of trainers.</p>
-<div class="highlight" style="background: #272822"><pre style="line-height: 125%"><span style="color: #75715e">// /home/containers/search-inputs/search-inputs.component.ts</span>
+<div class="highlight" style="background: #272822"><pre style="line-height: 125%"><span></span><span style="color: #75715e">// /home/containers/search-inputs/search-inputs.component.ts</span>
 <span style="color: #66d9ef">import</span> <span style="color: #f8f8f2">{</span> <span style="color: #a6e22e">Component</span><span style="color: #f8f8f2">,</span> <span style="color: #a6e22e">OnInit</span> <span style="color: #f8f8f2">}</span> <span style="color: #a6e22e">from</span> <span style="color: #e6db74">&#39;@angular/core&#39;</span><span style="color: #f8f8f2">;</span>
 
 <span style="color: #66d9ef">import</span> <span style="color: #f8f8f2">{</span> <span style="color: #a6e22e">SearchedTagsService</span> <span style="color: #f8f8f2">}</span> <span style="color: #a6e22e">from</span> <span style="color: #e6db74">&#39;../../shared/searched-tags.service&#39;</span><span style="color: #f8f8f2">;</span>
 
 <span style="color: #66d9ef">@Component</span><span style="color: #f8f8f2">({</span>
   <span style="color: #a6e22e">selector</span><span style="color: #f92672">:</span> <span style="color: #e6db74">&#39;search-inputs&#39;</span><span style="color: #f8f8f2">,</span>
-  <span style="color: #a6e22e">template</span><span style="color: #f92672">:</span> <span style="color: #960050; background-color: #1e0010">`</span>
-    <span style="color: #f92672">&lt;</span><span style="color: #a6e22e">div</span> <span style="color: #66d9ef">class</span><span style="color: #f92672">=</span><span style="color: #e6db74">&quot;search-inputs&quot;</span><span style="color: #f92672">&gt;</span>
-      <span style="color: #f92672">&lt;</span><span style="color: #a6e22e">rl</span><span style="color: #f92672">-</span><span style="color: #a6e22e">tag</span><span style="color: #f92672">-</span><span style="color: #a6e22e">input</span>
-        <span style="color: #f8f8f2">[</span><span style="color: #a6e22e">addOnBlur</span><span style="color: #f8f8f2">]</span><span style="color: #f92672">=</span><span style="color: #e6db74">&quot;false&quot;</span>
-        <span style="color: #f8f8f2">[</span><span style="color: #a6e22e">autocomplete</span><span style="color: #f8f8f2">]</span><span style="color: #f92672">=</span><span style="color: #e6db74">&quot;true&quot;</span>
-        <span style="color: #f8f8f2">[</span><span style="color: #a6e22e">autocompleteItems</span><span style="color: #f8f8f2">]</span><span style="color: #f92672">=</span><span style="color: #e6db74">&quot;sports&quot;</span>
-        <span style="color: #f8f8f2">[(</span><span style="color: #a6e22e">ngModel</span><span style="color: #f8f8f2">)]</span><span style="color: #f92672">=</span><span style="color: #e6db74">&quot;sportSearchedTags&quot;</span>
-        <span style="color: #a6e22e">placeholder</span><span style="color: #f92672">=</span><span style="color: #e6db74">&quot;Add a sport&quot;</span>
-        <span style="color: #f8f8f2">(</span><span style="color: #a6e22e">ngModelChange</span><span style="color: #f8f8f2">)</span><span style="color: #f92672">=</span><span style="color: #e6db74">&quot;onChange($event)&quot;</span><span style="color: #f92672">&gt;</span>
-      <span style="color: #f92672">&lt;</span><span style="color: #960050; background-color: #1e0010">/rl-tag-input&gt;</span>
-    <span style="color: #f92672">&lt;</span><span style="color: #960050; background-color: #1e0010">/div&gt;</span>
-  <span style="color: #960050; background-color: #1e0010">`</span><span style="color: #f8f8f2">,</span>
+  <span style="color: #a6e22e">template</span><span style="color: #f92672">:</span> <span style="color: #e6db74">`</span>
+<span style="color: #e6db74">    &lt;div class=&quot;search-inputs&quot;&gt;</span>
+<span style="color: #e6db74">      &lt;rl-tag-input</span>
+<span style="color: #e6db74">        [addOnBlur]=&quot;false&quot;</span>
+<span style="color: #e6db74">        [autocomplete]=&quot;true&quot;</span>
+<span style="color: #e6db74">        [autocompleteItems]=&quot;sports&quot;</span>
+<span style="color: #e6db74">        [(ngModel)]=&quot;sportSearchedTags&quot;</span>
+<span style="color: #e6db74">        placeholder=&quot;Add a sport&quot;</span>
+<span style="color: #e6db74">        (ngModelChange)=&quot;onChange($event)&quot;&gt;</span>
+<span style="color: #e6db74">      &lt;/rl-tag-input&gt;</span>
+<span style="color: #e6db74">    &lt;/div&gt;</span>
+<span style="color: #e6db74">  `</span><span style="color: #f8f8f2">,</span>
 <span style="color: #f8f8f2">})</span>
 <span style="color: #66d9ef">export</span> <span style="color: #66d9ef">class</span> <span style="color: #a6e22e">SearchInputsComponent</span> <span style="color: #66d9ef">implements</span> <span style="color: #a6e22e">OnInit</span><span style="color: #f8f8f2">{</span>
   <span style="color: #a6e22e">sports</span> <span style="color: #f92672">=</span> <span style="color: #f8f8f2">[</span><span style="color: #e6db74">&quot;Basketball&quot;</span><span style="color: #f8f8f2">,</span> <span style="color: #e6db74">&quot;Football&quot;</span><span style="color: #f8f8f2">];</span>
@@ -237,7 +237,7 @@ Every time the user inputs a new tag we need to send an event to <code>trainer-l
 <h3 id="event-receiver">Event receiver</h3>
 
 <p>Our <code>trainer-list.component.ts</code> then receives this event and changes the filtering of the list of trainers.</p>
-<div class="highlight" style="background: #272822"><pre style="line-height: 125%"><span style="color: #75715e">// /home/containers/trainer-list/trainer-list.component.ts</span>
+<div class="highlight" style="background: #272822"><pre style="line-height: 125%"><span></span><span style="color: #75715e">// /home/containers/trainer-list/trainer-list.component.ts</span>
 <span style="color: #66d9ef">import</span> <span style="color: #f8f8f2">{</span> <span style="color: #a6e22e">Component</span><span style="color: #f8f8f2">,</span> <span style="color: #a6e22e">OnInit</span> <span style="color: #f8f8f2">}</span> <span style="color: #a6e22e">from</span> <span style="color: #e6db74">&#39;@angular/core&#39;</span><span style="color: #f8f8f2">;</span>
 <span style="color: #66d9ef">import</span> <span style="color: #f8f8f2">{</span> <span style="color: #a6e22e">Subscription</span> <span style="color: #f8f8f2">}</span> <span style="color: #a6e22e">from</span> <span style="color: #e6db74">&quot;rxjs&quot;</span><span style="color: #f8f8f2">;</span>
 
@@ -245,14 +245,14 @@ Every time the user inputs a new tag we need to send an event to <code>trainer-l
 
 <span style="color: #66d9ef">@Component</span><span style="color: #f8f8f2">({</span>
   <span style="color: #a6e22e">selector</span><span style="color: #f92672">:</span> <span style="color: #e6db74">&#39;trainer-list&#39;</span><span style="color: #f8f8f2">,</span>
-  <span style="color: #a6e22e">template</span><span style="color: #f92672">:</span> <span style="color: #960050; background-color: #1e0010">`</span>
-    <span style="color: #f92672">&lt;</span><span style="color: #a6e22e">div</span> <span style="color: #66d9ef">class</span><span style="color: #f92672">=</span><span style="color: #e6db74">&quot;trainer-list&quot;</span><span style="color: #f92672">&gt;</span>
-      <span style="color: #f92672">&lt;</span><span style="color: #a6e22e">md</span><span style="color: #f92672">-</span><span style="color: #a6e22e">card</span> <span style="color: #f92672">*</span><span style="color: #a6e22e">ngFor</span><span style="color: #f92672">=</span><span style="color: #e6db74">&quot;let trainer of trainers | criteria:&#39;sport&#39;:sportSearch&quot;</span><span style="color: #f92672">&gt;</span>
-        <span style="color: #f8f8f2">{{</span> <span style="color: #a6e22e">trainer</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">name</span> <span style="color: #f8f8f2">}}</span>
-        <span style="color: #f8f8f2">{{</span> <span style="color: #a6e22e">trainer</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">sport</span> <span style="color: #f8f8f2">}}</span>
-      <span style="color: #f92672">&lt;</span><span style="color: #960050; background-color: #1e0010">/md-card&gt;</span>
-    <span style="color: #f92672">&lt;</span><span style="color: #960050; background-color: #1e0010">/div&gt;</span>
-  <span style="color: #960050; background-color: #1e0010">`</span><span style="color: #f8f8f2">,</span>
+  <span style="color: #a6e22e">template</span><span style="color: #f92672">:</span> <span style="color: #e6db74">`</span>
+<span style="color: #e6db74">    &lt;div class=&quot;trainer-list&quot;&gt;</span>
+<span style="color: #e6db74">      &lt;md-card *ngFor=&quot;let trainer of trainers | criteria:&#39;sport&#39;:sportSearch&quot;&gt;</span>
+<span style="color: #e6db74">        {{ trainer.name }}</span>
+<span style="color: #e6db74">        {{ trainer.sport }}</span>
+<span style="color: #e6db74">      &lt;/md-card&gt;</span>
+<span style="color: #e6db74">    &lt;/div&gt;</span>
+<span style="color: #e6db74">  `</span><span style="color: #f8f8f2">,</span>
   <span style="color: #a6e22e">styleUrls</span><span style="color: #f92672">:</span> <span style="color: #f8f8f2">[</span><span style="color: #e6db74">&#39;./trainer-list.component.scss&#39;</span><span style="color: #f8f8f2">]</span>
 <span style="color: #f8f8f2">})</span>
 <span style="color: #66d9ef">export</span> <span style="color: #66d9ef">class</span> <span style="color: #a6e22e">TrainerListComponent</span> <span style="color: #66d9ef">implements</span> <span style="color: #a6e22e">OnInit</span><span style="color: #f8f8f2">{</span>
