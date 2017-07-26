@@ -3,6 +3,11 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>http://www.muller.tech/post/2017/07/26/angular4-nested-routing/</loc>
+    <lastmod>2017-07-26T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
     <loc>http://www.muller.tech/post/2017/06/13/node-package-json-scripts/</loc>
     <lastmod>2017-06-13T00:00:00+00:00</lastmod>
   </url>
@@ -112,7 +117,7 @@
   
   <url>
     <loc>http://www.muller.tech/tags/angular4/</loc>
-    <lastmod>2017-04-03T00:00:00+00:00</lastmod>
+    <lastmod>2017-07-26T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -154,7 +159,7 @@
   
   <url>
     <loc>http://www.muller.tech/</loc>
-    <lastmod>2017-06-13T00:00:00+00:00</lastmod>
+    <lastmod>2017-07-26T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -232,7 +237,7 @@
   
   <url>
     <loc>http://www.muller.tech/post/</loc>
-    <lastmod>2017-06-13T00:00:00+00:00</lastmod>
+    <lastmod>2017-07-26T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -251,6 +256,12 @@
   <url>
     <loc>http://www.muller.tech/tags/resolve/</loc>
     <lastmod>2016-12-23T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://www.muller.tech/tags/routing/</loc>
+    <lastmod>2017-07-26T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   

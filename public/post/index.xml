@@ -6,10 +6,20 @@
     <description>Recent content in Posts on Gabriel Muller - JavaScript and Angular articles</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-gb</language>
-    <lastBuildDate>Tue, 13 Jun 2017 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Wed, 26 Jul 2017 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="http://www.muller.tech/post/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Angular 4 - Nested Routing</title>
+      <link>http://www.muller.tech/post/2017/07/26/angular4-nested-routing/</link>
+      <pubDate>Wed, 26 Jul 2017 00:00:00 +0000</pubDate>
+      
+      <guid>http://www.muller.tech/post/2017/07/26/angular4-nested-routing/</guid>
+      <description>Applications are often separated in two parts. A home with the description of the application, the features, a pricing table etc.. And a second part that requires the users to log in with for example an admin panel, an overview and dashboards.
+Following the DRY principle, you should aim at having a template for the home and the main part of your website. The best way to achieve this is to have nested routes.</description>
+    </item>
     
     <item>
       <title>Node.js - Package.json scripts</title>

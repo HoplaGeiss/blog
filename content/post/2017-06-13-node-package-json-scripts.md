@@ -52,7 +52,7 @@ spec/support/jasmine.json
 
 # ng test --code-coverage
 
-Running the test and generating the coverage report with istanbul is another awesome feature of @angular/cli. To implement this we just need to install istanbul have set it up!
+Running the test and generating the coverage report with istanbul is another awesome feature of @angular/cli. To implement this we just need to install istanbul have set it up.
 
 1- Install istanbul
 `npm install istanbul --save-dev`
