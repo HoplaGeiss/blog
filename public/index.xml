@@ -22,6 +22,17 @@ Following the DRY principle, you should aim at having a template for the home an
     </item>
     
     <item>
+      <title>Angular 4 - Switch button</title>
+      <link>http://www.muller.tech/post/2017/07/26/angular4-switch-button/</link>
+      <pubDate>Wed, 26 Jul 2017 00:00:00 +0000</pubDate>
+      
+      <guid>http://www.muller.tech/post/2017/07/26/angular4-switch-button/</guid>
+      <description>Ever wondered how to create a switch button in angular4 without using css frameworks? Here we go..
+Let&amp;rsquo;s take a look at the component first.
+// app.component.ts import { Component } from &amp;#39;@angular/core&amp;#39;; @Component({ selector: &amp;#39;app-root&amp;#39;, template: ` &amp;lt;div class=&amp;quot;switch&amp;quot;&amp;gt; &amp;lt;input id=&amp;#39;switch-input&amp;#39; type=&amp;#39;checkbox&amp;#39; [checked]=&amp;#39;switchActive&amp;#39; (click)=&amp;#39;toggle()&amp;#39;&amp;gt; &amp;lt;label for=&amp;#39;switch-input&amp;#39;&amp;gt;&amp;lt;/label&amp;gt; &amp;lt;/div&amp;gt; ` }) export class AppComponent { switchActive = false toggle = () =&amp;gt; { if (this.switchActive) { // Do something } else { // Do something else } this.</description>
+    </item>
+    
+    <item>
       <title>Node.js - Package.json scripts</title>
       <link>http://www.muller.tech/post/2017/06/13/node-package-json-scripts/</link>
       <pubDate>Tue, 13 Jun 2017 00:00:00 +0000</pubDate>
