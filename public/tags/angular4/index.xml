@@ -6,10 +6,21 @@
     <description>Recent content in Angular4 on Gabriel Muller - JavaScript and Angular articles</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-gb</language>
-    <lastBuildDate>Wed, 26 Jul 2017 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Fri, 04 Aug 2017 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="http://www.muller.tech/tags/angular4/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Angular 4 - Dynamically add components to the DOM</title>
+      <link>http://www.muller.tech/post/2017/08/04/angular4-dynamically-add-component/</link>
+      <pubDate>Fri, 04 Aug 2017 00:00:00 +0000</pubDate>
+      
+      <guid>http://www.muller.tech/post/2017/08/04/angular4-dynamically-add-component/</guid>
+      <description>Today we are going to talk about dynamic component and how to add them to the DOM, but first let&amp;rsquo;s take a look at how we can add content to components.
+Single content If you are looking to add a &amp;lsquo;single bit of content&amp;rsquo; to a component, you can use ng-content.
+In the following example we have two components. AppComponent calls HoplaComponent and passes him some content. HoplaComponent access this content thanks to ng-content.</description>
+    </item>
     
     <item>
       <title>Angular 4 - Nested Routing</title>

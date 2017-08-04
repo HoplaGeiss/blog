@@ -96,7 +96,7 @@
         },
         "datePublished": "2017-04-03",
         "dateModified": "2017-04-03",
-        "wordCount": 367,
+        "wordCount": 376,
         "keywords": ["angular4","accordion"]
     }
     </script>
@@ -154,7 +154,7 @@ html{font-family:sans-serif;line-height:1.15;-ms-text-size-adjust:100%;-webkit-t
 
   			<header class="post-header">
   				<span class="post-meta">
-						<span class="post-date">3 Apr 2017</span> <span class="reading-time">| <span class="estimated-reading-time">2 min.</span> (<span class="word-count">367</span> words)</span></span>
+						<span class="post-date">3 Apr 2017</span> <span class="reading-time">| <span class="estimated-reading-time">2 min.</span> (<span class="word-count">376</span> words)</span></span>
   				</span>
   				<div class="clear"></div>
   				<h1 class="post-title">Angular 4 - create an accordion</h1>
@@ -225,6 +225,7 @@ To create the accordion I used two components <code>AccordionComponent</code> an
 <span style="color: #66d9ef">export</span> <span style="color: #66d9ef">class</span> <span style="color: #a6e22e">AccordionGroupComponent</span> <span style="color: #66d9ef">implements</span> <span style="color: #a6e22e">OnDestroy</span><span style="color: #f8f8f2">,</span> <span style="color: #a6e22e">OnChanges</span> <span style="color: #f8f8f2">{</span>
   <span style="color: #66d9ef">@Input</span><span style="color: #f8f8f2">()</span> <span style="color: #a6e22e">heading</span>: <span style="color: #66d9ef">string</span><span style="color: #f8f8f2">;</span>
   <span style="color: #66d9ef">@Input</span><span style="color: #f8f8f2">()</span> <span style="color: #a6e22e">isOpen</span>: <span style="color: #66d9ef">boolean</span><span style="color: #f8f8f2">;</span>
+  <span style="color: #66d9ef">@Input</span><span style="color: #f8f8f2">()</span> <span style="color: #a6e22e">index</span>: <span style="color: #66d9ef">number</span><span style="color: #f8f8f2">;</span>
 
   <span style="color: #66d9ef">constructor</span><span style="color: #f8f8f2">(</span><span style="color: #66d9ef">private</span> <span style="color: #a6e22e">accordion</span>: <span style="color: #66d9ef">AccordionComponent</span><span style="color: #f8f8f2">)</span> <span style="color: #f8f8f2">{</span>
     <span style="color: #66d9ef">this</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">accordion</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">addGroup</span><span style="color: #f8f8f2">(</span><span style="color: #66d9ef">this</span><span style="color: #f8f8f2">);</span>
@@ -258,19 +259,21 @@ To create the accordion I used two components <code>AccordionComponent</code> an
 <p>As you can see most of the logic happens in <code>AccordionGroupComponent</code>, its constructor calls <code>AccordionComponent</code>&rsquo;s <code>addGroup</code> method to initialise the component. Each group has a <code>isOpen</code> attribute handling its state (open / closed) and this is being watched with a <code>ngOnChanges</code> method. The actual toggling of submenues is performed by <code>toggleOpen</code> which in turn calls <code>accordion</code>&rsquo;s <code>closeOthers</code> method.</p>
 
 <p>To finish here is an example of how to use the accordion:</p>
-<div class="highlight" style="background: #272822"><pre style="line-height: 125%"><span></span><span style="color: #f92672">&lt;</span><span style="color: #a6e22e">accordion</span><span style="color: #f92672">&gt;</span>
-  <span style="color: #f92672">&lt;</span><span style="color: #a6e22e">accordion</span><span style="color: #f92672">-</span><span style="color: #a6e22e">group</span> <span style="color: #a6e22e">heading</span><span style="color: #f92672">=</span><span style="color: #e6db74">&quot;Heading 1&quot;</span> <span style="color: #f8f8f2">[</span><span style="color: #a6e22e">isOpen</span><span style="color: #f8f8f2">]</span><span style="color: #f92672">=</span><span style="color: #66d9ef">true</span><span style="color: #f92672">&gt;</span>
-    <span style="color: #f92672">&lt;</span><span style="color: #a6e22e">span</span><span style="color: #f92672">&gt;</span><span style="color: #a6e22e">Content</span> <span style="color: #ae81ff">1</span><span style="color: #f92672">&lt;</span><span style="color: #960050; background-color: #1e0010">/span&gt;</span>
-  <span style="color: #f92672">&lt;</span><span style="color: #960050; background-color: #1e0010">/accordion-group&gt;</span>
+<div class="highlight" style="background: #272822"><pre style="line-height: 125%"><span></span><span style="color: #a6e22e">template</span><span style="color: #f92672">:</span> <span style="color: #e6db74">`</span>
+<span style="color: #e6db74">  &lt;accordion&gt;</span>
+<span style="color: #e6db74">    &lt;accordion-group heading=&quot;Heading 1&quot; [index]=0 [isOpen]=true&gt;</span>
+<span style="color: #e6db74">      &lt;span&gt;Content 1&lt;/span&gt;</span>
+<span style="color: #e6db74">    &lt;/accordion-group&gt;</span>
 
-  <span style="color: #f92672">&lt;</span><span style="color: #a6e22e">accordion</span><span style="color: #f92672">-</span><span style="color: #a6e22e">group</span> <span style="color: #a6e22e">heading</span><span style="color: #f92672">=</span><span style="color: #e6db74">&quot;Heading 2&quot;</span> <span style="color: #f8f8f2">[</span><span style="color: #a6e22e">isOpen</span><span style="color: #f8f8f2">]</span><span style="color: #f92672">=</span><span style="color: #66d9ef">true</span><span style="color: #f92672">&gt;</span>
-    <span style="color: #f92672">&lt;</span><span style="color: #a6e22e">span</span><span style="color: #f92672">&gt;</span><span style="color: #a6e22e">Content</span> <span style="color: #ae81ff">2</span><span style="color: #f92672">&lt;</span><span style="color: #960050; background-color: #1e0010">/span&gt;</span>
-  <span style="color: #f92672">&lt;</span><span style="color: #960050; background-color: #1e0010">/accordion-group&gt;</span>
+<span style="color: #e6db74">    &lt;accordion-group heading=&quot;Heading 2&quot; [index]=1 [isOpen]=false&gt;</span>
+<span style="color: #e6db74">      &lt;span&gt;Content 2&lt;/span&gt;</span>
+<span style="color: #e6db74">    &lt;/accordion-group&gt;</span>
 
-  <span style="color: #f92672">&lt;</span><span style="color: #a6e22e">accordion</span><span style="color: #f92672">-</span><span style="color: #a6e22e">group</span> <span style="color: #a6e22e">heading</span><span style="color: #f92672">=</span><span style="color: #e6db74">&quot;Heading 3&quot;</span> <span style="color: #f8f8f2">[</span><span style="color: #a6e22e">isOpen</span><span style="color: #f8f8f2">]</span><span style="color: #f92672">=</span><span style="color: #66d9ef">true</span><span style="color: #f92672">&gt;</span>
-    <span style="color: #f92672">&lt;</span><span style="color: #a6e22e">span</span><span style="color: #f92672">&gt;</span><span style="color: #a6e22e">Content</span> <span style="color: #ae81ff">3</span><span style="color: #f92672">&lt;</span><span style="color: #960050; background-color: #1e0010">/span&gt;</span>
-  <span style="color: #f92672">&lt;</span><span style="color: #960050; background-color: #1e0010">/accordion-group&gt;</span>
-<span style="color: #f92672">&lt;</span><span style="color: #960050; background-color: #1e0010">/accordion&gt;</span>
+<span style="color: #e6db74">    &lt;accordion-group heading=&quot;Heading 3&quot; [index]=2 [isOpen]=false&gt;</span>
+<span style="color: #e6db74">      &lt;span&gt;Content 3&lt;/span&gt;</span>
+<span style="color: #e6db74">    &lt;/accordion-group&gt;</span>
+<span style="color: #e6db74">  &lt;/accordion&gt;</span>
+<span style="color: #e6db74">`</span>
 </pre></div>
 
 <p>Also you can add some transition on the css to make it more smooth like so:</p>

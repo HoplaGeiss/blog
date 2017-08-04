@@ -3,6 +3,11 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>http://www.muller.tech/post/2017/08/04/angular4-dynamically-add-component/</loc>
+    <lastmod>2017-08-04T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
     <loc>http://www.muller.tech/post/2017/07/26/angular4-nested-routing/</loc>
     <lastmod>2017-07-26T00:00:00+00:00</lastmod>
   </url>
@@ -122,7 +127,7 @@
   
   <url>
     <loc>http://www.muller.tech/tags/angular4/</loc>
-    <lastmod>2017-07-26T00:00:00+00:00</lastmod>
+    <lastmod>2017-08-04T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -135,6 +140,12 @@
   <url>
     <loc>http://www.muller.tech/tags/cheat-sheet/</loc>
     <lastmod>2017-01-17T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://www.muller.tech/tags/component/</loc>
+    <lastmod>2017-08-04T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -164,7 +175,7 @@
   
   <url>
     <loc>http://www.muller.tech/</loc>
-    <lastmod>2017-07-26T00:00:00+00:00</lastmod>
+    <lastmod>2017-08-04T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -242,7 +253,7 @@
   
   <url>
     <loc>http://www.muller.tech/post/</loc>
-    <lastmod>2017-07-26T00:00:00+00:00</lastmod>
+    <lastmod>2017-08-04T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   

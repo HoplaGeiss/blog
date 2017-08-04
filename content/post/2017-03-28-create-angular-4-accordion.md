@@ -76,6 +76,7 @@ import { AccordionComponent } from '../accordion.component';
 export class AccordionGroupComponent implements OnDestroy, OnChanges {
   @Input() heading: string;
   @Input() isOpen: boolean;
+  @Input() index: number;
 
   constructor(private accordion: AccordionComponent) {
     this.accordion.addGroup(this);
@@ -111,19 +112,21 @@ As you can see most of the logic happens in `AccordionGroupComponent`, its const
 To finish here is an example of how to use the accordion:
 
 ```typescript
-<accordion>
-  <accordion-group heading="Heading 1" [isOpen]=true>
-    <span>Content 1</span>
-  </accordion-group>
+template: `
+  <accordion>
+    <accordion-group heading="Heading 1" [index]=0 [isOpen]=true>
+      <span>Content 1</span>
+    </accordion-group>
 
-  <accordion-group heading="Heading 2" [isOpen]=true>
-    <span>Content 2</span>
-  </accordion-group>
+    <accordion-group heading="Heading 2" [index]=1 [isOpen]=false>
+      <span>Content 2</span>
+    </accordion-group>
 
-  <accordion-group heading="Heading 3" [isOpen]=true>
-    <span>Content 3</span>
-  </accordion-group>
-</accordion>
+    <accordion-group heading="Heading 3" [index]=2 [isOpen]=false>
+      <span>Content 3</span>
+    </accordion-group>
+  </accordion>
+`
 ```
 
 Also you can add some transition on the css to make it more smooth like so:
