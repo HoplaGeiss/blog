@@ -1,0 +1,598 @@
+
+<!DOCTYPE html>
+<html lang="en-gb">
+
+    <head>
+
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+        <meta property="og:title" content=" Angular 5 / d3.js - Pie Chart &middot;  Gabriel Muller - JavaScript and Angular articles" />
+        <meta property="og:site_name" content="Gabriel Muller - JavaScript and Angular articles" />
+        <meta property="og:url" content="http://www.muller.tech/post/2017/11/13/angular5-d3js-pie-chart/" />
+
+    
+        <meta property="og:type" content="article" />
+        <meta property="og:article:published_time" content="2017-11-13T00:00:00Z" />
+        <meta property="og:article:tag" content="angular5" />
+        <meta property="og:article:tag" content="d3.js" />
+        
+
+        <meta name="twitter:card" content="summary" />
+        <meta name="twitter:site" content="@" />
+        <meta name="twitter:creator" content="@" />
+        <meta name="twitter:title" content="Angular 5 / d3.js - Pie Chart" />
+        <meta name="twitter:description" content="Create a dynamic and resizable pie chart with angular5 and d3.js" />
+        <meta name="twitter:url" content="http://www.muller.tech/post/2017/11/13/angular5-d3js-pie-chart/" />
+    
+
+        <title> Angular 5 / d3.js - Pie Chart &middot;  Gabriel Muller - JavaScript and Angular articles</title>
+
+        <link rel="preload" href="/js/main.js" as="script" />
+        <link rel="preload" href="/css/main.css" as="style" />
+
+    
+        <meta name="description" content="Create a dynamic and resizable pie chart with angular5 and d3.js" />
+    
+
+    
+        <meta name="p:domain_verify" content=""/>
+    
+
+        <meta name="HandheldFriendly" content="True" />
+        <meta name="MobileOptimized" content="320" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+        
+        
+
+    
+        <link href="http://www.muller.tech/index.xml" rel="alternate" type="application/rss+xml" title="Gabriel Muller - JavaScript and Angular articles" />
+    
+
+    
+        <link rel="canonical" href="http://www.muller.tech/post/2017/11/13/angular5-d3js-pie-chart/" />
+
+
+    
+    <script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "mainEntityOfPage": {
+          "@type": "WebPage",
+          "@id": "http://www.muller.tech/post/2017/11/13/angular5-d3js-pie-chart/"
+        },
+        "headline": "Angular 5 / d3.js - Pie Chart",
+        "description": "Create a dynamic and resizable pie chart with angular5 and d3.js",
+        "author": {
+            "@type": "Person",
+            "name": "Gabriel Muller",
+            "url": "http://profiles.google.com/?rel=author",
+            "image": {
+              "@type": "ImageObject",
+              "url": "https:",
+              "height": 80,
+              "width": 80
+            }
+        },
+        "publisher": {
+          "@type": "Organization",
+          "@id": "http://www.muller.tech/",
+          "name": "Gabriel Muller - JavaScript and Angular articles",
+          "url": "http://www.muller.tech/",
+          "logo": {
+            "@type": "ImageObject",
+            "url": "https:",
+            "height": 80,
+            "width": 80
+          }
+        },
+        "image": {
+          "@type": "ImageObject",
+          "url": "http://www.muller.tech/images/pie-chart.png",
+          "height": 133,
+          "width": 200
+        },
+        "datePublished": "2017-11-13",
+        "dateModified": "2017-11-13",
+        "wordCount": 1097,
+        "keywords": ["angular5","d3.js"]
+    }
+    </script>
+
+
+    
+    <script type="text/javascript">
+    
+    
+      var disqus_shortname = 'mullertech';
+      var disqus_identifier = 'http:\/\/www.muller.tech\/post\/2017\/11\/13\/angular5-d3js-pie-chart\/';
+      var disqus_title = 'Angular 5 \/ d3.js - Pie Chart';
+      var disqus_url = 'http:\/\/www.muller.tech\/post\/2017\/11\/13\/angular5-d3js-pie-chart\/';
+    
+    </script>
+    
+
+    <style>
+html{font-family:sans-serif;line-height:1.15;-ms-text-size-adjust:100%;-webkit-text-size-adjust:100%}body{margin:0}article,figure,footer,header,main,nav,section{display:block}h1{font-size:2em;margin:.67em 0}figure{margin:1em 40px}a{background-color:transparent;-webkit-text-decoration-skip:objects}img{border-style:none}::-webkit-file-upload-button{-webkit-appearance:button;font:inherit}@font-face{font-family:'Merriweather Sans';font-style:normal;font-weight:300;src:local("Merriweather Sans Light"),local(MerriweatherSans-Light),url(//fonts.gstatic.com/s/merriweathersans/v5/6LmGj5dOJopQKEkt88GowY_zIojJi0m4a5Z6tRh6itY.woff) format("woff")}@font-face{font-family:'Merriweather Sans';font-style:normal;font-weight:400;src:local("Merriweather Sans Regular"),local(MerriweatherSans-Regular),url(//fonts.gstatic.com/s/merriweathersans/v5/AKu1CjQ4qnV8MUltkAX3sL2aU247V0zTzydO4RoO9Ok.woff) format("woff")}@font-face{font-family:'Merriweather Sans';font-style:normal;font-weight:700;src:local("Merriweather Sans Bold"),local(MerriweatherSans-Bold),url(//fonts.gstatic.com/s/merriweathersans/v5/6LmGj5dOJopQKEkt88GowQfd-b-I5PxxcmB4_-MNcqw.woff) format("woff")}@font-face{font-family:'Merriweather Sans';font-style:normal;font-weight:800;src:local("Merriweather Sans ExtraBold"),local(MerriweatherSans-ExtraBold),url(//fonts.gstatic.com/s/merriweathersans/v5/6LmGj5dOJopQKEkt88GowWT7sFQ1Iz1BbpcuCPlgc9Q.woff) format("woff")}@font-face{font-family:'Merriweather Sans';font-style:italic;font-weight:300;src:local("Merriweather Sans Light Italic"),local(MerriweatherSans-LightItalic),url(//fonts.gstatic.com/s/merriweathersans/v5/nAqt4hiqwq3tzCecpgPmVX9UU5BmOJGkLxUCVv5VXdc.woff) format("woff")}@font-face{font-family:'Merriweather Sans';font-style:italic;font-weight:400;src:local("Merriweather Sans Italic"),local(MerriweatherSans-Italic),url(//fonts.gstatic.com/s/merriweathersans/v5/3Mz4hOHzs2npRMG3B1ascf0KIgDhPIHb_R-SWdtqte8.woff) format("woff")}@font-face{font-family:'Merriweather Sans';font-style:italic;font-weight:700;src:local("Merriweather Sans Bold Italic"),local(MerriweatherSans-BoldItalic),url(//fonts.gstatic.com/s/merriweathersans/v5/nAqt4hiqwq3tzCecpgPmVYM8pfYvjMoOxygpzLVILAs.woff) format("woff")}@font-face{font-family:'icons';src:url(/fonts/icons.eot?9273991);src:url(/fonts/icons.eot?9273991#iefix) format("embedded-opentype"),url(/fonts/icons.woff?9273991) format("woff"),url(/fonts/icons.ttf?9273991) format("truetype"),url(/fonts/icons.svg?9273991#icons) format("svg");font-weight:400;font-style:normal}[class^="icon-"]:before{font-family:"icons";font-style:normal;font-weight:400;speak:none;display:inline-block;text-decoration:inherit;width:1em;margin-right:.2em;text-align:center;font-variant:normal;text-transform:none;line-height:1em;margin-left:.2em;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}.icon-arrow-right:before{content:'\e807'}.icon-rss:before{content:'\e808'}body{font:300 1em / 1.5em 'Merriweather Sans',sans-serif;color:#595B66}a{color:inherit;text-decoration:none;font-weight:400}h1,h2{text-rendering:optimizeLegibility;color:#1F2026}h2 a{font-weight:inherit}h1{font-size:2em;line-height:1em;margin:2em 0 -.5em}h2{font-size:1.75em;line-height:1.143em;margin:2.286em 0 -.571em}p{margin:2em auto}i{font-weight:400;font-style:italic;color:#363740}img{display:block;max-width:100%;height:auto;margin:2.5em auto}body{background:#fff}.inner{max-width:48em;margin:0 auto;padding:0 1em}#wrapper{position:relative;box-sizing:border-box;width:100%;min-height:100vh;padding-bottom:6em;background:#F2F3F5}#push{transform:translate3d(0,0,0);transform-style:preserve-3d;opacity:1}#nav{position:relative;background:#fff;z-index:70;transform:translate3d(0,0,0);transform-style:preserve-3d;opacity:1}#nav:after{clear:both;content:'';display:table}#nav .nav-logo{float:left;height:2em;padding:1em;max-width:50%}#nav .nav-logo img{width:auto;max-width:none;height:2em;margin:0;border-radius:5px}#nav .nav-menu{float:right}#nav .nav-menu:after{clear:both;content:'';display:table}#nav .nav-menu a{display:block;width:1em;height:1em;line-height:1em;padding:1.5em;text-align:center;float:left}#nav .nav-menu a i:before{margin:auto}.overlay{display:none;position:fixed;left:0;top:0;width:100%;height:100%;z-index:80;display:none}.overlay:before{content:'';position:absolute;left:0;top:0;width:100%;height:100%;background:#1F2026;opacity:0;transform-style:preserve-3d}#header{position:relative;padding:4em 0}#header .inner{position:relative;z-index:2}#header .header-title{display:block;text-align:center}#header .header-name{font-weight:700;letter-spacing:-1px;display:block;line-height:1em;font-size:2em;text-decoration:none;color:#1F2026;padding:0;margin:0}#header.has-cover .header-name{color:#fff}#header .header-description{display:block;margin:1em auto 0;color:#9D9FA6;position:relative;font-weight:300}#header .header-description:after{content:'';position:absolute;height:1px;width:100px;margin-left:-50px;left:50%;top:-.5em;background:#D4D5D9}#header.has-cover .header-description{color:#fff}#header.has-cover .header-description:after{background:#fff}#header .header-cover{position:absolute;width:100%;height:100%;top:0;left:0;margin-top:-4em;padding:4em 0;background:no-repeat fixed center 100% / cover;z-index:1}#header .header-cover:before{content:'';position:absolute;width:100%;height:100%;left:0;top:0;background:rgba(0,0,0,0.2)}#header .header-cover:after{content:'';position:absolute;width:100%;left:0;bottom:0;border-bottom:4px solid #36D995}#footer{position:absolute;width:100%;left:0;bottom:0;font-size:.75em;line-height:1.334em;background:#1F2026;color:#737580;z-index:20;transform:translate3d(0,0,0);transform-style:preserve-3d;opacity:1}#footer a{color:#9D9FA6;font-weight:400}#footer .credits{text-align:center;font-size:.75em;line-height:1.334em;padding:2.667em;overflow:auto}#footer .credits span{display:block}#footer .credits .credits-theme{float:left}#footer .credits .credits-software{float:right}.post{position:relative;z-index:20}.post .post-image{display:block;margin:0;padding:0}.post .post-image img{display:block;width:100%;height:auto;margin:0;padding:0}.post .post-meta{display:block;font-size:.75em;line-height:1.334em;font-weight:400;margin-bottom:1.334em}.post .post-title{position:relative;color:#000;font-size:2em;line-height:1.375em;font-weight:800;text-indent:-1px;margin:.25em 0 .75em}.post .post-title:before{content:'';position:absolute;left:0;bottom:-.334em;width:1em;margin-bottom:-2px;border-bottom:4px solid #36D995}.post .post-title a{text-decoration:none;color:inherit;font-weight:inherit}#post-index{position:relative;max-width:1200px;margin:0 auto 4em;padding:.5em;z-index:10}@keyframes fade{0%{transform:translate3d(0,3em,0);opacity:0}100%{transform:translate3d(0,0,0);opacity:1}}.post-list{position:relative}.post-list .post{float:left;width:33.3%;transform:translate3d(0,3em,0);transform-style:preserve-3d;opacity:0;animation:fade ease-out .5s forwards;animation-delay:1.4s}@media only screen and (max-width: 50em){.post-list .post{width:49.9%}}@media only screen and (max-width: 30em){.post-list .post{width:100%;float:none}}.post-list .post:nth-child(1){animation-delay:.1s}.post-list .post:nth-child(2){animation-delay:.2s}.post-list .post:nth-child(3){animation-delay:.3s}.post-list .post:nth-child(4){animation-delay:.4s}.post-list .post:nth-child(5){animation-delay:.5s}.post-list .post:nth-child(6){animation-delay:.6s}.post-list .post:nth-child(7){animation-delay:.7s}.post-list .post:nth-child(8){animation-delay:.8s}.post-list .post:nth-child(9){animation-delay:.9s}.post-list .post .inner{padding:2em;margin:.5em;max-width:none;background:#fff;box-sizing:border-box;transform:scale(1);transform-style:preserve-3d}@media only screen and (max-width: 50em){.post-list .post .inner{padding:1em}}.post-list .post .post-link{position:absolute;left:0;top:0;width:100%;height:100%;z-index:10}.post-list .post .post-image{position:relative;margin:-2em -2em 0;overflow:hidden;background:#36D995}@media only screen and (max-width: 50em){.post-list .post .post-image{margin:-1em -1em 0}}.post-list .post .post-image img{transform:scale(1);transform-style:preserve-3d;opacity:1}.post-list .post .post-image:after{content:'';position:absolute;left:-5%;bottom:-2.5em;width:110%;height:4em;background:#fff;border-top:4px solid #36D995;box-shadow:0 0 2em rgba(0,0,0,0.2);transform:rotate(5deg)}.post-list .post .post-title{font-size:1.5em;line-height:1.167em}.post-list .post .post-excerpt{margin:0}.post-list .post .post-more{display:block;margin-top:1.5em}.post-list .post .post-more a{display:inline-block;font-size:.875em;line-height:1.143em;font-weight:400;color:#363740}.post-list .post .post-more a i{color:#2DB77E}.pagination{min-height:3em;margin:4em auto 2em;padding:0;position:relative}.pagination .pagination-item{position:relative;display:block;height:3em;line-height:3em;padding:0 1em;text-align:center;text-decoration:none;font-weight:700;color:#363740;border:1px solid #36D995;border-radius:4em;z-index:60}.pagination .pagination-item i{position:relative}@media only screen and (max-width: 30em){.pagination .pagination-item{width:4em;height:4em;line-height:4em;margin-top:-.5em;padding:0!important}.pagination .pagination-item i{font-size:1.5em}.pagination .pagination-item>span{display:none}}.pagination .pagination-prev{float:right}.pagination .pagination-prev i{right:-.05em}.pagination .pagination-info{display:block;left:0;top:0;height:3em;line-height:3em;position:absolute;text-align:center;width:100%;z-index:50;color:#9D9FA6}#loader-wrapper{position:fixed;top:0;left:0;width:100%;height:100%;z-index:1000}#loader{display:block;position:relative;left:50%;top:50%;width:150px;height:150px;margin:-75px 0 0 -75px;border-radius:50%;border:3px solid transparent;border-top-color:#36D995;animation:spin 2s linear infinite}#loader:before{content:"";position:absolute;top:5px;left:5px;right:5px;bottom:5px;border-radius:50%;border:3px solid transparent;border-top-color:#2DB77E;animation:spin 3s linear infinite}#loader:after{content:"";position:absolute;top:15px;left:15px;right:15px;bottom:15px;border-radius:50%;border:3px solid transparent;border-top-color:#D4D5D9;animation:spin 1.5s linear infinite}@keyframes spin{0%{transform:rotate(0deg)}100%{transform:rotate(360deg)}}
+</style>
+
+
+    </head>
+    <body class="home-template">
+      <div id="loader-wrapper">
+        <div id="loader"></div>
+      </div>
+      <section id="wrapper" style="display: none;">
+        <div id="ajax-container">
+          <nav id="nav" class="nav">
+            <div class="nav-logo">
+              <a href="http://www.muller.tech/">
+      			  
+      			  	<img src="/images/logo.png" alt="Logo"/>
+      			  
+              </a>
+            </div>
+            <div class="nav-menu">
+              <a class="rss" href="">
+                <i class="icon-rss"></i>
+              </a>
+                
+                <a class="menu" data-action="toc" data-target="toc"><i class="icon-location"></i></a>
+                
+                
+            </div>
+          </nav>
+
+
+<main class="content" role="main">
+	<article class="post">
+		<div class="inner">
+
+			<div id="push">
+
+  			<header class="post-header">
+  				<span class="post-meta">
+						<span class="post-date">13 Nov 2017</span> <span class="reading-time">| <span class="estimated-reading-time">6 min.</span> (<span class="word-count">1097</span> words)</span></span>
+  				</span>
+  				<div class="clear"></div>
+  				<h1 class="post-title">Angular 5 / d3.js - Pie Chart</h1>
+  			</header>
+
+  			<section class="post-content">
+  				
+
+<p>In this post you will learn how to create a dynamic and resizable pie chart with angular5 and d3.js.
+Pie charts are very useful to present a number of data, however I couldn&rsquo;t find any example online working with angular2+ and d3 v4, so I decided to implement my own from scratch.</p>
+
+<p>Take a look at the demo:
+<a href="http://www.muller.tech/hopla-pie-chart/">http://www.muller.tech/hopla-pie-chart/</a></p>
+
+<p>If you are in a hurry, you can checkout the source code here: <a href="https://github.com/HoplaGeiss/hopla-dropdown">https://github.com/HoplaGeiss/hopla-dropdown</a></p>
+
+<p>Now, let&rsquo;s dive in!</p>
+
+<h3 id="component-skeleton">Component skeleton</h3>
+<div class="highlight" style="background: #272822"><pre style="line-height: 125%"><span></span><span style="color: #66d9ef">import</span> <span style="color: #f8f8f2">{</span> <span style="color: #a6e22e">Component</span><span style="color: #f8f8f2">,</span> <span style="color: #a6e22e">OnInit</span><span style="color: #f8f8f2">,</span> <span style="color: #a6e22e">OnChanges</span><span style="color: #f8f8f2">,</span> <span style="color: #a6e22e">ViewChild</span><span style="color: #f8f8f2">,</span> <span style="color: #a6e22e">ElementRef</span><span style="color: #f8f8f2">,</span> <span style="color: #a6e22e">Input</span> <span style="color: #f8f8f2">}</span> <span style="color: #a6e22e">from</span> <span style="color: #e6db74">&#39;@angular/core&#39;</span><span style="color: #f8f8f2">;</span>
+<span style="color: #66d9ef">import</span> <span style="color: #f92672">*</span> <span style="color: #66d9ef">as</span> <span style="color: #a6e22e">d3</span> <span style="color: #a6e22e">from</span> <span style="color: #e6db74">&#39;d3&#39;</span><span style="color: #f8f8f2">;</span>
+<span style="color: #66d9ef">import</span> <span style="color: #f8f8f2">{</span> <span style="color: #a6e22e">SumPipe</span> <span style="color: #f8f8f2">}</span> <span style="color: #a6e22e">from</span> <span style="color: #e6db74">&#39;../_pipes/sum.pipe&#39;</span><span style="color: #f8f8f2">;</span>
+<span style="color: #66d9ef">import</span> <span style="color: #f92672">*</span> <span style="color: #66d9ef">as</span> <span style="color: #a6e22e">_</span> <span style="color: #a6e22e">from</span> <span style="color: #e6db74">&#39;underscore&#39;</span><span style="color: #f8f8f2">;</span>
+
+<span style="color: #66d9ef">@Component</span><span style="color: #f8f8f2">({</span>
+    <span style="color: #a6e22e">selector</span><span style="color: #f92672">:</span> <span style="color: #e6db74">&#39;app-pie-chart&#39;</span><span style="color: #f8f8f2">,</span>
+    <span style="color: #a6e22e">styleUrls</span><span style="color: #f92672">:</span> <span style="color: #f8f8f2">[</span><span style="color: #e6db74">&#39;./pie-chart.component.scss&#39;</span><span style="color: #f8f8f2">],</span>
+    <span style="color: #a6e22e">template</span><span style="color: #f92672">:</span> <span style="color: #e6db74">`</span>
+<span style="color: #e6db74">      &lt;div class=&#39;wrapper&#39;&gt;</span>
+<span style="color: #e6db74">        &lt;div class=&#39;pie-chart&#39; #containerPieChart&gt;&lt;/div&gt;</span>
+
+<span style="color: #e6db74">        &lt;div *ngIf=&#39;labels&#39;class=&#39;legend&#39; fxLayout=&#39;row&#39; fxLayoutAlign=&#39;center center&#39;&gt;</span>
+<span style="color: #e6db74">          &lt;div *ngFor=&#39;let label of labels; let i = index&#39; fxLayout=&#39;row&#39; fxLayoutAlign=&#39;start center&#39; class=&#39;item&#39;&gt;</span>
+<span style="color: #e6db74">            &lt;div class=&#39;circle&#39; [ngStyle]=&#39;{&quot;background&quot;: colourSlices[i]}&#39;&gt;&lt;/div&gt;</span>
+<span style="color: #e6db74">            &lt;div&gt;{{label}}&lt;/div&gt;</span>
+<span style="color: #e6db74">          &lt;/div&gt;</span>
+<span style="color: #e6db74">        &lt;/div&gt;</span>
+
+<span style="color: #e6db74">        &lt;div class=&#39;tooltip drilldownData&#39;&gt;</span>
+<span style="color: #e6db74">          &lt;div class=&#39;header&#39; *ngIf=&#39;selectedSlice&#39;&gt;</span>
+<span style="color: #e6db74">            &lt;div fxLayout=&#39;row&#39; fxLayoutAlign=&#39;start center&#39;&gt;</span>
+<span style="color: #e6db74">              &lt;img [src]=&#39;&quot;assets/Icon-&quot; + selectedSlice.familyType + &quot;.svg&quot;&#39; alt=&#39;Database Icon&#39;&gt;</span>
+<span style="color: #e6db74">              &lt;div fxLayout=&#39;column&#39; fxLayoutAlign=&#39;center start&#39;&gt;</span>
+<span style="color: #e6db74">                &lt;div class=&#39;title&#39;&gt;{{selectedSlice.familyType}}&lt;/div&gt;</span>
+<span style="color: #e6db74">                &lt;div&gt;Queries&lt;/div&gt;</span>
+<span style="color: #e6db74">              &lt;/div&gt;</span>
+<span style="color: #e6db74">            &lt;/div&gt;</span>
+<span style="color: #e6db74">          &lt;/div&gt;</span>
+<span style="color: #e6db74">          &lt;div class=&#39;body&#39; fxLayout=&#39;row&#39; fxLayoutWrap *ngIf=&#39;selectedSlice&#39;&gt;</span>
+<span style="color: #e6db74">            &lt;div *ngFor=&#39;let item of selectedSlice.types&#39; class=&#39;item&#39; fxFlex=&quot;50%&quot;&gt;</span>
+<span style="color: #e6db74">              &lt;div class=&#39;label&#39;&gt;{{item.type}}&lt;/div&gt;</span>
+<span style="color: #e6db74">              &lt;div class=&#39;value&#39;&gt;{{item.amount}}&lt;/div&gt;</span>
+<span style="color: #e6db74">            &lt;/div&gt;</span>
+<span style="color: #e6db74">          &lt;/div&gt;</span>
+<span style="color: #e6db74">        &lt;/div&gt;</span>
+<span style="color: #e6db74">      &lt;/div&gt;</span>
+<span style="color: #e6db74">    `</span>
+<span style="color: #f8f8f2">})</span>
+
+<span style="color: #66d9ef">export</span> <span style="color: #66d9ef">class</span> <span style="color: #a6e22e">PieChartComponent</span> <span style="color: #66d9ef">implements</span> <span style="color: #a6e22e">OnInit</span><span style="color: #f8f8f2">,</span> <span style="color: #a6e22e">OnChanges</span> <span style="color: #f8f8f2">{</span>
+  <span style="color: #66d9ef">@ViewChild</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;containerPieChart&#39;</span><span style="color: #f8f8f2">)</span> <span style="color: #a6e22e">chartContainer</span>: <span style="color: #66d9ef">ElementRef</span><span style="color: #f8f8f2">;</span>
+  <span style="color: #66d9ef">@Input</span><span style="color: #f8f8f2">()</span> <span style="color: #a6e22e">data</span>: <span style="color: #66d9ef">any</span><span style="color: #f8f8f2">;</span>
+  <span style="color: #66d9ef">@Input</span><span style="color: #f8f8f2">()</span> <span style="color: #a6e22e">colours</span>: <span style="color: #66d9ef">Array</span><span style="color: #f92672">&lt;</span><span style="color: #66d9ef">string</span><span style="color: #f92672">&gt;</span><span style="color: #f8f8f2">;</span>
+
+  <span style="color: #a6e22e">hostElement</span>: <span style="color: #66d9ef">any</span><span style="color: #f8f8f2">;</span>
+  <span style="color: #a6e22e">svg</span>: <span style="color: #66d9ef">any</span><span style="color: #f8f8f2">;</span>
+  <span style="color: #a6e22e">radius</span>: <span style="color: #66d9ef">number</span><span style="color: #f8f8f2">;</span>
+  <span style="color: #a6e22e">innerRadius</span>: <span style="color: #66d9ef">number</span><span style="color: #f8f8f2">;</span>
+  <span style="color: #a6e22e">outerRadius</span>: <span style="color: #66d9ef">number</span><span style="color: #f8f8f2">;</span>
+  <span style="color: #a6e22e">htmlElement</span>: <span style="color: #66d9ef">HTMLElement</span><span style="color: #f8f8f2">;</span>
+  <span style="color: #a6e22e">arcGenerator</span>: <span style="color: #66d9ef">any</span><span style="color: #f8f8f2">;</span>
+  <span style="color: #a6e22e">arcHover</span>: <span style="color: #66d9ef">any</span><span style="color: #f8f8f2">;</span>
+  <span style="color: #a6e22e">pieGenerator</span>: <span style="color: #66d9ef">any</span><span style="color: #f8f8f2">;</span>
+  <span style="color: #a6e22e">path</span>: <span style="color: #66d9ef">any</span><span style="color: #f8f8f2">;</span>
+  <span style="color: #a6e22e">values</span>: <span style="color: #66d9ef">Array</span><span style="color: #f92672">&lt;</span><span style="color: #66d9ef">number</span><span style="color: #f92672">&gt;</span><span style="color: #f8f8f2">;</span>
+  <span style="color: #a6e22e">labels</span>: <span style="color: #66d9ef">Array</span><span style="color: #f92672">&lt;</span><span style="color: #66d9ef">string</span><span style="color: #f92672">&gt;</span><span style="color: #f8f8f2">;</span>
+  <span style="color: #a6e22e">tooltip</span>: <span style="color: #66d9ef">any</span><span style="color: #f8f8f2">;</span>
+  <span style="color: #a6e22e">centralLabel</span>: <span style="color: #66d9ef">any</span><span style="color: #f8f8f2">;</span>
+  <span style="color: #a6e22e">pieColours</span>: <span style="color: #66d9ef">any</span><span style="color: #f8f8f2">;</span>
+  <span style="color: #a6e22e">slices</span>: <span style="color: #66d9ef">Array</span><span style="color: #f92672">&lt;</span><span style="color: #a6e22e">any</span><span style="color: #f92672">&gt;</span><span style="color: #f8f8f2">;</span>
+  <span style="color: #a6e22e">selectedSlice</span>: <span style="color: #66d9ef">any</span><span style="color: #f8f8f2">;</span>
+  <span style="color: #a6e22e">colourSlices</span>: <span style="color: #66d9ef">Array</span><span style="color: #f92672">&lt;</span><span style="color: #66d9ef">string</span><span style="color: #f92672">&gt;</span><span style="color: #f8f8f2">;</span>
+  <span style="color: #a6e22e">arc</span>: <span style="color: #66d9ef">any</span><span style="color: #f8f8f2">;</span>
+  <span style="color: #a6e22e">arcEnter</span>: <span style="color: #66d9ef">any</span><span style="color: #f8f8f2">;</span>
+
+  <span style="color: #66d9ef">constructor</span><span style="color: #f8f8f2">(</span>
+    <span style="color: #66d9ef">private</span> <span style="color: #a6e22e">elRef</span>: <span style="color: #66d9ef">ElementRef</span>
+  <span style="color: #f8f8f2">)</span> <span style="color: #f8f8f2">{}</span>
+<span style="color: #f8f8f2">}</span>
+</pre></div>
+
+<p>The most important in this piece of code is the template. You can see it is split in three parts, the chart, the labels and the tooltip.</p>
+
+<p>It is also worth noticing the inputs of this component. <code>data</code> is an array of object we want to plot and <code>colours</code> is an array of string that we will use for colouring the slices of the pie chart.</p>
+
+<h3 id="data-service">Data Service</h3>
+<div class="highlight" style="background: #272822"><pre style="line-height: 125%"><span></span><span style="color: #66d9ef">import</span> <span style="color: #f8f8f2">{</span> <span style="color: #a6e22e">Injectable</span> <span style="color: #f8f8f2">}</span> <span style="color: #a6e22e">from</span> <span style="color: #e6db74">&#39;@angular/core&#39;</span><span style="color: #f8f8f2">;</span>
+
+<span style="color: #66d9ef">@Injectable</span><span style="color: #f8f8f2">()</span>
+<span style="color: #66d9ef">export</span> <span style="color: #66d9ef">class</span> <span style="color: #a6e22e">PieDataService</span> <span style="color: #f8f8f2">{</span>
+  <span style="color: #a6e22e">generateData</span> <span style="color: #f92672">=</span> <span style="color: #f8f8f2">(</span><span style="color: #a6e22e">num</span>: <span style="color: #66d9ef">number</span><span style="color: #f8f8f2">)</span> <span style="color: #f92672">=&gt;</span> <span style="color: #f8f8f2">{</span>
+    <span style="color: #66d9ef">const</span> <span style="color: #a6e22e">operations</span> <span style="color: #f92672">=</span> <span style="color: #f8f8f2">[];</span>
+    <span style="color: #66d9ef">const</span> <span style="color: #a6e22e">labels</span> <span style="color: #f92672">=</span> <span style="color: #f8f8f2">[</span><span style="color: #e6db74">&#39;Devices&#39;</span><span style="color: #f8f8f2">,</span> <span style="color: #e6db74">&#39;Database&#39;</span><span style="color: #f8f8f2">,</span> <span style="color: #e6db74">&#39;API&#39;</span><span style="color: #f8f8f2">];</span>
+    <span style="color: #66d9ef">const</span> <span style="color: #a6e22e">types</span> <span style="color: #f92672">=</span> <span style="color: #f8f8f2">[</span><span style="color: #e6db74">&#39;SnmpV1&#39;</span><span style="color: #f8f8f2">,</span> <span style="color: #e6db74">&#39;SnmpV2c&#39;</span><span style="color: #f8f8f2">,</span> <span style="color: #e6db74">&#39;SnmpV3&#39;</span><span style="color: #f8f8f2">,</span> <span style="color: #e6db74">&#39;HttpApi&#39;</span><span style="color: #f8f8f2">,</span> <span style="color: #e6db74">&#39;HttpBasic&#39;</span><span style="color: #f8f8f2">,</span> <span style="color: #e6db74">&#39;SshBasic&#39;</span><span style="color: #f8f8f2">,</span> <span style="color: #e6db74">&#39;SshRsa&#39;</span><span style="color: #f8f8f2">,</span> <span style="color: #e6db74">&#39;Wmi&#39;</span><span style="color: #f8f8f2">,</span> <span style="color: #e6db74">&#39;Sql&#39;</span><span style="color: #f8f8f2">,</span> <span style="color: #e6db74">&#39;MongoDb&#39;</span><span style="color: #f8f8f2">];</span>
+
+    <span style="color: #66d9ef">for</span> <span style="color: #f8f8f2">(</span><span style="color: #66d9ef">let</span> <span style="color: #a6e22e">i</span> <span style="color: #f92672">=</span> <span style="color: #ae81ff">0</span><span style="color: #f8f8f2">;</span> <span style="color: #a6e22e">i</span> <span style="color: #f92672">&lt;</span> <span style="color: #f8f8f2">Math.</span><span style="color: #a6e22e">floor</span><span style="color: #f8f8f2">(</span><span style="color: #ae81ff">1</span> <span style="color: #f92672">+</span> <span style="color: #f8f8f2">Math.</span><span style="color: #a6e22e">random</span><span style="color: #f8f8f2">()</span> <span style="color: #f92672">*</span> <span style="color: #a6e22e">num</span><span style="color: #f8f8f2">);</span> <span style="color: #a6e22e">i</span><span style="color: #f92672">++</span><span style="color: #f8f8f2">)</span> <span style="color: #f8f8f2">{</span>
+      <span style="color: #66d9ef">const</span> <span style="color: #a6e22e">operation</span> <span style="color: #f92672">=</span> <span style="color: #f8f8f2">{</span>
+        <span style="color: #a6e22e">id</span>: <span style="color: #66d9ef">i</span><span style="color: #f8f8f2">,</span>
+        <span style="color: #a6e22e">familyType</span>: <span style="color: #66d9ef">labels</span><span style="color: #f8f8f2">[Math.</span><span style="color: #a6e22e">floor</span><span style="color: #f8f8f2">(Math.</span><span style="color: #a6e22e">random</span><span style="color: #f8f8f2">()</span> <span style="color: #f92672">*</span> <span style="color: #a6e22e">labels</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">length</span><span style="color: #f8f8f2">)],</span>
+        <span style="color: #a6e22e">name</span><span style="color: #f92672">:</span> <span style="color: #e6db74">&#39;MAN1-APC-01-Get-Power-Consumption&#39;</span><span style="color: #f8f8f2">,</span>
+        <span style="color: #a6e22e">type</span>: <span style="color: #66d9ef">types</span><span style="color: #f8f8f2">[Math.</span><span style="color: #a6e22e">floor</span><span style="color: #f8f8f2">(Math.</span><span style="color: #a6e22e">random</span><span style="color: #f8f8f2">()</span> <span style="color: #f92672">*</span> <span style="color: #a6e22e">types</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">length</span><span style="color: #f8f8f2">)]</span>
+      <span style="color: #f8f8f2">};</span>
+
+      <span style="color: #a6e22e">operations</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">push</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">operation</span><span style="color: #f8f8f2">);</span>
+    <span style="color: #f8f8f2">}</span>
+
+    <span style="color: #66d9ef">return</span> <span style="color: #a6e22e">operations</span><span style="color: #f8f8f2">;</span>
+  <span style="color: #f8f8f2">}</span>
+<span style="color: #f8f8f2">}</span>
+</pre></div>
+
+<p>In my example I am going to plot a pie chart of operations.</p>
+
+<h3 id="create-chart">Create chart</h3>
+<div class="highlight" style="background: #272822"><pre style="line-height: 125%"><span></span><span style="color: #a6e22e">createChart</span> <span style="color: #f92672">=</span> <span style="color: #f8f8f2">()</span> <span style="color: #f92672">=&gt;</span> <span style="color: #f8f8f2">{</span>
+  <span style="color: #75715e">// chart configuration</span>
+  <span style="color: #66d9ef">this</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">hostElement</span> <span style="color: #f92672">=</span> <span style="color: #66d9ef">this</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">chartContainer</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">nativeElement</span><span style="color: #f8f8f2">;</span>
+
+  <span style="color: #66d9ef">this</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">radius</span> <span style="color: #f92672">=</span> <span style="color: #f8f8f2">Math.</span><span style="color: #a6e22e">min</span><span style="color: #f8f8f2">(</span><span style="color: #66d9ef">this</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">hostElement</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">offsetWidth</span><span style="color: #f8f8f2">,</span> <span style="color: #66d9ef">this</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">hostElement</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">offsetHeight</span><span style="color: #f8f8f2">)</span> <span style="color: #f92672">/</span> <span style="color: #ae81ff">2</span><span style="color: #f8f8f2">;</span>
+  <span style="color: #66d9ef">const</span> <span style="color: #a6e22e">innerRadius</span> <span style="color: #f92672">=</span> <span style="color: #66d9ef">this</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">radius</span> <span style="color: #f92672">-</span> <span style="color: #ae81ff">80</span><span style="color: #f8f8f2">;</span>
+  <span style="color: #66d9ef">const</span> <span style="color: #a6e22e">outerRadius</span> <span style="color: #f92672">=</span> <span style="color: #66d9ef">this</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">radius</span> <span style="color: #f92672">-</span> <span style="color: #ae81ff">15</span><span style="color: #f8f8f2">;</span>
+  <span style="color: #66d9ef">const</span> <span style="color: #a6e22e">hoverRadius</span> <span style="color: #f92672">=</span> <span style="color: #66d9ef">this</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">radius</span> <span style="color: #f92672">-</span> <span style="color: #ae81ff">5</span><span style="color: #f8f8f2">;</span>
+  <span style="color: #66d9ef">this</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">pieColours</span> <span style="color: #f92672">=</span> <span style="color: #66d9ef">this</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">colours</span> <span style="color: #f92672">?</span> <span style="color: #a6e22e">d3</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">scaleOrdinal</span><span style="color: #f8f8f2">().</span><span style="color: #a6e22e">range</span><span style="color: #f8f8f2">(</span><span style="color: #66d9ef">this</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">colours</span><span style="color: #f8f8f2">)</span> <span style="color: #f92672">:</span> <span style="color: #a6e22e">d3</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">scaleOrdinal</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">d3</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">schemeCategory20c</span><span style="color: #f8f8f2">);</span>
+  <span style="color: #66d9ef">this</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">tooltip</span> <span style="color: #f92672">=</span> <span style="color: #66d9ef">this</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">elRef</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">nativeElement</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">querySelector</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;.tooltip&#39;</span><span style="color: #f8f8f2">);</span>
+
+  <span style="color: #75715e">// create a pie generator and tell it where to get numeric values from and whether sorting is needed or not</span>
+  <span style="color: #75715e">// this is just a function that will be called to obtain data prior binding that data to elements of the chart</span>
+  <span style="color: #66d9ef">this</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">pieGenerator</span> <span style="color: #f92672">=</span> <span style="color: #a6e22e">d3</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">pie</span><span style="color: #f8f8f2">().</span><span style="color: #a6e22e">sort</span><span style="color: #f8f8f2">(</span><span style="color: #66d9ef">null</span><span style="color: #f8f8f2">).</span><span style="color: #a6e22e">value</span><span style="color: #f8f8f2">((</span><span style="color: #a6e22e">d</span>: <span style="color: #66d9ef">number</span><span style="color: #f8f8f2">)</span> <span style="color: #f92672">=&gt;</span> <span style="color: #a6e22e">d</span><span style="color: #f8f8f2">)([</span><span style="color: #ae81ff">0</span><span style="color: #f8f8f2">,</span> <span style="color: #ae81ff">0</span><span style="color: #f8f8f2">,</span> <span style="color: #ae81ff">0</span><span style="color: #f8f8f2">]);</span>
+
+  <span style="color: #75715e">// create an arc generator and configure it</span>
+  <span style="color: #75715e">// this is just a function that will be called to obtain data prior binding that data to arc elements of the chart</span>
+  <span style="color: #66d9ef">this</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">arcGenerator</span> <span style="color: #f92672">=</span> <span style="color: #a6e22e">d3</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">arc</span><span style="color: #f8f8f2">()</span>
+    <span style="color: #f8f8f2">.</span><span style="color: #a6e22e">innerRadius</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">innerRadius</span><span style="color: #f8f8f2">)</span>
+    <span style="color: #f8f8f2">.</span><span style="color: #a6e22e">outerRadius</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">outerRadius</span><span style="color: #f8f8f2">);</span>
+
+  <span style="color: #66d9ef">this</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">arcHover</span> <span style="color: #f92672">=</span> <span style="color: #a6e22e">d3</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">arc</span><span style="color: #f8f8f2">()</span>
+    <span style="color: #f8f8f2">.</span><span style="color: #a6e22e">innerRadius</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">innerRadius</span><span style="color: #f8f8f2">)</span>
+    <span style="color: #f8f8f2">.</span><span style="color: #a6e22e">outerRadius</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">hoverRadius</span><span style="color: #f8f8f2">);</span>
+
+  <span style="color: #75715e">// create svg element, configure dimentions and centre and add to DOM</span>
+  <span style="color: #66d9ef">this</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">svg</span> <span style="color: #f92672">=</span> <span style="color: #a6e22e">d3</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">select</span><span style="color: #f8f8f2">(</span><span style="color: #66d9ef">this</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">hostElement</span><span style="color: #f8f8f2">).</span><span style="color: #a6e22e">append</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;svg&#39;</span><span style="color: #f8f8f2">)</span>
+    <span style="color: #f8f8f2">.</span><span style="color: #a6e22e">attr</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;viewBox&#39;</span><span style="color: #f8f8f2">,</span> <span style="color: #e6db74">&#39;0, 0, &#39;</span> <span style="color: #f92672">+</span> <span style="color: #66d9ef">this</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">hostElement</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">offsetWidth</span> <span style="color: #f92672">+</span> <span style="color: #e6db74">&#39;, &#39;</span> <span style="color: #f92672">+</span> <span style="color: #66d9ef">this</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">hostElement</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">offsetHeight</span><span style="color: #f8f8f2">)</span>
+    <span style="color: #f8f8f2">.</span><span style="color: #a6e22e">append</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;g&#39;</span><span style="color: #f8f8f2">)</span>
+    <span style="color: #f8f8f2">.</span><span style="color: #a6e22e">attr</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;transform&#39;</span><span style="color: #f8f8f2">,</span> <span style="color: #e6db74">`translate(${</span><span style="color: #66d9ef">this</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">hostElement</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">offsetWidth</span> <span style="color: #f92672">/</span> <span style="color: #ae81ff">2</span><span style="color: #e6db74">}, ${</span><span style="color: #66d9ef">this</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">hostElement</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">offsetHeight</span> <span style="color: #f92672">/</span> <span style="color: #ae81ff">2</span><span style="color: #e6db74">})`</span><span style="color: #f8f8f2">);</span>
+<span style="color: #f8f8f2">}</span>
+</pre></div>
+
+<p>In this <code>createChart</code> method we mostly define variables and create the svg.</p>
+
+<h3 id="updatechart">updateChart</h3>
+<div class="highlight" style="background: #272822"><pre style="line-height: 125%"><span></span><span style="color: #a6e22e">updateChart</span> <span style="color: #f92672">=</span> <span style="color: #f8f8f2">(</span><span style="color: #a6e22e">firstRun</span>: <span style="color: #66d9ef">boolean</span><span style="color: #f8f8f2">)</span> <span style="color: #f92672">=&gt;</span> <span style="color: #f8f8f2">{</span>
+  <span style="color: #66d9ef">const</span> <span style="color: #a6e22e">vm</span> <span style="color: #f92672">=</span> <span style="color: #66d9ef">this</span><span style="color: #f8f8f2">;</span>
+
+  <span style="color: #66d9ef">this</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">slices</span> <span style="color: #f92672">=</span> <span style="color: #66d9ef">this</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">updateSlices</span><span style="color: #f8f8f2">(</span><span style="color: #66d9ef">this</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">data</span><span style="color: #f8f8f2">);</span>
+  <span style="color: #66d9ef">this</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">labels</span> <span style="color: #f92672">=</span> <span style="color: #66d9ef">this</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">slices</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">map</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">slice</span> <span style="color: #f92672">=&gt;</span> <span style="color: #a6e22e">slice</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">familyType</span><span style="color: #f8f8f2">);</span>
+  <span style="color: #66d9ef">this</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">colourSlices</span> <span style="color: #f92672">=</span> <span style="color: #66d9ef">this</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">slices</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">map</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">slice</span> <span style="color: #f92672">=&gt;</span> <span style="color: #66d9ef">this</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">pieColours</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">slice</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">familyType</span><span style="color: #f8f8f2">));</span>
+
+  <span style="color: #66d9ef">this</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">values</span> <span style="color: #f92672">=</span> <span style="color: #a6e22e">firstRun</span> <span style="color: #f92672">?</span> <span style="color: #f8f8f2">[</span><span style="color: #ae81ff">0</span><span style="color: #f8f8f2">,</span> <span style="color: #ae81ff">0</span><span style="color: #f8f8f2">,</span> <span style="color: #ae81ff">0</span><span style="color: #f8f8f2">]</span> <span style="color: #f92672">:</span> <span style="color: #a6e22e">_</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">toArray</span><span style="color: #f8f8f2">(</span><span style="color: #66d9ef">this</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">slices</span><span style="color: #f8f8f2">).</span><span style="color: #a6e22e">map</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">slice</span> <span style="color: #f92672">=&gt;</span> <span style="color: #a6e22e">slice</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">amount</span><span style="color: #f8f8f2">);</span>
+
+  <span style="color: #66d9ef">this</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">pieGenerator</span> <span style="color: #f92672">=</span> <span style="color: #a6e22e">d3</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">pie</span><span style="color: #f8f8f2">().</span><span style="color: #a6e22e">sort</span><span style="color: #f8f8f2">(</span><span style="color: #66d9ef">null</span><span style="color: #f8f8f2">).</span><span style="color: #a6e22e">value</span><span style="color: #f8f8f2">((</span><span style="color: #a6e22e">d</span>: <span style="color: #66d9ef">number</span><span style="color: #f8f8f2">)</span> <span style="color: #f92672">=&gt;</span> <span style="color: #a6e22e">d</span><span style="color: #f8f8f2">)(</span><span style="color: #66d9ef">this</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">values</span><span style="color: #f8f8f2">);</span>
+
+  <span style="color: #66d9ef">const</span> <span style="color: #a6e22e">arc</span> <span style="color: #f92672">=</span> <span style="color: #66d9ef">this</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">svg</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">selectAll</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;.arc&#39;</span><span style="color: #f8f8f2">)</span>
+    <span style="color: #f8f8f2">.</span><span style="color: #a6e22e">data</span><span style="color: #f8f8f2">(</span><span style="color: #66d9ef">this</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">pieGenerator</span><span style="color: #f8f8f2">);</span>
+
+  <span style="color: #a6e22e">arc</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">exit</span><span style="color: #f8f8f2">().</span><span style="color: #a6e22e">remove</span><span style="color: #f8f8f2">();</span>
+
+  <span style="color: #66d9ef">const</span> <span style="color: #a6e22e">arcEnter</span> <span style="color: #f92672">=</span> <span style="color: #a6e22e">arc</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">enter</span><span style="color: #f8f8f2">().</span><span style="color: #a6e22e">append</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;g&#39;</span><span style="color: #f8f8f2">)</span>
+    <span style="color: #f8f8f2">.</span><span style="color: #a6e22e">attr</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;class&#39;</span><span style="color: #f8f8f2">,</span> <span style="color: #e6db74">&#39;arc&#39;</span><span style="color: #f8f8f2">);</span>
+
+  <span style="color: #a6e22e">arcEnter</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">append</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;path&#39;</span><span style="color: #f8f8f2">)</span>
+    <span style="color: #f8f8f2">.</span><span style="color: #a6e22e">attr</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;d&#39;</span><span style="color: #f8f8f2">,</span> <span style="color: #66d9ef">this</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">arcGenerator</span><span style="color: #f8f8f2">)</span>
+    <span style="color: #f8f8f2">.</span><span style="color: #a6e22e">each</span><span style="color: #f8f8f2">((</span><span style="color: #a6e22e">values</span><span style="color: #f8f8f2">)</span> <span style="color: #f92672">=&gt;</span> <span style="color: #a6e22e">firstRun</span> <span style="color: #f92672">?</span> <span style="color: #a6e22e">values</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">storedValues</span> <span style="color: #f92672">=</span> <span style="color: #a6e22e">values</span> : <span style="color: #66d9ef">null</span><span style="color: #f8f8f2">)</span>
+    <span style="color: #f8f8f2">.</span><span style="color: #a6e22e">on</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;mouseover&#39;</span><span style="color: #f8f8f2">,</span> <span style="color: #66d9ef">this</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">mouseover</span><span style="color: #f8f8f2">)</span>
+    <span style="color: #f8f8f2">.</span><span style="color: #a6e22e">on</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;mouseout&#39;</span><span style="color: #f8f8f2">,</span> <span style="color: #66d9ef">this</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">mouseout</span><span style="color: #f8f8f2">);</span>
+
+  <span style="color: #75715e">// configure a transition to play on d elements of a path</span>
+  <span style="color: #75715e">// whenever new values are passed in, the values and the previously stored values will be used</span>
+  <span style="color: #75715e">// to compute the transition using interpolation</span>
+  <span style="color: #a6e22e">d3</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">select</span><span style="color: #f8f8f2">(</span><span style="color: #66d9ef">this</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">hostElement</span><span style="color: #f8f8f2">).</span><span style="color: #a6e22e">selectAll</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;path&#39;</span><span style="color: #f8f8f2">)</span>
+    <span style="color: #f8f8f2">.</span><span style="color: #a6e22e">data</span><span style="color: #f8f8f2">(</span><span style="color: #66d9ef">this</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">pieGenerator</span><span style="color: #f8f8f2">)</span>
+    <span style="color: #f8f8f2">.</span><span style="color: #a6e22e">attr</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;fill&#39;</span><span style="color: #f8f8f2">,</span> <span style="color: #f8f8f2">(</span><span style="color: #a6e22e">datum</span><span style="color: #f8f8f2">,</span> <span style="color: #a6e22e">index</span><span style="color: #f8f8f2">)</span> <span style="color: #f92672">=&gt;</span> <span style="color: #66d9ef">this</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">pieColours</span><span style="color: #f8f8f2">(</span><span style="color: #66d9ef">this</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">labels</span><span style="color: #f8f8f2">[</span><span style="color: #a6e22e">index</span><span style="color: #f8f8f2">]))</span>
+    <span style="color: #f8f8f2">.</span><span style="color: #a6e22e">attr</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;d&#39;</span><span style="color: #f8f8f2">,</span> <span style="color: #66d9ef">this</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">arcGenerator</span><span style="color: #f8f8f2">)</span>
+    <span style="color: #f8f8f2">.</span><span style="color: #a6e22e">transition</span><span style="color: #f8f8f2">()</span>
+    <span style="color: #f8f8f2">.</span><span style="color: #a6e22e">duration</span><span style="color: #f8f8f2">(</span><span style="color: #ae81ff">750</span><span style="color: #f8f8f2">)</span>
+    <span style="color: #f8f8f2">.</span><span style="color: #a6e22e">attrTween</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;d&#39;</span><span style="color: #f8f8f2">,</span> <span style="color: #66d9ef">function</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">newValues</span><span style="color: #f8f8f2">,</span> <span style="color: #a6e22e">i</span><span style="color: #f8f8f2">){</span>
+      <span style="color: #66d9ef">return</span> <span style="color: #a6e22e">vm</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">arcTween</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">newValues</span><span style="color: #f8f8f2">,</span> <span style="color: #a6e22e">i</span><span style="color: #f8f8f2">,</span> <span style="color: #66d9ef">this</span><span style="color: #f8f8f2">);</span>
+    <span style="color: #f8f8f2">});</span>
+<span style="color: #f8f8f2">}</span>
+</pre></div>
+
+<p>In the <code>updateChart</code> we do a number of things:</p>
+
+<ul>
+<li>Call <code>updateSlices</code> to map the data in a way d3.js can use it.</li>
+<li>Extract all the labels in <code>labels</code>.</li>
+<li>Assign a colour for each slices.</li>
+<li>Define the behaviour on enter. (<code>mouseover</code> and <code>mouseout</code>)</li>
+<li>Define the behaviour on update. (re-calculate the angles of the slices )</li>
+<li>Defined the behaviour on exit. (remove)</li>
+</ul>
+
+<h3 id="other-methods">Other methods</h3>
+<div class="highlight" style="background: #272822"><pre style="line-height: 125%"><span></span><span style="color: #a6e22e">arcTween</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">newValues</span><span style="color: #f8f8f2">,</span> <span style="color: #a6e22e">i</span><span style="color: #f8f8f2">,</span> <span style="color: #a6e22e">slice</span><span style="color: #f8f8f2">)</span> <span style="color: #f8f8f2">{</span>
+  <span style="color: #66d9ef">const</span> <span style="color: #a6e22e">interpolation</span> <span style="color: #f92672">=</span> <span style="color: #a6e22e">d3</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">interpolate</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">slice</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">storedValues</span><span style="color: #f8f8f2">,</span> <span style="color: #a6e22e">newValues</span><span style="color: #f8f8f2">);</span>
+  <span style="color: #a6e22e">slice</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">storedValues</span> <span style="color: #f92672">=</span> <span style="color: #a6e22e">interpolation</span><span style="color: #f8f8f2">(</span><span style="color: #ae81ff">0</span><span style="color: #f8f8f2">);</span>
+
+  <span style="color: #66d9ef">return</span> <span style="color: #f8f8f2">(</span><span style="color: #a6e22e">t</span><span style="color: #f8f8f2">)</span> <span style="color: #f92672">=&gt;</span> <span style="color: #f8f8f2">{</span>
+    <span style="color: #66d9ef">return</span> <span style="color: #66d9ef">this</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">arcGenerator</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">interpolation</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">t</span><span style="color: #f8f8f2">));</span>
+  <span style="color: #f8f8f2">};</span>
+<span style="color: #f8f8f2">}</span>
+
+<span style="color: #a6e22e">mouseover</span> <span style="color: #f92672">=</span> <span style="color: #f8f8f2">(</span><span style="color: #a6e22e">d</span><span style="color: #f8f8f2">,</span> <span style="color: #a6e22e">i</span><span style="color: #f8f8f2">)</span> <span style="color: #f92672">=&gt;</span> <span style="color: #f8f8f2">{</span>
+  <span style="color: #66d9ef">this</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">selectedSlice</span> <span style="color: #f92672">=</span> <span style="color: #66d9ef">this</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">slices</span><span style="color: #f8f8f2">[</span><span style="color: #a6e22e">i</span><span style="color: #f8f8f2">];</span>
+
+  <span style="color: #a6e22e">d3</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">select</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">d3</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">event</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">currentTarget</span><span style="color: #f8f8f2">).</span><span style="color: #a6e22e">transition</span><span style="color: #f8f8f2">()</span>
+    <span style="color: #f8f8f2">.</span><span style="color: #a6e22e">duration</span><span style="color: #f8f8f2">(</span><span style="color: #ae81ff">200</span><span style="color: #f8f8f2">)</span>
+    <span style="color: #f8f8f2">.</span><span style="color: #a6e22e">attr</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;d&#39;</span><span style="color: #f8f8f2">,</span> <span style="color: #66d9ef">this</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">arcHover</span><span style="color: #f8f8f2">);</span>
+
+  <span style="color: #66d9ef">this</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">svg</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">append</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;text&#39;</span><span style="color: #f8f8f2">)</span>
+    <span style="color: #f8f8f2">.</span><span style="color: #a6e22e">attr</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;dy&#39;</span><span style="color: #f8f8f2">,</span> <span style="color: #e6db74">&#39;-10px&#39;</span><span style="color: #f8f8f2">)</span>
+    <span style="color: #f8f8f2">.</span><span style="color: #a6e22e">style</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;text-anchor&#39;</span><span style="color: #f8f8f2">,</span> <span style="color: #e6db74">&#39;middle&#39;</span><span style="color: #f8f8f2">)</span>
+    <span style="color: #f8f8f2">.</span><span style="color: #a6e22e">attr</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;class&#39;</span><span style="color: #f8f8f2">,</span> <span style="color: #e6db74">&#39;label&#39;</span><span style="color: #f8f8f2">)</span>
+    <span style="color: #f8f8f2">.</span><span style="color: #a6e22e">attr</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;fill&#39;</span><span style="color: #f8f8f2">,</span> <span style="color: #e6db74">&#39;#57a1c6&#39;</span><span style="color: #f8f8f2">)</span>
+    <span style="color: #f8f8f2">.</span><span style="color: #a6e22e">text</span><span style="color: #f8f8f2">(</span><span style="color: #66d9ef">this</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">labels</span><span style="color: #f8f8f2">[</span><span style="color: #a6e22e">i</span><span style="color: #f8f8f2">]);</span>
+
+  <span style="color: #66d9ef">this</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">svg</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">append</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;text&#39;</span><span style="color: #f8f8f2">)</span>
+    <span style="color: #f8f8f2">.</span><span style="color: #a6e22e">attr</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;dy&#39;</span><span style="color: #f8f8f2">,</span> <span style="color: #e6db74">&#39;20px&#39;</span><span style="color: #f8f8f2">)</span>
+    <span style="color: #f8f8f2">.</span><span style="color: #a6e22e">style</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;text-anchor&#39;</span><span style="color: #f8f8f2">,</span> <span style="color: #e6db74">&#39;middle&#39;</span><span style="color: #f8f8f2">)</span>
+    <span style="color: #f8f8f2">.</span><span style="color: #a6e22e">attr</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;class&#39;</span><span style="color: #f8f8f2">,</span> <span style="color: #e6db74">&#39;percent&#39;</span><span style="color: #f8f8f2">)</span>
+    <span style="color: #f8f8f2">.</span><span style="color: #a6e22e">attr</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;fill&#39;</span><span style="color: #f8f8f2">,</span> <span style="color: #e6db74">&#39;#57a1c6&#39;</span><span style="color: #f8f8f2">)</span>
+    <span style="color: #f8f8f2">.</span><span style="color: #a6e22e">text</span><span style="color: #f8f8f2">(</span><span style="color: #66d9ef">this</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">toPercent</span><span style="color: #f8f8f2">(</span><span style="color: #66d9ef">this</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">values</span><span style="color: #f8f8f2">[</span><span style="color: #a6e22e">i</span><span style="color: #f8f8f2">],</span> <span style="color: #66d9ef">new</span> <span style="color: #a6e22e">SumPipe</span><span style="color: #f8f8f2">().</span><span style="color: #a6e22e">transform</span><span style="color: #f8f8f2">(</span><span style="color: #66d9ef">this</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">values</span><span style="color: #f8f8f2">)));</span>
+
+  <span style="color: #75715e">// Tooltip</span>
+  <span style="color: #66d9ef">this</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">tooltip</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">style</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">visibility</span> <span style="color: #f92672">=</span> <span style="color: #e6db74">&#39;visible&#39;</span><span style="color: #f8f8f2">;</span>
+  <span style="color: #66d9ef">this</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">tooltip</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">style</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">opacity</span> <span style="color: #f92672">=</span> <span style="color: #ae81ff">0.9</span><span style="color: #f8f8f2">;</span>
+  <span style="color: #66d9ef">this</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">tooltip</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">style</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">top</span> <span style="color: #f92672">=</span> <span style="color: #f8f8f2">(</span><span style="color: #a6e22e">d3</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">event</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">pageY</span><span style="color: #f8f8f2">)</span> <span style="color: #f92672">+</span> <span style="color: #e6db74">&#39;px&#39;</span><span style="color: #f8f8f2">;</span>
+  <span style="color: #66d9ef">this</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">tooltip</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">style</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">left</span> <span style="color: #f92672">=</span> <span style="color: #f8f8f2">(</span><span style="color: #a6e22e">d3</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">event</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">pageX</span> <span style="color: #f92672">-</span> <span style="color: #ae81ff">100</span> <span style="color: #f8f8f2">)</span> <span style="color: #f92672">+</span> <span style="color: #e6db74">&#39;px&#39;</span><span style="color: #f8f8f2">;</span>
+<span style="color: #f8f8f2">}</span>
+
+<span style="color: #a6e22e">mouseout</span> <span style="color: #f92672">=</span> <span style="color: #f8f8f2">()</span> <span style="color: #f92672">=&gt;</span> <span style="color: #f8f8f2">{</span>
+  <span style="color: #66d9ef">this</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">svg</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">select</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;.label&#39;</span><span style="color: #f8f8f2">).</span><span style="color: #a6e22e">remove</span><span style="color: #f8f8f2">();</span>
+  <span style="color: #66d9ef">this</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">svg</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">select</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;.percent&#39;</span><span style="color: #f8f8f2">).</span><span style="color: #a6e22e">remove</span><span style="color: #f8f8f2">();</span>
+
+  <span style="color: #a6e22e">d3</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">select</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">d3</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">event</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">currentTarget</span><span style="color: #f8f8f2">).</span><span style="color: #a6e22e">transition</span><span style="color: #f8f8f2">()</span>
+   <span style="color: #f8f8f2">.</span><span style="color: #a6e22e">duration</span><span style="color: #f8f8f2">(</span><span style="color: #ae81ff">100</span><span style="color: #f8f8f2">)</span>
+   <span style="color: #f8f8f2">.</span><span style="color: #a6e22e">attr</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;d&#39;</span><span style="color: #f8f8f2">,</span> <span style="color: #66d9ef">this</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">arcGenerator</span><span style="color: #f8f8f2">);</span>
+
+  <span style="color: #66d9ef">this</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">tooltip</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">style</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">visibility</span> <span style="color: #f92672">=</span> <span style="color: #e6db74">&#39;hidden&#39;</span><span style="color: #f8f8f2">;</span>
+  <span style="color: #66d9ef">this</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">tooltip</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">style</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">opacity</span> <span style="color: #f92672">=</span> <span style="color: #ae81ff">0</span><span style="color: #f8f8f2">;</span>
+<span style="color: #f8f8f2">}</span>
+
+<span style="color: #a6e22e">toPercent</span> <span style="color: #f92672">=</span> <span style="color: #f8f8f2">(</span><span style="color: #a6e22e">a</span>: <span style="color: #66d9ef">number</span><span style="color: #f8f8f2">,</span> <span style="color: #a6e22e">b</span>: <span style="color: #66d9ef">number</span><span style="color: #f8f8f2">)</span><span style="color: #f92672">:</span> <span style="color: #66d9ef">string</span> <span style="color: #f92672">=&gt;</span> <span style="color: #f8f8f2">{</span>
+  <span style="color: #66d9ef">return</span> <span style="color: #f8f8f2">Math.</span><span style="color: #a6e22e">round</span><span style="color: #f8f8f2">(</span> <span style="color: #a6e22e">a</span> <span style="color: #f92672">/</span> <span style="color: #a6e22e">b</span> <span style="color: #f92672">*</span> <span style="color: #ae81ff">100</span><span style="color: #f8f8f2">)</span> <span style="color: #f92672">+</span> <span style="color: #e6db74">&#39;%&#39;</span><span style="color: #f8f8f2">;</span>
+<span style="color: #f8f8f2">}</span>
+
+<span style="color: #a6e22e">updateSlices</span> <span style="color: #f92672">=</span> <span style="color: #f8f8f2">(</span><span style="color: #a6e22e">newData</span>: <span style="color: #66d9ef">Array</span><span style="color: #f92672">&lt;</span><span style="color: #a6e22e">any</span><span style="color: #f92672">&gt;</span><span style="color: #f8f8f2">)</span><span style="color: #f92672">:</span> <span style="color: #f8f8f2">Array</span><span style="color: #f92672">&lt;</span><span style="color: #a6e22e">any</span><span style="color: #f92672">&gt;</span> <span style="color: #f92672">=&gt;</span> <span style="color: #f8f8f2">{</span>
+  <span style="color: #66d9ef">const</span> <span style="color: #a6e22e">queriesByFamilyTypes</span> <span style="color: #f92672">=</span> <span style="color: #a6e22e">_</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">groupBy</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">_</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">sortBy</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">newData</span><span style="color: #f8f8f2">,</span> <span style="color: #e6db74">&#39;familyType&#39;</span><span style="color: #f8f8f2">),</span> <span style="color: #e6db74">&#39;familyType&#39;</span><span style="color: #f8f8f2">);</span>
+  <span style="color: #66d9ef">const</span> <span style="color: #a6e22e">results</span> <span style="color: #f92672">=</span> <span style="color: #f8f8f2">[];</span>
+
+  <span style="color: #f8f8f2">Object.</span><span style="color: #a6e22e">keys</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">queriesByFamilyTypes</span><span style="color: #f8f8f2">).</span><span style="color: #a6e22e">map</span><span style="color: #f8f8f2">((</span><span style="color: #a6e22e">familyType</span><span style="color: #f8f8f2">)</span> <span style="color: #f92672">=&gt;</span> <span style="color: #f8f8f2">{</span>
+    <span style="color: #a6e22e">results</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">push</span><span style="color: #f8f8f2">({</span>
+      <span style="color: #a6e22e">familyType</span>: <span style="color: #66d9ef">familyType</span><span style="color: #f8f8f2">,</span>
+      <span style="color: #a6e22e">amount</span>: <span style="color: #66d9ef">queriesByFamilyTypes</span><span style="color: #f8f8f2">[</span><span style="color: #a6e22e">familyType</span><span style="color: #f8f8f2">].</span><span style="color: #a6e22e">length</span><span style="color: #f8f8f2">,</span>
+      <span style="color: #a6e22e">types</span><span style="color: #f92672">:</span> <span style="color: #f8f8f2">[]</span>
+    <span style="color: #f8f8f2">});</span>
+  <span style="color: #f8f8f2">});</span>
+
+  <span style="color: #a6e22e">results</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">map</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">result</span> <span style="color: #f92672">=&gt;</span> <span style="color: #f8f8f2">{</span>
+    <span style="color: #66d9ef">const</span> <span style="color: #a6e22e">queries</span> <span style="color: #f92672">=</span> <span style="color: #a6e22e">newData</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">filter</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">query</span> <span style="color: #f92672">=&gt;</span> <span style="color: #a6e22e">query</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">familyType</span> <span style="color: #f92672">===</span> <span style="color: #a6e22e">result</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">familyType</span><span style="color: #f8f8f2">);</span>
+    <span style="color: #66d9ef">const</span> <span style="color: #a6e22e">queriesByTypes</span> <span style="color: #f92672">=</span> <span style="color: #a6e22e">_</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">groupBy</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">_</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">sortBy</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">queries</span><span style="color: #f8f8f2">,</span> <span style="color: #e6db74">&#39;type&#39;</span><span style="color: #f8f8f2">),</span> <span style="color: #e6db74">&#39;type&#39;</span><span style="color: #f8f8f2">);</span>
+
+    <span style="color: #f8f8f2">Object.</span><span style="color: #a6e22e">keys</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">queriesByTypes</span><span style="color: #f8f8f2">).</span><span style="color: #a6e22e">map</span><span style="color: #f8f8f2">((</span><span style="color: #a6e22e">type</span><span style="color: #f8f8f2">)</span> <span style="color: #f92672">=&gt;</span> <span style="color: #f8f8f2">{</span>
+      <span style="color: #a6e22e">result</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">types</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">push</span><span style="color: #f8f8f2">({</span>
+        <span style="color: #a6e22e">type</span>: <span style="color: #66d9ef">type</span><span style="color: #f8f8f2">,</span>
+        <span style="color: #a6e22e">amount</span>: <span style="color: #66d9ef">queriesByTypes</span><span style="color: #f8f8f2">[</span><span style="color: #a6e22e">type</span><span style="color: #f8f8f2">].</span><span style="color: #a6e22e">length</span><span style="color: #f8f8f2">,</span>
+      <span style="color: #f8f8f2">});</span>
+    <span style="color: #f8f8f2">});</span>
+  <span style="color: #f8f8f2">});</span>
+
+  <span style="color: #66d9ef">return</span> <span style="color: #a6e22e">results</span><span style="color: #f8f8f2">;</span>
+<span style="color: #f8f8f2">}</span>
+</pre></div>
+
+<h3 id="oninit-onchanges">OnInit &amp; OnChanges</h3>
+<div class="highlight" style="background: #272822"><pre style="line-height: 125%"><span></span><span style="color: #a6e22e">ngOnInit() {</span>
+  <span style="color: #75715e">// create chart and render</span>
+  <span style="color: #66d9ef">this</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">createChart</span><span style="color: #f8f8f2">();</span>
+
+  <span style="color: #75715e">// Initial update</span>
+  <span style="color: #66d9ef">this</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">updateChart</span><span style="color: #f8f8f2">(</span><span style="color: #66d9ef">true</span><span style="color: #f8f8f2">);</span>
+
+  <span style="color: #75715e">// For animation purpose we load the real value after a second</span>
+  <span style="color: #a6e22e">setTimeout</span><span style="color: #f8f8f2">(()</span> <span style="color: #f92672">=&gt;</span> <span style="color: #66d9ef">this</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">updateChart</span><span style="color: #f8f8f2">(</span><span style="color: #66d9ef">false</span><span style="color: #f8f8f2">),</span> <span style="color: #ae81ff">50</span><span style="color: #f8f8f2">);</span>
+<span style="color: #f8f8f2">}</span>
+
+<span style="color: #a6e22e">ngOnChanges() {</span>
+  <span style="color: #75715e">// update chart on data input value change</span>
+  <span style="color: #66d9ef">if</span> <span style="color: #f8f8f2">(</span><span style="color: #66d9ef">this</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">svg</span><span style="color: #f8f8f2">)</span> <span style="color: #66d9ef">this</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">updateChart</span><span style="color: #f8f8f2">(</span><span style="color: #66d9ef">false</span><span style="color: #f8f8f2">);</span>
+<span style="color: #f8f8f2">}</span>
+</pre></div>
+
+<p>Our <code>OnInit</code> method is a little peculiar, we first call update chart to initialize it and then call it a second time a little bit later to give it its real value. That&rsquo;s is done in order to have a nice animation.</p>
+
+<h3 id="conclusion">Conclusion</h3>
+
+<p>I realise this post contains a lot more code and therefore less explanation than I usually like to have, but the easiest might be to checkout my code and tweak it to see how it works. Here is the link to the source code: <a href="https://github.com/HoplaGeiss/hopla-dropdown">https://github.com/HoplaGeiss/hopla-dropdown</a></p>
+
+  			</section>
+
+  			<footer class="post-footer">
+  				<div class="post-tags">
+            
+            
+                <a href="http://www.muller.tech/tags/angular5/">angular5</a>
+            
+                <a href="http://www.muller.tech/tags/d3.js/">d3.js</a>
+            
+            
+  				</div>
+  				
+  			</footer>
+
+  			<aside class="post-comments">
+    
+    
+    <div id="disqus_thread"></div>
+    <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    
+    
+</aside>
+
+
+			</div>
+
+			<nav class="post-nav">
+				
+				
+					<a class="post-nav-item post-nav-prev" href="http://www.muller.tech/post/2017/08/16/angular4-dropdown/">
+						<section class="post-nav-teaser">
+							<span class="post-nav-icon"><i class="icon-arrow-right"></i></span>
+							<span class="post-nav-info">
+								<h4 class="post-nav-title">Angular 4 dropdown</h4>
+								<p class="post-nav-excerpt">Create a simple dropdown with angular 4 without relying on bootstrap&hellip;</p>
+							</span>
+						</section>
+					</a>
+				
+				<div class="clear"></div>
+			</nav>
+
+		</div>
+	</article>
+</main>
+
+<div id="body-class" style="display: none;"></div>
+<footer id="footer">
+	<section class="credits">
+		
+	</section>
+
+	<div id="sig" style="position: absolute; font-family: Helvetica, Verdana, Arial, Sans-Serif; font-size: 12px; color: #999999; bottom: 0; left: calc(50% - 145px);">
+	  <div style="position: relative; display: inline-block;">
+	    <span style="line-height: 30px;">
+	      <div style="display: inline-block; float: left;">
+	        <span style="font-weight: bold;">Gabriel Muller</span> - Front End Developer |
+	      </div>
+
+	      <a target="_blank" href="https://uk.linkedin.com/in/mullergab" style="position: relative;display: inline-block; text-decoration:none; float: left">
+	        <img src="http://www.muller.tech/images/linkedin.png" alt="linkedin" style="width: 20px; padding: 5px 10px; margin:0" />
+	      </a>
+	      <span style="float: left"> | </span>
+	      <a target="_blank" href="https://github.com/hoplageiss" style="position: relative;display: inline-block; text-decoration:none; float: left">
+	        <img src="http://www.muller.tech/images/github.png" alt="github" style="width: 20px; padding: 5px 10px; margin:0"/>
+	      </a>
+	    </span>
+	  </div>
+	</div>
+</footer>
+
+
+<div id="tocMenu" data-target="toc">
+    <div class="menu-header">
+        <span class="menu-label">Menu</span>
+        <a class="menu-close" data-action="toc" data-target="toc"></a>
+    </div>
+    <div id="toc" class="menu-list">
+        <nav id="TableOfContents">
+<ul>
+<li>
+<ul>
+<li>
+<ul>
+<li><a href="#component-skeleton">Component skeleton</a></li>
+<li><a href="#data-service">Data Service</a></li>
+<li><a href="#create-chart">Create chart</a></li>
+<li><a href="#updatechart">updateChart</a></li>
+<li><a href="#other-methods">Other methods</a></li>
+<li><a href="#oninit-onchanges">OnInit &amp; OnChanges</a></li>
+<li><a href="#conclusion">Conclusion</a></li>
+</ul></li>
+</ul></li>
+</ul>
+</nav>
+    </div>
+</div>
+
+
+<div class="overlay"></div>
+</div>
+</section>
+
+<script async src="/js/main.js"></script>
+
+
+
+<script>
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+ga('create', 'UA-69583716-1', 'auto');
+ga('send', 'pageview');
+</script>
+
+
+
+
+<noscript><link rel="stylesheet" href="/css/main.css"></noscript>
+</body>
+</html>
+

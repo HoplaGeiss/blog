@@ -3,6 +3,16 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>http://www.muller.tech/post/2017/11/13/angular5-d3js-pie-chart/</loc>
+    <lastmod>2017-11-13T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://www.muller.tech/post/2017/08/16/angular4-dropdown/</loc>
+    <lastmod>2017-08-16T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
     <loc>http://www.muller.tech/post/2017/08/04/angular4-dynamically-add-component/</loc>
     <lastmod>2017-08-04T00:00:00+00:00</lastmod>
   </url>
@@ -127,7 +137,13 @@
   
   <url>
     <loc>http://www.muller.tech/tags/angular4/</loc>
-    <lastmod>2017-08-04T00:00:00+00:00</lastmod>
+    <lastmod>2017-08-16T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://www.muller.tech/tags/angular5/</loc>
+    <lastmod>2017-11-13T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -162,8 +178,20 @@
   </url>
   
   <url>
+    <loc>http://www.muller.tech/tags/d3.js/</loc>
+    <lastmod>2017-11-13T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
     <loc>http://www.muller.tech/tags/deployment/</loc>
     <lastmod>2017-01-17T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://www.muller.tech/tags/dropdown/</loc>
+    <lastmod>2017-08-16T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -175,7 +203,7 @@
   
   <url>
     <loc>http://www.muller.tech/</loc>
-    <lastmod>2017-08-04T00:00:00+00:00</lastmod>
+    <lastmod>2017-11-13T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -253,7 +281,7 @@
   
   <url>
     <loc>http://www.muller.tech/post/</loc>
-    <lastmod>2017-08-04T00:00:00+00:00</lastmod>
+    <lastmod>2017-11-13T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   

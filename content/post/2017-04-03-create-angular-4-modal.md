@@ -15,14 +15,19 @@ To create the modal I used two files `modal.component.ts` and `modal.service.ts`
 
 ![Component architecture](/images/modal-architecture.png)
 
+Demo: [http://www.muller.tech/hopla-modal/](http://www.muller.tech/hopla-modal/)
+
+Source Code: [https://github.com/HoplaGeiss/hopla-modal](https://github.com/HoplaGeiss/hopla-modal)
+
 Now let's take a look at both files.
 
 ``` typescript
+// modal/modal.component.ts
 import { Component, Input, OnInit, HostListener } from '@angular/core';
 import { ModalService } from './modal.service';
 
 @Component({
-    selector: 'modal',
+    selector: 'app-modal',
     styleUrls: ['./modal.scss'],
     template: `
       <div [ngClass]="{'closed': !isOpen}">
@@ -71,6 +76,7 @@ export class ModalComponent implements OnInit {
 ```
 
 ```typescript
+// modal/modal.service.ts
 import { Injectable } from '@angular/core';
 import { ModalComponent } from './modal.component';
 
@@ -123,21 +129,40 @@ export class ModalService {
   }
 }
 ```
+
 As you can see the user can pass the `modalTitle` and `blocking` as parameters to the modal. A blocking modal is a modal that can't be closed unless its the user completed an action, a non-blocking modal can be closed by clicking outside of the modal or by clicking the cross on top right.
 
 Now lets see how to use this modal.
 
 ```typescript
-<modal [modalTitle]="'Review your transfer'" [blocking]=false [modalId]="modalId">
-  <div>Text inside the modal</div>
-</modal>
+// app.component.ts
+import { Component } from '@angular/core';
+import { ModalService } from './modal/modal.service';
+
+@Component({
+  selector: 'app-root',
+  styleUrls: ['./app.component.scss'],
+  template: `
+    <button (click)='modalService.open(modalId)'>Open Modal</button>
+    <app-modal [modalTitle]="'Some title'" [blocking]='false' [modalId]='modalId'>
+      <div>Text inside the modal</div>
+    </app-modal>
+  `
+})
+export class AppComponent {
+  modalId = 'hoplaModal';
+
+  constructor(
+    public modalService: ModalService
+  ) {}
+}
+
 ```
 
 To finish here is some styling for our modal. Note the use of animation to display and hide the modal and the overlay!
 
-```scss
-@import 'src/theme.scss';
-
+``` scss
+// modal/modal.component.scss
 .modal-overlay {
   background-color: rgba(0, 0, 0, .4);
   bottom: 0;
@@ -171,7 +196,7 @@ To finish here is some styling for our modal. Note the use of animation to displ
   transition: all .5s ease;
 
   .title {
-    background-color: $red;
+    background-color: red;
     text-align: center;
     color: white;
     line-height: 40px;

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Dropdown on Gabriel Muller - JavaScript and Angular articles</title>
+    <link>http://www.muller.tech/tags/dropdown/</link>
+    <description>Recent content in Dropdown on Gabriel Muller - JavaScript and Angular articles</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-gb</language>
+    <lastBuildDate>Wed, 16 Aug 2017 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="http://www.muller.tech/tags/dropdown/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Angular 4 dropdown</title>
+      <link>http://www.muller.tech/post/2017/08/16/angular4-dropdown/</link>
+      <pubDate>Wed, 16 Aug 2017 00:00:00 +0000</pubDate>
+      
+      <guid>http://www.muller.tech/post/2017/08/16/angular4-dropdown/</guid>
+      <description>Dropdowns are a very common way of displaying multiple choice inputs. Today&amp;rsquo;s post is about creating a dropdown without using bootstrap or other styling frameworks.
+If you are in a hurry, you can checkout the code on my github account: https://github.com/HoplaGeiss/hopla-dropdown
+Let&amp;rsquo;s first take a look at the main component.
+// app.component.ts import { Component, OnInit } from &amp;#39;@angular/core&amp;#39;; @Component({ selector: &amp;#39;app-root&amp;#39;, styleUrls: [&amp;#39;./app.component.scss&amp;#39;], template: ` &amp;lt;div class=&amp;#39;wrapper&amp;#39;&amp;gt; &amp;lt;div class=&amp;#39;selected-item&amp;#39; fxLayout=&amp;quot;row&amp;quot; fxLayoutAlign=&amp;quot;space-between center&amp;quot; [ngClass]=&amp;#39;{&amp;quot;active&amp;quot;: dropdownActive}&amp;#39;&amp;gt; &amp;lt;div&amp;gt;{{selectedItem}}&amp;lt;/div&amp;gt; &amp;lt;i class=&amp;#39;material-icons&amp;#39; (click)=&amp;#39;toggleDropdown()&amp;#39;&amp;gt;keyboard_arrow_down&amp;lt;/i&amp;gt; &amp;lt;div class=&amp;#39;dropdown&amp;#39; [hidden]=&amp;#39;!</description>
+    </item>
+    
+  </channel>
+</rss>

@@ -18,8 +18,10 @@
       
       <guid>http://www.muller.tech/post/2017/04/03/angular4-create-modal/</guid>
       <description>After my previous post about creating a simple accordion with angular 4, I will now walk you through my implementation of a modal in angular 4. To create the modal I used two files modal.component.ts and modal.service.ts and organised it in the usual component based architecture.
+Demo: http://www.muller.tech/hopla-modal/
+Source Code: https://github.com/HoplaGeiss/hopla-modal
 Now let&amp;rsquo;s take a look at both files.
-import { Component, Input, OnInit, HostListener } from &amp;#39;@angular/core&amp;#39;; import { ModalService } from &amp;#39;./modal.service&amp;#39;; @Component({ selector: &amp;#39;modal&amp;#39;, styleUrls: [&amp;#39;.</description>
+// modal/modal.component.ts import { Component, Input, OnInit, HostListener } from &amp;#39;@angular/core&amp;#39;; import { ModalService } from &amp;#39;.</description>
     </item>
     
   </channel>

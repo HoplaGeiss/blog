@@ -15,13 +15,17 @@ To create the accordion I used two components `AccordionComponent` and `Accordio
 
 Now let's take a look at both files.
 
+Demo: [http://www.muller.tech/hopla-accordion/index.html](http://www.muller.tech/hopla-accordion/index.html)
+
+Source Code: [https://github.com/HoplaGeiss/hopla-accordion](https://github.com/HoplaGeiss/hopla-accordion)
+
 ``` typescript
+// ./accordion/accordion.component.ts
 import { Component, Input } from '@angular/core';
 import { AccordionGroupComponent } from './accordion-group/accordion-group.component';
 
 @Component({
   selector: 'accordion',
-  styleUrls: ['./accordion.scss'],
   template: `
     <div class="accordion">
       <ng-content></ng-content>
@@ -53,16 +57,18 @@ export class AccordionComponent {
 ```
 
 ```typescript
+// ./accordion/accordion-group/accordion-group.component.ts
+
 import { Component, OnDestroy, Input, OnChanges, SimpleChange } from '@angular/core';
 import { AccordionComponent } from '../accordion.component';
 
 @Component({
   selector: 'accordion-group',
-  styleUrls: ['./accordion-group.scss'],
+  styleUrls: ['./accordion-group.component.scss'],
   template: `
     <div class="accordion-group" [ngClass]="{'closed': !isOpen}">
       <div class="panel-heading" (click)="toggleOpen()">
-          <span>{{heading}}</span>
+        <span>{{heading}}</span>
       </div>
       <div class="panel-collapse">
         <div class="panel-body">
@@ -112,41 +118,54 @@ As you can see most of the logic happens in `AccordionGroupComponent`, its const
 To finish here is an example of how to use the accordion:
 
 ```typescript
-template: `
-  <accordion>
-    <accordion-group heading="Heading 1" [index]=0 [isOpen]=true>
-      <span>Content 1</span>
-    </accordion-group>
+import { Component } from '@angular/core';
 
-    <accordion-group heading="Heading 2" [index]=1 [isOpen]=false>
-      <span>Content 2</span>
-    </accordion-group>
+@Component({
+  selector: 'hopla-root',
+  template: `
+    <accordion>
+      <accordion-group heading="Heading 1" [index]=0 [isOpen]=true>
+        <span>Content 1</span>
+      </accordion-group>
 
-    <accordion-group heading="Heading 3" [index]=2 [isOpen]=false>
-      <span>Content 3</span>
-    </accordion-group>
-  </accordion>
-`
+      <accordion-group heading="Heading 2" [index]=1 [isOpen]=false>
+        <span>Content 2</span>
+      </accordion-group>
+
+      <accordion-group heading="Heading 3" [index]=2 [isOpen]=false>
+        <span>Content 3</span>
+      </accordion-group>
+    </accordion>
+  `
+})
+export class AppComponent {
+}
 ```
 
-Also you can add some transition on the css to make it more smooth like so:
+Also you can add some transition on the scss to make it more smooth like so:
 
 ```scss
+// ./accordion/accordion-group/accordion-group.scss
 .accordion-group{
   position: relative;
-
-  .panel-collapse{  
-    transition-property: all;
-    transition: .5s ease;
-
-    overflow-y: hidden;
-    max-height: 1000px;
-  }
 
   &.closed{
     .panel-collapse{
       max-height: 0;
     }
+  }
+
+  .panel-heading{
+    cursor: pointer;
+  }
+
+  .panel-collapse{
+    transition-property: all;
+    transition: .5s ease;
+
+    overflow-y: hidden;
+    max-height: 1000px;
+    padding-left: 20px;
   }
 }
 ```
