@@ -3,6 +3,26 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>http://www.muller.tech/post/2017/11/21/angular5-carousel/</loc>
+    <lastmod>2017-11-21T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://www.muller.tech/post/2017/11/20/angular5-d3js-bubble-chart/</loc>
+    <lastmod>2017-11-20T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://www.muller.tech/post/2017/11/20/angular5-d3js-force-directed-chart/</loc>
+    <lastmod>2017-11-20T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://www.muller.tech/post/2017/11/20/angular5-d3js-scatter-chart/</loc>
+    <lastmod>2017-11-20T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
     <loc>http://www.muller.tech/post/2017/11/13/angular5-d3js-pie-chart/</loc>
     <lastmod>2017-11-13T00:00:00+00:00</lastmod>
   </url>
@@ -118,18 +138,6 @@
   </url>
   
   <url>
-    <loc>http://www.muller.tech/tags/accordion/</loc>
-    <lastmod>2017-04-03T00:00:00+00:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>http://www.muller.tech/tags/angular-1.4/</loc>
-    <lastmod>2017-01-10T00:00:00+00:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
     <loc>http://www.muller.tech/tags/angular2/</loc>
     <lastmod>2017-03-07T00:00:00+00:00</lastmod>
     <priority>0</priority>
@@ -143,7 +151,7 @@
   
   <url>
     <loc>http://www.muller.tech/tags/angular5/</loc>
-    <lastmod>2017-11-13T00:00:00+00:00</lastmod>
+    <lastmod>2017-11-21T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -154,56 +162,14 @@
   </url>
   
   <url>
-    <loc>http://www.muller.tech/tags/cheat-sheet/</loc>
-    <lastmod>2017-01-17T00:00:00+00:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>http://www.muller.tech/tags/component/</loc>
-    <lastmod>2017-08-04T00:00:00+00:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>http://www.muller.tech/tags/components/</loc>
-    <lastmod>2017-01-23T00:00:00+00:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>http://www.muller.tech/tags/controllers/</loc>
-    <lastmod>2016-12-23T00:00:00+00:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
     <loc>http://www.muller.tech/tags/d3.js/</loc>
-    <lastmod>2017-11-13T00:00:00+00:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>http://www.muller.tech/tags/deployment/</loc>
-    <lastmod>2017-01-17T00:00:00+00:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>http://www.muller.tech/tags/dropdown/</loc>
-    <lastmod>2017-08-16T00:00:00+00:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>http://www.muller.tech/tags/events/</loc>
-    <lastmod>2017-01-09T00:00:00+00:00</lastmod>
+    <lastmod>2017-11-20T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>http://www.muller.tech/</loc>
-    <lastmod>2017-11-13T00:00:00+00:00</lastmod>
+    <lastmod>2017-11-21T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -214,110 +180,20 @@
   </url>
   
   <url>
-    <loc>http://www.muller.tech/tags/github/</loc>
-    <lastmod>2017-01-17T00:00:00+00:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>http://www.muller.tech/tags/http.get/</loc>
-    <lastmod>2017-01-10T00:00:00+00:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>http://www.muller.tech/tags/ide/</loc>
-    <lastmod>2017-02-17T00:00:00+00:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>http://www.muller.tech/tags/jasmine/</loc>
-    <lastmod>2017-01-10T00:00:00+00:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>http://www.muller.tech/tags/loading/</loc>
-    <lastmod>2017-03-07T00:00:00+00:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>http://www.muller.tech/tags/mock/</loc>
-    <lastmod>2016-12-23T00:00:00+00:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>http://www.muller.tech/tags/modal/</loc>
-    <lastmod>2017-04-03T00:00:00+00:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
     <loc>http://www.muller.tech/tags/node.js/</loc>
     <lastmod>2017-06-13T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>http://www.muller.tech/tags/npm/</loc>
-    <lastmod>2017-03-07T00:00:00+00:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>http://www.muller.tech/tags/observable/</loc>
-    <lastmod>2017-02-16T00:00:00+00:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>http://www.muller.tech/tags/pipe/</loc>
-    <lastmod>2017-01-23T00:00:00+00:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
     <loc>http://www.muller.tech/post/</loc>
-    <lastmod>2017-11-13T00:00:00+00:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>http://www.muller.tech/tags/pre-bootstrap/</loc>
-    <lastmod>2017-03-07T00:00:00+00:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>http://www.muller.tech/tags/promises/</loc>
-    <lastmod>2016-12-23T00:00:00+00:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>http://www.muller.tech/tags/resolve/</loc>
-    <lastmod>2016-12-23T00:00:00+00:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>http://www.muller.tech/tags/routing/</loc>
-    <lastmod>2017-07-26T00:00:00+00:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>http://www.muller.tech/tags/switch/</loc>
-    <lastmod>2017-07-26T00:00:00+00:00</lastmod>
+    <lastmod>2017-11-21T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>http://www.muller.tech/tags/</loc>
-    <lastmod>2017-04-03T00:00:00+00:00</lastmod>
+    <lastmod>2017-03-07T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   

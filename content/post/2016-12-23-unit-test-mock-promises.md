@@ -1,12 +1,9 @@
 ---
 title: "Unit test - Mock promises"
 description: "Step by step guide of how to mock promises"
-tags: [ "jasmine", "unit test", "angular 1.4", "mock", "promises"]
-lastmod: 2016-12-23
+tags:
+  - unit test
 date: "2016-12-23"
-categories:
-  - "Development"
-  - "VIM"
 slug: "unit-test-mock-promises"
 image: "/images/promise.jpg"
 ---
@@ -15,7 +12,7 @@ When first writing Javascript and specially when unit testing it, promises can b
 
 ### Scenario
 
-In this example we would like to mock a simple service returning a promise. 
+In this example we would like to mock a simple service returning a promise.
 
 This is a real life example, of an application, calling an `employeeService` to retrieve the `notificationCount`.
 
@@ -54,6 +51,3 @@ employeeService.getEmployee = function () {
 * First we create a deferred instance `$q.defer()`
 * Then we resolve it passing the object we want `{notificationCount: 2}`
 * Finally we return a promise `deferred.promise`
-
-
-

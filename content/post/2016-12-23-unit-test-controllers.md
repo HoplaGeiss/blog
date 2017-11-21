@@ -1,12 +1,9 @@
 ---
 title: "Unit test controllers"
 description: "Step by step guide of how to unit test controllers"
-tags: [ "jasmine", "unit test", "angular 1.4", "controllers"]
-lastmod: 2016-12-23
+tags:
+  - unit test
 date: "2016-12-23"
-categories:
-  - "Development"
-  - "VIM"
 slug: "unit-test-controllers"
 image: "/images/controller.jpg"
 ---
@@ -47,44 +44,44 @@ We have 3 test we need to do:
 ```javascript
   (function () {
     'use strict';
-  
+
     describe('Controller: AboutCtrl', function () {
       var AboutCtrl,
         configuration,
         appVersion,
         scope;
-  
+
       // Initialize the controller and a mock scope
       beforeEach(function () {
         module('app.controllers');
-  
+
         inject(function ($controller, $rootScope, _configuration_, _appVersion_) {
           configuration = _configuration_;
           appVersion = _appVersion_;
-  
+
           appVersion.buildVersion = function () {
             return '9.9.9b9';
           };
-  
+
           configuration.getAccountServiceConfig = function () {
             return 'hopla'
           };
-  
+
           scope = $rootScope.$new();
-  
+
           AboutCtrl = $controller('AboutCtrl', {
             $scope: scope
           });
-  
+
           $rootScope.$digest();
-  
+
         });
       });
-  
+
       it('is defined', function () {
         expect(AboutCtrl).toBeDefined();
       });
-  
+
       it('is initialised', function () {
         expect(scope.buildVersion).toEqual('9.9.9b9');
         expect(scope.accountCode).toEqual('hopla');
@@ -110,5 +107,3 @@ We have 3 test we need to do:
 
 * Testing the controller is defined is straight forward.
 * Testing the scope is initialised is straight forward after the preliminary work we did in the `beforeEach`.
-
-

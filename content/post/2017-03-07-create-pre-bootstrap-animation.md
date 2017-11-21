@@ -1,11 +1,9 @@
 ---
 title: "Angular2 - pre bootstrap loading animation"
 description: "Create a pre bootstrap loading animation for angular projects in pure css"
-tags: [ "angular2", "pre bootstrap", "loading"]
-lastmod: 2017-03-07
+tags:
+  - angular2
 date: "2017-03-07"
-categories:
-  - "Development"
 slug: "create-pre-bootstrap-animation"
 image: "/images/spinner.png"
 ---

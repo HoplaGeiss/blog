@@ -6,10 +6,60 @@
     <description>Recent content on Gabriel Muller - JavaScript and Angular articles</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-gb</language>
-    <lastBuildDate>Mon, 13 Nov 2017 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Tue, 21 Nov 2017 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="http://www.muller.tech/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Angular 5 carousel</title>
+      <link>http://www.muller.tech/post/2017/11/21/angular5-carousel/</link>
+      <pubDate>Tue, 21 Nov 2017 00:00:00 +0000</pubDate>
+      
+      <guid>http://www.muller.tech/post/2017/11/21/angular5-carousel/</guid>
+      <description>In this post you will learn how to create a carousel with angular5. Requirements for our carousel
+ Take as an input an array of object. Have a left and a right arrow for navigation. Distribute batches of items evenly across the width of the screen. Update of screen resize.  Take a look at the demo: http://www.muller.tech/hopla-carousel/
+If you are in a hurry, you can checkout the source code here: https://github.</description>
+    </item>
+    
+    <item>
+      <title>Angular 5 / d3.js - Bubble Chart</title>
+      <link>http://www.muller.tech/post/2017/11/20/angular5-d3js-bubble-chart/</link>
+      <pubDate>Mon, 20 Nov 2017 00:00:00 +0000</pubDate>
+      
+      <guid>http://www.muller.tech/post/2017/11/20/angular5-d3js-bubble-chart/</guid>
+      <description>In this post you will learn how to create a dynamic and resizable bubble chart with angular5 and d3.js.
+Take a look at the demo: http://www.muller.tech/hopla-bubble-chart/
+If you are in a hurry, you can checkout the source code here: https://github.com/HoplaGeiss/hopla-bubble-chart
+Now, let&amp;rsquo;s dive in!
+Component skeleton import { Component, ElementRef, Input, ViewChild, OnInit, OnChanges, AfterViewChecked } from &amp;#39;@angular/core&amp;#39;; import * as d3 from &amp;#39;d3&amp;#39;; import * as _ from &amp;#39;underscore&amp;#39;; @Component({ selector: &amp;#39;app-bubble-chart&amp;#39;, styleUrls: [&amp;#39;.</description>
+    </item>
+    
+    <item>
+      <title>Angular 5 / d3.js - Force Directed Chart</title>
+      <link>http://www.muller.tech/post/2017/11/20/angular5-d3js-force-directed-chart/</link>
+      <pubDate>Mon, 20 Nov 2017 00:00:00 +0000</pubDate>
+      
+      <guid>http://www.muller.tech/post/2017/11/20/angular5-d3js-force-directed-chart/</guid>
+      <description>In this post you will learn how to create a dynamic and resizeable force directed chart with angular5 and d3.js.
+Take a look at the demo: http://www.muller.tech/hopla-force-directed-chart/
+If you are in a hurry, you can checkout the source code here: https://github.com/HoplaGeiss/hopla-force-directed-chart
+Now, let&amp;rsquo;s dive in!
+Component skeleton import { Component, OnInit, OnChanges, ViewChild, ElementRef, Input, AfterViewChecked } from &amp;#39;@angular/core&amp;#39;; import * as d3 from &amp;#39;d3&amp;#39;; import * as _ from &amp;#39;underscore&amp;#39;; @Component({ selector: &amp;#39;app-force-directed-chart&amp;#39;, styleUrls: [&amp;#39;.</description>
+    </item>
+    
+    <item>
+      <title>Angular 5 / d3.js - Scatter Chart</title>
+      <link>http://www.muller.tech/post/2017/11/20/angular5-d3js-scatter-chart/</link>
+      <pubDate>Mon, 20 Nov 2017 00:00:00 +0000</pubDate>
+      
+      <guid>http://www.muller.tech/post/2017/11/20/angular5-d3js-scatter-chart/</guid>
+      <description>In this post you will learn how to create a scatter chart with angular5 and d3.js.
+Take a look at the demo: http://www.muller.tech/hopla-scatter-chart/
+If you are in a hurry, you can checkout the source code here: https://github.com/HoplaGeiss/hopla-scatter-chart
+Now, let&amp;rsquo;s dive in!
+Component skeleton import { Component, ElementRef, ViewChild, OnInit, Input } from &amp;#39;@angular/core&amp;#39;; import * as d3 from &amp;#39;d3&amp;#39;; @Component({ selector: &amp;#39;app-scatter-chart&amp;#39;, styleUrls: [&amp;#39;./scatter-chart.component.scss&amp;#39;], template: ` &amp;lt;div class=&amp;#39;scatter-chart&amp;#39; #scatterChartContainer&amp;gt; &amp;lt;div class=&amp;#39;tooltip&amp;#39;&amp;gt; &amp;lt;span class=&amp;#39;highlight&amp;#39;&amp;gt;Device discovered:&amp;lt;/span&amp;gt; {{node?</description>
+    </item>
     
     <item>
       <title>Angular 5 / d3.js - Pie Chart</title>

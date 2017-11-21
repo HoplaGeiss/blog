@@ -1,19 +1,16 @@
 ---
 title: "Unit test controllers with resolved variables"
 description: "Step by step guide of how to unit test controllers with resolved variable from routing"
-tags: [ "jasmine", "unit test", "angular 1.4", "controllers", "resolve"]
-lastmod: 2016-12-23
+tags:
+  - unit test
 date: "2016-12-23"
-categories:
-  - "Development"
-  - "VIM"
 slug: "unit-test-controllers-with-resolved-variable-from-routing"
 image: "/images/cockpit.jpg"
 ---
 
 ### Scenario
 
-Today's post is about testing a controller that uses variables from a resolve function in the routing. 
+Today's post is about testing a controller that uses variables from a resolve function in the routing.
 
 This is a real life example used in translations, say we want to handle different languages, we need to load the available languages and the selected one from a service.
 
@@ -81,7 +78,7 @@ $stateProvider.state('locales', {
     //.
     //.
     //.
-    
+
   });
 })();
 ```
@@ -89,4 +86,3 @@ $stateProvider.state('locales', {
 ### Analysis
 
 The solution is to inject `availableLocales` and `selectedLocale` into the scope.
-

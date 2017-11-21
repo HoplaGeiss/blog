@@ -3,9 +3,8 @@ title: "Angular2 observable - Stream continuation"
 description: "Guide on how to keep an observable's stream up and running when an error occurs."
 tags:
   - angular2
-  - observable
 date: "2017-02-16"
-featured: true
+featured: false
 slug: angular2-observable-stream-continuation
 image: /images/stream.jpeg
 ---

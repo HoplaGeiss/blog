@@ -1,11 +1,9 @@
 ---
 title: "Git cheat sheet"
 description: "Useful git command to save the day"
-tags: [ "git", "cheat sheet"]
-lastmod: 2017-01-17
+tags:
+  - git
 date: "2017-01-17"
-categories:
-  - "Development"
 slug: "git-cheat-sheet"
 image: "/images/cheater.jpg"
 ---

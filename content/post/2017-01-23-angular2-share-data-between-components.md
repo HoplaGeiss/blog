@@ -1,11 +1,9 @@
 ---
 title: "Angular2 components - Share data between components"
 description: "Share data between two siblings components in angular2"
-tags: [ "angular2", "components"]
-lastmod: 2017-01-23
+tags:
+  - angular2
 date: "2017-01-23"
-categories:
-  - "Development"
 slug: "angular2-share-data-between-components"
 image: "/images/bees.jpg"
 ---

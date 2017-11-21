@@ -3,9 +3,8 @@ title: "Angular 4 - Nested Routing"
 description: "How to create a application with nested routing in Angular 4"
 tags:
   - angular4
-  - routing
 date: "2017-07-26"
-featured: true
+featured: false
 slug: angular4-nested-routing
 image: /images/spiderweb.jpg
 ---

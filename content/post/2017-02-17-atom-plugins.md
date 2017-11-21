@@ -1,11 +1,10 @@
 ---
 title: "Atom - plugin"
 description: "My personal configuration of Atom"
-tags: [ "atom", "IDE"]
+tags:
+  - atom
 lastmod: 2017-02-17
 date: "2017-02-17"
-categories:
-  - "Development"
 slug: "atom-plugin"
 image: "/images/atom.png"
 ---

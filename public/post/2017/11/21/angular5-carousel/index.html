@@ -1,0 +1,537 @@
+
+<!DOCTYPE html>
+<html lang="en-gb">
+
+    <head>
+
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+        <meta property="og:title" content=" Angular 5 carousel &middot;  Gabriel Muller - JavaScript and Angular articles" />
+        <meta property="og:site_name" content="Gabriel Muller - JavaScript and Angular articles" />
+        <meta property="og:url" content="http://www.muller.tech/post/2017/11/21/angular5-carousel/" />
+
+    
+        <meta property="og:type" content="article" />
+        <meta property="og:article:published_time" content="2017-11-21T00:00:00Z" />
+        <meta property="og:article:tag" content="angular5" />
+        
+
+        <meta name="twitter:card" content="summary" />
+        <meta name="twitter:site" content="@" />
+        <meta name="twitter:creator" content="@" />
+        <meta name="twitter:title" content="Angular 5 carousel" />
+        <meta name="twitter:description" content="Create a carousel using angular 5" />
+        <meta name="twitter:url" content="http://www.muller.tech/post/2017/11/21/angular5-carousel/" />
+    
+
+        <title> Angular 5 carousel &middot;  Gabriel Muller - JavaScript and Angular articles</title>
+
+        <link rel="preload" href="/js/main.js" as="script" />
+        <link rel="preload" href="/css/main.css" as="style" />
+
+    
+        <meta name="description" content="Create a carousel using angular 5" />
+    
+
+    
+        <meta name="p:domain_verify" content=""/>
+    
+
+        <meta name="HandheldFriendly" content="True" />
+        <meta name="MobileOptimized" content="320" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+        
+        
+
+    
+        <link href="http://www.muller.tech/index.xml" rel="alternate" type="application/rss+xml" title="Gabriel Muller - JavaScript and Angular articles" />
+    
+
+    
+        <link rel="canonical" href="http://www.muller.tech/post/2017/11/21/angular5-carousel/" />
+
+
+    
+    <script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "mainEntityOfPage": {
+          "@type": "WebPage",
+          "@id": "http://www.muller.tech/post/2017/11/21/angular5-carousel/"
+        },
+        "headline": "Angular 5 carousel",
+        "description": "Create a carousel using angular 5",
+        "author": {
+            "@type": "Person",
+            "name": "Gabriel Muller",
+            "url": "http://profiles.google.com/?rel=author",
+            "image": {
+              "@type": "ImageObject",
+              "url": "https:",
+              "height": 80,
+              "width": 80
+            }
+        },
+        "publisher": {
+          "@type": "Organization",
+          "@id": "http://www.muller.tech/",
+          "name": "Gabriel Muller - JavaScript and Angular articles",
+          "url": "http://www.muller.tech/",
+          "logo": {
+            "@type": "ImageObject",
+            "url": "https:",
+            "height": 80,
+            "width": 80
+          }
+        },
+        "image": {
+          "@type": "ImageObject",
+          "url": "http://www.muller.tech/images/carousel.png",
+          "height": 133,
+          "width": 200
+        },
+        "datePublished": "2017-11-21",
+        "dateModified": "2017-11-21",
+        "wordCount": 780,
+        "keywords": ["angular5"]
+    }
+    </script>
+
+
+    
+    <script type="text/javascript">
+    
+    
+      var disqus_shortname = 'mullertech';
+      var disqus_identifier = 'http:\/\/www.muller.tech\/post\/2017\/11\/21\/angular5-carousel\/';
+      var disqus_title = 'Angular 5 carousel';
+      var disqus_url = 'http:\/\/www.muller.tech\/post\/2017\/11\/21\/angular5-carousel\/';
+    
+    </script>
+    
+
+    <style>
+html{font-family:sans-serif;line-height:1.15;-ms-text-size-adjust:100%;-webkit-text-size-adjust:100%}body{margin:0}article,figure,footer,header,main,nav,section{display:block}h1{font-size:2em;margin:.67em 0}figure{margin:1em 40px}a{background-color:transparent;-webkit-text-decoration-skip:objects}img{border-style:none}::-webkit-file-upload-button{-webkit-appearance:button;font:inherit}@font-face{font-family:'Merriweather Sans';font-style:normal;font-weight:300;src:local("Merriweather Sans Light"),local(MerriweatherSans-Light),url(//fonts.gstatic.com/s/merriweathersans/v5/6LmGj5dOJopQKEkt88GowY_zIojJi0m4a5Z6tRh6itY.woff) format("woff")}@font-face{font-family:'Merriweather Sans';font-style:normal;font-weight:400;src:local("Merriweather Sans Regular"),local(MerriweatherSans-Regular),url(//fonts.gstatic.com/s/merriweathersans/v5/AKu1CjQ4qnV8MUltkAX3sL2aU247V0zTzydO4RoO9Ok.woff) format("woff")}@font-face{font-family:'Merriweather Sans';font-style:normal;font-weight:700;src:local("Merriweather Sans Bold"),local(MerriweatherSans-Bold),url(//fonts.gstatic.com/s/merriweathersans/v5/6LmGj5dOJopQKEkt88GowQfd-b-I5PxxcmB4_-MNcqw.woff) format("woff")}@font-face{font-family:'Merriweather Sans';font-style:normal;font-weight:800;src:local("Merriweather Sans ExtraBold"),local(MerriweatherSans-ExtraBold),url(//fonts.gstatic.com/s/merriweathersans/v5/6LmGj5dOJopQKEkt88GowWT7sFQ1Iz1BbpcuCPlgc9Q.woff) format("woff")}@font-face{font-family:'Merriweather Sans';font-style:italic;font-weight:300;src:local("Merriweather Sans Light Italic"),local(MerriweatherSans-LightItalic),url(//fonts.gstatic.com/s/merriweathersans/v5/nAqt4hiqwq3tzCecpgPmVX9UU5BmOJGkLxUCVv5VXdc.woff) format("woff")}@font-face{font-family:'Merriweather Sans';font-style:italic;font-weight:400;src:local("Merriweather Sans Italic"),local(MerriweatherSans-Italic),url(//fonts.gstatic.com/s/merriweathersans/v5/3Mz4hOHzs2npRMG3B1ascf0KIgDhPIHb_R-SWdtqte8.woff) format("woff")}@font-face{font-family:'Merriweather Sans';font-style:italic;font-weight:700;src:local("Merriweather Sans Bold Italic"),local(MerriweatherSans-BoldItalic),url(//fonts.gstatic.com/s/merriweathersans/v5/nAqt4hiqwq3tzCecpgPmVYM8pfYvjMoOxygpzLVILAs.woff) format("woff")}@font-face{font-family:'icons';src:url(/fonts/icons.eot?9273991);src:url(/fonts/icons.eot?9273991#iefix) format("embedded-opentype"),url(/fonts/icons.woff?9273991) format("woff"),url(/fonts/icons.ttf?9273991) format("truetype"),url(/fonts/icons.svg?9273991#icons) format("svg");font-weight:400;font-style:normal}[class^="icon-"]:before{font-family:"icons";font-style:normal;font-weight:400;speak:none;display:inline-block;text-decoration:inherit;width:1em;margin-right:.2em;text-align:center;font-variant:normal;text-transform:none;line-height:1em;margin-left:.2em;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}.icon-arrow-right:before{content:'\e807'}.icon-rss:before{content:'\e808'}body{font:300 1em / 1.5em 'Merriweather Sans',sans-serif;color:#595B66}a{color:inherit;text-decoration:none;font-weight:400}h1,h2{text-rendering:optimizeLegibility;color:#1F2026}h2 a{font-weight:inherit}h1{font-size:2em;line-height:1em;margin:2em 0 -.5em}h2{font-size:1.75em;line-height:1.143em;margin:2.286em 0 -.571em}p{margin:2em auto}i{font-weight:400;font-style:italic;color:#363740}img{display:block;max-width:100%;height:auto;margin:2.5em auto}body{background:#fff}.inner{max-width:48em;margin:0 auto;padding:0 1em}#wrapper{position:relative;box-sizing:border-box;width:100%;min-height:100vh;padding-bottom:6em;background:#F2F3F5}#push{transform:translate3d(0,0,0);transform-style:preserve-3d;opacity:1}#nav{position:relative;background:#fff;z-index:70;transform:translate3d(0,0,0);transform-style:preserve-3d;opacity:1}#nav:after{clear:both;content:'';display:table}#nav .nav-logo{float:left;height:2em;padding:1em;max-width:50%}#nav .nav-logo img{width:auto;max-width:none;height:2em;margin:0;border-radius:5px}#nav .nav-menu{float:right}#nav .nav-menu:after{clear:both;content:'';display:table}#nav .nav-menu a{display:block;width:1em;height:1em;line-height:1em;padding:1.5em;text-align:center;float:left}#nav .nav-menu a i:before{margin:auto}.overlay{display:none;position:fixed;left:0;top:0;width:100%;height:100%;z-index:80;display:none}.overlay:before{content:'';position:absolute;left:0;top:0;width:100%;height:100%;background:#1F2026;opacity:0;transform-style:preserve-3d}#header{position:relative;padding:4em 0}#header .inner{position:relative;z-index:2}#header .header-title{display:block;text-align:center}#header .header-name{font-weight:700;letter-spacing:-1px;display:block;line-height:1em;font-size:2em;text-decoration:none;color:#1F2026;padding:0;margin:0}#header.has-cover .header-name{color:#fff}#header .header-description{display:block;margin:1em auto 0;color:#9D9FA6;position:relative;font-weight:300}#header .header-description:after{content:'';position:absolute;height:1px;width:100px;margin-left:-50px;left:50%;top:-.5em;background:#D4D5D9}#header.has-cover .header-description{color:#fff}#header.has-cover .header-description:after{background:#fff}#header .header-cover{position:absolute;width:100%;height:100%;top:0;left:0;margin-top:-4em;padding:4em 0;background:no-repeat fixed center 100% / cover;z-index:1}#header .header-cover:before{content:'';position:absolute;width:100%;height:100%;left:0;top:0;background:rgba(0,0,0,0.2)}#header .header-cover:after{content:'';position:absolute;width:100%;left:0;bottom:0;border-bottom:4px solid #36D995}#footer{position:absolute;width:100%;left:0;bottom:0;font-size:.75em;line-height:1.334em;background:#1F2026;color:#737580;z-index:20;transform:translate3d(0,0,0);transform-style:preserve-3d;opacity:1}#footer a{color:#9D9FA6;font-weight:400}#footer .credits{text-align:center;font-size:.75em;line-height:1.334em;padding:2.667em;overflow:auto}#footer .credits span{display:block}#footer .credits .credits-theme{float:left}#footer .credits .credits-software{float:right}.post{position:relative;z-index:20}.post .post-image{display:block;margin:0;padding:0}.post .post-image img{display:block;width:100%;height:auto;margin:0;padding:0}.post .post-meta{display:block;font-size:.75em;line-height:1.334em;font-weight:400;margin-bottom:1.334em}.post .post-title{position:relative;color:#000;font-size:2em;line-height:1.375em;font-weight:800;text-indent:-1px;margin:.25em 0 .75em}.post .post-title:before{content:'';position:absolute;left:0;bottom:-.334em;width:1em;margin-bottom:-2px;border-bottom:4px solid #36D995}.post .post-title a{text-decoration:none;color:inherit;font-weight:inherit}#post-index{position:relative;max-width:1200px;margin:0 auto 4em;padding:.5em;z-index:10}@keyframes fade{0%{transform:translate3d(0,3em,0);opacity:0}100%{transform:translate3d(0,0,0);opacity:1}}.post-list{position:relative}.post-list .post{float:left;width:33.3%;transform:translate3d(0,3em,0);transform-style:preserve-3d;opacity:0;animation:fade ease-out .5s forwards;animation-delay:1.4s}@media only screen and (max-width: 50em){.post-list .post{width:49.9%}}@media only screen and (max-width: 30em){.post-list .post{width:100%;float:none}}.post-list .post:nth-child(1){animation-delay:.1s}.post-list .post:nth-child(2){animation-delay:.2s}.post-list .post:nth-child(3){animation-delay:.3s}.post-list .post:nth-child(4){animation-delay:.4s}.post-list .post:nth-child(5){animation-delay:.5s}.post-list .post:nth-child(6){animation-delay:.6s}.post-list .post:nth-child(7){animation-delay:.7s}.post-list .post:nth-child(8){animation-delay:.8s}.post-list .post:nth-child(9){animation-delay:.9s}.post-list .post .inner{padding:2em;margin:.5em;max-width:none;background:#fff;box-sizing:border-box;transform:scale(1);transform-style:preserve-3d}@media only screen and (max-width: 50em){.post-list .post .inner{padding:1em}}.post-list .post .post-link{position:absolute;left:0;top:0;width:100%;height:100%;z-index:10}.post-list .post .post-image{position:relative;margin:-2em -2em 0;overflow:hidden;background:#36D995}@media only screen and (max-width: 50em){.post-list .post .post-image{margin:-1em -1em 0}}.post-list .post .post-image img{transform:scale(1);transform-style:preserve-3d;opacity:1}.post-list .post .post-image:after{content:'';position:absolute;left:-5%;bottom:-2.5em;width:110%;height:4em;background:#fff;border-top:4px solid #36D995;box-shadow:0 0 2em rgba(0,0,0,0.2);transform:rotate(5deg)}.post-list .post .post-title{font-size:1.5em;line-height:1.167em}.post-list .post .post-excerpt{margin:0}.post-list .post .post-more{display:block;margin-top:1.5em}.post-list .post .post-more a{display:inline-block;font-size:.875em;line-height:1.143em;font-weight:400;color:#363740}.post-list .post .post-more a i{color:#2DB77E}.pagination{min-height:3em;margin:4em auto 2em;padding:0;position:relative}.pagination .pagination-item{position:relative;display:block;height:3em;line-height:3em;padding:0 1em;text-align:center;text-decoration:none;font-weight:700;color:#363740;border:1px solid #36D995;border-radius:4em;z-index:60}.pagination .pagination-item i{position:relative}@media only screen and (max-width: 30em){.pagination .pagination-item{width:4em;height:4em;line-height:4em;margin-top:-.5em;padding:0!important}.pagination .pagination-item i{font-size:1.5em}.pagination .pagination-item>span{display:none}}.pagination .pagination-prev{float:right}.pagination .pagination-prev i{right:-.05em}.pagination .pagination-info{display:block;left:0;top:0;height:3em;line-height:3em;position:absolute;text-align:center;width:100%;z-index:50;color:#9D9FA6}#loader-wrapper{position:fixed;top:0;left:0;width:100%;height:100%;z-index:1000}#loader{display:block;position:relative;left:50%;top:50%;width:150px;height:150px;margin:-75px 0 0 -75px;border-radius:50%;border:3px solid transparent;border-top-color:#36D995;animation:spin 2s linear infinite}#loader:before{content:"";position:absolute;top:5px;left:5px;right:5px;bottom:5px;border-radius:50%;border:3px solid transparent;border-top-color:#2DB77E;animation:spin 3s linear infinite}#loader:after{content:"";position:absolute;top:15px;left:15px;right:15px;bottom:15px;border-radius:50%;border:3px solid transparent;border-top-color:#D4D5D9;animation:spin 1.5s linear infinite}@keyframes spin{0%{transform:rotate(0deg)}100%{transform:rotate(360deg)}}
+</style>
+
+
+    </head>
+    <body class="home-template">
+      <div id="loader-wrapper">
+        <div id="loader"></div>
+      </div>
+      <section id="wrapper" style="display: none;">
+        <div id="ajax-container">
+          <nav id="nav" class="nav">
+            <div class="nav-logo">
+              <a href="http://www.muller.tech/">
+      			  
+      			  	<img src="/images/logo.png" alt="Logo"/>
+      			  
+              </a>
+            </div>
+            <div class="nav-menu">
+              <a class="rss" href="">
+                <i class="icon-rss"></i>
+              </a>
+                
+                <a class="menu" data-action="toc" data-target="toc"><i class="icon-location"></i></a>
+                
+                
+            </div>
+          </nav>
+
+
+<main class="content" role="main">
+	<article class="post">
+		<div class="inner">
+
+			<div id="push">
+
+  			<header class="post-header">
+  				<span class="post-meta">
+						<span class="post-date">21 Nov 2017</span> <span class="reading-time">| <span class="estimated-reading-time">4 min.</span> (<span class="word-count">780</span> words)</span></span>
+  				</span>
+  				<div class="clear"></div>
+  				<h1 class="post-title">Angular 5 carousel</h1>
+  			</header>
+
+  			<section class="post-content">
+  				
+
+<p>In this post you will learn how to create a carousel with angular5.
+Requirements for our carousel</p>
+
+<ul>
+<li>Take as an input an array of object.</li>
+<li>Have a left and a right arrow for navigation.</li>
+<li>Distribute batches of items evenly across the width of the screen.</li>
+<li>Update of screen resize.</li>
+</ul>
+
+<p>Take a look at the demo:
+<a href="http://www.muller.tech/hopla-carousel/">http://www.muller.tech/hopla-carousel/</a></p>
+
+<p>If you are in a hurry, you can checkout the source code here: <a href="https://github.com/HoplaGeiss/hopla-scarousel">https://github.com/HoplaGeiss/hopla-carousel</a></p>
+
+<p>Let&rsquo;s dive in!</p>
+
+<h3 id="template">Template</h3>
+<div class="highlight" style="background: #272822"><pre style="line-height: 125%"><span></span><span style="color: #66d9ef">@Component</span><span style="color: #f8f8f2">({</span>
+  <span style="color: #a6e22e">selector</span><span style="color: #f92672">:</span> <span style="color: #e6db74">&#39;app-carousel&#39;</span><span style="color: #f8f8f2">,</span>
+  <span style="color: #a6e22e">styleUrls</span><span style="color: #f92672">:</span> <span style="color: #f8f8f2">[</span><span style="color: #e6db74">&#39;./carousel.component.scss&#39;</span><span style="color: #f8f8f2">],</span>
+  <span style="color: #a6e22e">template</span><span style="color: #f92672">:</span> <span style="color: #e6db74">`</span>
+<span style="color: #e6db74">    &lt;div class=&#39;wrapper&#39;&gt;</span>
+<span style="color: #e6db74">      &lt;div class=&#39;carousel-wrapper&#39;&gt;</span>
+<span style="color: #e6db74">        &lt;div class=&#39;carousel&#39; fxLayout=&#39;row&#39; fxLayoutAlign=&#39;center stretch&#39;&gt;</span>
+<span style="color: #e6db74">          &lt;ul *ngFor=&#39;let items of batches&#39; fxLayout=&#39;row&#39; fxLayoutAlign=&#39;space-evenly stretch&#39;&gt;</span>
+<span style="color: #e6db74">            &lt;li *ngFor=&#39;let item of items&#39; fxLayout=&#39;column&#39; fxLayoutAlign=&#39;center center&#39;&gt;</span>
+<span style="color: #e6db74">              &lt;img src=&#39;assets/Icon-Database.svg&#39; alt=&#39;Widget Icon&#39;&gt;</span>
+<span style="color: #e6db74">              &lt;div class=&#39;text&#39;&gt;{{item.title}}&lt;/div&gt;</span>
+<span style="color: #e6db74">            &lt;/li&gt;</span>
+<span style="color: #e6db74">          &lt;/ul&gt;</span>
+<span style="color: #e6db74">        &lt;/div&gt;</span>
+<span style="color: #e6db74">      &lt;/div&gt;</span>
+
+<span style="color: #e6db74">      &lt;div *ngIf=&#39;batches.length &gt; 1&#39; class=&#39;arrow-left&#39; (click)=&#39;currentItem !== 0 ? slide(1) : null&#39;</span>
+<span style="color: #e6db74">        [ngClass]=&#39;{&quot;disabled&quot;: currentItem === 0}&#39;&gt;</span>
+<span style="color: #e6db74">        &lt;i class=&#39;material-icons&#39;&gt;keyboard_arrow_left&lt;/i&gt;</span>
+<span style="color: #e6db74">      &lt;/div&gt;</span>
+
+<span style="color: #e6db74">      &lt;div *ngIf=&#39;batches.length &gt; 1&#39; class=&#39;arrow-right&#39; (click)=&#39;currentItem !== batches.length - 1 ? slide(-1) : null&#39;</span>
+<span style="color: #e6db74">        [ngClass]=&#39;{&quot;disabled&quot;: currentItem === batches.length - 1}&#39;&gt;</span>
+<span style="color: #e6db74">        &lt;i class=&#39;material-icons&#39;&gt;keyboard_arrow_right&lt;/i&gt;</span>
+<span style="color: #e6db74">      &lt;/div&gt;</span>
+<span style="color: #e6db74">    &lt;/div&gt;</span>
+<span style="color: #e6db74">  `</span>
+<span style="color: #f8f8f2">})</span>
+</pre></div>
+
+<p>Our template is clearly separated in there parts:
+- The carousel with an icon and a label for each item
+- The left arrow which is disabled when the user looks at the first batch of items.
+- The right arrow which is disabled when the user looks at the last batch of items.</p>
+
+<h3 id="component-with-life-cycle-methods">Component with life cycle methods</h3>
+<div class="highlight" style="background: #272822"><pre style="line-height: 125%"><span></span><span style="color: #66d9ef">export</span> <span style="color: #66d9ef">class</span> <span style="color: #a6e22e">CarouselComponent</span> <span style="color: #66d9ef">implements</span> <span style="color: #a6e22e">OnInit</span><span style="color: #f8f8f2">,</span> <span style="color: #a6e22e">AfterViewChecked</span> <span style="color: #f8f8f2">{</span>
+  <span style="color: #66d9ef">@Input</span><span style="color: #f8f8f2">()</span> <span style="color: #a6e22e">items</span>: <span style="color: #66d9ef">Array</span><span style="color: #f92672">&lt;</span><span style="color: #a6e22e">object</span><span style="color: #f92672">&gt;</span><span style="color: #f8f8f2">;</span>
+  <span style="color: #a6e22e">currentItem</span> <span style="color: #f92672">=</span> <span style="color: #ae81ff">0</span><span style="color: #f8f8f2">;</span>
+  <span style="color: #a6e22e">carousel</span>: <span style="color: #66d9ef">any</span><span style="color: #f8f8f2">;</span>
+  <span style="color: #a6e22e">position</span> <span style="color: #f92672">=</span> <span style="color: #ae81ff">0</span><span style="color: #f8f8f2">;</span>
+  <span style="color: #a6e22e">increment</span>: <span style="color: #66d9ef">any</span><span style="color: #f8f8f2">;</span>
+  <span style="color: #a6e22e">translation</span> <span style="color: #f92672">=</span> <span style="color: #ae81ff">0</span><span style="color: #f8f8f2">;</span>
+  <span style="color: #a6e22e">elementsPerSlide</span>: <span style="color: #66d9ef">number</span><span style="color: #f8f8f2">;</span>
+  <span style="color: #a6e22e">batches</span>: <span style="color: #66d9ef">Array</span><span style="color: #f92672">&lt;</span><span style="color: #f8f8f2">Array</span><span style="color: #f92672">&lt;</span><span style="color: #a6e22e">object</span><span style="color: #f92672">&gt;&gt;</span> <span style="color: #f92672">=</span> <span style="color: #f8f8f2">[];</span>
+  <span style="color: #a6e22e">carouselWidth</span>: <span style="color: #66d9ef">number</span><span style="color: #f8f8f2">;</span>
+  <span style="color: #a6e22e">carouselWrapper</span>: <span style="color: #66d9ef">any</span><span style="color: #f8f8f2">;</span>
+  <span style="color: #a6e22e">carouselWrapperWidth</span>: <span style="color: #66d9ef">number</span><span style="color: #f8f8f2">;</span>
+
+  <span style="color: #66d9ef">constructor</span> <span style="color: #f8f8f2">(</span>
+    <span style="color: #66d9ef">private</span> <span style="color: #a6e22e">elementRef</span>: <span style="color: #66d9ef">ElementRef</span><span style="color: #f8f8f2">,</span>
+    <span style="color: #66d9ef">private</span> <span style="color: #a6e22e">changeDetectorRef</span>: <span style="color: #66d9ef">ChangeDetectorRef</span>
+  <span style="color: #f8f8f2">)</span> <span style="color: #f8f8f2">{}</span>
+
+  <span style="color: #a6e22e">ngOnInit() {</span>
+    <span style="color: #66d9ef">this</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">carousel</span> <span style="color: #f92672">=</span> <span style="color: #66d9ef">this</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">elementRef</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">nativeElement</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">querySelector</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;.carousel&#39;</span><span style="color: #f8f8f2">);</span>
+    <span style="color: #66d9ef">this</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">carouselWrapper</span> <span style="color: #f92672">=</span> <span style="color: #66d9ef">this</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">elementRef</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">nativeElement</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">querySelector</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;.carousel-wrapper&#39;</span><span style="color: #f8f8f2">);</span>
+  <span style="color: #f8f8f2">}</span>
+
+  <span style="color: #75715e">// On size changes, recalculate the bacthes</span>
+  <span style="color: #a6e22e">ngAfterViewChecked() {</span>
+    <span style="color: #66d9ef">if</span> <span style="color: #f8f8f2">(</span><span style="color: #66d9ef">this</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">carouselWrapper</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">offsetWidth</span> <span style="color: #f92672">!==</span> <span style="color: #ae81ff">0</span> <span style="color: #f92672">&amp;&amp;</span> <span style="color: #66d9ef">this</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">carouselWrapper</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">offsetWidth</span> <span style="color: #f92672">!==</span> <span style="color: #66d9ef">this</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">carouselWrapperWidth</span><span style="color: #f8f8f2">)</span> <span style="color: #f8f8f2">{</span>
+      <span style="color: #66d9ef">this</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">carouselWrapperWidth</span> <span style="color: #f92672">=</span> <span style="color: #66d9ef">this</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">carouselWrapper</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">offsetWidth</span><span style="color: #f8f8f2">;</span>
+
+      <span style="color: #66d9ef">this</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">renderBatches</span><span style="color: #f8f8f2">();</span>
+      <span style="color: #66d9ef">this</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">setBatchSize</span><span style="color: #f8f8f2">();</span>
+    <span style="color: #f8f8f2">}</span>
+  <span style="color: #f8f8f2">}</span>
+<span style="color: #f8f8f2">}</span>
+</pre></div>
+
+<p>A couple things worth noting in this component:</p>
+
+<ul>
+<li><code>items</code> is an array of object containing the items to display in the carousel.</li>
+<li>OnInit we set <code>carousel</code> and <code>carouselWrapper</code>.</li>
+<li>We use ngAfterViewChecked to resize the carousel.</li>
+</ul>
+
+<h3 id="renderbatches">renderBatches</h3>
+<div class="highlight" style="background: #272822"><pre style="line-height: 125%"><span></span><span style="color: #a6e22e">renderBatches</span> <span style="color: #f92672">=</span> <span style="color: #f8f8f2">()</span> <span style="color: #f92672">=&gt;</span> <span style="color: #f8f8f2">{</span>
+  <span style="color: #66d9ef">const</span> <span style="color: #a6e22e">itemWidth</span> <span style="color: #f92672">=</span> <span style="color: #ae81ff">130</span><span style="color: #f8f8f2">;</span>
+
+  <span style="color: #75715e">// we split the items in batches</span>
+  <span style="color: #66d9ef">this</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">elementsPerSlide</span> <span style="color: #f92672">=</span> <span style="color: #f8f8f2">Math.</span><span style="color: #a6e22e">floor</span><span style="color: #f8f8f2">(</span><span style="color: #66d9ef">this</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">carouselWrapperWidth</span> <span style="color: #f92672">/</span> <span style="color: #a6e22e">itemWidth</span><span style="color: #f8f8f2">);</span>
+  <span style="color: #66d9ef">this</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">batches</span> <span style="color: #f92672">=</span> <span style="color: #66d9ef">this</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">chunk</span><span style="color: #f8f8f2">(</span><span style="color: #66d9ef">this</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">items</span><span style="color: #f8f8f2">,</span> <span style="color: #66d9ef">this</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">elementsPerSlide</span><span style="color: #f8f8f2">);</span>
+
+  <span style="color: #75715e">// The carousel is 100 * ng batches wide</span>
+  <span style="color: #66d9ef">this</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">carousel</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">style</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">width</span> <span style="color: #f92672">=</span> <span style="color: #ae81ff">100</span> <span style="color: #f92672">*</span> <span style="color: #66d9ef">this</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">batches</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">length</span> <span style="color: #f92672">+</span> <span style="color: #e6db74">&#39;%&#39;</span><span style="color: #f8f8f2">;</span>
+
+  <span style="color: #66d9ef">this</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">increment</span> <span style="color: #f92672">=</span> <span style="color: #f8f8f2">(</span><span style="color: #ae81ff">100</span> <span style="color: #f92672">/</span> <span style="color: #66d9ef">this</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">batches</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">length</span><span style="color: #f8f8f2">);</span>
+
+  <span style="color: #66d9ef">this</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">changeDetectorRef</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">detectChanges</span><span style="color: #f8f8f2">();</span>
+<span style="color: #f8f8f2">}</span>
+</pre></div>
+
+<p>this methods calculates the number of elements to show per page based on the width of the carousel&rsquo;s wrapper and on the width of the elements. It then updates the width of the carousel, which needs to be 100 * number of batches.</p>
+
+<h3 id="setbatchsize">setBatchSize</h3>
+<div class="highlight" style="background: #272822"><pre style="line-height: 125%"><span></span><span style="color: #a6e22e">setBatchSize</span> <span style="color: #f92672">=</span> <span style="color: #f8f8f2">()</span> <span style="color: #f92672">=&gt;</span> <span style="color: #f8f8f2">{</span>
+  <span style="color: #66d9ef">const</span> <span style="color: #a6e22e">ulElements</span> <span style="color: #f92672">=</span> <span style="color: #66d9ef">this</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">elementRef</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">nativeElement</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">querySelectorAll</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;ul&#39;</span><span style="color: #f8f8f2">);</span>
+
+  <span style="color: #75715e">// Each ul element needs to be 100 / nb batches wide.</span>
+  <span style="color: #66d9ef">for</span> <span style="color: #f8f8f2">(</span><span style="color: #66d9ef">let</span> <span style="color: #a6e22e">i</span> <span style="color: #f92672">=</span> <span style="color: #ae81ff">0</span><span style="color: #f8f8f2">;</span> <span style="color: #a6e22e">i</span> <span style="color: #f92672">&lt;</span> <span style="color: #a6e22e">ulElements</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">length</span><span style="color: #f8f8f2">;</span> <span style="color: #a6e22e">i</span><span style="color: #f92672">++</span><span style="color: #f8f8f2">)</span> <span style="color: #f8f8f2">{</span>
+    <span style="color: #a6e22e">ulElements</span><span style="color: #f8f8f2">[</span><span style="color: #a6e22e">i</span><span style="color: #f8f8f2">].</span><span style="color: #a6e22e">style</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">width</span> <span style="color: #f92672">=</span> <span style="color: #ae81ff">100</span> <span style="color: #f92672">/</span> <span style="color: #66d9ef">this</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">batches</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">length</span> <span style="color: #f92672">+</span> <span style="color: #e6db74">&#39;%&#39;</span><span style="color: #f8f8f2">;</span>
+  <span style="color: #f8f8f2">}</span>
+<span style="color: #f8f8f2">}</span>
+</pre></div>
+
+<p>setBatchSize sets the width of each <code>ul</code> elements. Side by side the ul elements need to take the full width of the carousel.</p>
+
+<h3 id="slide">slide</h3>
+<div class="highlight" style="background: #272822"><pre style="line-height: 125%"><span></span><span style="color: #a6e22e">slide</span> <span style="color: #f92672">=</span> <span style="color: #f8f8f2">(</span><span style="color: #a6e22e">direction</span>: <span style="color: #66d9ef">number</span><span style="color: #f8f8f2">)</span> <span style="color: #f92672">=&gt;</span> <span style="color: #f8f8f2">{</span>
+  <span style="color: #66d9ef">this</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">currentItem</span> <span style="color: #f92672">=</span> <span style="color: #66d9ef">this</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">currentItem</span> <span style="color: #f92672">-</span> <span style="color: #a6e22e">direction</span><span style="color: #f8f8f2">;</span>
+  <span style="color: #66d9ef">this</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">translation</span>  <span style="color: #f92672">=</span> <span style="color: #66d9ef">this</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">translation</span> <span style="color: #f92672">+</span> <span style="color: #a6e22e">direction</span> <span style="color: #f92672">*</span> <span style="color: #66d9ef">this</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">increment</span><span style="color: #f8f8f2">;</span>
+  <span style="color: #66d9ef">this</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">carousel</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">style</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">transform</span> <span style="color: #f92672">=</span> <span style="color: #e6db74">&#39;translateX(&#39;</span> <span style="color: #f92672">+</span> <span style="color: #66d9ef">this</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">translation</span> <span style="color: #f92672">+</span> <span style="color: #e6db74">&#39;%)&#39;</span><span style="color: #f8f8f2">;</span>
+<span style="color: #f8f8f2">}</span>
+</pre></div>
+
+<p>The slide method is called each time we click on an arrow. It is used to translate from one batch to the other.</p>
+
+<h3 id="chunk">chunk</h3>
+<div class="highlight" style="background: #272822"><pre style="line-height: 125%"><span></span><span style="color: #a6e22e">chunk</span> <span style="color: #f92672">=</span> <span style="color: #f8f8f2">(</span><span style="color: #a6e22e">arr</span><span style="color: #f8f8f2">,</span> <span style="color: #a6e22e">n</span><span style="color: #f8f8f2">)</span> <span style="color: #f92672">=&gt;</span> <span style="color: #f8f8f2">{</span>
+  <span style="color: #66d9ef">return</span> <span style="color: #a6e22e">arr</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">slice</span><span style="color: #f8f8f2">(</span><span style="color: #ae81ff">0</span><span style="color: #f8f8f2">,</span> <span style="color: #f8f8f2">(</span><span style="color: #a6e22e">arr</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">length</span> <span style="color: #f92672">+</span> <span style="color: #a6e22e">n</span> <span style="color: #f92672">-</span> <span style="color: #ae81ff">1</span><span style="color: #f8f8f2">)</span> <span style="color: #f92672">/</span> <span style="color: #a6e22e">n</span> <span style="color: #f92672">|</span> <span style="color: #ae81ff">0</span><span style="color: #f8f8f2">).</span><span style="color: #a6e22e">map</span><span style="color: #f8f8f2">((</span><span style="color: #a6e22e">c</span><span style="color: #f8f8f2">,</span> <span style="color: #a6e22e">i</span><span style="color: #f8f8f2">)</span> <span style="color: #f92672">=&gt;</span> <span style="color: #a6e22e">arr</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">slice</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">n</span> <span style="color: #f92672">*</span> <span style="color: #a6e22e">i</span> <span style="color: #f8f8f2">,</span> <span style="color: #a6e22e">n</span> <span style="color: #f92672">*</span> <span style="color: #a6e22e">i</span> <span style="color: #f92672">+</span> <span style="color: #a6e22e">n</span><span style="color: #f8f8f2">));</span>
+<span style="color: #f8f8f2">}</span>
+</pre></div>
+
+<p>chunk is a simple method to split an array in an array of arrays of a specific size.</p>
+
+<h3 id="styling-and-component-usage">Styling and component usage</h3>
+
+<p>To finish find bellow how to use the carousel and the styling file I am using.</p>
+<div class="highlight" style="background: #272822"><pre style="line-height: 125%"><span></span><span style="color: #75715e">// app.component.ts</span>
+<span style="color: #66d9ef">import</span> <span style="color: #f8f8f2">{</span> <span style="color: #a6e22e">Component</span><span style="color: #f8f8f2">,</span> <span style="color: #a6e22e">OnInit</span> <span style="color: #f8f8f2">}</span> <span style="color: #a6e22e">from</span> <span style="color: #e6db74">&#39;@angular/core&#39;</span><span style="color: #f8f8f2">;</span>
+
+<span style="color: #66d9ef">@Component</span><span style="color: #f8f8f2">({</span>
+  <span style="color: #a6e22e">selector</span><span style="color: #f92672">:</span> <span style="color: #e6db74">&#39;app-root&#39;</span><span style="color: #f8f8f2">,</span>
+  <span style="color: #a6e22e">styleUrls</span><span style="color: #f92672">:</span> <span style="color: #f8f8f2">[</span><span style="color: #e6db74">&#39;./app.component.scss&#39;</span><span style="color: #f8f8f2">],</span>
+  <span style="color: #a6e22e">template</span><span style="color: #f92672">:</span> <span style="color: #e6db74">`</span>
+<span style="color: #e6db74">    &lt;app-carousel [items]=&#39;widgets&#39;&gt;&lt;/app-carousel&gt;</span>
+<span style="color: #e6db74">  `</span>
+<span style="color: #f8f8f2">})</span>
+<span style="color: #66d9ef">export</span> <span style="color: #66d9ef">class</span> <span style="color: #a6e22e">AppComponent</span> <span style="color: #66d9ef">implements</span> <span style="color: #a6e22e">OnInit</span> <span style="color: #f8f8f2">{</span>
+  <span style="color: #a6e22e">widgets</span>: <span style="color: #66d9ef">Array</span><span style="color: #f92672">&lt;</span><span style="color: #a6e22e">object</span><span style="color: #f92672">&gt;</span><span style="color: #f8f8f2">;</span>
+
+  <span style="color: #a6e22e">ngOnInit() {</span>
+    <span style="color: #66d9ef">this</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">widgets</span> <span style="color: #f92672">=</span> <span style="color: #66d9ef">this</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">generateWidgets</span><span style="color: #f8f8f2">(</span><span style="color: #ae81ff">30</span><span style="color: #f8f8f2">);</span>
+  <span style="color: #f8f8f2">}</span>
+
+  <span style="color: #a6e22e">generateWidgets</span> <span style="color: #f92672">=</span> <span style="color: #f8f8f2">(</span><span style="color: #a6e22e">num</span>: <span style="color: #66d9ef">number</span><span style="color: #f8f8f2">)</span> <span style="color: #f92672">=&gt;</span> <span style="color: #f8f8f2">{</span>
+    <span style="color: #66d9ef">const</span> <span style="color: #a6e22e">result</span> <span style="color: #f92672">=</span> <span style="color: #f8f8f2">[];</span>
+    <span style="color: #66d9ef">for</span> <span style="color: #f8f8f2">(</span><span style="color: #66d9ef">let</span> <span style="color: #a6e22e">i</span> <span style="color: #f92672">=</span> <span style="color: #ae81ff">0</span><span style="color: #f8f8f2">;</span> <span style="color: #a6e22e">i</span> <span style="color: #f92672">&lt;</span> <span style="color: #a6e22e">num</span><span style="color: #f8f8f2">;</span> <span style="color: #a6e22e">i</span><span style="color: #f92672">++</span><span style="color: #f8f8f2">)</span> <span style="color: #f8f8f2">{</span>
+      <span style="color: #a6e22e">result</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">push</span><span style="color: #f8f8f2">({</span><span style="color: #a6e22e">title</span><span style="color: #f92672">:</span> <span style="color: #e6db74">&#39;Widget&#39;</span> <span style="color: #f92672">+</span> <span style="color: #a6e22e">i</span><span style="color: #f8f8f2">});</span>
+    <span style="color: #f8f8f2">}</span>
+    <span style="color: #66d9ef">return</span> <span style="color: #a6e22e">result</span><span style="color: #f8f8f2">;</span>
+  <span style="color: #f8f8f2">}</span>
+<span style="color: #f8f8f2">}</span>
+</pre></div>
+<div class="highlight" style="background: #272822"><pre style="line-height: 125%"><span></span><span style="color: #a6e22e">.wrapper</span><span style="color: #f8f8f2">{</span>
+  <span style="color: #f92672">width</span><span style="color: #a6e22e">:</span> <span style="color: #f92672">100</span><span style="color: #960050; background-color: #1e0010">%</span><span style="color: #f92672">;</span>
+  <span style="color: #f92672">position</span><span style="color: #a6e22e">:</span> <span style="color: #f92672">relative;</span>
+<span style="color: #f8f8f2">}</span>
+
+<span style="color: #a6e22e">.carousel-wrapper</span><span style="color: #f8f8f2">{</span>
+  <span style="color: #f92672">box-sizing</span><span style="color: #a6e22e">:</span> <span style="color: #f92672">border-box;</span>
+  <span style="color: #f92672">padding</span><span style="color: #a6e22e">:</span> <span style="color: #f92672">0</span> <span style="color: #f92672">40px;</span>
+  <span style="color: #f92672">overflow</span><span style="color: #a6e22e">:</span> <span style="color: #f92672">hidden;</span>
+  <span style="color: #f92672">width</span><span style="color: #a6e22e">:</span> <span style="color: #f92672">100</span><span style="color: #960050; background-color: #1e0010">%</span><span style="color: #f92672">;</span>
+  <span style="color: #f92672">position</span><span style="color: #a6e22e">:</span> <span style="color: #f92672">relative;</span>
+<span style="color: #f8f8f2">}</span>
+
+<span style="color: #a6e22e">.carousel</span><span style="color: #f8f8f2">{</span>
+  <span style="color: #f92672">position</span><span style="color: #a6e22e">:</span> <span style="color: #f92672">relative;</span>
+  <span style="color: #f92672">overflow</span><span style="color: #a6e22e">:</span> <span style="color: #f92672">hidden;</span>
+  <span style="color: #f92672">transition-duration</span><span style="color: #a6e22e">:</span> <span style="color: #f92672">1000ms;</span>
+<span style="color: #f8f8f2">}</span>
+
+<span style="color: #f92672">ul</span><span style="color: #f8f8f2">{</span>
+  <span style="color: #f92672">list-style</span><span style="color: #a6e22e">:</span> <span style="color: #f92672">none;</span>
+  <span style="color: #f92672">position</span><span style="color: #a6e22e">:</span> <span style="color: #f92672">relative;</span>
+  <span style="color: #f92672">float</span><span style="color: #a6e22e">:</span> <span style="color: #f92672">left;</span>
+  <span style="color: #f92672">width</span><span style="color: #a6e22e">:</span> <span style="color: #f92672">100</span><span style="color: #960050; background-color: #1e0010">%</span>
+<span style="color: #f8f8f2">}</span>
+
+<span style="color: #f92672">li</span><span style="color: #f8f8f2">{</span>
+  <span style="color: #f92672">width</span><span style="color: #a6e22e">:</span> <span style="color: #f92672">130px;</span>
+<span style="color: #f8f8f2">}</span>
+
+<span style="color: #a6e22e">.arrow-left</span><span style="color: #f92672">,</span> <span style="color: #a6e22e">.arrow-right</span><span style="color: #f8f8f2">{</span>
+  <span style="color: #f92672">position</span><span style="color: #a6e22e">:</span> <span style="color: #f92672">absolute;</span>
+  <span style="color: #f92672">top</span><span style="color: #a6e22e">:</span> <span style="color: #f92672">6px;</span>
+  <span style="color: #f92672">bottom</span><span style="color: #a6e22e">:</span> <span style="color: #f92672">6px;</span>
+  <span style="color: #f92672">width</span><span style="color: #a6e22e">:</span> <span style="color: #f92672">40px;</span>
+  <span style="color: #f92672">display</span><span style="color: #a6e22e">:</span> <span style="color: #f92672">flex;</span>
+  <span style="color: #f92672">justify-content</span><span style="color: #a6e22e">:</span> <span style="color: #f92672">center;</span>
+  <span style="color: #f92672">flex-direction</span><span style="color: #a6e22e">:</span> <span style="color: #f92672">column;</span>
+  <span style="color: #f92672">align-items</span><span style="color: #a6e22e">:</span> <span style="color: #f92672">center;</span>
+  <span style="color: #f92672">transition-duration</span><span style="color: #a6e22e">:</span> <span style="color: #f92672">300ms;</span>
+  <span style="color: #f92672">background</span><span style="color: #a6e22e">:</span> <span style="color: #f92672">white;</span>
+  <span style="color: #f92672">z-index</span><span style="color: #a6e22e">:</span> <span style="color: #f92672">2;</span>
+
+  <span style="color: #66d9ef">&amp;</span><span style="color: #a6e22e">:not</span><span style="color: #f92672">(</span><span style="color: #a6e22e">.disabled</span><span style="color: #f92672">)</span><span style="color: #a6e22e">:hover</span><span style="color: #f8f8f2">{</span>
+    <span style="color: #f92672">cursor</span><span style="color: #a6e22e">:</span> <span style="color: #f92672">pointer;</span>
+    <span style="color: #f92672">background</span><span style="color: #a6e22e">:</span> <span style="color: #f92672">orange;</span>
+
+    <span style="color: #f92672">i</span><span style="color: #f8f8f2">{</span>
+      <span style="color: #f92672">color</span><span style="color: #a6e22e">:</span> <span style="color: #f92672">white;</span>
+    <span style="color: #f8f8f2">}</span>
+  <span style="color: #f8f8f2">}</span>
+
+  <span style="color: #66d9ef">&amp;</span><span style="color: #a6e22e">.disabled</span><span style="color: #f8f8f2">{</span>
+    <span style="color: #f92672">i</span><span style="color: #f8f8f2">{</span>
+      <span style="color: #f92672">color</span><span style="color: #a6e22e">:</span> <span style="color: #f92672">grey</span> <span style="color: #f92672">!important;</span>
+    <span style="color: #f8f8f2">}</span>
+  <span style="color: #f8f8f2">}</span>
+
+  <span style="color: #f92672">i</span><span style="color: #f8f8f2">{</span>
+    <span style="color: #f92672">font-size</span><span style="color: #a6e22e">:</span> <span style="color: #f92672">3</span><span style="color: #a6e22e">.2em</span><span style="color: #f92672">;</span>
+    <span style="color: #f92672">pointer-events</span><span style="color: #a6e22e">:</span> <span style="color: #f92672">none;</span>
+  <span style="color: #f8f8f2">}</span>
+<span style="color: #f8f8f2">}</span>
+
+<span style="color: #a6e22e">.arrow-left</span><span style="color: #f8f8f2">{</span>
+  <span style="color: #f92672">left</span><span style="color: #a6e22e">:</span> <span style="color: #f92672">0px;</span>
+<span style="color: #f8f8f2">}</span>
+
+<span style="color: #a6e22e">.arrow-right</span><span style="color: #f8f8f2">{</span>
+  <span style="color: #f92672">right</span><span style="color: #a6e22e">:</span> <span style="color: #f92672">0px;</span>
+<span style="color: #f8f8f2">}</span>
+</pre></div>
+
+<p>That&rsquo;s it! Have a look there for the source code: <a href="https://github.com/HoplaGeiss/hopla-scarousel">https://github.com/HoplaGeiss/hopla-carousel</a></p>
+
+  			</section>
+
+  			<footer class="post-footer">
+  				<div class="post-tags">
+            
+            
+                <a href="http://www.muller.tech/tags/angular5/">angular5</a>
+            
+            
+  				</div>
+  				
+  			</footer>
+
+  			<aside class="post-comments">
+    
+    
+    <div id="disqus_thread"></div>
+    <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    
+    
+</aside>
+
+
+			</div>
+
+			<nav class="post-nav">
+				
+				
+					<a class="post-nav-item post-nav-prev" href="http://www.muller.tech/post/2017/11/20/angular5-d3js-bubble-chart/">
+						<section class="post-nav-teaser">
+							<span class="post-nav-icon"><i class="icon-arrow-right"></i></span>
+							<span class="post-nav-info">
+								<h4 class="post-nav-title">Angular 5 / d3.js - Bubble Chart</h4>
+								<p class="post-nav-excerpt">Create a dynamic and resizable bubble chart with angular5 and d3.js&hellip;</p>
+							</span>
+						</section>
+					</a>
+				
+				<div class="clear"></div>
+			</nav>
+
+		</div>
+	</article>
+</main>
+
+<div id="body-class" style="display: none;"></div>
+<footer id="footer">
+	<section class="credits">
+		
+	</section>
+
+	<div id="sig" style="position: absolute; font-family: Helvetica, Verdana, Arial, Sans-Serif; font-size: 12px; color: #999999; bottom: 0; left: calc(50% - 145px);">
+	  <div style="position: relative; display: inline-block;">
+	    <span style="line-height: 30px;">
+	      <div style="display: inline-block; float: left;">
+	        <span style="font-weight: bold;">Gabriel Muller</span> - Front End Developer |
+	      </div>
+
+	      <a target="_blank" href="https://uk.linkedin.com/in/mullergab" style="position: relative;display: inline-block; text-decoration:none; float: left">
+	        <img src="http://www.muller.tech/images/linkedin.png" alt="linkedin" style="width: 20px; padding: 5px 10px; margin:0" />
+	      </a>
+	      <span style="float: left"> | </span>
+	      <a target="_blank" href="https://github.com/hoplageiss" style="position: relative;display: inline-block; text-decoration:none; float: left">
+	        <img src="http://www.muller.tech/images/github.png" alt="github" style="width: 20px; padding: 5px 10px; margin:0"/>
+	      </a>
+	    </span>
+	  </div>
+	</div>
+</footer>
+
+
+<div id="tocMenu" data-target="toc">
+    <div class="menu-header">
+        <span class="menu-label">Menu</span>
+        <a class="menu-close" data-action="toc" data-target="toc"></a>
+    </div>
+    <div id="toc" class="menu-list">
+        <nav id="TableOfContents">
+<ul>
+<li>
+<ul>
+<li>
+<ul>
+<li><a href="#template">Template</a></li>
+<li><a href="#component-with-life-cycle-methods">Component with life cycle methods</a></li>
+<li><a href="#renderbatches">renderBatches</a></li>
+<li><a href="#setbatchsize">setBatchSize</a></li>
+<li><a href="#slide">slide</a></li>
+<li><a href="#chunk">chunk</a></li>
+<li><a href="#styling-and-component-usage">Styling and component usage</a></li>
+</ul></li>
+</ul></li>
+</ul>
+</nav>
+    </div>
+</div>
+
+
+<div class="overlay"></div>
+</div>
+</section>
+
+<script async src="/js/main.js"></script>
+
+
+
+<script>
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+ga('create', 'UA-69583716-1', 'auto');
+ga('send', 'pageview');
+</script>
+
+
+
+
+<noscript><link rel="stylesheet" href="/css/main.css"></noscript>
+</body>
+</html>
+

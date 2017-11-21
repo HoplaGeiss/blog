@@ -3,9 +3,8 @@ title: "Angular 4 - Switch button"
 description: "Create a simple stylish switch button with angular 4"
 tags:
   - angular4
-  - switch
 date: "2017-07-26"
-featured: true
+featured: false
 slug: angular4-switch-button
 image: /images/switchButton.jpg
 ---

@@ -1,7 +1,8 @@
 ---
 title: "Angular 4 - create an accordion"
 description: "Create an angular 4 accordion without any dependencies"
-tags: [ "angular4", "accordion"]
+tags:
+  - angular4
 date: "2017-04-03"
 featured: true
 slug: "create-angular4-accordion"

@@ -14,10 +14,7 @@
     
         <meta property="og:type" content="article" />
         <meta property="og:article:published_time" content="2016-12-23T00:00:00Z" />
-        <meta property="og:article:tag" content="jasmine" />
         <meta property="og:article:tag" content="unit test" />
-        <meta property="og:article:tag" content="angular 1.4" />
-        <meta property="og:article:tag" content="controllers" />
         
 
         <meta name="twitter:card" content="summary" />
@@ -99,7 +96,7 @@
         "datePublished": "2016-12-23",
         "dateModified": "2016-12-23",
         "wordCount": 291,
-        "keywords": ["jasmine","unit test","angular 1.4","controllers"]
+        "keywords": ["unit test"]
     }
     </script>
 
@@ -203,44 +200,44 @@ html{font-family:sans-serif;line-height:1.15;-ms-text-size-adjust:100%;-webkit-t
 </ul>
 <div class="highlight" style="background: #272822"><pre style="line-height: 125%"><span></span>  <span style="color: #f8f8f2">(</span><span style="color: #66d9ef">function</span> <span style="color: #f8f8f2">()</span> <span style="color: #f8f8f2">{</span>
     <span style="color: #e6db74">&#39;use strict&#39;</span><span style="color: #f8f8f2">;</span>
-  
+
     <span style="color: #a6e22e">describe</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;Controller: AboutCtrl&#39;</span><span style="color: #f8f8f2">,</span> <span style="color: #66d9ef">function</span> <span style="color: #f8f8f2">()</span> <span style="color: #f8f8f2">{</span>
       <span style="color: #66d9ef">var</span> <span style="color: #a6e22e">AboutCtrl</span><span style="color: #f8f8f2">,</span>
         <span style="color: #a6e22e">configuration</span><span style="color: #f8f8f2">,</span>
         <span style="color: #a6e22e">appVersion</span><span style="color: #f8f8f2">,</span>
         <span style="color: #a6e22e">scope</span><span style="color: #f8f8f2">;</span>
-  
+
       <span style="color: #75715e">// Initialize the controller and a mock scope</span>
       <span style="color: #a6e22e">beforeEach</span><span style="color: #f8f8f2">(</span><span style="color: #66d9ef">function</span> <span style="color: #f8f8f2">()</span> <span style="color: #f8f8f2">{</span>
         <span style="color: #a6e22e">module</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;app.controllers&#39;</span><span style="color: #f8f8f2">);</span>
-  
+
         <span style="color: #a6e22e">inject</span><span style="color: #f8f8f2">(</span><span style="color: #66d9ef">function</span> <span style="color: #f8f8f2">(</span><span style="color: #a6e22e">$controller</span><span style="color: #f8f8f2">,</span> <span style="color: #a6e22e">$rootScope</span><span style="color: #f8f8f2">,</span> <span style="color: #a6e22e">_configuration_</span><span style="color: #f8f8f2">,</span> <span style="color: #a6e22e">_appVersion_</span><span style="color: #f8f8f2">)</span> <span style="color: #f8f8f2">{</span>
           <span style="color: #a6e22e">configuration</span> <span style="color: #f92672">=</span> <span style="color: #a6e22e">_configuration_</span><span style="color: #f8f8f2">;</span>
           <span style="color: #a6e22e">appVersion</span> <span style="color: #f92672">=</span> <span style="color: #a6e22e">_appVersion_</span><span style="color: #f8f8f2">;</span>
-  
+
           <span style="color: #a6e22e">appVersion</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">buildVersion</span> <span style="color: #f92672">=</span> <span style="color: #66d9ef">function</span> <span style="color: #f8f8f2">()</span> <span style="color: #f8f8f2">{</span>
             <span style="color: #66d9ef">return</span> <span style="color: #e6db74">&#39;9.9.9b9&#39;</span><span style="color: #f8f8f2">;</span>
           <span style="color: #f8f8f2">};</span>
-  
+
           <span style="color: #a6e22e">configuration</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">getAccountServiceConfig</span> <span style="color: #f92672">=</span> <span style="color: #66d9ef">function</span> <span style="color: #f8f8f2">()</span> <span style="color: #f8f8f2">{</span>
             <span style="color: #66d9ef">return</span> <span style="color: #e6db74">&#39;hopla&#39;</span>
           <span style="color: #f8f8f2">};</span>
-  
+
           <span style="color: #a6e22e">scope</span> <span style="color: #f92672">=</span> <span style="color: #a6e22e">$rootScope</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">$new</span><span style="color: #f8f8f2">();</span>
-  
+
           <span style="color: #a6e22e">AboutCtrl</span> <span style="color: #f92672">=</span> <span style="color: #a6e22e">$controller</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;AboutCtrl&#39;</span><span style="color: #f8f8f2">,</span> <span style="color: #f8f8f2">{</span>
             <span style="color: #a6e22e">$scope</span><span style="color: #f92672">:</span> <span style="color: #a6e22e">scope</span>
           <span style="color: #f8f8f2">});</span>
-  
+
           <span style="color: #a6e22e">$rootScope</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">$digest</span><span style="color: #f8f8f2">();</span>
-  
+
         <span style="color: #f8f8f2">});</span>
       <span style="color: #f8f8f2">});</span>
-  
+
       <span style="color: #a6e22e">it</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;is defined&#39;</span><span style="color: #f8f8f2">,</span> <span style="color: #66d9ef">function</span> <span style="color: #f8f8f2">()</span> <span style="color: #f8f8f2">{</span>
         <span style="color: #a6e22e">expect</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">AboutCtrl</span><span style="color: #f8f8f2">).</span><span style="color: #a6e22e">toBeDefined</span><span style="color: #f8f8f2">();</span>
       <span style="color: #f8f8f2">});</span>
-  
+
       <span style="color: #a6e22e">it</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;is initialised&#39;</span><span style="color: #f8f8f2">,</span> <span style="color: #66d9ef">function</span> <span style="color: #f8f8f2">()</span> <span style="color: #f8f8f2">{</span>
         <span style="color: #a6e22e">expect</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">scope</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">buildVersion</span><span style="color: #f8f8f2">).</span><span style="color: #a6e22e">toEqual</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;9.9.9b9&#39;</span><span style="color: #f8f8f2">);</span>
         <span style="color: #a6e22e">expect</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">scope</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">accountCode</span><span style="color: #f8f8f2">).</span><span style="color: #a6e22e">toEqual</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;hopla&#39;</span><span style="color: #f8f8f2">);</span>
@@ -277,13 +274,7 @@ html{font-family:sans-serif;line-height:1.15;-ms-text-size-adjust:100%;-webkit-t
   				<div class="post-tags">
             
             
-                <a href="http://www.muller.tech/tags/jasmine/">jasmine</a>
-            
                 <a href="http://www.muller.tech/tags/unit-test/">unit test</a>
-            
-                <a href="http://www.muller.tech/tags/angular-1.4/">angular 1.4</a>
-            
-                <a href="http://www.muller.tech/tags/controllers/">controllers</a>
             
             
   				</div>

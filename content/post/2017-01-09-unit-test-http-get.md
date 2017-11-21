@@ -1,19 +1,16 @@
 ---
 title: "Unit test $http.get"
 description: "Step by step guide of how to unit test $http.get"
-tags: [ "jasmine", "unit test", "angular 1.4", "$http.get",]
-lastmod: 2017-01-09
+tags:
+  - unit test
 date: "2017-01-09"
-categories:
-  - "Development"
-  - "VIM"
 slug: "unit-test-http-get"
 image: "/images/rafale.jpeg"
 ---
 
 ### Scenario
 
-In this example I will demonstrate how to unit `$http.get`. 
+In this example I will demonstrate how to unit `$http.get`.
 
 This is a real life example of an application, calling the backend with `$http.get` to retrieve the count of notifications.
 The difficulty here is, that when our call gets resolved we don't assign a value to our scope, we just return the result. So we need to find a way to access this.
@@ -60,5 +57,3 @@ describe('getUnreadNotificationsCount function', function () {
 * We spy on `configuration.getFrontEndUrl` and return fake-api-call
 * We use `$httpBackend` to mock `$http.get` and return `[4]`
 * We do our assertions inside the `then` block
-
-

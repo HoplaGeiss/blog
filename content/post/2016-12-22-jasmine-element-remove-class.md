@@ -1,12 +1,9 @@
 ---
 title: "Unit test the removal of a class"
 description: "Step by step description of how to unit test the removal of a class"
-tags: [ "jasmine", "unit test", "angular 1.4" ]
-lastmod: 2016-12-22
+tags:
+  - unit test
 date: "2016-12-22"
-categories:
-  - "Development"
-  - "VIM"
 slug: "unit-test-removal-of-a-class"
 image: "/images/removal.jpg"
 ---

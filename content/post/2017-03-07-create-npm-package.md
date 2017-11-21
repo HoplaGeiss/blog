@@ -1,11 +1,9 @@
 ---
 title: "Angular2 - Create a npm package"
 description: "How to make a npm package out of your angular2 application"
-tags: [ "angular2", "npm"]
-lastmod: 2017-03-07
+tags:
+  - angular2
 date: "2017-03-07"
-categories:
-  - "Development"
 slug: "create-npm-package"
 image: "/images/npm.png"
 ---

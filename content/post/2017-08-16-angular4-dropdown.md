@@ -3,9 +3,8 @@ title: "Angular 4 dropdown"
 description: "Create a simple dropdown with angular 4 without relying on bootstrap"
 tags:
   - angular4
-  - dropdown
 date: "2017-08-16"
-featured: true
+featured: false
 slug: angular4-dropdown
 image: /images/dropdown.jpg
 ---

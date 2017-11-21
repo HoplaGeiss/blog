@@ -1,19 +1,16 @@
 ---
 title: "Unit test $http.post with parameters"
 description: "Step by step guide of how to unit test $http.post with parameters"
-tags: [ "jasmine", "unit test", "angular 1.4", "$http.get",]
-lastmod: 2017-01-10
+tags:
+  - unit test
 date: "2017-01-10"
-categories:
-  - "Development"
-  - "VIM"
 slug: "unit-test-http-post-with-param"
 image: "/images/donald.jpg"
 ---
 
 ### Scenario
 
-In this example I will demonstrate how to unit `$http.post` when used with parameters. 
+In this example I will demonstrate how to unit `$http.post` when used with parameters.
 
 This is a real life example of an application, calling the backend with `$http.post` to register a new device.
 The difficulty here is, that the post includes a parameter, we need to find a way to access it.
@@ -70,5 +67,3 @@ describe('registerDevice function', function () {
 ### Analysis
 
 The trick is to use `.expectPOST` instead of `.when('POST')`. Then we use `hasResponse` to make sure the call to the backend has been made.
-
-

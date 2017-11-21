@@ -3,9 +3,8 @@ title: "Angular 4 - Dynamically add components to the DOM"
 description: "How to dynamically add components to the DOM with angular 4"
 tags:
   - angular4
-  - component
 date: "2017-08-04"
-featured: true
+featured: false
 slug: angular4-dynamically-add-component
 image: /images/dynamic.jpg
 ---

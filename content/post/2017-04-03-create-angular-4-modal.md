@@ -3,7 +3,6 @@ title: "Angular 4 - Create a modal"
 description: "Create a simple modal using angular 4"
 tags:
   - angular4
-  - modal
 date: "2017-04-03"
 featured: true
 slug: angular4-create-modal
