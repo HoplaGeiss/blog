@@ -1,0 +1,526 @@
+
+<!DOCTYPE html>
+<html lang="en-gb">
+
+    <head>
+
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+        <meta property="og:title" content=" Angular 5 - Tabs &middot;  Gabriel Muller - JavaScript and Angular articles" />
+        <meta property="og:site_name" content="Gabriel Muller - JavaScript and Angular articles" />
+        <meta property="og:url" content="http://www.muller.tech/post/2017/11/29/angular5-tabs/" />
+
+    
+        <meta property="og:type" content="article" />
+        <meta property="og:article:published_time" content="2017-11-29T00:00:00Z" />
+        <meta property="og:article:tag" content="angular5" />
+        
+
+        <meta name="twitter:card" content="summary" />
+        <meta name="twitter:site" content="@" />
+        <meta name="twitter:creator" content="@" />
+        <meta name="twitter:title" content="Angular 5 - Tabs" />
+        <meta name="twitter:description" content="Create a tab component with angular 5" />
+        <meta name="twitter:url" content="http://www.muller.tech/post/2017/11/29/angular5-tabs/" />
+    
+
+        <title> Angular 5 - Tabs &middot;  Gabriel Muller - JavaScript and Angular articles</title>
+
+        <link rel="preload" href="/js/main.js" as="script" />
+        <link rel="preload" href="/css/main.css" as="style" />
+
+    
+        <meta name="description" content="Create a tab component with angular 5" />
+    
+
+    
+        <meta name="p:domain_verify" content=""/>
+    
+
+        <meta name="HandheldFriendly" content="True" />
+        <meta name="MobileOptimized" content="320" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+        
+        
+
+    
+        <link href="http://www.muller.tech/index.xml" rel="alternate" type="application/rss+xml" title="Gabriel Muller - JavaScript and Angular articles" />
+    
+
+    
+        <link rel="canonical" href="http://www.muller.tech/post/2017/11/29/angular5-tabs/" />
+
+
+    
+    <script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "mainEntityOfPage": {
+          "@type": "WebPage",
+          "@id": "http://www.muller.tech/post/2017/11/29/angular5-tabs/"
+        },
+        "headline": "Angular 5 - Tabs",
+        "description": "Create a tab component with angular 5",
+        "author": {
+            "@type": "Person",
+            "name": "Gabriel Muller",
+            "url": "http://profiles.google.com/?rel=author",
+            "image": {
+              "@type": "ImageObject",
+              "url": "https:",
+              "height": 80,
+              "width": 80
+            }
+        },
+        "publisher": {
+          "@type": "Organization",
+          "@id": "http://www.muller.tech/",
+          "name": "Gabriel Muller - JavaScript and Angular articles",
+          "url": "http://www.muller.tech/",
+          "logo": {
+            "@type": "ImageObject",
+            "url": "https:",
+            "height": 80,
+            "width": 80
+          }
+        },
+        "image": {
+          "@type": "ImageObject",
+          "url": "http://www.muller.tech/images/tabs.jpg",
+          "height": 133,
+          "width": 200
+        },
+        "datePublished": "2017-11-29",
+        "dateModified": "2017-11-29",
+        "wordCount": 764,
+        "keywords": ["angular5"]
+    }
+    </script>
+
+
+    
+    <script type="text/javascript">
+    
+    
+      var disqus_shortname = 'mullertech';
+      var disqus_identifier = 'http:\/\/www.muller.tech\/post\/2017\/11\/29\/angular5-tabs\/';
+      var disqus_title = 'Angular 5 - Tabs';
+      var disqus_url = 'http:\/\/www.muller.tech\/post\/2017\/11\/29\/angular5-tabs\/';
+    
+    </script>
+    
+
+    <style>
+html{font-family:sans-serif;line-height:1.15;-ms-text-size-adjust:100%;-webkit-text-size-adjust:100%}body{margin:0}article,figure,footer,header,main,nav,section{display:block}h1{font-size:2em;margin:.67em 0}figure{margin:1em 40px}a{background-color:transparent;-webkit-text-decoration-skip:objects}img{border-style:none}::-webkit-file-upload-button{-webkit-appearance:button;font:inherit}@font-face{font-family:'Merriweather Sans';font-style:normal;font-weight:300;src:local("Merriweather Sans Light"),local(MerriweatherSans-Light),url(//fonts.gstatic.com/s/merriweathersans/v5/6LmGj5dOJopQKEkt88GowY_zIojJi0m4a5Z6tRh6itY.woff) format("woff")}@font-face{font-family:'Merriweather Sans';font-style:normal;font-weight:400;src:local("Merriweather Sans Regular"),local(MerriweatherSans-Regular),url(//fonts.gstatic.com/s/merriweathersans/v5/AKu1CjQ4qnV8MUltkAX3sL2aU247V0zTzydO4RoO9Ok.woff) format("woff")}@font-face{font-family:'Merriweather Sans';font-style:normal;font-weight:700;src:local("Merriweather Sans Bold"),local(MerriweatherSans-Bold),url(//fonts.gstatic.com/s/merriweathersans/v5/6LmGj5dOJopQKEkt88GowQfd-b-I5PxxcmB4_-MNcqw.woff) format("woff")}@font-face{font-family:'Merriweather Sans';font-style:normal;font-weight:800;src:local("Merriweather Sans ExtraBold"),local(MerriweatherSans-ExtraBold),url(//fonts.gstatic.com/s/merriweathersans/v5/6LmGj5dOJopQKEkt88GowWT7sFQ1Iz1BbpcuCPlgc9Q.woff) format("woff")}@font-face{font-family:'Merriweather Sans';font-style:italic;font-weight:300;src:local("Merriweather Sans Light Italic"),local(MerriweatherSans-LightItalic),url(//fonts.gstatic.com/s/merriweathersans/v5/nAqt4hiqwq3tzCecpgPmVX9UU5BmOJGkLxUCVv5VXdc.woff) format("woff")}@font-face{font-family:'Merriweather Sans';font-style:italic;font-weight:400;src:local("Merriweather Sans Italic"),local(MerriweatherSans-Italic),url(//fonts.gstatic.com/s/merriweathersans/v5/3Mz4hOHzs2npRMG3B1ascf0KIgDhPIHb_R-SWdtqte8.woff) format("woff")}@font-face{font-family:'Merriweather Sans';font-style:italic;font-weight:700;src:local("Merriweather Sans Bold Italic"),local(MerriweatherSans-BoldItalic),url(//fonts.gstatic.com/s/merriweathersans/v5/nAqt4hiqwq3tzCecpgPmVYM8pfYvjMoOxygpzLVILAs.woff) format("woff")}@font-face{font-family:'icons';src:url(/fonts/icons.eot?9273991);src:url(/fonts/icons.eot?9273991#iefix) format("embedded-opentype"),url(/fonts/icons.woff?9273991) format("woff"),url(/fonts/icons.ttf?9273991) format("truetype"),url(/fonts/icons.svg?9273991#icons) format("svg");font-weight:400;font-style:normal}[class^="icon-"]:before{font-family:"icons";font-style:normal;font-weight:400;speak:none;display:inline-block;text-decoration:inherit;width:1em;margin-right:.2em;text-align:center;font-variant:normal;text-transform:none;line-height:1em;margin-left:.2em;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}.icon-arrow-right:before{content:'\e807'}.icon-rss:before{content:'\e808'}body{font:300 1em / 1.5em 'Merriweather Sans',sans-serif;color:#595B66}a{color:inherit;text-decoration:none;font-weight:400}h1,h2{text-rendering:optimizeLegibility;color:#1F2026}h2 a{font-weight:inherit}h1{font-size:2em;line-height:1em;margin:2em 0 -.5em}h2{font-size:1.75em;line-height:1.143em;margin:2.286em 0 -.571em}p{margin:2em auto}i{font-weight:400;font-style:italic;color:#363740}img{display:block;max-width:100%;height:auto;margin:2.5em auto}body{background:#fff}.inner{max-width:48em;margin:0 auto;padding:0 1em}#wrapper{position:relative;box-sizing:border-box;width:100%;min-height:100vh;padding-bottom:6em;background:#F2F3F5}#push{transform:translate3d(0,0,0);transform-style:preserve-3d;opacity:1}#nav{position:relative;background:#fff;z-index:70;transform:translate3d(0,0,0);transform-style:preserve-3d;opacity:1}#nav:after{clear:both;content:'';display:table}#nav .nav-logo{float:left;height:2em;padding:1em;max-width:50%}#nav .nav-logo img{width:auto;max-width:none;height:2em;margin:0;border-radius:5px}#nav .nav-menu{float:right}#nav .nav-menu:after{clear:both;content:'';display:table}#nav .nav-menu a{display:block;width:1em;height:1em;line-height:1em;padding:1.5em;text-align:center;float:left}#nav .nav-menu a i:before{margin:auto}.overlay{display:none;position:fixed;left:0;top:0;width:100%;height:100%;z-index:80;display:none}.overlay:before{content:'';position:absolute;left:0;top:0;width:100%;height:100%;background:#1F2026;opacity:0;transform-style:preserve-3d}#header{position:relative;padding:4em 0}#header .inner{position:relative;z-index:2}#header .header-title{display:block;text-align:center}#header .header-name{font-weight:700;letter-spacing:-1px;display:block;line-height:1em;font-size:2em;text-decoration:none;color:#1F2026;padding:0;margin:0}#header.has-cover .header-name{color:#fff}#header .header-description{display:block;margin:1em auto 0;color:#9D9FA6;position:relative;font-weight:300}#header .header-description:after{content:'';position:absolute;height:1px;width:100px;margin-left:-50px;left:50%;top:-.5em;background:#D4D5D9}#header.has-cover .header-description{color:#fff}#header.has-cover .header-description:after{background:#fff}#header .header-cover{position:absolute;width:100%;height:100%;top:0;left:0;margin-top:-4em;padding:4em 0;background:no-repeat fixed center 100% / cover;z-index:1}#header .header-cover:before{content:'';position:absolute;width:100%;height:100%;left:0;top:0;background:rgba(0,0,0,0.2)}#header .header-cover:after{content:'';position:absolute;width:100%;left:0;bottom:0;border-bottom:4px solid #36D995}#footer{position:absolute;width:100%;left:0;bottom:0;font-size:.75em;line-height:1.334em;background:#1F2026;color:#737580;z-index:20;transform:translate3d(0,0,0);transform-style:preserve-3d;opacity:1}#footer a{color:#9D9FA6;font-weight:400}#footer .credits{text-align:center;font-size:.75em;line-height:1.334em;padding:2.667em;overflow:auto}#footer .credits span{display:block}#footer .credits .credits-theme{float:left}#footer .credits .credits-software{float:right}.post{position:relative;z-index:20}.post .post-image{display:block;margin:0;padding:0}.post .post-image img{display:block;width:100%;height:auto;margin:0;padding:0}.post .post-meta{display:block;font-size:.75em;line-height:1.334em;font-weight:400;margin-bottom:1.334em}.post .post-title{position:relative;color:#000;font-size:2em;line-height:1.375em;font-weight:800;text-indent:-1px;margin:.25em 0 .75em}.post .post-title:before{content:'';position:absolute;left:0;bottom:-.334em;width:1em;margin-bottom:-2px;border-bottom:4px solid #36D995}.post .post-title a{text-decoration:none;color:inherit;font-weight:inherit}#post-index{position:relative;max-width:1200px;margin:0 auto 4em;padding:.5em;z-index:10}@keyframes fade{0%{transform:translate3d(0,3em,0);opacity:0}100%{transform:translate3d(0,0,0);opacity:1}}.post-list{position:relative}.post-list .post{float:left;width:33.3%;transform:translate3d(0,3em,0);transform-style:preserve-3d;opacity:0;animation:fade ease-out .5s forwards;animation-delay:1.4s}@media only screen and (max-width: 50em){.post-list .post{width:49.9%}}@media only screen and (max-width: 30em){.post-list .post{width:100%;float:none}}.post-list .post:nth-child(1){animation-delay:.1s}.post-list .post:nth-child(2){animation-delay:.2s}.post-list .post:nth-child(3){animation-delay:.3s}.post-list .post:nth-child(4){animation-delay:.4s}.post-list .post:nth-child(5){animation-delay:.5s}.post-list .post:nth-child(6){animation-delay:.6s}.post-list .post:nth-child(7){animation-delay:.7s}.post-list .post:nth-child(8){animation-delay:.8s}.post-list .post:nth-child(9){animation-delay:.9s}.post-list .post .inner{padding:2em;margin:.5em;max-width:none;background:#fff;box-sizing:border-box;transform:scale(1);transform-style:preserve-3d}@media only screen and (max-width: 50em){.post-list .post .inner{padding:1em}}.post-list .post .post-link{position:absolute;left:0;top:0;width:100%;height:100%;z-index:10}.post-list .post .post-image{position:relative;margin:-2em -2em 0;overflow:hidden;background:#36D995}@media only screen and (max-width: 50em){.post-list .post .post-image{margin:-1em -1em 0}}.post-list .post .post-image img{transform:scale(1);transform-style:preserve-3d;opacity:1}.post-list .post .post-image:after{content:'';position:absolute;left:-5%;bottom:-2.5em;width:110%;height:4em;background:#fff;border-top:4px solid #36D995;box-shadow:0 0 2em rgba(0,0,0,0.2);transform:rotate(5deg)}.post-list .post .post-title{font-size:1.5em;line-height:1.167em}.post-list .post .post-excerpt{margin:0}.post-list .post .post-more{display:block;margin-top:1.5em}.post-list .post .post-more a{display:inline-block;font-size:.875em;line-height:1.143em;font-weight:400;color:#363740}.post-list .post .post-more a i{color:#2DB77E}.pagination{min-height:3em;margin:4em auto 2em;padding:0;position:relative}.pagination .pagination-item{position:relative;display:block;height:3em;line-height:3em;padding:0 1em;text-align:center;text-decoration:none;font-weight:700;color:#363740;border:1px solid #36D995;border-radius:4em;z-index:60}.pagination .pagination-item i{position:relative}@media only screen and (max-width: 30em){.pagination .pagination-item{width:4em;height:4em;line-height:4em;margin-top:-.5em;padding:0!important}.pagination .pagination-item i{font-size:1.5em}.pagination .pagination-item>span{display:none}}.pagination .pagination-prev{float:right}.pagination .pagination-prev i{right:-.05em}.pagination .pagination-info{display:block;left:0;top:0;height:3em;line-height:3em;position:absolute;text-align:center;width:100%;z-index:50;color:#9D9FA6}#loader-wrapper{position:fixed;top:0;left:0;width:100%;height:100%;z-index:1000}#loader{display:block;position:relative;left:50%;top:50%;width:150px;height:150px;margin:-75px 0 0 -75px;border-radius:50%;border:3px solid transparent;border-top-color:#36D995;animation:spin 2s linear infinite}#loader:before{content:"";position:absolute;top:5px;left:5px;right:5px;bottom:5px;border-radius:50%;border:3px solid transparent;border-top-color:#2DB77E;animation:spin 3s linear infinite}#loader:after{content:"";position:absolute;top:15px;left:15px;right:15px;bottom:15px;border-radius:50%;border:3px solid transparent;border-top-color:#D4D5D9;animation:spin 1.5s linear infinite}@keyframes spin{0%{transform:rotate(0deg)}100%{transform:rotate(360deg)}}
+</style>
+
+
+    </head>
+    <body class="home-template">
+      <div id="loader-wrapper">
+        <div id="loader"></div>
+      </div>
+      <section id="wrapper" style="display: none;">
+        <div id="ajax-container">
+          <nav id="nav" class="nav">
+            <div class="nav-logo">
+              <a href="http://www.muller.tech/">
+      			  
+      			  	<img src="/images/logo.png" alt="Logo"/>
+      			  
+              </a>
+            </div>
+            <div class="nav-menu">
+              <a class="rss" href="">
+                <i class="icon-rss"></i>
+              </a>
+                
+                <a class="menu" data-action="toc" data-target="toc"><i class="icon-location"></i></a>
+                
+                
+            </div>
+          </nav>
+
+
+<main class="content" role="main">
+	<article class="post">
+		<div class="inner">
+
+			<div id="push">
+
+  			<header class="post-header">
+  				<span class="post-meta">
+						<span class="post-date">29 Nov 2017</span> <span class="reading-time">| <span class="estimated-reading-time">4 min.</span> (<span class="word-count">764</span> words)</span></span>
+  				</span>
+  				<div class="clear"></div>
+  				<h1 class="post-title">Angular 5 - Tabs</h1>
+  			</header>
+
+  			<section class="post-content">
+  				
+
+<p>In this post you will learn how to create a tab component with the following features:</p>
+
+<ul>
+<li>Resize of the tab on window resize and on tab addition / deletion.</li>
+<li>Two modes: deletion of tabs allowed / not allowed.</li>
+<li>The text in the tab needs to truncate according to the tab&rsquo;s size.</li>
+<li>The active tab needs to be highlighted.</li>
+</ul>
+
+<p>Take a look at the demo:
+<a href="http://www.muller.tech/hopla-tabs/">http://www.muller.tech/hopla-tabs/</a></p>
+
+<p>If you are in a hurry, you can checkout the source code here: <a href="https://github.com/HoplaGeiss/hopla-tabs">https://github.com/HoplaGeiss/hopla-tabs</a></p>
+
+<p>Let&rsquo;s dive in!</p>
+
+<h3 id="tabs-container-component">Tabs container component</h3>
+<div class="highlight" style="background: #272822"><pre style="line-height: 125%"><span></span><span style="color: #a6e22e">.wrapper</span><span style="color: #f8f8f2">{</span>
+  <span style="color: #f92672">border-bottom</span><span style="color: #a6e22e">:</span> <span style="color: #f92672">1px</span> <span style="color: #f92672">solid</span> <span style="color: #f92672">grey;</span>
+  <span style="color: #f92672">width</span><span style="color: #a6e22e">:</span> <span style="color: #f92672">100</span><span style="color: #960050; background-color: #1e0010">%</span><span style="color: #f92672">;</span>
+  <span style="color: #f92672">display</span><span style="color: #a6e22e">:</span> <span style="color: #f92672">block;</span>
+  <span style="color: #f92672">overflow</span><span style="color: #a6e22e">:</span> <span style="color: #f92672">hidden;</span>
+<span style="color: #f8f8f2">}</span>
+</pre></div>
+<div class="highlight" style="background: #272822"><pre style="line-height: 125%"><span></span><span style="color: #75715e">// ./tab/tab.component.ts</span>
+<span style="color: #66d9ef">import</span> <span style="color: #f8f8f2">{</span> <span style="color: #a6e22e">Component</span><span style="color: #f8f8f2">,</span> <span style="color: #a6e22e">Input</span><span style="color: #f8f8f2">,</span> <span style="color: #a6e22e">AfterViewChecked</span><span style="color: #f8f8f2">,</span> <span style="color: #a6e22e">OnInit</span><span style="color: #f8f8f2">,</span> <span style="color: #a6e22e">ElementRef</span><span style="color: #f8f8f2">,</span> <span style="color: #a6e22e">ChangeDetectorRef</span><span style="color: #f8f8f2">,</span> <span style="color: #a6e22e">OnChanges</span> <span style="color: #f8f8f2">}</span> <span style="color: #a6e22e">from</span> <span style="color: #e6db74">&#39;@angular/core&#39;</span><span style="color: #f8f8f2">;</span>
+
+<span style="color: #66d9ef">@Component</span><span style="color: #f8f8f2">({</span>
+  <span style="color: #a6e22e">selector</span><span style="color: #f92672">:</span> <span style="color: #e6db74">&#39;app-tabs&#39;</span><span style="color: #f8f8f2">,</span>
+  <span style="color: #a6e22e">styleUrls</span><span style="color: #f92672">:</span> <span style="color: #f8f8f2">[</span><span style="color: #e6db74">&#39;./tabs.component.scss&#39;</span><span style="color: #f8f8f2">],</span>
+  <span style="color: #a6e22e">template</span><span style="color: #f92672">:</span> <span style="color: #e6db74">`</span>
+<span style="color: #e6db74">    &lt;div class=&#39;wrapper&#39; fxLayout=&#39;row&#39; fxLayoutAlign=&#39;start stretch&#39;&gt;</span>
+<span style="color: #e6db74">      &lt;div *ngFor=&#39;let tab of tabs; let i = index&#39; (click)=&#39;selectTab(i)&#39;&gt;</span>
+<span style="color: #e6db74">        &lt;app-tab [tab]=&#39;tab&#39; [active]=&#39;i === activeTab&#39; (closeEvent)=&#39;closeTab(i)&#39;</span>
+<span style="color: #e6db74">          [closeAllowed]=&#39;closeTabsAllowed&#39; [width]=&#39;tabsWidth&#39;&gt;</span>
+<span style="color: #e6db74">        &lt;/app-tab&gt;</span>
+<span style="color: #e6db74">      &lt;/div&gt;</span>
+<span style="color: #e6db74">    &lt;/div&gt;</span>
+<span style="color: #e6db74">  `</span>
+<span style="color: #f8f8f2">})</span>
+<span style="color: #66d9ef">export</span> <span style="color: #66d9ef">class</span> <span style="color: #a6e22e">TabsComponent</span> <span style="color: #66d9ef">implements</span> <span style="color: #a6e22e">OnInit</span><span style="color: #f8f8f2">,</span> <span style="color: #a6e22e">AfterViewChecked</span><span style="color: #f8f8f2">,</span> <span style="color: #a6e22e">OnChanges</span> <span style="color: #f8f8f2">{</span>
+  <span style="color: #66d9ef">@Input</span><span style="color: #f8f8f2">()</span> <span style="color: #a6e22e">tabs</span>: <span style="color: #66d9ef">Array</span><span style="color: #f92672">&lt;</span><span style="color: #a6e22e">any</span><span style="color: #f92672">&gt;</span><span style="color: #f8f8f2">;</span>
+  <span style="color: #66d9ef">@Input</span><span style="color: #f8f8f2">()</span> <span style="color: #a6e22e">closeTabsAllowed</span>: <span style="color: #66d9ef">boolean</span><span style="color: #f8f8f2">;</span>
+
+  <span style="color: #a6e22e">activeTab</span> <span style="color: #f92672">=</span> <span style="color: #ae81ff">0</span><span style="color: #f8f8f2">;</span>
+  <span style="color: #a6e22e">wrapper</span>: <span style="color: #66d9ef">any</span><span style="color: #f8f8f2">;</span>
+  <span style="color: #a6e22e">wrapperWidth</span>: <span style="color: #66d9ef">number</span><span style="color: #f8f8f2">;</span>
+  <span style="color: #a6e22e">tabsWidth</span>: <span style="color: #66d9ef">number</span><span style="color: #f8f8f2">;</span>
+  <span style="color: #a6e22e">minimumTabs</span> <span style="color: #f92672">=</span> <span style="color: #ae81ff">8</span><span style="color: #f8f8f2">;</span>
+
+  <span style="color: #66d9ef">constructor</span> <span style="color: #f8f8f2">(</span>
+    <span style="color: #66d9ef">private</span> <span style="color: #a6e22e">elementRef</span>: <span style="color: #66d9ef">ElementRef</span><span style="color: #f8f8f2">,</span>
+    <span style="color: #66d9ef">private</span> <span style="color: #a6e22e">changeDetectorRef</span>: <span style="color: #66d9ef">ChangeDetectorRef</span>
+  <span style="color: #f8f8f2">)</span> <span style="color: #f8f8f2">{}</span>
+
+  <span style="color: #a6e22e">ngOnInit() {</span>
+    <span style="color: #66d9ef">this</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">wrapper</span> <span style="color: #f92672">=</span> <span style="color: #66d9ef">this</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">elementRef</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">nativeElement</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">querySelector</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;.wrapper&#39;</span><span style="color: #f8f8f2">);</span>
+  <span style="color: #f8f8f2">}</span>
+
+  <span style="color: #75715e">// On resize, recalculate the size of tabs</span>
+  <span style="color: #a6e22e">ngAfterViewChecked() {</span>
+    <span style="color: #66d9ef">if</span> <span style="color: #f8f8f2">(</span><span style="color: #66d9ef">this</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">wrapper</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">offsetWidth</span> <span style="color: #f92672">!==</span> <span style="color: #ae81ff">0</span> <span style="color: #f92672">&amp;&amp;</span> <span style="color: #66d9ef">this</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">wrapper</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">offsetWidth</span> <span style="color: #f92672">!==</span> <span style="color: #66d9ef">this</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">wrapperWidth</span><span style="color: #f8f8f2">)</span> <span style="color: #f8f8f2">{</span>
+      <span style="color: #66d9ef">this</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">wrapperWidth</span> <span style="color: #f92672">=</span> <span style="color: #66d9ef">this</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">wrapper</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">offsetWidth</span><span style="color: #f8f8f2">;</span>
+
+      <span style="color: #66d9ef">this</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">setTabSize</span><span style="color: #f8f8f2">();</span>
+    <span style="color: #f8f8f2">}</span>
+  <span style="color: #f8f8f2">}</span>
+
+  <span style="color: #a6e22e">ngOnChanges() {</span>
+    <span style="color: #66d9ef">if</span> <span style="color: #f8f8f2">(</span><span style="color: #66d9ef">this</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">tabs</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">length</span> <span style="color: #f92672">&gt;</span> <span style="color: #ae81ff">0</span><span style="color: #f8f8f2">)</span> <span style="color: #66d9ef">this</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">setTabSize</span><span style="color: #f8f8f2">();</span>
+  <span style="color: #f8f8f2">}</span>
+
+  <span style="color: #a6e22e">selectTab</span> <span style="color: #f92672">=</span> <span style="color: #f8f8f2">(</span><span style="color: #a6e22e">index</span>: <span style="color: #66d9ef">number</span><span style="color: #f8f8f2">)</span> <span style="color: #f92672">=&gt;</span> <span style="color: #f8f8f2">{</span>
+    <span style="color: #66d9ef">this</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">activeTab</span> <span style="color: #f92672">=</span> <span style="color: #a6e22e">index</span><span style="color: #f8f8f2">;</span>
+  <span style="color: #f8f8f2">}</span>
+
+  <span style="color: #a6e22e">closeTab</span> <span style="color: #f92672">=</span> <span style="color: #f8f8f2">(</span><span style="color: #a6e22e">index</span>: <span style="color: #66d9ef">number</span><span style="color: #f8f8f2">)</span> <span style="color: #f92672">=&gt;</span> <span style="color: #f8f8f2">{</span>
+    <span style="color: #66d9ef">this</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">tabs</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">splice</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">index</span><span style="color: #f8f8f2">,</span> <span style="color: #ae81ff">1</span><span style="color: #f8f8f2">);</span> <span style="color: #75715e">// Remove the tab.</span>
+
+    <span style="color: #75715e">// Change in activeTab</span>
+    <span style="color: #66d9ef">if</span> <span style="color: #f8f8f2">(</span><span style="color: #a6e22e">index</span> <span style="color: #f92672">===</span> <span style="color: #66d9ef">this</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">activeTab</span><span style="color: #f8f8f2">)</span> <span style="color: #66d9ef">this</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">activeTab</span> <span style="color: #f92672">=</span> <span style="color: #ae81ff">0</span><span style="color: #f8f8f2">;</span>
+    <span style="color: #66d9ef">if</span> <span style="color: #f8f8f2">(</span><span style="color: #a6e22e">index</span> <span style="color: #f92672">&lt;</span> <span style="color: #66d9ef">this</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">activeTab</span><span style="color: #f8f8f2">)</span> <span style="color: #66d9ef">this</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">activeTab</span><span style="color: #f92672">--</span><span style="color: #f8f8f2">;</span>
+
+    <span style="color: #66d9ef">this</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">setTabSize</span><span style="color: #f8f8f2">();</span> <span style="color: #75715e">// Resize the tabs</span>
+  <span style="color: #f8f8f2">}</span>
+
+  <span style="color: #a6e22e">setTabSize</span> <span style="color: #f92672">=</span> <span style="color: #f8f8f2">()</span> <span style="color: #f92672">=&gt;</span> <span style="color: #f8f8f2">{</span>
+    <span style="color: #66d9ef">const</span> <span style="color: #a6e22e">numberTab</span> <span style="color: #f92672">=</span> <span style="color: #66d9ef">this</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">tabs</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">length</span> <span style="color: #f92672">&gt;</span> <span style="color: #66d9ef">this</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">minimumTabs</span> <span style="color: #f92672">?</span> <span style="color: #66d9ef">this</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">tabs.length</span> : <span style="color: #66d9ef">this.minimumTabs</span><span style="color: #f8f8f2">;</span>
+    <span style="color: #66d9ef">this</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">tabsWidth</span> <span style="color: #f92672">=</span> <span style="color: #66d9ef">this</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">wrapperWidth</span> <span style="color: #f92672">/</span> <span style="color: #a6e22e">numberTab</span><span style="color: #f8f8f2">;</span>
+    <span style="color: #66d9ef">this</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">changeDetectorRef</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">detectChanges</span><span style="color: #f8f8f2">();</span>
+  <span style="color: #f8f8f2">}</span>
+<span style="color: #f8f8f2">}</span>
+</pre></div>
+
+<p>A couple things there:</p>
+
+<ul>
+<li><code>setTabSize</code> is the method used to.. set the width of the tabs! It is called on resize, on tab deletion and on tab addition. By default we base the width of the tabs on 8 being displayed full width on the screen, if we have more then 8 tabs, the tabs resize.</li>
+<li><code>closeTab</code> is a little tricky. You need to think of changing the index of the selected tab according to the position of the deleted tab.</li>
+</ul>
+
+<p>You will notice the template makes use of the <code>app-tab</code> component. Let&rsquo;s have a look at this one now!</p>
+
+<h3 id="tab-component">Tab component</h3>
+<div class="highlight" style="background: #272822"><pre style="line-height: 125%"><span></span><span style="color: #a6e22e">.tab</span><span style="color: #f8f8f2">{</span>
+  <span style="color: #f92672">box-sizing</span><span style="color: #a6e22e">:</span> <span style="color: #f92672">border-box;</span>
+  <span style="color: #f92672">position</span><span style="color: #a6e22e">:</span> <span style="color: #f92672">relative;</span>
+  <span style="color: #f92672">border-bottom</span><span style="color: #a6e22e">:</span> <span style="color: #f92672">2px</span> <span style="color: #f92672">solid</span> <span style="color: #f92672">white;</span>
+  <span style="color: #f92672">margin-bottom</span><span style="color: #a6e22e">:</span> <span style="color: #f92672">1px;</span>
+  <span style="color: #f92672">padding</span><span style="color: #a6e22e">:</span> <span style="color: #f92672">0</span> <span style="color: #f92672">10px;</span>
+
+  <span style="color: #a6e22e">.text</span><span style="color: #f8f8f2">{</span>
+    <span style="color: #f92672">width</span><span style="color: #a6e22e">:</span> <span style="color: #f92672">50px;</span>
+    <span style="color: #f92672">white-space</span><span style="color: #a6e22e">:</span> <span style="color: #f92672">nowrap;</span>
+    <span style="color: #f92672">overflow</span><span style="color: #a6e22e">:</span> <span style="color: #f92672">hidden;</span>
+  <span style="color: #f8f8f2">}</span>
+
+  <span style="color: #66d9ef">&amp;</span><span style="color: #a6e22e">.active</span><span style="color: #f8f8f2">{</span>
+    <span style="color: #f92672">border-bottom-color</span><span style="color: #a6e22e">:</span> <span style="color: #f8f8f2">#ee7175</span><span style="color: #f92672">;</span>
+  <span style="color: #f8f8f2">}</span>
+
+  <span style="color: #66d9ef">&amp;</span><span style="color: #a6e22e">:not</span><span style="color: #f92672">(</span><span style="color: #a6e22e">.active</span><span style="color: #f92672">)</span><span style="color: #a6e22e">:hover</span><span style="color: #f8f8f2">{</span>
+    <span style="color: #f92672">cursor</span><span style="color: #a6e22e">:</span> <span style="color: #f92672">pointer;</span>
+    <span style="color: #f92672">border-bottom-color</span><span style="color: #a6e22e">:</span> <span style="color: #f8f8f2">#d2d7d3</span><span style="color: #f92672">;</span>
+  <span style="color: #f8f8f2">}</span>
+
+  <span style="color: #66d9ef">&amp;</span><span style="color: #a6e22e">:hover</span><span style="color: #f8f8f2">{</span>
+    <span style="color: #a6e22e">.close-icon</span><span style="color: #f8f8f2">{</span>
+      <span style="color: #f92672">opacity</span><span style="color: #a6e22e">:</span> <span style="color: #f92672">1;</span>
+    <span style="color: #f8f8f2">}</span>
+  <span style="color: #f8f8f2">}</span>
+
+  <span style="color: #a6e22e">.close-icon</span><span style="color: #f8f8f2">{</span>
+    <span style="color: #f92672">z-index</span><span style="color: #a6e22e">:</span> <span style="color: #f92672">2;</span>
+    <span style="color: #f92672">position</span><span style="color: #a6e22e">:</span> <span style="color: #f92672">absolute;</span>
+    <span style="color: #f92672">right</span><span style="color: #a6e22e">:</span> <span style="color: #f92672">0px;</span>
+    <span style="color: #f92672">top</span><span style="color: #a6e22e">:</span> <span style="color: #f92672">0px;</span>
+    <span style="color: #f92672">font-size</span><span style="color: #a6e22e">:</span> <span style="color: #f92672">1em;</span>
+    <span style="color: #f92672">opacity</span><span style="color: #a6e22e">:</span> <span style="color: #f92672">0;</span>
+    <span style="color: #f92672">cursor</span><span style="color: #a6e22e">:</span> <span style="color: #f92672">pointer;</span>
+    <span style="color: #f92672">color</span><span style="color: #a6e22e">:</span> <span style="color: #f8f8f2">#d2d7d3</span><span style="color: #f92672">;</span>
+
+    <span style="color: #66d9ef">&amp;</span><span style="color: #a6e22e">:hover</span><span style="color: #f8f8f2">{</span>
+      <span style="color: #f92672">color</span><span style="color: #a6e22e">:</span> <span style="color: #f8f8f2">#57a1c6</span><span style="color: #f92672">;</span>
+    <span style="color: #f8f8f2">}</span>
+  <span style="color: #f8f8f2">}</span>
+<span style="color: #f8f8f2">}</span>
+</pre></div>
+<div class="highlight" style="background: #272822"><pre style="line-height: 125%"><span></span><span style="color: #66d9ef">import</span> <span style="color: #f8f8f2">{</span> <span style="color: #a6e22e">Component</span><span style="color: #f8f8f2">,</span> <span style="color: #a6e22e">Input</span><span style="color: #f8f8f2">,</span> <span style="color: #a6e22e">Output</span><span style="color: #f8f8f2">,</span> <span style="color: #a6e22e">EventEmitter</span><span style="color: #f8f8f2">,</span> <span style="color: #a6e22e">OnChanges</span><span style="color: #f8f8f2">,</span> <span style="color: #a6e22e">ElementRef</span><span style="color: #f8f8f2">,</span> <span style="color: #a6e22e">OnInit</span> <span style="color: #f8f8f2">}</span> <span style="color: #a6e22e">from</span> <span style="color: #e6db74">&#39;@angular/core&#39;</span><span style="color: #f8f8f2">;</span>
+
+<span style="color: #66d9ef">@Component</span><span style="color: #f8f8f2">({</span>
+  <span style="color: #a6e22e">selector</span><span style="color: #f92672">:</span> <span style="color: #e6db74">&#39;app-tab&#39;</span><span style="color: #f8f8f2">,</span>
+  <span style="color: #a6e22e">styleUrls</span><span style="color: #f92672">:</span> <span style="color: #f8f8f2">[</span><span style="color: #e6db74">&#39;./tab.component.scss&#39;</span><span style="color: #f8f8f2">],</span>
+  <span style="color: #a6e22e">template</span><span style="color: #f92672">:</span> <span style="color: #e6db74">`</span>
+<span style="color: #e6db74">    &lt;div class=&#39;tab&#39; [ngClass]=&#39;{&quot;active&quot;: active}&#39;&gt;</span>
+<span style="color: #e6db74">      &lt;div class=&#39;text&#39;&gt;{{tab.name}}&lt;/div&gt;</span>
+<span style="color: #e6db74">      &lt;i *ngIf=&#39;closeAllowed&#39; class=&#39;material-icons close-icon&#39; (click)=&#39;close($event)&#39;&gt;clear&lt;/i&gt;</span>
+<span style="color: #e6db74">    &lt;/div&gt;</span>
+<span style="color: #e6db74">  `</span>
+<span style="color: #f8f8f2">})</span>
+<span style="color: #66d9ef">export</span> <span style="color: #66d9ef">class</span> <span style="color: #a6e22e">TabComponent</span> <span style="color: #66d9ef">implements</span> <span style="color: #a6e22e">OnChanges</span> <span style="color: #f8f8f2">{</span>
+  <span style="color: #66d9ef">@Input</span><span style="color: #f8f8f2">()</span> <span style="color: #a6e22e">tab</span>: <span style="color: #66d9ef">any</span><span style="color: #f8f8f2">;</span>
+  <span style="color: #66d9ef">@Input</span><span style="color: #f8f8f2">()</span> <span style="color: #a6e22e">active</span>: <span style="color: #66d9ef">boolean</span><span style="color: #f8f8f2">;</span>
+  <span style="color: #66d9ef">@Input</span><span style="color: #f8f8f2">()</span> <span style="color: #a6e22e">closeAllowed</span>: <span style="color: #66d9ef">boolean</span><span style="color: #f8f8f2">;</span>
+  <span style="color: #66d9ef">@Input</span><span style="color: #f8f8f2">()</span> <span style="color: #a6e22e">width</span>: <span style="color: #66d9ef">number</span><span style="color: #f8f8f2">;</span>
+  <span style="color: #66d9ef">@Output</span><span style="color: #f8f8f2">()</span> <span style="color: #a6e22e">closeEvent</span>: <span style="color: #66d9ef">EventEmitter</span><span style="color: #f92672">&lt;</span><span style="color: #a6e22e">any</span><span style="color: #f92672">&gt;</span> <span style="color: #f92672">=</span> <span style="color: #66d9ef">new</span> <span style="color: #a6e22e">EventEmitter</span><span style="color: #f8f8f2">();</span>
+
+  <span style="color: #66d9ef">constructor</span> <span style="color: #f8f8f2">(</span>
+    <span style="color: #66d9ef">private</span> <span style="color: #a6e22e">elementRef</span>: <span style="color: #66d9ef">ElementRef</span><span style="color: #f8f8f2">,</span>
+  <span style="color: #f8f8f2">)</span> <span style="color: #f8f8f2">{}</span>
+
+  <span style="color: #a6e22e">ngOnChanges() {</span>
+    <span style="color: #66d9ef">const</span> <span style="color: #a6e22e">tabElement</span> <span style="color: #f92672">=</span> <span style="color: #66d9ef">this</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">elementRef</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">nativeElement</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">querySelector</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;.tab&#39;</span><span style="color: #f8f8f2">);</span>
+    <span style="color: #66d9ef">const</span> <span style="color: #a6e22e">textElement</span> <span style="color: #f92672">=</span> <span style="color: #66d9ef">this</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">elementRef</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">nativeElement</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">querySelector</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;.text&#39;</span><span style="color: #f8f8f2">);</span>
+
+    <span style="color: #66d9ef">if</span> <span style="color: #f8f8f2">(</span><span style="color: #a6e22e">tabElement</span><span style="color: #f8f8f2">)</span> <span style="color: #f8f8f2">{</span>
+      <span style="color: #a6e22e">tabElement</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">style</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">width</span> <span style="color: #f92672">=</span> <span style="color: #66d9ef">this</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">width</span> <span style="color: #f92672">+</span> <span style="color: #e6db74">&#39;px&#39;</span><span style="color: #f8f8f2">;</span>
+      <span style="color: #a6e22e">textElement</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">style</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">width</span> <span style="color: #f92672">=</span> <span style="color: #a6e22e">closeAllowed</span> <span style="color: #f92672">?</span> <span style="color: #66d9ef">this</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">width</span> <span style="color: #f92672">-</span> <span style="color: #ae81ff">28</span> <span style="color: #f92672">+</span> <span style="color: #e6db74">&#39;px&#39;</span> <span style="color: #f92672">:</span> <span style="color: #66d9ef">this</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">width</span> <span style="color: #f92672">-</span> <span style="color: #ae81ff">5</span> <span style="color: #f92672">+</span> <span style="color: #e6db74">&#39;px&#39;</span><span style="color: #f8f8f2">;</span>
+      <span style="color: #a6e22e">tabElement</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">style</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">transition</span> <span style="color: #f92672">=</span> <span style="color: #e6db74">&#39;width 400ms&#39;</span><span style="color: #f8f8f2">;</span>
+    <span style="color: #f8f8f2">}</span>
+  <span style="color: #f8f8f2">}</span>
+
+  <span style="color: #a6e22e">close</span> <span style="color: #f92672">=</span> <span style="color: #f8f8f2">(</span><span style="color: #a6e22e">event</span><span style="color: #f8f8f2">)</span> <span style="color: #f92672">=&gt;</span> <span style="color: #f8f8f2">{</span>
+    <span style="color: #a6e22e">event</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">stopPropagation</span><span style="color: #f8f8f2">();</span>
+    <span style="color: #66d9ef">this</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">closeEvent</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">emit</span><span style="color: #f8f8f2">();</span>
+  <span style="color: #f8f8f2">}</span>
+<span style="color: #f8f8f2">}</span>
+</pre></div>
+
+<p>Here again some things to take note of:</p>
+
+<ul>
+<li>Based on <code>closeAllowed</code>, we display the little cross to close the tab or not.</li>
+<li>the <code>close</code> method uses <code>event.stopPropagation()</code>, that is important otherwise the click is picked up by the tab itself. ( the tab would become deleted and selected!)</li>
+<li>In the <code>ngOnChanges</code> updates the width of the tab and of the element inside. You will notice that when <code>closeAllowed</code> is true, the text element inside is a little smaller then the tab, that is to be able to fit the delete cross.</li>
+</ul>
+
+<p>To finish, find bellow an example of how this component can be used!</p>
+
+<h3 id="using-our-tabs">Using our tabs</h3>
+<div class="highlight" style="background: #272822"><pre style="line-height: 125%"><span></span><span style="color: #66d9ef">import</span> <span style="color: #f8f8f2">{</span> <span style="color: #a6e22e">Component</span> <span style="color: #f8f8f2">}</span> <span style="color: #a6e22e">from</span> <span style="color: #e6db74">&#39;@angular/core&#39;</span><span style="color: #f8f8f2">;</span>
+
+<span style="color: #66d9ef">@Component</span><span style="color: #f8f8f2">({</span>
+  <span style="color: #a6e22e">selector</span><span style="color: #f92672">:</span> <span style="color: #e6db74">&#39;app-root&#39;</span><span style="color: #f8f8f2">,</span>
+  <span style="color: #a6e22e">styleUrls</span><span style="color: #f92672">:</span> <span style="color: #f8f8f2">[</span><span style="color: #e6db74">&#39;./app.component.scss&#39;</span><span style="color: #f8f8f2">],</span>
+  <span style="color: #a6e22e">template</span><span style="color: #f92672">:</span> <span style="color: #e6db74">`</span>
+<span style="color: #e6db74">    &lt;app-tabs [tabs]=&#39;tabs&#39; [closeTabsAllowed]=&#39;true&#39;&gt;&lt;/app-tabs&gt;</span>
+
+<span style="color: #e6db74">    &lt;button (click)=&#39;addTab()&#39;&gt;Add Tab&lt;/button&gt;</span>
+<span style="color: #e6db74">  `</span>
+<span style="color: #f8f8f2">})</span>
+<span style="color: #66d9ef">export</span> <span style="color: #66d9ef">class</span> <span style="color: #a6e22e">AppComponent</span> <span style="color: #f8f8f2">{</span>
+  <span style="color: #a6e22e">tabs</span> <span style="color: #f92672">=</span> <span style="color: #f8f8f2">[</span>
+    <span style="color: #f8f8f2">{</span> <span style="color: #a6e22e">name</span><span style="color: #f92672">:</span> <span style="color: #e6db74">&#39;Super long tab&#39;</span> <span style="color: #f8f8f2">},</span>
+    <span style="color: #f8f8f2">{</span> <span style="color: #a6e22e">name</span><span style="color: #f92672">:</span> <span style="color: #e6db74">&#39;Tab2&#39;</span> <span style="color: #f8f8f2">},</span>
+    <span style="color: #f8f8f2">{</span> <span style="color: #a6e22e">name</span><span style="color: #f92672">:</span> <span style="color: #e6db74">&#39;Tab3&#39;</span> <span style="color: #f8f8f2">},</span>
+    <span style="color: #f8f8f2">{</span> <span style="color: #a6e22e">name</span><span style="color: #f92672">:</span> <span style="color: #e6db74">&#39;Tab4&#39;</span> <span style="color: #f8f8f2">},</span>
+    <span style="color: #f8f8f2">{</span> <span style="color: #a6e22e">name</span><span style="color: #f92672">:</span> <span style="color: #e6db74">&#39;Tab5&#39;</span> <span style="color: #f8f8f2">},</span>
+    <span style="color: #f8f8f2">{</span> <span style="color: #a6e22e">name</span><span style="color: #f92672">:</span> <span style="color: #e6db74">&#39;Tab6&#39;</span> <span style="color: #f8f8f2">},</span>
+    <span style="color: #f8f8f2">{</span> <span style="color: #a6e22e">name</span><span style="color: #f92672">:</span> <span style="color: #e6db74">&#39;Tab7&#39;</span> <span style="color: #f8f8f2">},</span>
+  <span style="color: #f8f8f2">];</span>
+
+  <span style="color: #a6e22e">index</span> <span style="color: #f92672">=</span> <span style="color: #ae81ff">8</span><span style="color: #f8f8f2">;</span>
+
+  <span style="color: #a6e22e">addTab</span> <span style="color: #f92672">=</span> <span style="color: #f8f8f2">()</span> <span style="color: #f92672">=&gt;</span> <span style="color: #f8f8f2">{</span>
+    <span style="color: #66d9ef">this</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">tabs</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">push</span><span style="color: #f8f8f2">({</span> <span style="color: #a6e22e">name</span><span style="color: #f92672">:</span> <span style="color: #e6db74">&#39;Tab&#39;</span> <span style="color: #f92672">+</span> <span style="color: #66d9ef">this</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">index</span> <span style="color: #f8f8f2">});</span>
+    <span style="color: #66d9ef">this</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">index</span><span style="color: #f92672">++</span><span style="color: #f8f8f2">;</span>
+    <span style="color: #66d9ef">this</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">tabs</span> <span style="color: #f92672">=</span> <span style="color: #66d9ef">this</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">tabs</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">slice</span><span style="color: #f8f8f2">();</span> <span style="color: #75715e">// hack for change detection;</span>
+  <span style="color: #f8f8f2">}</span>
+<span style="color: #f8f8f2">}</span>
+</pre></div>
+
+<p>Have a look here to see the source code: <a href="https://github.com/HoplaGeiss/hopla-tabs">https://github.com/HoplaGeiss/hopla-tabs</a></p>
+
+  			</section>
+
+  			<footer class="post-footer">
+  				<div class="post-tags">
+            
+            
+                <a href="http://www.muller.tech/tags/angular5/">angular5</a>
+            
+            
+  				</div>
+  				
+  			</footer>
+
+  			<aside class="post-comments">
+    
+    
+    <div id="disqus_thread"></div>
+    <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    
+    
+</aside>
+
+
+			</div>
+
+			<nav class="post-nav">
+				
+					<a class="post-nav-item post-nav-next" href="http://www.muller.tech/post/2017/11/30/angular5-search-filter/">
+						<section class="post-nav-teaser">
+							<span class="post-nav-icon"><i class="icon-arrow-left"></i></span>
+							<span class="post-nav-info">
+								<h4 class="post-nav-title">Angular 5 - Search directive to filter a list</h4>
+								<p class="post-nav-excerpt">Create search directive filtering a dynamic list with angular 5&hellip;</p>
+							</span>
+						</section>
+					</a>
+				
+				
+					<a class="post-nav-item post-nav-prev" href="http://www.muller.tech/post/2017/11/22/angular5-colour-scheme/">
+						<section class="post-nav-teaser">
+							<span class="post-nav-icon"><i class="icon-arrow-right"></i></span>
+							<span class="post-nav-info">
+								<h4 class="post-nav-title">Angular 5 - Colour Scheme directive</h4>
+								<p class="post-nav-excerpt">Create a dynamic colour scheme with angular 5&hellip;</p>
+							</span>
+						</section>
+					</a>
+				
+				<div class="clear"></div>
+			</nav>
+
+		</div>
+	</article>
+</main>
+
+<div id="body-class" style="display: none;"></div>
+<footer id="footer">
+	<section class="credits">
+		
+	</section>
+
+	<div id="sig" style="position: absolute; font-family: Helvetica, Verdana, Arial, Sans-Serif; font-size: 12px; color: #999999; bottom: 0; left: calc(50% - 145px);">
+	  <div style="position: relative; display: inline-block;">
+	    <span style="line-height: 30px;">
+	      <div style="display: inline-block; float: left;">
+	        <span style="font-weight: bold;">Gabriel Muller</span> - Full Stack Developer |
+	      </div>
+
+	      <a target="_blank" href="https://uk.linkedin.com/in/mullergab" style="position: relative;display: inline-block; text-decoration:none; float: left">
+	        <img src="http://www.muller.tech/images/linkedin.png" alt="linkedin" style="width: 20px; padding: 5px 10px; margin:0" />
+	      </a>
+	      <span style="float: left"> | </span>
+	      <a target="_blank" href="https://github.com/hoplageiss" style="position: relative;display: inline-block; text-decoration:none; float: left">
+	        <img src="http://www.muller.tech/images/github.png" alt="github" style="width: 20px; padding: 5px 10px; margin:0"/>
+	      </a>
+	    </span>
+	  </div>
+	</div>
+</footer>
+
+
+<div id="tocMenu" data-target="toc">
+    <div class="menu-header">
+        <span class="menu-label">Menu</span>
+        <a class="menu-close" data-action="toc" data-target="toc"></a>
+    </div>
+    <div id="toc" class="menu-list">
+        <nav id="TableOfContents">
+<ul>
+<li>
+<ul>
+<li>
+<ul>
+<li><a href="#tabs-container-component">Tabs container component</a></li>
+<li><a href="#tab-component">Tab component</a></li>
+<li><a href="#using-our-tabs">Using our tabs</a></li>
+</ul></li>
+</ul></li>
+</ul>
+</nav>
+    </div>
+</div>
+
+
+<div class="overlay"></div>
+</div>
+</section>
+
+<script async src="/js/main.js"></script>
+
+
+
+<script>
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+ga('create', 'UA-69583716-1', 'auto');
+ga('send', 'pageview');
+</script>
+
+
+
+
+<noscript><link rel="stylesheet" href="/css/main.css"></noscript>
+</body>
+</html>
+

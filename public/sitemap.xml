@@ -3,6 +3,26 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>http://www.muller.tech/post/2017/11/30/angular5-search-filter/</loc>
+    <lastmod>2017-11-30T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://www.muller.tech/post/2017/11/29/angular5-tabs/</loc>
+    <lastmod>2017-11-29T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://www.muller.tech/post/2017/11/22/angular5-colour-scheme/</loc>
+    <lastmod>2017-11-22T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://www.muller.tech/post/2017/11/22/angular5-unittest-ngonchanges/</loc>
+    <lastmod>2017-11-22T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
     <loc>http://www.muller.tech/post/2017/11/21/angular5-carousel/</loc>
     <lastmod>2017-11-21T00:00:00+00:00</lastmod>
   </url>
@@ -151,7 +171,7 @@
   
   <url>
     <loc>http://www.muller.tech/tags/angular5/</loc>
-    <lastmod>2017-11-21T00:00:00+00:00</lastmod>
+    <lastmod>2017-11-30T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -169,7 +189,7 @@
   
   <url>
     <loc>http://www.muller.tech/</loc>
-    <lastmod>2017-11-21T00:00:00+00:00</lastmod>
+    <lastmod>2017-11-30T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -187,7 +207,13 @@
   
   <url>
     <loc>http://www.muller.tech/post/</loc>
-    <lastmod>2017-11-21T00:00:00+00:00</lastmod>
+    <lastmod>2017-11-30T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://www.muller.tech/tags/scss/</loc>
+    <lastmod>2017-11-22T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   

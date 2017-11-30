@@ -6,10 +6,53 @@
     <description>Recent content in Posts on Gabriel Muller - JavaScript and Angular articles</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-gb</language>
-    <lastBuildDate>Tue, 21 Nov 2017 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Thu, 30 Nov 2017 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="http://www.muller.tech/post/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Angular 5 - Search directive to filter a list</title>
+      <link>http://www.muller.tech/post/2017/11/30/angular5-search-filter/</link>
+      <pubDate>Thu, 30 Nov 2017 00:00:00 +0000</pubDate>
+      
+      <guid>http://www.muller.tech/post/2017/11/30/angular5-search-filter/</guid>
+      <description>In this post you will learn how to create a search directive filtering a dynamic list with the following features:
+ The directive will have as input a list of items, the output will be a filtered list of items. The directive needs to be able to react to a change in the input.  Take a look at the demo: http://www.muller.tech/hopla-search/
+If you are in a hurry, you can checkout the source code here: https://github.</description>
+    </item>
+    
+    <item>
+      <title>Angular 5 - Tabs</title>
+      <link>http://www.muller.tech/post/2017/11/29/angular5-tabs/</link>
+      <pubDate>Wed, 29 Nov 2017 00:00:00 +0000</pubDate>
+      
+      <guid>http://www.muller.tech/post/2017/11/29/angular5-tabs/</guid>
+      <description>In this post you will learn how to create a tab component with the following features:
+ Resize of the tab on window resize and on tab addition / deletion. Two modes: deletion of tabs allowed / not allowed. The text in the tab needs to truncate according to the tab&amp;rsquo;s size. The active tab needs to be highlighted.  Take a look at the demo: http://www.muller.tech/hopla-tabs/
+If you are in a hurry, you can checkout the source code here: https://github.</description>
+    </item>
+    
+    <item>
+      <title>Angular 5 - Colour Scheme directive</title>
+      <link>http://www.muller.tech/post/2017/11/22/angular5-colour-scheme/</link>
+      <pubDate>Wed, 22 Nov 2017 00:00:00 +0000</pubDate>
+      
+      <guid>http://www.muller.tech/post/2017/11/22/angular5-colour-scheme/</guid>
+      <description>If you are developing a large application, chances are you already have thought of how to adapt the app&amp;rsquo;s colour scheme to the user. In this post you will discover just how to do this!
+Bacic implementation - static colour scheme The most basic implementation is to have a scss file with variables for your colours scheme.
+ $primary: #57a1c6; $highlight: #4fc3f7; $accent: #ee7175;  However that only works if you have a single colour scheme.</description>
+    </item>
+    
+    <item>
+      <title>Angular 5 - Unit Test ngOnChanges</title>
+      <link>http://www.muller.tech/post/2017/11/22/angular5-unittest-ngonchanges/</link>
+      <pubDate>Wed, 22 Nov 2017 00:00:00 +0000</pubDate>
+      
+      <guid>http://www.muller.tech/post/2017/11/22/angular5-unittest-ngonchanges/</guid>
+      <description>In this post you will learn how to unit test a component that uses ngOnChanges.
+Component under test import { Component, OnInit, OnChanges } from &amp;#39;@angular/core&amp;#39;; @Component({ selector: &amp;#39;hopla-component&amp;#39;, template: ` &amp;lt;div&amp;gt;Hopla Hopla&amp;lt;/div&amp;gt; ` }) export class HoplaComponent implements OnInit, OnChanges { @Input() data: Array&amp;lt;object&amp;gt;; ngOnInit(){ // do something } ngOnChanges(){ superFunction(data) } superFunction(input) =&amp;gt; { // do something with input } }  Unit test it(&amp;#39;OnChanges: updates the form with the site value&amp;#39;, () =&amp;gt; { const superFunctionSpy = spyOn(comp, &amp;#39;superFunction&amp;#39;); const data = [{value: 1}, {value: 2}] fixture.</description>
+    </item>
     
     <item>
       <title>Angular 5 carousel</title>
