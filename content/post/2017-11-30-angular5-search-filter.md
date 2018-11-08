@@ -6,7 +6,7 @@ tags:
 date: "2017-11-30"
 featured: false
 slug: angular5-search-filter
-image: /images/filter.jpg
+image: /images/search.png
 ---
 
 In this post you will learn how to create a search directive filtering a dynamic list with the following features:
