@@ -17,6 +17,7 @@ In this post, we will have a look at an example of an ngrx application using gua
 Personally, I find one of the main advantages of using ngrx is to handle data in a more efficient way, e.g. not re-loading the data when it's already in state.
 
 All the example I found online while learning about ngrx were using guards, and I didn't quite understand why that was. When you look at the documentation of guards and resolver on angular's doc, it clearly states that:
+
 -  Guards should be used to block the navigation if certain conditions are not met; think protected route like the transition between a landing page and logged-in page or viewer mode and admin mode.
 -  Resolvers should be used to load data before a page is initialized so that the data is available for the user to use.
 
@@ -64,6 +65,7 @@ export class LibraryRouting {}
 ### Book guard
 
 Our book guard is a classic guard using ngrx state. I am consecutively calling:
+
 - The selector `getBooksLoaded` to see if the books are loaded.
 - If they are not loaded I dispatch `LoadBooks` to load them.
 - Then I have a `filter` to make sure I only go forward if the books are loaded
@@ -182,6 +184,7 @@ export class LibraryComponent implements OnInit {
 ```
 
 So here you go that's the trade of using resolvers instead of state:
+
 - Semantically more correct, as you are trying to load data and not protect a route.
 - Gives you access to the data directly, so you don't need to import the state in your component.
 - It's a one time load. Your data does not get updated. To do so, you would need to subscribe to the state.
