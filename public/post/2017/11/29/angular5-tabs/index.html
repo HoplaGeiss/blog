@@ -133,15 +133,7 @@ html{font-family:sans-serif;line-height:1.15;-ms-text-size-adjust:100%;-webkit-t
       			  
               </a>
             </div>
-            <div class="nav-menu">
-              <a class="rss" href="">
-                <i class="icon-rss"></i>
-              </a>
-                
-                <a class="menu" data-action="toc" data-target="toc"><i class="icon-location"></i></a>
-                
-                
-            </div>
+            
           </nav>
 
 
@@ -179,77 +171,77 @@ html{font-family:sans-serif;line-height:1.15;-ms-text-size-adjust:100%;-webkit-t
 <p>Let&rsquo;s dive in!</p>
 
 <h3 id="tabs-container-component">Tabs container component</h3>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-scss" data-lang="scss"><span style="color:#a6e22e">.wrapper</span>{
-  <span style="color:#f92672">border-bottom</span><span style="color:#a6e22e">:</span> <span style="color:#f92672">1px</span> <span style="color:#f92672">solid</span> <span style="color:#f92672">grey</span><span style="color:#f92672">;</span>
-  <span style="color:#f92672">width</span><span style="color:#a6e22e">:</span> <span style="color:#f92672">100</span><span style="color:#960050;background-color:#1e0010">%</span><span style="color:#f92672">;</span>
-  <span style="color:#f92672">display</span><span style="color:#a6e22e">:</span> <span style="color:#f92672">block</span><span style="color:#f92672">;</span>
-  <span style="color:#f92672">overflow</span><span style="color:#a6e22e">:</span> <span style="color:#f92672">hidden</span><span style="color:#f92672">;</span>
-}</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-typescript" data-lang="typescript"><span style="color:#75715e">// ./tab/tab.component.ts
-</span><span style="color:#75715e"></span><span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">Component</span>, <span style="color:#a6e22e">Input</span>, <span style="color:#a6e22e">AfterViewChecked</span>, <span style="color:#a6e22e">OnInit</span>, <span style="color:#a6e22e">ElementRef</span>, <span style="color:#a6e22e">ChangeDetectorRef</span>, <span style="color:#a6e22e">OnChanges</span> } <span style="color:#a6e22e">from</span> <span style="color:#e6db74">&#39;@angular/core&#39;</span>;
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-scss" data-lang="scss"><span style="color:#3f6e75">.wrapper</span>{
+  <span style="color:#000">border-bottom</span><span style="color:#000">:</span> <span style="color:#000">1px</span> <span style="color:#000">solid</span> <span style="color:#000">grey</span><span style="color:#000">;</span>
+  <span style="color:#000">width</span><span style="color:#000">:</span> <span style="color:#000">100</span><span style="color:#000">%</span><span style="color:#000">;</span>
+  <span style="color:#000">display</span><span style="color:#000">:</span> <span style="color:#000">block</span><span style="color:#000">;</span>
+  <span style="color:#000">overflow</span><span style="color:#000">:</span> <span style="color:#000">hidden</span><span style="color:#000">;</span>
+}</code></pre></div><div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-typescript" data-lang="typescript"><span style="color:#177500">// ./tab/tab.component.ts
+</span><span style="color:#177500"></span><span style="color:#a90d91">import</span> { <span style="color:#000">Component</span>, <span style="color:#000">Input</span>, <span style="color:#000">AfterViewChecked</span>, <span style="color:#000">OnInit</span>, <span style="color:#000">ElementRef</span>, <span style="color:#000">ChangeDetectorRef</span>, <span style="color:#000">OnChanges</span> } <span style="color:#000">from</span> <span style="color:#c41a16">&#39;@angular/core&#39;</span>;
 
-<span style="color:#66d9ef">@Component</span>({
-  <span style="color:#a6e22e">selector</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;app-tabs&#39;</span>,
-  <span style="color:#a6e22e">styleUrls</span><span style="color:#f92672">:</span> [<span style="color:#e6db74">&#39;./tabs.component.scss&#39;</span>],
-  <span style="color:#a6e22e">template</span><span style="color:#f92672">:</span> <span style="color:#e6db74">`
-</span><span style="color:#e6db74">    &lt;div class=&#39;wrapper&#39; fxLayout=&#39;row&#39; fxLayoutAlign=&#39;start stretch&#39;&gt;
-</span><span style="color:#e6db74">      &lt;div *ngFor=&#39;let tab of tabs; let i = index&#39; (click)=&#39;selectTab(i)&#39;&gt;
-</span><span style="color:#e6db74">        &lt;app-tab [tab]=&#39;tab&#39; [active]=&#39;i === activeTab&#39; (closeEvent)=&#39;closeTab(i)&#39;
-</span><span style="color:#e6db74">          [closeAllowed]=&#39;closeTabsAllowed&#39; [width]=&#39;tabsWidth&#39;&gt;
-</span><span style="color:#e6db74">        &lt;/app-tab&gt;
-</span><span style="color:#e6db74">      &lt;/div&gt;
-</span><span style="color:#e6db74">    &lt;/div&gt;
-</span><span style="color:#e6db74">  `</span>
+<span style="color:#a90d91">@Component</span>({
+  <span style="color:#000">selector</span><span style="color:#000">:</span> <span style="color:#c41a16">&#39;app-tabs&#39;</span>,
+  <span style="color:#000">styleUrls</span><span style="color:#000">:</span> [<span style="color:#c41a16">&#39;./tabs.component.scss&#39;</span>],
+  <span style="color:#000">template</span><span style="color:#000">:</span> <span style="color:#c41a16">`
+</span><span style="color:#c41a16">    &lt;div class=&#39;wrapper&#39; fxLayout=&#39;row&#39; fxLayoutAlign=&#39;start stretch&#39;&gt;
+</span><span style="color:#c41a16">      &lt;div *ngFor=&#39;let tab of tabs; let i = index&#39; (click)=&#39;selectTab(i)&#39;&gt;
+</span><span style="color:#c41a16">        &lt;app-tab [tab]=&#39;tab&#39; [active]=&#39;i === activeTab&#39; (closeEvent)=&#39;closeTab(i)&#39;
+</span><span style="color:#c41a16">          [closeAllowed]=&#39;closeTabsAllowed&#39; [width]=&#39;tabsWidth&#39;&gt;
+</span><span style="color:#c41a16">        &lt;/app-tab&gt;
+</span><span style="color:#c41a16">      &lt;/div&gt;
+</span><span style="color:#c41a16">    &lt;/div&gt;
+</span><span style="color:#c41a16">  `</span>
 })
-<span style="color:#66d9ef">export</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">TabsComponent</span> <span style="color:#66d9ef">implements</span> <span style="color:#a6e22e">OnInit</span>, <span style="color:#a6e22e">AfterViewChecked</span>, <span style="color:#a6e22e">OnChanges</span> {
-  <span style="color:#66d9ef">@Input</span>() <span style="color:#a6e22e">tabs</span>: <span style="color:#66d9ef">Array</span><span style="color:#f92672">&lt;</span><span style="color:#a6e22e">any</span><span style="color:#f92672">&gt;</span>;
-  <span style="color:#66d9ef">@Input</span>() <span style="color:#a6e22e">closeTabsAllowed</span>: <span style="color:#66d9ef">boolean</span>;
+<span style="color:#a90d91">export</span> <span style="color:#a90d91">class</span> <span style="color:#000">TabsComponent</span> <span style="color:#a90d91">implements</span> <span style="color:#000">OnInit</span>, <span style="color:#000">AfterViewChecked</span>, <span style="color:#000">OnChanges</span> {
+  <span style="color:#a90d91">@Input</span>() <span style="color:#000">tabs</span>: <span style="color:#a90d91">Array</span><span style="color:#000">&lt;</span><span style="color:#000">any</span><span style="color:#000">&gt;</span>;
+  <span style="color:#a90d91">@Input</span>() <span style="color:#000">closeTabsAllowed</span>: <span style="color:#a90d91">boolean</span>;
 
-  <span style="color:#a6e22e">activeTab</span> <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
-  <span style="color:#a6e22e">wrapper</span>: <span style="color:#66d9ef">any</span>;
-  <span style="color:#a6e22e">wrapperWidth</span>: <span style="color:#66d9ef">number</span>;
-  <span style="color:#a6e22e">tabsWidth</span>: <span style="color:#66d9ef">number</span>;
-  <span style="color:#a6e22e">minimumTabs</span> <span style="color:#f92672">=</span> <span style="color:#ae81ff">8</span>;
+  <span style="color:#000">activeTab</span> <span style="color:#000">=</span> <span style="color:#1c01ce">0</span>;
+  <span style="color:#000">wrapper</span>: <span style="color:#a90d91">any</span>;
+  <span style="color:#000">wrapperWidth</span>: <span style="color:#a90d91">number</span>;
+  <span style="color:#000">tabsWidth</span>: <span style="color:#a90d91">number</span>;
+  <span style="color:#000">minimumTabs</span> <span style="color:#000">=</span> <span style="color:#1c01ce">8</span>;
 
-  <span style="color:#66d9ef">constructor</span> (
-    <span style="color:#66d9ef">private</span> <span style="color:#a6e22e">elementRef</span>: <span style="color:#66d9ef">ElementRef</span>,
-    <span style="color:#66d9ef">private</span> <span style="color:#a6e22e">changeDetectorRef</span>: <span style="color:#66d9ef">ChangeDetectorRef</span>
+  <span style="color:#a90d91">constructor</span> (
+    <span style="color:#a90d91">private</span> <span style="color:#000">elementRef</span>: <span style="color:#a90d91">ElementRef</span>,
+    <span style="color:#a90d91">private</span> <span style="color:#000">changeDetectorRef</span>: <span style="color:#a90d91">ChangeDetectorRef</span>
   ) {}
 
-  <span style="color:#a6e22e">ngOnInit() {</span>
-    <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">wrapper</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">elementRef</span>.<span style="color:#a6e22e">nativeElement</span>.<span style="color:#a6e22e">querySelector</span>(<span style="color:#e6db74">&#39;.wrapper&#39;</span>);
+  <span style="color:#000">ngOnInit() {</span>
+    <span style="color:#a90d91">this</span>.<span style="color:#000">wrapper</span> <span style="color:#000">=</span> <span style="color:#a90d91">this</span>.<span style="color:#000">elementRef</span>.<span style="color:#000">nativeElement</span>.<span style="color:#000">querySelector</span>(<span style="color:#c41a16">&#39;.wrapper&#39;</span>);
   }
 
-  <span style="color:#75715e">// On resize, recalculate the size of tabs
-</span><span style="color:#75715e"></span>  <span style="color:#a6e22e">ngAfterViewChecked() {</span>
-    <span style="color:#66d9ef">if</span> (<span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">wrapper</span>.<span style="color:#a6e22e">offsetWidth</span> <span style="color:#f92672">!==</span> <span style="color:#ae81ff">0</span> <span style="color:#f92672">&amp;&amp;</span> <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">wrapper</span>.<span style="color:#a6e22e">offsetWidth</span> <span style="color:#f92672">!==</span> <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">wrapperWidth</span>) {
-      <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">wrapperWidth</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">wrapper</span>.<span style="color:#a6e22e">offsetWidth</span>;
+  <span style="color:#177500">// On resize, recalculate the size of tabs
+</span><span style="color:#177500"></span>  <span style="color:#000">ngAfterViewChecked() {</span>
+    <span style="color:#a90d91">if</span> (<span style="color:#a90d91">this</span>.<span style="color:#000">wrapper</span>.<span style="color:#000">offsetWidth</span> <span style="color:#000">!==</span> <span style="color:#1c01ce">0</span> <span style="color:#000">&amp;&amp;</span> <span style="color:#a90d91">this</span>.<span style="color:#000">wrapper</span>.<span style="color:#000">offsetWidth</span> <span style="color:#000">!==</span> <span style="color:#a90d91">this</span>.<span style="color:#000">wrapperWidth</span>) {
+      <span style="color:#a90d91">this</span>.<span style="color:#000">wrapperWidth</span> <span style="color:#000">=</span> <span style="color:#a90d91">this</span>.<span style="color:#000">wrapper</span>.<span style="color:#000">offsetWidth</span>;
 
-      <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">setTabSize</span>();
+      <span style="color:#a90d91">this</span>.<span style="color:#000">setTabSize</span>();
     }
   }
 
-  <span style="color:#a6e22e">ngOnChanges() {</span>
-    <span style="color:#66d9ef">if</span> (<span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">tabs</span>.<span style="color:#a6e22e">length</span> <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">0</span>) <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">setTabSize</span>();
+  <span style="color:#000">ngOnChanges() {</span>
+    <span style="color:#a90d91">if</span> (<span style="color:#a90d91">this</span>.<span style="color:#000">tabs</span>.<span style="color:#000">length</span> <span style="color:#000">&gt;</span> <span style="color:#1c01ce">0</span>) <span style="color:#a90d91">this</span>.<span style="color:#000">setTabSize</span>();
   }
 
-  <span style="color:#a6e22e">selectTab</span> <span style="color:#f92672">=</span> (<span style="color:#a6e22e">index</span>: <span style="color:#66d9ef">number</span>) <span style="color:#f92672">=&gt;</span> {
-    <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">activeTab</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">index</span>;
+  <span style="color:#000">selectTab</span> <span style="color:#000">=</span> (<span style="color:#000">index</span>: <span style="color:#a90d91">number</span>) <span style="color:#000">=&gt;</span> {
+    <span style="color:#a90d91">this</span>.<span style="color:#000">activeTab</span> <span style="color:#000">=</span> <span style="color:#000">index</span>;
   }
 
-  <span style="color:#a6e22e">closeTab</span> <span style="color:#f92672">=</span> (<span style="color:#a6e22e">index</span>: <span style="color:#66d9ef">number</span>) <span style="color:#f92672">=&gt;</span> {
-    <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">tabs</span>.<span style="color:#a6e22e">splice</span>(<span style="color:#a6e22e">index</span>, <span style="color:#ae81ff">1</span>); <span style="color:#75715e">// Remove the tab.
-</span><span style="color:#75715e"></span>
-    <span style="color:#75715e">// Change in activeTab
-</span><span style="color:#75715e"></span>    <span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">index</span> <span style="color:#f92672">===</span> <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">activeTab</span>) <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">activeTab</span> <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
-    <span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">index</span> <span style="color:#f92672">&lt;</span> <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">activeTab</span>) <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">activeTab</span><span style="color:#f92672">--</span>;
+  <span style="color:#000">closeTab</span> <span style="color:#000">=</span> (<span style="color:#000">index</span>: <span style="color:#a90d91">number</span>) <span style="color:#000">=&gt;</span> {
+    <span style="color:#a90d91">this</span>.<span style="color:#000">tabs</span>.<span style="color:#000">splice</span>(<span style="color:#000">index</span>, <span style="color:#1c01ce">1</span>); <span style="color:#177500">// Remove the tab.
+</span><span style="color:#177500"></span>
+    <span style="color:#177500">// Change in activeTab
+</span><span style="color:#177500"></span>    <span style="color:#a90d91">if</span> (<span style="color:#000">index</span> <span style="color:#000">===</span> <span style="color:#a90d91">this</span>.<span style="color:#000">activeTab</span>) <span style="color:#a90d91">this</span>.<span style="color:#000">activeTab</span> <span style="color:#000">=</span> <span style="color:#1c01ce">0</span>;
+    <span style="color:#a90d91">if</span> (<span style="color:#000">index</span> <span style="color:#000">&lt;</span> <span style="color:#a90d91">this</span>.<span style="color:#000">activeTab</span>) <span style="color:#a90d91">this</span>.<span style="color:#000">activeTab</span><span style="color:#000">--</span>;
 
-    <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">setTabSize</span>(); <span style="color:#75715e">// Resize the tabs
-</span><span style="color:#75715e"></span>  }
+    <span style="color:#a90d91">this</span>.<span style="color:#000">setTabSize</span>(); <span style="color:#177500">// Resize the tabs
+</span><span style="color:#177500"></span>  }
 
-  <span style="color:#a6e22e">setTabSize</span> <span style="color:#f92672">=</span> () <span style="color:#f92672">=&gt;</span> {
-    <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">numberTab</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">tabs</span>.<span style="color:#a6e22e">length</span> <span style="color:#f92672">&gt;</span> <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">minimumTabs</span> <span style="color:#f92672">?</span> <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">tabs.length</span> : <span style="color:#66d9ef">this.minimumTabs</span>;
-    <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">tabsWidth</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">wrapperWidth</span> <span style="color:#960050;background-color:#1e0010">/ numberTab;</span>
-    <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">changeDetectorRef</span>.<span style="color:#a6e22e">detectChanges</span>();
+  <span style="color:#000">setTabSize</span> <span style="color:#000">=</span> () <span style="color:#000">=&gt;</span> {
+    <span style="color:#a90d91">const</span> <span style="color:#000">numberTab</span> <span style="color:#000">=</span> <span style="color:#a90d91">this</span>.<span style="color:#000">tabs</span>.<span style="color:#000">length</span> <span style="color:#000">&gt;</span> <span style="color:#a90d91">this</span>.<span style="color:#000">minimumTabs</span> <span style="color:#000">?</span> <span style="color:#a90d91">this</span>.<span style="color:#000">tabs.length</span> : <span style="color:#a90d91">this.minimumTabs</span>;
+    <span style="color:#a90d91">this</span>.<span style="color:#000">tabsWidth</span> <span style="color:#000">=</span> <span style="color:#a90d91">this</span>.<span style="color:#000">wrapperWidth</span> <span style="color:#000">/ numberTab;</span>
+    <span style="color:#a90d91">this</span>.<span style="color:#000">changeDetectorRef</span>.<span style="color:#000">detectChanges</span>();
   }
 }</code></pre></div>
 <p>A couple things there:</p>
@@ -262,85 +254,85 @@ html{font-family:sans-serif;line-height:1.15;-ms-text-size-adjust:100%;-webkit-t
 <p>You will notice the template makes use of the <code>app-tab</code> component. Let&rsquo;s have a look at this one now!</p>
 
 <h3 id="tab-component">Tab component</h3>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-scss" data-lang="scss"><span style="color:#a6e22e">.tab</span>{
-  <span style="color:#f92672">box-sizing</span><span style="color:#a6e22e">:</span> <span style="color:#f92672">border-box</span><span style="color:#f92672">;</span>
-  <span style="color:#f92672">position</span><span style="color:#a6e22e">:</span> <span style="color:#f92672">relative</span><span style="color:#f92672">;</span>
-  <span style="color:#f92672">border-bottom</span><span style="color:#a6e22e">:</span> <span style="color:#f92672">2px</span> <span style="color:#f92672">solid</span> <span style="color:#f92672">white</span><span style="color:#f92672">;</span>
-  <span style="color:#f92672">margin-bottom</span><span style="color:#a6e22e">:</span> <span style="color:#f92672">1px</span><span style="color:#f92672">;</span>
-  <span style="color:#f92672">padding</span><span style="color:#a6e22e">:</span> <span style="color:#f92672">0</span> <span style="color:#f92672">10px</span><span style="color:#f92672">;</span>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-scss" data-lang="scss"><span style="color:#3f6e75">.tab</span>{
+  <span style="color:#000">box-sizing</span><span style="color:#000">:</span> <span style="color:#000">border-box</span><span style="color:#000">;</span>
+  <span style="color:#000">position</span><span style="color:#000">:</span> <span style="color:#000">relative</span><span style="color:#000">;</span>
+  <span style="color:#000">border-bottom</span><span style="color:#000">:</span> <span style="color:#000">2px</span> <span style="color:#000">solid</span> <span style="color:#000">white</span><span style="color:#000">;</span>
+  <span style="color:#000">margin-bottom</span><span style="color:#000">:</span> <span style="color:#000">1px</span><span style="color:#000">;</span>
+  <span style="color:#000">padding</span><span style="color:#000">:</span> <span style="color:#000">0</span> <span style="color:#000">10px</span><span style="color:#000">;</span>
 
-  <span style="color:#a6e22e">.text</span>{
-    <span style="color:#f92672">width</span><span style="color:#a6e22e">:</span> <span style="color:#f92672">50px</span><span style="color:#f92672">;</span>
-    <span style="color:#f92672">white-space</span><span style="color:#a6e22e">:</span> <span style="color:#f92672">nowrap</span><span style="color:#f92672">;</span>
-    <span style="color:#f92672">overflow</span><span style="color:#a6e22e">:</span> <span style="color:#f92672">hidden</span><span style="color:#f92672">;</span>
+  <span style="color:#3f6e75">.text</span>{
+    <span style="color:#000">width</span><span style="color:#000">:</span> <span style="color:#000">50px</span><span style="color:#000">;</span>
+    <span style="color:#000">white-space</span><span style="color:#000">:</span> <span style="color:#000">nowrap</span><span style="color:#000">;</span>
+    <span style="color:#000">overflow</span><span style="color:#000">:</span> <span style="color:#000">hidden</span><span style="color:#000">;</span>
   }
 
-  <span style="color:#66d9ef">&amp;</span><span style="color:#a6e22e">.active</span>{
-    <span style="color:#f92672">border-bottom-color</span><span style="color:#a6e22e">:</span> #ee7175<span style="color:#f92672">;</span>
+  <span style="color:#a90d91">&amp;</span><span style="color:#3f6e75">.active</span>{
+    <span style="color:#000">border-bottom-color</span><span style="color:#000">:</span> <span style="color:#000">#ee7175</span><span style="color:#000">;</span>
   }
 
-  <span style="color:#66d9ef">&amp;</span><span style="color:#a6e22e">:not</span><span style="color:#f92672">(</span><span style="color:#a6e22e">.active</span><span style="color:#f92672">)</span><span style="color:#a6e22e">:hover</span>{
-    <span style="color:#f92672">cursor</span><span style="color:#a6e22e">:</span> <span style="color:#f92672">pointer</span><span style="color:#f92672">;</span>
-    <span style="color:#f92672">border-bottom-color</span><span style="color:#a6e22e">:</span> #d2d7d3<span style="color:#f92672">;</span>
+  <span style="color:#a90d91">&amp;</span><span style="color:#000">:not</span><span style="color:#000">(</span><span style="color:#3f6e75">.active</span><span style="color:#000">)</span><span style="color:#000">:hover</span>{
+    <span style="color:#000">cursor</span><span style="color:#000">:</span> <span style="color:#000">pointer</span><span style="color:#000">;</span>
+    <span style="color:#000">border-bottom-color</span><span style="color:#000">:</span> <span style="color:#000">#d2d7d3</span><span style="color:#000">;</span>
   }
 
-  <span style="color:#66d9ef">&amp;</span><span style="color:#a6e22e">:hover</span>{
-    <span style="color:#a6e22e">.close-icon</span>{
-      <span style="color:#f92672">opacity</span><span style="color:#a6e22e">:</span> <span style="color:#f92672">1</span><span style="color:#f92672">;</span>
+  <span style="color:#a90d91">&amp;</span><span style="color:#000">:hover</span>{
+    <span style="color:#3f6e75">.close-icon</span>{
+      <span style="color:#000">opacity</span><span style="color:#000">:</span> <span style="color:#000">1</span><span style="color:#000">;</span>
     }
   }
 
-  <span style="color:#a6e22e">.close-icon</span>{
-    <span style="color:#f92672">z-index</span><span style="color:#a6e22e">:</span> <span style="color:#f92672">2</span><span style="color:#f92672">;</span>
-    <span style="color:#f92672">position</span><span style="color:#a6e22e">:</span> <span style="color:#f92672">absolute</span><span style="color:#f92672">;</span>
-    <span style="color:#f92672">right</span><span style="color:#a6e22e">:</span> <span style="color:#f92672">0px</span><span style="color:#f92672">;</span>
-    <span style="color:#f92672">top</span><span style="color:#a6e22e">:</span> <span style="color:#f92672">0px</span><span style="color:#f92672">;</span>
-    <span style="color:#f92672">font-size</span><span style="color:#a6e22e">:</span> <span style="color:#f92672">1em</span><span style="color:#f92672">;</span>
-    <span style="color:#f92672">opacity</span><span style="color:#a6e22e">:</span> <span style="color:#f92672">0</span><span style="color:#f92672">;</span>
-    <span style="color:#f92672">cursor</span><span style="color:#a6e22e">:</span> <span style="color:#f92672">pointer</span><span style="color:#f92672">;</span>
-    <span style="color:#f92672">color</span><span style="color:#a6e22e">:</span> #d2d7d3<span style="color:#f92672">;</span>
+  <span style="color:#3f6e75">.close-icon</span>{
+    <span style="color:#000">z-index</span><span style="color:#000">:</span> <span style="color:#000">2</span><span style="color:#000">;</span>
+    <span style="color:#000">position</span><span style="color:#000">:</span> <span style="color:#000">absolute</span><span style="color:#000">;</span>
+    <span style="color:#000">right</span><span style="color:#000">:</span> <span style="color:#000">0px</span><span style="color:#000">;</span>
+    <span style="color:#000">top</span><span style="color:#000">:</span> <span style="color:#000">0px</span><span style="color:#000">;</span>
+    <span style="color:#000">font-size</span><span style="color:#000">:</span> <span style="color:#000">1em</span><span style="color:#000">;</span>
+    <span style="color:#000">opacity</span><span style="color:#000">:</span> <span style="color:#000">0</span><span style="color:#000">;</span>
+    <span style="color:#000">cursor</span><span style="color:#000">:</span> <span style="color:#000">pointer</span><span style="color:#000">;</span>
+    <span style="color:#000">color</span><span style="color:#000">:</span> <span style="color:#000">#d2d7d3</span><span style="color:#000">;</span>
 
-    <span style="color:#66d9ef">&amp;</span><span style="color:#a6e22e">:hover</span>{
-      <span style="color:#f92672">color</span><span style="color:#a6e22e">:</span> #57a1c6<span style="color:#f92672">;</span>
+    <span style="color:#a90d91">&amp;</span><span style="color:#000">:hover</span>{
+      <span style="color:#000">color</span><span style="color:#000">:</span> <span style="color:#000">#57a1c6</span><span style="color:#000">;</span>
     }
   }
-}</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-typescript" data-lang="typescript"><span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">Component</span>, <span style="color:#a6e22e">Input</span>, <span style="color:#a6e22e">Output</span>, <span style="color:#a6e22e">EventEmitter</span>, <span style="color:#a6e22e">OnChanges</span>, <span style="color:#a6e22e">ElementRef</span>, <span style="color:#a6e22e">OnInit</span> } <span style="color:#a6e22e">from</span> <span style="color:#e6db74">&#39;@angular/core&#39;</span>;
+}</code></pre></div><div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-typescript" data-lang="typescript"><span style="color:#a90d91">import</span> { <span style="color:#000">Component</span>, <span style="color:#000">Input</span>, <span style="color:#000">Output</span>, <span style="color:#000">EventEmitter</span>, <span style="color:#000">OnChanges</span>, <span style="color:#000">ElementRef</span>, <span style="color:#000">OnInit</span> } <span style="color:#000">from</span> <span style="color:#c41a16">&#39;@angular/core&#39;</span>;
 
-<span style="color:#66d9ef">@Component</span>({
-  <span style="color:#a6e22e">selector</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;app-tab&#39;</span>,
-  <span style="color:#a6e22e">styleUrls</span><span style="color:#f92672">:</span> [<span style="color:#e6db74">&#39;./tab.component.scss&#39;</span>],
-  <span style="color:#a6e22e">template</span><span style="color:#f92672">:</span> <span style="color:#e6db74">`
-</span><span style="color:#e6db74">    &lt;div class=&#39;tab&#39; [ngClass]=&#39;{&#34;active&#34;: active}&#39;&gt;
-</span><span style="color:#e6db74">      &lt;div class=&#39;text&#39;&gt;{{tab.name}}&lt;/div&gt;
-</span><span style="color:#e6db74">      &lt;i *ngIf=&#39;closeAllowed&#39; class=&#39;material-icons close-icon&#39; (click)=&#39;close($event)&#39;&gt;clear&lt;/i&gt;
-</span><span style="color:#e6db74">    &lt;/div&gt;
-</span><span style="color:#e6db74">  `</span>
+<span style="color:#a90d91">@Component</span>({
+  <span style="color:#000">selector</span><span style="color:#000">:</span> <span style="color:#c41a16">&#39;app-tab&#39;</span>,
+  <span style="color:#000">styleUrls</span><span style="color:#000">:</span> [<span style="color:#c41a16">&#39;./tab.component.scss&#39;</span>],
+  <span style="color:#000">template</span><span style="color:#000">:</span> <span style="color:#c41a16">`
+</span><span style="color:#c41a16">    &lt;div class=&#39;tab&#39; [ngClass]=&#39;{&#34;active&#34;: active}&#39;&gt;
+</span><span style="color:#c41a16">      &lt;div class=&#39;text&#39;&gt;{{tab.name}}&lt;/div&gt;
+</span><span style="color:#c41a16">      &lt;i *ngIf=&#39;closeAllowed&#39; class=&#39;material-icons close-icon&#39; (click)=&#39;close($event)&#39;&gt;clear&lt;/i&gt;
+</span><span style="color:#c41a16">    &lt;/div&gt;
+</span><span style="color:#c41a16">  `</span>
 })
-<span style="color:#66d9ef">export</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">TabComponent</span> <span style="color:#66d9ef">implements</span> <span style="color:#a6e22e">OnChanges</span> {
-  <span style="color:#66d9ef">@Input</span>() <span style="color:#a6e22e">tab</span>: <span style="color:#66d9ef">any</span>;
-  <span style="color:#66d9ef">@Input</span>() <span style="color:#a6e22e">active</span>: <span style="color:#66d9ef">boolean</span>;
-  <span style="color:#66d9ef">@Input</span>() <span style="color:#a6e22e">closeAllowed</span>: <span style="color:#66d9ef">boolean</span>;
-  <span style="color:#66d9ef">@Input</span>() <span style="color:#a6e22e">width</span>: <span style="color:#66d9ef">number</span>;
-  <span style="color:#66d9ef">@Output</span>() <span style="color:#a6e22e">closeEvent</span>: <span style="color:#66d9ef">EventEmitter</span><span style="color:#f92672">&lt;</span><span style="color:#a6e22e">any</span><span style="color:#f92672">&gt;</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">EventEmitter</span>();
+<span style="color:#a90d91">export</span> <span style="color:#a90d91">class</span> <span style="color:#000">TabComponent</span> <span style="color:#a90d91">implements</span> <span style="color:#000">OnChanges</span> {
+  <span style="color:#a90d91">@Input</span>() <span style="color:#000">tab</span>: <span style="color:#a90d91">any</span>;
+  <span style="color:#a90d91">@Input</span>() <span style="color:#000">active</span>: <span style="color:#a90d91">boolean</span>;
+  <span style="color:#a90d91">@Input</span>() <span style="color:#000">closeAllowed</span>: <span style="color:#a90d91">boolean</span>;
+  <span style="color:#a90d91">@Input</span>() <span style="color:#000">width</span>: <span style="color:#a90d91">number</span>;
+  <span style="color:#a90d91">@Output</span>() <span style="color:#000">closeEvent</span>: <span style="color:#a90d91">EventEmitter</span><span style="color:#000">&lt;</span><span style="color:#000">any</span><span style="color:#000">&gt;</span> <span style="color:#000">=</span> <span style="color:#a90d91">new</span> <span style="color:#000">EventEmitter</span>();
 
-  <span style="color:#66d9ef">constructor</span> (
-    <span style="color:#66d9ef">private</span> <span style="color:#a6e22e">elementRef</span>: <span style="color:#66d9ef">ElementRef</span>,
+  <span style="color:#a90d91">constructor</span> (
+    <span style="color:#a90d91">private</span> <span style="color:#000">elementRef</span>: <span style="color:#a90d91">ElementRef</span>,
   ) {}
 
-  <span style="color:#a6e22e">ngOnChanges() {</span>
-    <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">tabElement</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">elementRef</span>.<span style="color:#a6e22e">nativeElement</span>.<span style="color:#a6e22e">querySelector</span>(<span style="color:#e6db74">&#39;.tab&#39;</span>);
-    <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">textElement</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">elementRef</span>.<span style="color:#a6e22e">nativeElement</span>.<span style="color:#a6e22e">querySelector</span>(<span style="color:#e6db74">&#39;.text&#39;</span>);
+  <span style="color:#000">ngOnChanges() {</span>
+    <span style="color:#a90d91">const</span> <span style="color:#000">tabElement</span> <span style="color:#000">=</span> <span style="color:#a90d91">this</span>.<span style="color:#000">elementRef</span>.<span style="color:#000">nativeElement</span>.<span style="color:#000">querySelector</span>(<span style="color:#c41a16">&#39;.tab&#39;</span>);
+    <span style="color:#a90d91">const</span> <span style="color:#000">textElement</span> <span style="color:#000">=</span> <span style="color:#a90d91">this</span>.<span style="color:#000">elementRef</span>.<span style="color:#000">nativeElement</span>.<span style="color:#000">querySelector</span>(<span style="color:#c41a16">&#39;.text&#39;</span>);
 
-    <span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">tabElement</span>) {
-      <span style="color:#a6e22e">tabElement</span>.<span style="color:#a6e22e">style</span>.<span style="color:#a6e22e">width</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">width</span> <span style="color:#f92672">+</span> <span style="color:#e6db74">&#39;px&#39;</span>;
-      <span style="color:#a6e22e">textElement</span>.<span style="color:#a6e22e">style</span>.<span style="color:#a6e22e">width</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">closeAllowed</span> <span style="color:#f92672">?</span> <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">width</span> <span style="color:#f92672">-</span> <span style="color:#ae81ff">28</span> <span style="color:#f92672">+</span> <span style="color:#e6db74">&#39;px&#39;</span> <span style="color:#f92672">:</span> <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">width</span> <span style="color:#f92672">-</span> <span style="color:#ae81ff">5</span> <span style="color:#f92672">+</span> <span style="color:#e6db74">&#39;px&#39;</span>;
-      <span style="color:#a6e22e">tabElement</span>.<span style="color:#a6e22e">style</span>.<span style="color:#a6e22e">transition</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;width 400ms&#39;</span>;
+    <span style="color:#a90d91">if</span> (<span style="color:#000">tabElement</span>) {
+      <span style="color:#000">tabElement</span>.<span style="color:#000">style</span>.<span style="color:#000">width</span> <span style="color:#000">=</span> <span style="color:#a90d91">this</span>.<span style="color:#000">width</span> <span style="color:#000">+</span> <span style="color:#c41a16">&#39;px&#39;</span>;
+      <span style="color:#000">textElement</span>.<span style="color:#000">style</span>.<span style="color:#000">width</span> <span style="color:#000">=</span> <span style="color:#000">closeAllowed</span> <span style="color:#000">?</span> <span style="color:#a90d91">this</span>.<span style="color:#000">width</span> <span style="color:#000">-</span> <span style="color:#1c01ce">28</span> <span style="color:#000">+</span> <span style="color:#c41a16">&#39;px&#39;</span> <span style="color:#000">:</span> <span style="color:#a90d91">this</span>.<span style="color:#000">width</span> <span style="color:#000">-</span> <span style="color:#1c01ce">5</span> <span style="color:#000">+</span> <span style="color:#c41a16">&#39;px&#39;</span>;
+      <span style="color:#000">tabElement</span>.<span style="color:#000">style</span>.<span style="color:#000">transition</span> <span style="color:#000">=</span> <span style="color:#c41a16">&#39;width 400ms&#39;</span>;
     }
   }
 
-  <span style="color:#a6e22e">close</span> <span style="color:#f92672">=</span> (<span style="color:#a6e22e">event</span>) <span style="color:#f92672">=&gt;</span> {
-    <span style="color:#a6e22e">event</span>.<span style="color:#a6e22e">stopPropagation</span>();
-    <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">closeEvent</span>.<span style="color:#a6e22e">emit</span>();
+  <span style="color:#000">close</span> <span style="color:#000">=</span> (<span style="color:#000">event</span>) <span style="color:#000">=&gt;</span> {
+    <span style="color:#000">event</span>.<span style="color:#000">stopPropagation</span>();
+    <span style="color:#a90d91">this</span>.<span style="color:#000">closeEvent</span>.<span style="color:#000">emit</span>();
   }
 }</code></pre></div>
 <p>Here again some things to take note of:</p>
@@ -354,35 +346,35 @@ html{font-family:sans-serif;line-height:1.15;-ms-text-size-adjust:100%;-webkit-t
 <p>To finish, find bellow an example of how this component can be used!</p>
 
 <h3 id="using-our-tabs">Using our tabs</h3>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-typescript" data-lang="typescript"><span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">Component</span> } <span style="color:#a6e22e">from</span> <span style="color:#e6db74">&#39;@angular/core&#39;</span>;
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-typescript" data-lang="typescript"><span style="color:#a90d91">import</span> { <span style="color:#000">Component</span> } <span style="color:#000">from</span> <span style="color:#c41a16">&#39;@angular/core&#39;</span>;
 
-<span style="color:#66d9ef">@Component</span>({
-  <span style="color:#a6e22e">selector</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;app-root&#39;</span>,
-  <span style="color:#a6e22e">styleUrls</span><span style="color:#f92672">:</span> [<span style="color:#e6db74">&#39;./app.component.scss&#39;</span>],
-  <span style="color:#a6e22e">template</span><span style="color:#f92672">:</span> <span style="color:#e6db74">`
-</span><span style="color:#e6db74">    &lt;app-tabs [tabs]=&#39;tabs&#39; [closeTabsAllowed]=&#39;true&#39;&gt;&lt;/app-tabs&gt;
-</span><span style="color:#e6db74">
-</span><span style="color:#e6db74">    &lt;button (click)=&#39;addTab()&#39;&gt;Add Tab&lt;/button&gt;
-</span><span style="color:#e6db74">  `</span>
+<span style="color:#a90d91">@Component</span>({
+  <span style="color:#000">selector</span><span style="color:#000">:</span> <span style="color:#c41a16">&#39;app-root&#39;</span>,
+  <span style="color:#000">styleUrls</span><span style="color:#000">:</span> [<span style="color:#c41a16">&#39;./app.component.scss&#39;</span>],
+  <span style="color:#000">template</span><span style="color:#000">:</span> <span style="color:#c41a16">`
+</span><span style="color:#c41a16">    &lt;app-tabs [tabs]=&#39;tabs&#39; [closeTabsAllowed]=&#39;true&#39;&gt;&lt;/app-tabs&gt;
+</span><span style="color:#c41a16">
+</span><span style="color:#c41a16">    &lt;button (click)=&#39;addTab()&#39;&gt;Add Tab&lt;/button&gt;
+</span><span style="color:#c41a16">  `</span>
 })
-<span style="color:#66d9ef">export</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">AppComponent</span> {
-  <span style="color:#a6e22e">tabs</span> <span style="color:#f92672">=</span> [
-    { <span style="color:#a6e22e">name</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;Super long tab&#39;</span> },
-    { <span style="color:#a6e22e">name</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;Tab2&#39;</span> },
-    { <span style="color:#a6e22e">name</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;Tab3&#39;</span> },
-    { <span style="color:#a6e22e">name</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;Tab4&#39;</span> },
-    { <span style="color:#a6e22e">name</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;Tab5&#39;</span> },
-    { <span style="color:#a6e22e">name</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;Tab6&#39;</span> },
-    { <span style="color:#a6e22e">name</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;Tab7&#39;</span> },
+<span style="color:#a90d91">export</span> <span style="color:#a90d91">class</span> <span style="color:#000">AppComponent</span> {
+  <span style="color:#000">tabs</span> <span style="color:#000">=</span> [
+    { <span style="color:#000">name</span><span style="color:#000">:</span> <span style="color:#c41a16">&#39;Super long tab&#39;</span> },
+    { <span style="color:#000">name</span><span style="color:#000">:</span> <span style="color:#c41a16">&#39;Tab2&#39;</span> },
+    { <span style="color:#000">name</span><span style="color:#000">:</span> <span style="color:#c41a16">&#39;Tab3&#39;</span> },
+    { <span style="color:#000">name</span><span style="color:#000">:</span> <span style="color:#c41a16">&#39;Tab4&#39;</span> },
+    { <span style="color:#000">name</span><span style="color:#000">:</span> <span style="color:#c41a16">&#39;Tab5&#39;</span> },
+    { <span style="color:#000">name</span><span style="color:#000">:</span> <span style="color:#c41a16">&#39;Tab6&#39;</span> },
+    { <span style="color:#000">name</span><span style="color:#000">:</span> <span style="color:#c41a16">&#39;Tab7&#39;</span> },
   ];
 
-  <span style="color:#a6e22e">index</span> <span style="color:#f92672">=</span> <span style="color:#ae81ff">8</span>;
+  <span style="color:#000">index</span> <span style="color:#000">=</span> <span style="color:#1c01ce">8</span>;
 
-  <span style="color:#a6e22e">addTab</span> <span style="color:#f92672">=</span> () <span style="color:#f92672">=&gt;</span> {
-    <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">tabs</span>.<span style="color:#a6e22e">push</span>({ <span style="color:#a6e22e">name</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;Tab&#39;</span> <span style="color:#f92672">+</span> <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">index</span> });
-    <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">index</span><span style="color:#f92672">++</span>;
-    <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">tabs</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">tabs</span>.<span style="color:#a6e22e">slice</span>(); <span style="color:#75715e">// hack for change detection;
-</span><span style="color:#75715e"></span>  }
+  <span style="color:#000">addTab</span> <span style="color:#000">=</span> () <span style="color:#000">=&gt;</span> {
+    <span style="color:#a90d91">this</span>.<span style="color:#000">tabs</span>.<span style="color:#000">push</span>({ <span style="color:#000">name</span><span style="color:#000">:</span> <span style="color:#c41a16">&#39;Tab&#39;</span> <span style="color:#000">+</span> <span style="color:#a90d91">this</span>.<span style="color:#000">index</span> });
+    <span style="color:#a90d91">this</span>.<span style="color:#000">index</span><span style="color:#000">++</span>;
+    <span style="color:#a90d91">this</span>.<span style="color:#000">tabs</span> <span style="color:#000">=</span> <span style="color:#a90d91">this</span>.<span style="color:#000">tabs</span>.<span style="color:#000">slice</span>(); <span style="color:#177500">// hack for change detection;
+</span><span style="color:#177500"></span>  }
 }</code></pre></div>
 <p>Have a look here to see the source code: <a href="https://github.com/HoplaGeiss/hopla-tabs">https://github.com/HoplaGeiss/hopla-tabs</a></p>
 

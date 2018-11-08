@@ -5,7 +5,7 @@ tags:
   - angular5
   - d3.js
 date: "2017-11-13"
-featured: true
+featured: false
 slug: angular5-d3js-pie-chart
 image: /images/pie-chart.png
 ---

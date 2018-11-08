@@ -4,7 +4,7 @@ description: "Create an angular 4 accordion without any dependencies"
 tags:
   - angular4
 date: "2017-04-03"
-featured: true
+featured: false
 slug: "create-angular4-accordion"
 image: "/images/accordion.jpg"
 ---

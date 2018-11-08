@@ -5,7 +5,7 @@ tags:
   - angular5
   - scss
 date: "2017-11-22"
-featured: true
+featured: false
 slug: angular5-colour-scheme
 image: /images/colour-scheme.png
 ---

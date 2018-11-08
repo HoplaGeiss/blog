@@ -133,15 +133,7 @@ html{font-family:sans-serif;line-height:1.15;-ms-text-size-adjust:100%;-webkit-t
       			  
               </a>
             </div>
-            <div class="nav-menu">
-              <a class="rss" href="">
-                <i class="icon-rss"></i>
-              </a>
-                
-                <a class="menu" data-action="toc" data-target="toc"><i class="icon-location"></i></a>
-                
-                
-            </div>
+            
           </nav>
 
 
@@ -172,27 +164,27 @@ html{font-family:sans-serif;line-height:1.15;-ms-text-size-adjust:100%;-webkit-t
 <p>Let&rsquo;s dive in!</p>
 
 <h3 id="input-directive">Input directive</h3>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-typescript" data-lang="typescript"><span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">Directive</span>, <span style="color:#a6e22e">Input</span>, <span style="color:#a6e22e">HostBinding</span>, <span style="color:#a6e22e">OnChanges</span> } <span style="color:#a6e22e">from</span> <span style="color:#e6db74">&#39;@angular/core&#39;</span>;
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-typescript" data-lang="typescript"><span style="color:#a90d91">import</span> { <span style="color:#000">Directive</span>, <span style="color:#000">Input</span>, <span style="color:#000">HostBinding</span>, <span style="color:#000">OnChanges</span> } <span style="color:#000">from</span> <span style="color:#c41a16">&#39;@angular/core&#39;</span>;
 
-<span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">ColourService</span> } <span style="color:#a6e22e">from</span> <span style="color:#e6db74">&#39;../colour/colour.service&#39;</span>;
+<span style="color:#a90d91">import</span> { <span style="color:#000">ColourService</span> } <span style="color:#000">from</span> <span style="color:#c41a16">&#39;../colour/colour.service&#39;</span>;
 
-<span style="color:#66d9ef">@Directive</span>({
-  <span style="color:#a6e22e">selector</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;[appInput]&#39;</span>
+<span style="color:#a90d91">@Directive</span>({
+  <span style="color:#000">selector</span><span style="color:#000">:</span> <span style="color:#c41a16">&#39;[appInput]&#39;</span>
 })
-<span style="color:#66d9ef">export</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">InputDirective</span> <span style="color:#66d9ef">implements</span> <span style="color:#a6e22e">OnChanges</span> {
-  <span style="color:#66d9ef">@Input</span>() <span style="color:#a6e22e">error</span>: <span style="color:#66d9ef">boolean</span>;
+<span style="color:#a90d91">export</span> <span style="color:#a90d91">class</span> <span style="color:#000">InputDirective</span> <span style="color:#a90d91">implements</span> <span style="color:#000">OnChanges</span> {
+  <span style="color:#a90d91">@Input</span>() <span style="color:#000">error</span>: <span style="color:#a90d91">boolean</span>;
 
-  <span style="color:#66d9ef">@HostBinding</span>(<span style="color:#e6db74">&#39;style.border-bottom-color&#39;</span>) <span style="color:#a6e22e">borderColor</span>: <span style="color:#66d9ef">string</span>;
-  <span style="color:#66d9ef">@HostBinding</span>(<span style="color:#e6db74">&#39;style.border-width&#39;</span>) <span style="color:#a6e22e">borderWidth</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;0 0 2px 0&#39;</span>;
-  <span style="color:#66d9ef">@HostBinding</span>(<span style="color:#e6db74">&#39;style.outline&#39;</span>) <span style="color:#a6e22e">outline</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;none&#39;</span>;
+  <span style="color:#a90d91">@HostBinding</span>(<span style="color:#c41a16">&#39;style.border-bottom-color&#39;</span>) <span style="color:#000">borderColor</span>: <span style="color:#a90d91">string</span>;
+  <span style="color:#a90d91">@HostBinding</span>(<span style="color:#c41a16">&#39;style.border-width&#39;</span>) <span style="color:#000">borderWidth</span> <span style="color:#000">=</span> <span style="color:#c41a16">&#39;0 0 2px 0&#39;</span>;
+  <span style="color:#a90d91">@HostBinding</span>(<span style="color:#c41a16">&#39;style.outline&#39;</span>) <span style="color:#000">outline</span> <span style="color:#000">=</span> <span style="color:#c41a16">&#39;none&#39;</span>;
 
-  <span style="color:#66d9ef">constructor</span> (
-    <span style="color:#66d9ef">private</span> <span style="color:#a6e22e">colourService</span>: <span style="color:#66d9ef">ColourService</span>
+  <span style="color:#a90d91">constructor</span> (
+    <span style="color:#a90d91">private</span> <span style="color:#000">colourService</span>: <span style="color:#a90d91">ColourService</span>
   ) {}
 
-  <span style="color:#a6e22e">ngOnChanges() {</span>
-    <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">colourType</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">error</span> <span style="color:#f92672">?</span> <span style="color:#e6db74">&#39;accent&#39;</span> <span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;primary&#39;</span>;
-    <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">borderColor</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">colourService</span>.<span style="color:#a6e22e">getColour</span>(<span style="color:#a6e22e">colourType</span>);
+  <span style="color:#000">ngOnChanges() {</span>
+    <span style="color:#a90d91">const</span> <span style="color:#000">colourType</span> <span style="color:#000">=</span> <span style="color:#a90d91">this</span>.<span style="color:#000">error</span> <span style="color:#000">?</span> <span style="color:#c41a16">&#39;accent&#39;</span> <span style="color:#000">:</span> <span style="color:#c41a16">&#39;primary&#39;</span>;
+    <span style="color:#a90d91">this</span>.<span style="color:#000">borderColor</span> <span style="color:#000">=</span> <span style="color:#a90d91">this</span>.<span style="color:#000">colourService</span>.<span style="color:#000">getColour</span>(<span style="color:#000">colourType</span>);
   }
 }</code></pre></div>
 <p>3 things here:</p>
@@ -206,14 +198,14 @@ html{font-family:sans-serif;line-height:1.15;-ms-text-size-adjust:100%;-webkit-t
 <p>Let&rsquo;s have a look at this colourService</p>
 
 <h3 id="colour-service">Colour service</h3>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-typescript" data-lang="typescript"><span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">Injectable</span> } <span style="color:#a6e22e">from</span> <span style="color:#e6db74">&#39;@angular/core&#39;</span>;
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-typescript" data-lang="typescript"><span style="color:#a90d91">import</span> { <span style="color:#000">Injectable</span> } <span style="color:#000">from</span> <span style="color:#c41a16">&#39;@angular/core&#39;</span>;
 
-<span style="color:#66d9ef">@Injectable</span>()
-<span style="color:#66d9ef">export</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">ColourService</span> {
-  <span style="color:#a6e22e">getColour</span> <span style="color:#f92672">=</span> (<span style="color:#a6e22e">type</span>: <span style="color:#66d9ef">string</span>)<span style="color:#f92672">:</span> <span style="color:#66d9ef">string</span> <span style="color:#f92672">=&gt;</span> {
-    <span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">type</span> <span style="color:#f92672">===</span> <span style="color:#e6db74">&#39;accent&#39;</span>) <span style="color:#66d9ef">return</span> <span style="color:#e6db74">&#39;red&#39;</span>;
+<span style="color:#a90d91">@Injectable</span>()
+<span style="color:#a90d91">export</span> <span style="color:#a90d91">class</span> <span style="color:#000">ColourService</span> {
+  <span style="color:#000">getColour</span> <span style="color:#000">=</span> (<span style="color:#000">type</span>: <span style="color:#a90d91">string</span>)<span style="color:#000">:</span> <span style="color:#a90d91">string</span> <span style="color:#000">=&gt;</span> {
+    <span style="color:#a90d91">if</span> (<span style="color:#000">type</span> <span style="color:#000">===</span> <span style="color:#c41a16">&#39;accent&#39;</span>) <span style="color:#a90d91">return</span> <span style="color:#c41a16">&#39;red&#39;</span>;
 
-    <span style="color:#66d9ef">return</span> <span style="color:#e6db74">&#39;blue&#39;</span>;
+    <span style="color:#a90d91">return</span> <span style="color:#c41a16">&#39;blue&#39;</span>;
   }
 }</code></pre></div>
 <p>Nothing crazy here, I return red in case there is an error and blue otherwise. However you could have a much more complicated service. For example this service could call another service that is in charge of getting the configuration of the app per tenant. This would be for instance the case if you had a different colour scheme per tenant.</p>
@@ -221,21 +213,21 @@ html{font-family:sans-serif;line-height:1.15;-ms-text-size-adjust:100%;-webkit-t
 <p>To finish let&rsquo;s see how to use the input directive!</p>
 
 <h3 id="usage-of-our-new-input-directive">Usage of our new input directive</h3>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-typescript" data-lang="typescript"><span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">Component</span> } <span style="color:#a6e22e">from</span> <span style="color:#e6db74">&#39;@angular/core&#39;</span>;
-<span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">FormControl</span> } <span style="color:#a6e22e">from</span> <span style="color:#e6db74">&#39;@angular/forms&#39;</span>;
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-typescript" data-lang="typescript"><span style="color:#a90d91">import</span> { <span style="color:#000">Component</span> } <span style="color:#000">from</span> <span style="color:#c41a16">&#39;@angular/core&#39;</span>;
+<span style="color:#a90d91">import</span> { <span style="color:#000">FormControl</span> } <span style="color:#000">from</span> <span style="color:#c41a16">&#39;@angular/forms&#39;</span>;
 
-<span style="color:#66d9ef">@Component</span>({
-  <span style="color:#a6e22e">selector</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;app-root&#39;</span>,
-  <span style="color:#a6e22e">styleUrls</span><span style="color:#f92672">:</span> [<span style="color:#e6db74">&#39;./app.component.scss&#39;</span>],
-  <span style="color:#a6e22e">template</span><span style="color:#f92672">:</span> <span style="color:#e6db74">`
-</span><span style="color:#e6db74">    &lt;input appInput required [formControl]=&#34;termSearch&#34; [error]=&#39;hasErrors()&#39; required&gt;
-</span><span style="color:#e6db74">  `</span>
+<span style="color:#a90d91">@Component</span>({
+  <span style="color:#000">selector</span><span style="color:#000">:</span> <span style="color:#c41a16">&#39;app-root&#39;</span>,
+  <span style="color:#000">styleUrls</span><span style="color:#000">:</span> [<span style="color:#c41a16">&#39;./app.component.scss&#39;</span>],
+  <span style="color:#000">template</span><span style="color:#000">:</span> <span style="color:#c41a16">`
+</span><span style="color:#c41a16">    &lt;input appInput required [formControl]=&#34;termSearch&#34; [error]=&#39;hasErrors()&#39; required&gt;
+</span><span style="color:#c41a16">  `</span>
 })
-<span style="color:#66d9ef">export</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">AppComponent</span> {
-  <span style="color:#a6e22e">termSearch</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">FormControl</span>();
+<span style="color:#a90d91">export</span> <span style="color:#a90d91">class</span> <span style="color:#000">AppComponent</span> {
+  <span style="color:#000">termSearch</span> <span style="color:#000">=</span> <span style="color:#a90d91">new</span> <span style="color:#000">FormControl</span>();
 
-  <span style="color:#a6e22e">hasErrors</span> <span style="color:#f92672">=</span> ()<span style="color:#f92672">:</span> <span style="color:#66d9ef">boolean</span> <span style="color:#f92672">=&gt;</span> {
-    <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">termSearch</span>.<span style="color:#a6e22e">invalid</span> <span style="color:#f92672">&amp;&amp;</span> <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">termSearch</span>.<span style="color:#a6e22e">dirty</span>;
+  <span style="color:#000">hasErrors</span> <span style="color:#000">=</span> ()<span style="color:#000">:</span> <span style="color:#a90d91">boolean</span> <span style="color:#000">=&gt;</span> {
+    <span style="color:#a90d91">return</span> <span style="color:#a90d91">this</span>.<span style="color:#000">termSearch</span>.<span style="color:#000">invalid</span> <span style="color:#000">&amp;&amp;</span> <span style="color:#a90d91">this</span>.<span style="color:#000">termSearch</span>.<span style="color:#000">dirty</span>;
   }
 }</code></pre></div>
 <p>Here I am using the <code>hasError</code> method to define the state of the <code>error</code> input. In our case we define an error to be displayed when the input has been touched and is empty.</p>

@@ -4,7 +4,7 @@ description: "Create a tab component with angular 5"
 tags:
   - angular5
 date: "2017-11-29"
-featured: true
+featured: false
 slug: angular5-tabs
 image: /images/tabs.jpg
 ---

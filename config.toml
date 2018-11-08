@@ -25,8 +25,8 @@ paginate = 9
 theme = "bleak"
 
 PygmentsCodeFences = true
-pygmentsstyle = "monokai"
-pygmentslinenos= "inline"
+pygmentsstyle = "xcode"
+# pygmentslinenos= "inline"
 
 SectionPagesMenu = "Main"
 

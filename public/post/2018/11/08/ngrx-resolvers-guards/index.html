@@ -98,7 +98,7 @@
         },
         "datePublished": "2018-11-08",
         "dateModified": "2018-11-08",
-        "wordCount": 937,
+        "wordCount": 941,
         "keywords": ["angular5","ngrx","guards","resolvers"]
     }
     </script>
@@ -136,15 +136,7 @@ html{font-family:sans-serif;line-height:1.15;-ms-text-size-adjust:100%;-webkit-t
       			  
               </a>
             </div>
-            <div class="nav-menu">
-              <a class="rss" href="">
-                <i class="icon-rss"></i>
-              </a>
-                
-                <a class="menu" data-action="toc" data-target="toc"><i class="icon-location"></i></a>
-                
-                
-            </div>
+            
           </nav>
 
 
@@ -156,7 +148,7 @@ html{font-family:sans-serif;line-height:1.15;-ms-text-size-adjust:100%;-webkit-t
 
   			<header class="post-header">
   				<span class="post-meta">
-						<span class="post-date">8 Nov 2018</span> <span class="reading-time">| <span class="estimated-reading-time">5 min.</span> (<span class="word-count">937</span> words)</span></span>
+						<span class="post-date">8 Nov 2018</span> <span class="reading-time">| <span class="estimated-reading-time">5 min.</span> (<span class="word-count">941</span> words)</span></span>
   				</span>
   				<div class="clear"></div>
   				<h1 class="post-title">Ngrx Guards and Resolvers</h1>
@@ -188,31 +180,31 @@ Books are loaded with a gaurd and authors are loaded with a resolver.</p>
 <h3 id="routing-file">Routing file</h3>
 
 <p>Let&rsquo;s start off with our routing file. As you can see books are protected by a guard and authors are loaded with a resolver.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-typescript" data-lang="typescript"><span style="color:#75715e">// library.routing.ts
-</span><span style="color:#75715e"></span>
-<span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">AuthorsResolver</span> } <span style="color:#a6e22e">from</span> <span style="color:#e6db74">&#39;./resolvers/authors.resolver&#39;</span>;
-<span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">BooksGuard</span> } <span style="color:#a6e22e">from</span> <span style="color:#e6db74">&#39;./guards/books.guard&#39;</span>;
-<span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">NgModule</span> } <span style="color:#a6e22e">from</span> <span style="color:#e6db74">&#39;@angular/core&#39;</span>;
-<span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">RouterModule</span>, <span style="color:#a6e22e">Routes</span> } <span style="color:#a6e22e">from</span> <span style="color:#e6db74">&#39;@angular/router&#39;</span>;
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-typescript" data-lang="typescript"><span style="color:#177500">// library.routing.ts
+</span><span style="color:#177500"></span>
+<span style="color:#a90d91">import</span> { <span style="color:#000">AuthorsResolver</span> } <span style="color:#000">from</span> <span style="color:#c41a16">&#39;./resolvers/authors.resolver&#39;</span>;
+<span style="color:#a90d91">import</span> { <span style="color:#000">BooksGuard</span> } <span style="color:#000">from</span> <span style="color:#c41a16">&#39;./guards/books.guard&#39;</span>;
+<span style="color:#a90d91">import</span> { <span style="color:#000">NgModule</span> } <span style="color:#000">from</span> <span style="color:#c41a16">&#39;@angular/core&#39;</span>;
+<span style="color:#a90d91">import</span> { <span style="color:#000">RouterModule</span>, <span style="color:#000">Routes</span> } <span style="color:#000">from</span> <span style="color:#c41a16">&#39;@angular/router&#39;</span>;
 
-<span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">LibraryComponent</span> } <span style="color:#a6e22e">from</span> <span style="color:#e6db74">&#39;./containers/library.component&#39;</span>;
+<span style="color:#a90d91">import</span> { <span style="color:#000">LibraryComponent</span> } <span style="color:#000">from</span> <span style="color:#c41a16">&#39;./containers/library.component&#39;</span>;
 
-<span style="color:#66d9ef">const</span> <span style="color:#a6e22e">routes</span>: <span style="color:#66d9ef">Routes</span> <span style="color:#f92672">=</span> [
+<span style="color:#a90d91">const</span> <span style="color:#000">routes</span>: <span style="color:#a90d91">Routes</span> <span style="color:#000">=</span> [
   {
-    <span style="color:#a6e22e">path</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;&#39;</span>,
-    <span style="color:#a6e22e">canActivate</span><span style="color:#f92672">:</span> [ <span style="color:#a6e22e">BooksGuard</span> ],
-    <span style="color:#a6e22e">resolve</span><span style="color:#f92672">:</span> { <span style="color:#a6e22e">authors</span>: <span style="color:#66d9ef">AuthorsResolver</span> },
-    <span style="color:#a6e22e">component</span>: <span style="color:#66d9ef">LibraryComponent</span>
+    <span style="color:#000">path</span><span style="color:#000">:</span> <span style="color:#c41a16">&#39;&#39;</span>,
+    <span style="color:#000">canActivate</span><span style="color:#000">:</span> [ <span style="color:#000">BooksGuard</span> ],
+    <span style="color:#000">resolve</span><span style="color:#000">:</span> { <span style="color:#000">authors</span>: <span style="color:#a90d91">AuthorsResolver</span> },
+    <span style="color:#000">component</span>: <span style="color:#a90d91">LibraryComponent</span>
   }
 ];
 
-<span style="color:#66d9ef">@NgModule</span>({
-  <span style="color:#a6e22e">imports</span><span style="color:#f92672">:</span> [
-    <span style="color:#a6e22e">RouterModule</span>.<span style="color:#a6e22e">forChild</span>(<span style="color:#a6e22e">routes</span>)
+<span style="color:#a90d91">@NgModule</span>({
+  <span style="color:#000">imports</span><span style="color:#000">:</span> [
+    <span style="color:#000">RouterModule</span>.<span style="color:#000">forChild</span>(<span style="color:#000">routes</span>)
   ],
 })
 
-<span style="color:#66d9ef">export</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">LibraryRouting</span> {}</code></pre></div>
+<span style="color:#a90d91">export</span> <span style="color:#a90d91">class</span> <span style="color:#000">LibraryRouting</span> {}</code></pre></div>
 <h3 id="book-guard">Book guard</h3>
 
 <p>Our book guard is a classic guard using ngrx state. I am consecutively calling:</p>
@@ -224,29 +216,31 @@ Books are loaded with a gaurd and authors are loaded with a resolver.</p>
 <li>Finally, I have <code>take</code> to stop the subscription.</li>
 <li>Also, I have a <code>catchError</code> that returns an observable of false to say the guard can&rsquo;t pass.</li>
 </ul>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-typescript" data-lang="typescript"><span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">Injectable</span> } <span style="color:#a6e22e">from</span> <span style="color:#e6db74">&#39;@angular/core&#39;</span>;
-<span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">CanActivate</span> } <span style="color:#a6e22e">from</span> <span style="color:#e6db74">&#39;@angular/router&#39;</span>;
-<span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">Store</span> } <span style="color:#a6e22e">from</span> <span style="color:#e6db74">&#39;@ngrx/store&#39;</span>;
-<span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">Observable</span> } <span style="color:#a6e22e">from</span> <span style="color:#e6db74">&#39;rxjs/Observable&#39;</span>;
-<span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">of</span> } <span style="color:#a6e22e">from</span> <span style="color:#e6db74">&#39;rxjs/observable/of&#39;</span>;
-<span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">catchError</span>, <span style="color:#a6e22e">filter</span>, <span style="color:#a6e22e">take</span>, <span style="color:#a6e22e">tap</span> } <span style="color:#a6e22e">from</span> <span style="color:#e6db74">&#39;rxjs/operators&#39;</span>;
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-typescript" data-lang="typescript"><span style="color:#177500">// books.guard.ts
+</span><span style="color:#177500"></span>
+<span style="color:#a90d91">import</span> { <span style="color:#000">Injectable</span> } <span style="color:#000">from</span> <span style="color:#c41a16">&#39;@angular/core&#39;</span>;
+<span style="color:#a90d91">import</span> { <span style="color:#000">CanActivate</span> } <span style="color:#000">from</span> <span style="color:#c41a16">&#39;@angular/router&#39;</span>;
+<span style="color:#a90d91">import</span> { <span style="color:#000">Store</span> } <span style="color:#000">from</span> <span style="color:#c41a16">&#39;@ngrx/store&#39;</span>;
+<span style="color:#a90d91">import</span> { <span style="color:#000">Observable</span> } <span style="color:#000">from</span> <span style="color:#c41a16">&#39;rxjs/Observable&#39;</span>;
+<span style="color:#a90d91">import</span> { <span style="color:#000">of</span> } <span style="color:#000">from</span> <span style="color:#c41a16">&#39;rxjs/observable/of&#39;</span>;
+<span style="color:#a90d91">import</span> { <span style="color:#000">catchError</span>, <span style="color:#000">filter</span>, <span style="color:#000">take</span>, <span style="color:#000">tap</span> } <span style="color:#000">from</span> <span style="color:#c41a16">&#39;rxjs/operators&#39;</span>;
 
-<span style="color:#66d9ef">import</span> <span style="color:#f92672">*</span> <span style="color:#66d9ef">as</span> <span style="color:#a6e22e">fromStore</span> <span style="color:#a6e22e">from</span> <span style="color:#e6db74">&#39;../store&#39;</span>;
+<span style="color:#a90d91">import</span> <span style="color:#000">*</span> <span style="color:#a90d91">as</span> <span style="color:#000">fromStore</span> <span style="color:#000">from</span> <span style="color:#c41a16">&#39;../store&#39;</span>;
 
-<span style="color:#66d9ef">@Injectable</span>()
-<span style="color:#66d9ef">export</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">BooksGuard</span> <span style="color:#66d9ef">implements</span> <span style="color:#a6e22e">CanActivate</span> {
-  <span style="color:#66d9ef">constructor</span>(
-    <span style="color:#66d9ef">private</span> <span style="color:#a6e22e">store</span>: <span style="color:#66d9ef">Store</span><span style="color:#f92672">&lt;</span><span style="color:#a6e22e">any</span><span style="color:#f92672">&gt;</span>
+<span style="color:#a90d91">@Injectable</span>()
+<span style="color:#a90d91">export</span> <span style="color:#a90d91">class</span> <span style="color:#000">BooksGuard</span> <span style="color:#a90d91">implements</span> <span style="color:#000">CanActivate</span> {
+  <span style="color:#a90d91">constructor</span>(
+    <span style="color:#a90d91">private</span> <span style="color:#000">store</span>: <span style="color:#a90d91">Store</span><span style="color:#000">&lt;</span><span style="color:#000">any</span><span style="color:#000">&gt;</span>
   ) {}
 
-  <span style="color:#a6e22e">canActivate</span>()<span style="color:#f92672">:</span> <span style="color:#a6e22e">Observable</span><span style="color:#f92672">&lt;</span><span style="color:#66d9ef">boolean</span><span style="color:#f92672">&gt;</span> {
-    <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">store</span>.<span style="color:#a6e22e">select</span>(<span style="color:#a6e22e">fromStore</span>.<span style="color:#a6e22e">getBooksLoaded</span>).<span style="color:#a6e22e">pipe</span>(
-      <span style="color:#a6e22e">tap</span>(<span style="color:#a6e22e">loaded</span> <span style="color:#f92672">=&gt;</span> {
-        <span style="color:#66d9ef">if</span> (<span style="color:#f92672">!</span><span style="color:#a6e22e">loaded</span>) <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">store</span>.<span style="color:#a6e22e">dispatch</span>(<span style="color:#66d9ef">new</span> <span style="color:#a6e22e">fromStore</span>.<span style="color:#a6e22e">LoadBooks</span>());
+  <span style="color:#000">canActivate</span>()<span style="color:#000">:</span> <span style="color:#000">Observable</span><span style="color:#000">&lt;</span><span style="color:#a90d91">boolean</span><span style="color:#000">&gt;</span> {
+    <span style="color:#a90d91">return</span> <span style="color:#a90d91">this</span>.<span style="color:#000">store</span>.<span style="color:#000">select</span>(<span style="color:#000">fromStore</span>.<span style="color:#000">getBooksLoaded</span>).<span style="color:#000">pipe</span>(
+      <span style="color:#000">tap</span>(<span style="color:#000">loaded</span> <span style="color:#000">=&gt;</span> {
+        <span style="color:#a90d91">if</span> (<span style="color:#000">!</span><span style="color:#000">loaded</span>) <span style="color:#a90d91">return</span> <span style="color:#a90d91">this</span>.<span style="color:#000">store</span>.<span style="color:#000">dispatch</span>(<span style="color:#a90d91">new</span> <span style="color:#000">fromStore</span>.<span style="color:#000">LoadBooks</span>());
       }),
-      <span style="color:#a6e22e">filter</span>(<span style="color:#a6e22e">loaded</span> <span style="color:#f92672">=&gt;</span> <span style="color:#a6e22e">loaded</span>),
-      <span style="color:#a6e22e">take</span>(<span style="color:#ae81ff">1</span>),
-      <span style="color:#a6e22e">catchError</span>(() <span style="color:#f92672">=&gt;</span> <span style="color:#a6e22e">of</span>(<span style="color:#66d9ef">false</span>))
+      <span style="color:#000">filter</span>(<span style="color:#000">loaded</span> <span style="color:#000">=&gt;</span> <span style="color:#000">loaded</span>),
+      <span style="color:#000">take</span>(<span style="color:#1c01ce">1</span>),
+      <span style="color:#000">catchError</span>(() <span style="color:#000">=&gt;</span> <span style="color:#000">of</span>(<span style="color:#a90d91">false</span>))
     );
   }
 }</code></pre></div>
@@ -254,27 +248,31 @@ Books are loaded with a gaurd and authors are loaded with a resolver.</p>
 
 <p>Since I didn&rsquo;t find any example of resolver using ngrx online, I pretty much created this on my own based on guards.
 As you can see the first part is identical to the guard, the only difference is at the end. Instead of returning an observable of true or false I am actually returning the data.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-typescript" data-lang="typescript"><span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">Injectable</span> } <span style="color:#a6e22e">from</span> <span style="color:#e6db74">&#39;@angular/core&#39;</span>;
-<span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">Resolve</span> } <span style="color:#a6e22e">from</span> <span style="color:#e6db74">&#39;@angular/router&#39;</span>;
-<span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">select</span>, <span style="color:#a6e22e">Store</span> } <span style="color:#a6e22e">from</span> <span style="color:#e6db74">&#39;@ngrx/store&#39;</span>;
-<span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">Observable</span> } <span style="color:#a6e22e">from</span> <span style="color:#e6db74">&#39;rxjs/Observable&#39;</span>;
-<span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">filter</span>, <span style="color:#a6e22e">switchMap</span>, <span style="color:#a6e22e">take</span>, <span style="color:#a6e22e">tap</span> } <span style="color:#a6e22e">from</span> <span style="color:#e6db74">&#39;rxjs/operators&#39;</span>;
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-typescript" data-lang="typescript"><span style="color:#177500">// authors.guard.ts
+</span><span style="color:#177500"></span>
+<span style="color:#a90d91">import</span> { <span style="color:#000">Injectable</span> } <span style="color:#000">from</span> <span style="color:#c41a16">&#39;@angular/core&#39;</span>;
+<span style="color:#a90d91">import</span> { <span style="color:#000">Resolve</span> } <span style="color:#000">from</span> <span style="color:#c41a16">&#39;@angular/router&#39;</span>;
+<span style="color:#a90d91">import</span> { <span style="color:#000">select</span>, <span style="color:#000">Store</span> } <span style="color:#000">from</span> <span style="color:#c41a16">&#39;@ngrx/store&#39;</span>;
+<span style="color:#a90d91">import</span> { <span style="color:#000">Observable</span> } <span style="color:#000">from</span> <span style="color:#c41a16">&#39;rxjs/Observable&#39;</span>;
+<span style="color:#a90d91">import</span> { <span style="color:#000">filter</span>, <span style="color:#000">switchMap</span>, <span style="color:#000">take</span>, <span style="color:#000">tap</span> } <span style="color:#000">from</span> <span style="color:#c41a16">&#39;rxjs/operators&#39;</span>;
 
-<span style="color:#66d9ef">import</span> <span style="color:#f92672">*</span> <span style="color:#66d9ef">as</span> <span style="color:#a6e22e">fromStore</span> <span style="color:#a6e22e">from</span> <span style="color:#e6db74">&#39;../store&#39;</span>;
-<span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">Author</span> } <span style="color:#a6e22e">from</span> <span style="color:#e6db74">&#39;./../models/author.model&#39;</span>;
+<span style="color:#a90d91">import</span> <span style="color:#000">*</span> <span style="color:#a90d91">as</span> <span style="color:#000">fromStore</span> <span style="color:#000">from</span> <span style="color:#c41a16">&#39;../store&#39;</span>;
+<span style="color:#a90d91">import</span> { <span style="color:#000">Author</span> } <span style="color:#000">from</span> <span style="color:#c41a16">&#39;./../models/author.model&#39;</span>;
 
-<span style="color:#66d9ef">@Injectable</span>()
-<span style="color:#66d9ef">export</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">AuthorsResolver</span> <span style="color:#66d9ef">implements</span> <span style="color:#a6e22e">Resolve</span><span style="color:#f92672">&lt;</span><span style="color:#a6e22e">Author</span>[]<span style="color:#f92672">&gt;</span> {
-  <span style="color:#66d9ef">constructor</span>(
-    <span style="color:#66d9ef">private</span> <span style="color:#a6e22e">store</span>: <span style="color:#66d9ef">Store</span><span style="color:#f92672">&lt;</span><span style="color:#a6e22e">any</span><span style="color:#f92672">&gt;</span>
+<span style="color:#a90d91">@Injectable</span>()
+<span style="color:#a90d91">export</span> <span style="color:#a90d91">class</span> <span style="color:#000">AuthorsResolver</span> <span style="color:#a90d91">implements</span> <span style="color:#000">Resolve</span><span style="color:#000">&lt;</span><span style="color:#000">Author</span>[]<span style="color:#000">&gt;</span> {
+  <span style="color:#a90d91">constructor</span>(
+    <span style="color:#a90d91">private</span> <span style="color:#000">store</span>: <span style="color:#a90d91">Store</span><span style="color:#000">&lt;</span><span style="color:#000">any</span><span style="color:#000">&gt;</span>
   ) { }
 
-  <span style="color:#a6e22e">resolve</span>()<span style="color:#f92672">:</span> <span style="color:#a6e22e">Observable</span><span style="color:#f92672">&lt;</span><span style="color:#a6e22e">Author</span>[]<span style="color:#f92672">&gt;</span> {
-    <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">store</span>.<span style="color:#a6e22e">select</span>(<span style="color:#a6e22e">fromStore</span>.<span style="color:#a6e22e">getAuthorsLoaded</span>).<span style="color:#a6e22e">pipe</span>(
-      <span style="color:#a6e22e">tap</span>(<span style="color:#a6e22e">loaded</span> <span style="color:#f92672">=&gt;</span> <span style="color:#f92672">!</span><span style="color:#a6e22e">loaded</span> <span style="color:#f92672">?</span> <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">store</span>.<span style="color:#a6e22e">dispatch</span>(<span style="color:#66d9ef">new</span> <span style="color:#a6e22e">fromStore</span>.<span style="color:#a6e22e">LoadAuthors</span>()) <span style="color:#f92672">:</span> <span style="color:#66d9ef">undefined</span> ),
-      <span style="color:#a6e22e">filter</span>(<span style="color:#a6e22e">loaded</span> <span style="color:#f92672">=&gt;</span> <span style="color:#a6e22e">loaded</span>),
-      <span style="color:#a6e22e">take</span>(<span style="color:#ae81ff">1</span>),
-      <span style="color:#a6e22e">switchMap</span>(() <span style="color:#f92672">=&gt;</span> <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">store</span>.<span style="color:#a6e22e">pipe</span>(<span style="color:#a6e22e">select</span>(<span style="color:#a6e22e">fromStore</span>.<span style="color:#a6e22e">getAuthorsData</span>), <span style="color:#a6e22e">take</span>(<span style="color:#ae81ff">1</span>)))
+  <span style="color:#000">resolve</span>()<span style="color:#000">:</span> <span style="color:#000">Observable</span><span style="color:#000">&lt;</span><span style="color:#000">Author</span>[]<span style="color:#000">&gt;</span> {
+    <span style="color:#a90d91">return</span> <span style="color:#a90d91">this</span>.<span style="color:#000">store</span>.<span style="color:#000">select</span>(<span style="color:#000">fromStore</span>.<span style="color:#000">getAuthorsLoaded</span>).<span style="color:#000">pipe</span>(
+      <span style="color:#000">tap</span>(<span style="color:#000">loaded</span> <span style="color:#000">=&gt;</span> {
+        <span style="color:#a90d91">if</span> (<span style="color:#000">!</span><span style="color:#000">loaded</span>) <span style="color:#a90d91">return</span> <span style="color:#a90d91">this</span>.<span style="color:#000">store</span>.<span style="color:#000">dispatch</span>(<span style="color:#a90d91">new</span> <span style="color:#000">fromStore</span>.<span style="color:#000">LoadAuthors</span>());
+      }),
+      <span style="color:#000">filter</span>(<span style="color:#000">loaded</span> <span style="color:#000">=&gt;</span> <span style="color:#000">loaded</span>),
+      <span style="color:#000">take</span>(<span style="color:#1c01ce">1</span>),
+      <span style="color:#000">switchMap</span>(() <span style="color:#000">=&gt;</span> <span style="color:#a90d91">this</span>.<span style="color:#000">store</span>.<span style="color:#000">pipe</span>(<span style="color:#000">select</span>(<span style="color:#000">fromStore</span>.<span style="color:#000">getAuthorsData</span>), <span style="color:#000">take</span>(<span style="color:#1c01ce">1</span>)))
     );
   }
 }</code></pre></div>
@@ -286,42 +284,43 @@ However, for the authors we don&rsquo;t need to access the state, we can get the
 
 <p>At first, I thought that&rsquo;s an advantage as I don&rsquo;t need to import the store. However, then I realised that by doing so, I am not going to get the update to the authors from the state.
 What I am doing here is loaded the authors before the page loads and passing a value to the router and that value does not update.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-typescript" data-lang="typescript"><span style="color:#75715e">// library.component.ts
-</span><span style="color:#75715e"></span><span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">Component</span>, <span style="color:#a6e22e">OnInit</span> } <span style="color:#a6e22e">from</span> <span style="color:#e6db74">&#39;@angular/core&#39;</span>;
-<span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">Store</span> } <span style="color:#a6e22e">from</span> <span style="color:#e6db74">&#39;@ngrx/store&#39;</span>;
-<span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">Observable</span> } <span style="color:#a6e22e">from</span> <span style="color:#e6db74">&#39;rxjs/Observable&#39;</span>;
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-typescript" data-lang="typescript"><span style="color:#177500">// library.component.ts
+</span><span style="color:#177500"></span>
+<span style="color:#a90d91">import</span> { <span style="color:#000">Component</span>, <span style="color:#000">OnInit</span> } <span style="color:#000">from</span> <span style="color:#c41a16">&#39;@angular/core&#39;</span>;
+<span style="color:#a90d91">import</span> { <span style="color:#000">Store</span> } <span style="color:#000">from</span> <span style="color:#c41a16">&#39;@ngrx/store&#39;</span>;
+<span style="color:#a90d91">import</span> { <span style="color:#000">Observable</span> } <span style="color:#000">from</span> <span style="color:#c41a16">&#39;rxjs/Observable&#39;</span>;
 
-<span style="color:#66d9ef">import</span> <span style="color:#f92672">*</span> <span style="color:#66d9ef">as</span> <span style="color:#a6e22e">fromStore</span> <span style="color:#a6e22e">from</span> <span style="color:#e6db74">&#39;../store&#39;</span>;
-<span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">Author</span> } <span style="color:#a6e22e">from</span> <span style="color:#e6db74">&#39;./../models/author.model&#39;</span>;
-<span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">Book</span> } <span style="color:#a6e22e">from</span> <span style="color:#e6db74">&#39;./../models/book.model&#39;</span>;
-<span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">ActivatedRoute</span> } <span style="color:#a6e22e">from</span> <span style="color:#e6db74">&#39;@angular/router&#39;</span>;
+<span style="color:#a90d91">import</span> <span style="color:#000">*</span> <span style="color:#a90d91">as</span> <span style="color:#000">fromStore</span> <span style="color:#000">from</span> <span style="color:#c41a16">&#39;../store&#39;</span>;
+<span style="color:#a90d91">import</span> { <span style="color:#000">Author</span> } <span style="color:#000">from</span> <span style="color:#c41a16">&#39;./../models/author.model&#39;</span>;
+<span style="color:#a90d91">import</span> { <span style="color:#000">Book</span> } <span style="color:#000">from</span> <span style="color:#c41a16">&#39;./../models/book.model&#39;</span>;
+<span style="color:#a90d91">import</span> { <span style="color:#000">ActivatedRoute</span> } <span style="color:#000">from</span> <span style="color:#c41a16">&#39;@angular/router&#39;</span>;
 
-<span style="color:#66d9ef">@Component</span>({
-  <span style="color:#a6e22e">selector</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;hopla-library&#39;</span>,
-  <span style="color:#a6e22e">template</span><span style="color:#f92672">:</span> <span style="color:#e6db74">`
-</span><span style="color:#e6db74">    &lt;h1&gt;Books:&lt;/h1&gt;
-</span><span style="color:#e6db74">    &lt;h3 *ngFor=&#39;let book of (books$ | async)&#39;&gt;
-</span><span style="color:#e6db74">      {{ book.title }}
-</span><span style="color:#e6db74">    &lt;/h3&gt;
-</span><span style="color:#e6db74">
-</span><span style="color:#e6db74">    &lt;h1&gt;Authors:&lt;/h1&gt;
-</span><span style="color:#e6db74">    &lt;h3 *ngFor=&#39;let author of authors&#39;&gt;
-</span><span style="color:#e6db74">      {{ author.name }}
-</span><span style="color:#e6db74">    &lt;/h3&gt;
-</span><span style="color:#e6db74">  `</span>
+<span style="color:#a90d91">@Component</span>({
+  <span style="color:#000">selector</span><span style="color:#000">:</span> <span style="color:#c41a16">&#39;hopla-library&#39;</span>,
+  <span style="color:#000">template</span><span style="color:#000">:</span> <span style="color:#c41a16">`
+</span><span style="color:#c41a16">    &lt;h1&gt;Books:&lt;/h1&gt;
+</span><span style="color:#c41a16">    &lt;h3 *ngFor=&#39;let book of (books$ | async)&#39;&gt;
+</span><span style="color:#c41a16">      {{ book.title }}
+</span><span style="color:#c41a16">    &lt;/h3&gt;
+</span><span style="color:#c41a16">
+</span><span style="color:#c41a16">    &lt;h1&gt;Authors:&lt;/h1&gt;
+</span><span style="color:#c41a16">    &lt;h3 *ngFor=&#39;let author of authors&#39;&gt;
+</span><span style="color:#c41a16">      {{ author.name }}
+</span><span style="color:#c41a16">    &lt;/h3&gt;
+</span><span style="color:#c41a16">  `</span>
 })
-<span style="color:#66d9ef">export</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">LibraryComponent</span> <span style="color:#66d9ef">implements</span> <span style="color:#a6e22e">OnInit</span> {
-  <span style="color:#a6e22e">books$</span>: <span style="color:#66d9ef">Observable</span><span style="color:#f92672">&lt;</span><span style="color:#a6e22e">Book</span>[]<span style="color:#f92672">&gt;</span>;
-  <span style="color:#a6e22e">authors</span>: <span style="color:#66d9ef">Author</span>[];
+<span style="color:#a90d91">export</span> <span style="color:#a90d91">class</span> <span style="color:#000">LibraryComponent</span> <span style="color:#a90d91">implements</span> <span style="color:#000">OnInit</span> {
+  <span style="color:#000">books$</span>: <span style="color:#a90d91">Observable</span><span style="color:#000">&lt;</span><span style="color:#000">Book</span>[]<span style="color:#000">&gt;</span>;
+  <span style="color:#000">authors</span>: <span style="color:#a90d91">Author</span>[];
 
-  <span style="color:#66d9ef">constructor</span>(
-    <span style="color:#66d9ef">private</span> <span style="color:#a6e22e">store</span>: <span style="color:#66d9ef">Store</span><span style="color:#f92672">&lt;</span><span style="color:#a6e22e">any</span><span style="color:#f92672">&gt;</span>,
-    <span style="color:#66d9ef">private</span> <span style="color:#a6e22e">route</span>: <span style="color:#66d9ef">ActivatedRoute</span>
+  <span style="color:#a90d91">constructor</span>(
+    <span style="color:#a90d91">private</span> <span style="color:#000">store</span>: <span style="color:#a90d91">Store</span><span style="color:#000">&lt;</span><span style="color:#000">any</span><span style="color:#000">&gt;</span>,
+    <span style="color:#a90d91">private</span> <span style="color:#000">route</span>: <span style="color:#a90d91">ActivatedRoute</span>
   ) {}
 
-  <span style="color:#a6e22e">ngOnInit() {</span>
-    <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">books$</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">store</span>.<span style="color:#a6e22e">select</span>(<span style="color:#a6e22e">fromStore</span>.<span style="color:#a6e22e">getBooksData</span>);
-    <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">authors</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">route</span>.<span style="color:#a6e22e">snapshot</span>.<span style="color:#a6e22e">data</span>.<span style="color:#a6e22e">authors</span>;
+  <span style="color:#000">ngOnInit() {</span>
+    <span style="color:#a90d91">this</span>.<span style="color:#000">books$</span> <span style="color:#000">=</span> <span style="color:#a90d91">this</span>.<span style="color:#000">store</span>.<span style="color:#000">select</span>(<span style="color:#000">fromStore</span>.<span style="color:#000">getBooksData</span>);
+    <span style="color:#a90d91">this</span>.<span style="color:#000">authors</span> <span style="color:#000">=</span> <span style="color:#a90d91">this</span>.<span style="color:#000">route</span>.<span style="color:#000">snapshot</span>.<span style="color:#000">data</span>.<span style="color:#000">authors</span>;
   }
 }</code></pre></div>
 <p>So here you go that&rsquo;s the trade of using resolvers instead of state:</p>

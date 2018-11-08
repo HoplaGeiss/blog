@@ -5,7 +5,7 @@ tags:
   - angular5
   - d3.js
 date: "2017-11-20"
-featured: true
+featured: false
 slug: angular5-d3js-bubble-chart
 image: /images/bubble-chart.png
 ---

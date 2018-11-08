@@ -133,15 +133,7 @@ html{font-family:sans-serif;line-height:1.15;-ms-text-size-adjust:100%;-webkit-t
       			  
               </a>
             </div>
-            <div class="nav-menu">
-              <a class="rss" href="">
-                <i class="icon-rss"></i>
-              </a>
-                
-                <a class="menu" data-action="toc" data-target="toc"><i class="icon-location"></i></a>
-                
-                
-            </div>
+            
           </nav>
 
 
@@ -171,16 +163,16 @@ html{font-family:sans-serif;line-height:1.15;-ms-text-size-adjust:100%;-webkit-t
 <h1 id="appcomponent">AppComponent</h1>
 
 <p>First we need a basic root component with a <code>router-outlet</code>.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-typescript" data-lang="typescript"><span style="color:#75715e">// app.component.ts
-</span><span style="color:#75715e"></span><span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">Component</span> } <span style="color:#a6e22e">from</span> <span style="color:#e6db74">&#39;@angular/core&#39;</span>;
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-typescript" data-lang="typescript"><span style="color:#177500">// app.component.ts
+</span><span style="color:#177500"></span><span style="color:#a90d91">import</span> { <span style="color:#000">Component</span> } <span style="color:#000">from</span> <span style="color:#c41a16">&#39;@angular/core&#39;</span>;
 
-<span style="color:#66d9ef">@Component</span>({
-  <span style="color:#a6e22e">selector</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;app-root&#39;</span>,
-  <span style="color:#a6e22e">template</span><span style="color:#f92672">:</span> <span style="color:#e6db74">`
-</span><span style="color:#e6db74">    &lt;router-outlet&gt;&lt;/router-outlet&gt;
-</span><span style="color:#e6db74">  `</span>
+<span style="color:#a90d91">@Component</span>({
+  <span style="color:#000">selector</span><span style="color:#000">:</span> <span style="color:#c41a16">&#39;app-root&#39;</span>,
+  <span style="color:#000">template</span><span style="color:#000">:</span> <span style="color:#c41a16">`
+</span><span style="color:#c41a16">    &lt;router-outlet&gt;&lt;/router-outlet&gt;
+</span><span style="color:#c41a16">  `</span>
 })
-<span style="color:#66d9ef">export</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">AppComponent</span> {}</code></pre></div>
+<span style="color:#a90d91">export</span> <span style="color:#a90d91">class</span> <span style="color:#000">AppComponent</span> {}</code></pre></div>
 <p>Then we need to decide the URL our user will use to use our app. Since users spend most of their time logged in the app, I decided to have a bare URL for <code>MainComponent</code> and <code>home</code> for <code>HomeComponent</code>.</p>
 
 <p>This means the URLs will look like this:</p>
@@ -236,117 +228,117 @@ html{font-family:sans-serif;line-height:1.15;-ms-text-size-adjust:100%;-webkit-t
 </tr>
 </tbody>
 </table>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-typescript" data-lang="typescript"><span style="color:#75715e">// app-routing.module.ts
-</span><span style="color:#75715e"></span><span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">NgModule</span> } <span style="color:#a6e22e">from</span> <span style="color:#e6db74">&#39;@angular/core&#39;</span>;
-<span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">RouterModule</span>, <span style="color:#a6e22e">Routes</span> } <span style="color:#a6e22e">from</span> <span style="color:#e6db74">&#39;@angular/router&#39;</span>;
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-typescript" data-lang="typescript"><span style="color:#177500">// app-routing.module.ts
+</span><span style="color:#177500"></span><span style="color:#a90d91">import</span> { <span style="color:#000">NgModule</span> } <span style="color:#000">from</span> <span style="color:#c41a16">&#39;@angular/core&#39;</span>;
+<span style="color:#a90d91">import</span> { <span style="color:#000">RouterModule</span>, <span style="color:#000">Routes</span> } <span style="color:#000">from</span> <span style="color:#c41a16">&#39;@angular/router&#39;</span>;
 
-<span style="color:#75715e">// Components
-</span><span style="color:#75715e"></span><span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">LandingComponent</span> } <span style="color:#a6e22e">from</span> <span style="color:#e6db74">&#39;./landing/landing.component&#39;</span>;
-<span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">MainComponent</span> } <span style="color:#a6e22e">from</span> <span style="color:#e6db74">&#39;./main/main.component&#39;</span>;
+<span style="color:#177500">// Components
+</span><span style="color:#177500"></span><span style="color:#a90d91">import</span> { <span style="color:#000">LandingComponent</span> } <span style="color:#000">from</span> <span style="color:#c41a16">&#39;./landing/landing.component&#39;</span>;
+<span style="color:#a90d91">import</span> { <span style="color:#000">MainComponent</span> } <span style="color:#000">from</span> <span style="color:#c41a16">&#39;./main/main.component&#39;</span>;
 
-<span style="color:#66d9ef">const</span> <span style="color:#a6e22e">routes</span>: <span style="color:#66d9ef">Routes</span> <span style="color:#f92672">=</span> [
-  { <span style="color:#a6e22e">path</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;home&#39;</span>, <span style="color:#a6e22e">component</span>: <span style="color:#66d9ef">LandingComponent</span> },
-  { <span style="color:#a6e22e">path</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;&#39;</span>, <span style="color:#a6e22e">component</span>: <span style="color:#66d9ef">MainComponent</span> },
+<span style="color:#a90d91">const</span> <span style="color:#000">routes</span>: <span style="color:#a90d91">Routes</span> <span style="color:#000">=</span> [
+  { <span style="color:#000">path</span><span style="color:#000">:</span> <span style="color:#c41a16">&#39;home&#39;</span>, <span style="color:#000">component</span>: <span style="color:#a90d91">LandingComponent</span> },
+  { <span style="color:#000">path</span><span style="color:#000">:</span> <span style="color:#c41a16">&#39;&#39;</span>, <span style="color:#000">component</span>: <span style="color:#a90d91">MainComponent</span> },
 ];
 
-<span style="color:#66d9ef">@NgModule</span>({
-  <span style="color:#a6e22e">imports</span><span style="color:#f92672">:</span> [ <span style="color:#a6e22e">RouterModule</span>.<span style="color:#a6e22e">forRoot</span>(<span style="color:#a6e22e">routes</span>) ],
-  <span style="color:#a6e22e">exports</span><span style="color:#f92672">:</span> [ <span style="color:#a6e22e">RouterModule</span> ]
+<span style="color:#a90d91">@NgModule</span>({
+  <span style="color:#000">imports</span><span style="color:#000">:</span> [ <span style="color:#000">RouterModule</span>.<span style="color:#000">forRoot</span>(<span style="color:#000">routes</span>) ],
+  <span style="color:#000">exports</span><span style="color:#000">:</span> [ <span style="color:#000">RouterModule</span> ]
 })
 
-<span style="color:#66d9ef">export</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">AppRoutingModule</span> {}</code></pre></div>
+<span style="color:#a90d91">export</span> <span style="color:#a90d91">class</span> <span style="color:#000">AppRoutingModule</span> {}</code></pre></div>
 <h1 id="maincomponent">MainComponent</h1>
 
 <p>Very similar component as for AppComponent..</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-typescript" data-lang="typescript"><span style="color:#75715e">// main/main.component.ts
-</span><span style="color:#75715e"></span><span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">Component</span> } <span style="color:#a6e22e">from</span> <span style="color:#e6db74">&#39;@angular/core&#39;</span>;
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-typescript" data-lang="typescript"><span style="color:#177500">// main/main.component.ts
+</span><span style="color:#177500"></span><span style="color:#a90d91">import</span> { <span style="color:#000">Component</span> } <span style="color:#000">from</span> <span style="color:#c41a16">&#39;@angular/core&#39;</span>;
 
-<span style="color:#66d9ef">@Component</span>({
-  <span style="color:#a6e22e">selector</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;app-main&#39;</span>,
-  <span style="color:#a6e22e">template</span><span style="color:#f92672">:</span> <span style="color:#e6db74">`
-</span><span style="color:#e6db74">    &lt;router-outlet&gt;&lt;/router-outlet&gt;
-</span><span style="color:#e6db74">  `</span>
+<span style="color:#a90d91">@Component</span>({
+  <span style="color:#000">selector</span><span style="color:#000">:</span> <span style="color:#c41a16">&#39;app-main&#39;</span>,
+  <span style="color:#000">template</span><span style="color:#000">:</span> <span style="color:#c41a16">`
+</span><span style="color:#c41a16">    &lt;router-outlet&gt;&lt;/router-outlet&gt;
+</span><span style="color:#c41a16">  `</span>
 })
-<span style="color:#66d9ef">export</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">MainComponent</span> {}</code></pre></div>
+<span style="color:#a90d91">export</span> <span style="color:#a90d91">class</span> <span style="color:#000">MainComponent</span> {}</code></pre></div>
 <p>Fairly simple routing, we just need to import the different components and list them in children routes.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-typescript" data-lang="typescript"><span style="color:#75715e">// main/main-routing.module.ts
-</span><span style="color:#75715e"></span><span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">NgModule</span> } <span style="color:#a6e22e">from</span> <span style="color:#e6db74">&#39;@angular/core&#39;</span>;
-<span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">RouterModule</span>, <span style="color:#a6e22e">Routes</span> } <span style="color:#a6e22e">from</span> <span style="color:#e6db74">&#39;@angular/router&#39;</span>;
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-typescript" data-lang="typescript"><span style="color:#177500">// main/main-routing.module.ts
+</span><span style="color:#177500"></span><span style="color:#a90d91">import</span> { <span style="color:#000">NgModule</span> } <span style="color:#000">from</span> <span style="color:#c41a16">&#39;@angular/core&#39;</span>;
+<span style="color:#a90d91">import</span> { <span style="color:#000">RouterModule</span>, <span style="color:#000">Routes</span> } <span style="color:#000">from</span> <span style="color:#c41a16">&#39;@angular/router&#39;</span>;
 
-<span style="color:#75715e">// Components
-</span><span style="color:#75715e"></span><span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">OverviewComponent</span> } <span style="color:#a6e22e">from</span> <span style="color:#e6db74">&#39;./overview/overview.component&#39;</span>;
-<span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">MainComponent</span> } <span style="color:#a6e22e">from</span> <span style="color:#e6db74">&#39;./main.component&#39;</span>;
-<span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">DashboardsCompoennt</span> } <span style="color:#a6e22e">from</span> <span style="color:#e6db74">&#39;./dashboards/dashboards.component&#39;</span>;
-<span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">AdminPanelComponent</span> } <span style="color:#a6e22e">from</span> <span style="color:#e6db74">&#39;./adminPanel/adminPanel.component&#39;</span>;
+<span style="color:#177500">// Components
+</span><span style="color:#177500"></span><span style="color:#a90d91">import</span> { <span style="color:#000">OverviewComponent</span> } <span style="color:#000">from</span> <span style="color:#c41a16">&#39;./overview/overview.component&#39;</span>;
+<span style="color:#a90d91">import</span> { <span style="color:#000">MainComponent</span> } <span style="color:#000">from</span> <span style="color:#c41a16">&#39;./main.component&#39;</span>;
+<span style="color:#a90d91">import</span> { <span style="color:#000">DashboardsCompoennt</span> } <span style="color:#000">from</span> <span style="color:#c41a16">&#39;./dashboards/dashboards.component&#39;</span>;
+<span style="color:#a90d91">import</span> { <span style="color:#000">AdminPanelComponent</span> } <span style="color:#000">from</span> <span style="color:#c41a16">&#39;./adminPanel/adminPanel.component&#39;</span>;
 
-<span style="color:#66d9ef">const</span> <span style="color:#a6e22e">mainRoutes</span>: <span style="color:#66d9ef">Routes</span> <span style="color:#f92672">=</span> [
+<span style="color:#a90d91">const</span> <span style="color:#000">mainRoutes</span>: <span style="color:#a90d91">Routes</span> <span style="color:#000">=</span> [
   {
-    <span style="color:#a6e22e">path</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;&#39;</span>,
-    <span style="color:#a6e22e">component</span>: <span style="color:#66d9ef">MainComponent</span>,
-    <span style="color:#a6e22e">children</span><span style="color:#f92672">:</span> [
-      { <span style="color:#a6e22e">path</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;&#39;</span>, <span style="color:#a6e22e">component</span>: <span style="color:#66d9ef">OverviewComponent</span> },
-      { <span style="color:#a6e22e">path</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;admin&#39;</span>, <span style="color:#a6e22e">component</span>: <span style="color:#66d9ef">AdminPanelComponent</span> },
-      { <span style="color:#a6e22e">path</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;dashboards&#39;</span>, <span style="color:#a6e22e">component</span>: <span style="color:#66d9ef">DashboardsCompoennt</span> },
+    <span style="color:#000">path</span><span style="color:#000">:</span> <span style="color:#c41a16">&#39;&#39;</span>,
+    <span style="color:#000">component</span>: <span style="color:#a90d91">MainComponent</span>,
+    <span style="color:#000">children</span><span style="color:#000">:</span> [
+      { <span style="color:#000">path</span><span style="color:#000">:</span> <span style="color:#c41a16">&#39;&#39;</span>, <span style="color:#000">component</span>: <span style="color:#a90d91">OverviewComponent</span> },
+      { <span style="color:#000">path</span><span style="color:#000">:</span> <span style="color:#c41a16">&#39;admin&#39;</span>, <span style="color:#000">component</span>: <span style="color:#a90d91">AdminPanelComponent</span> },
+      { <span style="color:#000">path</span><span style="color:#000">:</span> <span style="color:#c41a16">&#39;dashboards&#39;</span>, <span style="color:#000">component</span>: <span style="color:#a90d91">DashboardsCompoennt</span> },
     ]
   }
 ];
 
-<span style="color:#66d9ef">@NgModule</span>({
-  <span style="color:#a6e22e">imports</span><span style="color:#f92672">:</span> [
-    <span style="color:#a6e22e">RouterModule</span>.<span style="color:#a6e22e">forChild</span>(<span style="color:#a6e22e">mainRoutes</span>)
+<span style="color:#a90d91">@NgModule</span>({
+  <span style="color:#000">imports</span><span style="color:#000">:</span> [
+    <span style="color:#000">RouterModule</span>.<span style="color:#000">forChild</span>(<span style="color:#000">mainRoutes</span>)
   ],
-  <span style="color:#a6e22e">exports</span><span style="color:#f92672">:</span> [
-    <span style="color:#a6e22e">RouterModule</span>
+  <span style="color:#000">exports</span><span style="color:#000">:</span> [
+    <span style="color:#000">RouterModule</span>
   ]
 })
 
-<span style="color:#66d9ef">export</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">MainRoutingModule</span> { }</code></pre></div>
+<span style="color:#a90d91">export</span> <span style="color:#a90d91">class</span> <span style="color:#000">MainRoutingModule</span> { }</code></pre></div>
 <h1 id="homecomponent">HomeComponent</h1>
 
 <p>No comment needed here. It is exactly the same as for MainComponent.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-typescript" data-lang="typescript"><span style="color:#75715e">// home/home.component.ts
-</span><span style="color:#75715e"></span><span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">Component</span> } <span style="color:#a6e22e">from</span> <span style="color:#e6db74">&#39;@angular/core&#39;</span>;
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-typescript" data-lang="typescript"><span style="color:#177500">// home/home.component.ts
+</span><span style="color:#177500"></span><span style="color:#a90d91">import</span> { <span style="color:#000">Component</span> } <span style="color:#000">from</span> <span style="color:#c41a16">&#39;@angular/core&#39;</span>;
 
-<span style="color:#66d9ef">@Component</span>({
-  <span style="color:#a6e22e">selector</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;app-home&#39;</span>,
-  <span style="color:#a6e22e">template</span><span style="color:#f92672">:</span> <span style="color:#e6db74">`
-</span><span style="color:#e6db74">    &lt;router-outlet&gt;&lt;/router-outlet&gt;
-</span><span style="color:#e6db74">  `</span>
+<span style="color:#a90d91">@Component</span>({
+  <span style="color:#000">selector</span><span style="color:#000">:</span> <span style="color:#c41a16">&#39;app-home&#39;</span>,
+  <span style="color:#000">template</span><span style="color:#000">:</span> <span style="color:#c41a16">`
+</span><span style="color:#c41a16">    &lt;router-outlet&gt;&lt;/router-outlet&gt;
+</span><span style="color:#c41a16">  `</span>
 })
-<span style="color:#66d9ef">export</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">HomeComponent</span> {}</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-typescript" data-lang="typescript"><span style="color:#75715e">// home/home-routing.component.ts
-</span><span style="color:#75715e"></span><span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">NgModule</span> } <span style="color:#a6e22e">from</span> <span style="color:#e6db74">&#39;@angular/core&#39;</span>;
+<span style="color:#a90d91">export</span> <span style="color:#a90d91">class</span> <span style="color:#000">HomeComponent</span> {}</code></pre></div><div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-typescript" data-lang="typescript"><span style="color:#177500">// home/home-routing.component.ts
+</span><span style="color:#177500"></span><span style="color:#a90d91">import</span> { <span style="color:#000">NgModule</span> } <span style="color:#000">from</span> <span style="color:#c41a16">&#39;@angular/core&#39;</span>;
 
-<span style="color:#75715e">// Routing
-</span><span style="color:#75715e"></span><span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">RouterModule</span>, <span style="color:#a6e22e">Routes</span> } <span style="color:#a6e22e">from</span> <span style="color:#e6db74">&#39;@angular/router&#39;</span>;
+<span style="color:#177500">// Routing
+</span><span style="color:#177500"></span><span style="color:#a90d91">import</span> { <span style="color:#000">RouterModule</span>, <span style="color:#000">Routes</span> } <span style="color:#000">from</span> <span style="color:#c41a16">&#39;@angular/router&#39;</span>;
 
-<span style="color:#75715e">// Components
-</span><span style="color:#75715e"></span><span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">DescriptionComponent</span> } <span style="color:#a6e22e">from</span> <span style="color:#e6db74">&#39;./description/description.component&#39;</span>;
-<span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">FeaturesComponent</span> } <span style="color:#a6e22e">from</span> <span style="color:#e6db74">&#39;./features/features.component&#39;</span>;
-<span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">HomeComponent</span> } <span style="color:#a6e22e">from</span> <span style="color:#e6db74">&#39;./home.component&#39;</span>;
-<span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">PricingComponent</span> } <span style="color:#a6e22e">from</span> <span style="color:#e6db74">&#39;./pricing/pricing.component&#39;</span>;
+<span style="color:#177500">// Components
+</span><span style="color:#177500"></span><span style="color:#a90d91">import</span> { <span style="color:#000">DescriptionComponent</span> } <span style="color:#000">from</span> <span style="color:#c41a16">&#39;./description/description.component&#39;</span>;
+<span style="color:#a90d91">import</span> { <span style="color:#000">FeaturesComponent</span> } <span style="color:#000">from</span> <span style="color:#c41a16">&#39;./features/features.component&#39;</span>;
+<span style="color:#a90d91">import</span> { <span style="color:#000">HomeComponent</span> } <span style="color:#000">from</span> <span style="color:#c41a16">&#39;./home.component&#39;</span>;
+<span style="color:#a90d91">import</span> { <span style="color:#000">PricingComponent</span> } <span style="color:#000">from</span> <span style="color:#c41a16">&#39;./pricing/pricing.component&#39;</span>;
 
-<span style="color:#66d9ef">const</span> <span style="color:#a6e22e">homeRoutes</span>: <span style="color:#66d9ef">Routes</span> <span style="color:#f92672">=</span> [
+<span style="color:#a90d91">const</span> <span style="color:#000">homeRoutes</span>: <span style="color:#a90d91">Routes</span> <span style="color:#000">=</span> [
   {
-    <span style="color:#a6e22e">path</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;home&#39;</span>,
-    <span style="color:#a6e22e">component</span>: <span style="color:#66d9ef">HomeComponent</span>,
-    <span style="color:#a6e22e">children</span><span style="color:#f92672">:</span> [
-      { <span style="color:#a6e22e">path</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;&#39;</span>, <span style="color:#a6e22e">component</span>: <span style="color:#66d9ef">DescriptionComponent</span> },
-      { <span style="color:#a6e22e">path</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;features&#39;</span>, <span style="color:#a6e22e">component</span>: <span style="color:#66d9ef">FeaturesComponent</span> },
-      { <span style="color:#a6e22e">path</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;pricing&#39;</span>, <span style="color:#a6e22e">component</span>: <span style="color:#66d9ef">PricingComponent</span> }
+    <span style="color:#000">path</span><span style="color:#000">:</span> <span style="color:#c41a16">&#39;home&#39;</span>,
+    <span style="color:#000">component</span>: <span style="color:#a90d91">HomeComponent</span>,
+    <span style="color:#000">children</span><span style="color:#000">:</span> [
+      { <span style="color:#000">path</span><span style="color:#000">:</span> <span style="color:#c41a16">&#39;&#39;</span>, <span style="color:#000">component</span>: <span style="color:#a90d91">DescriptionComponent</span> },
+      { <span style="color:#000">path</span><span style="color:#000">:</span> <span style="color:#c41a16">&#39;features&#39;</span>, <span style="color:#000">component</span>: <span style="color:#a90d91">FeaturesComponent</span> },
+      { <span style="color:#000">path</span><span style="color:#000">:</span> <span style="color:#c41a16">&#39;pricing&#39;</span>, <span style="color:#000">component</span>: <span style="color:#a90d91">PricingComponent</span> }
     ]
   }
 ];
 
-<span style="color:#66d9ef">@NgModule</span>({
-  <span style="color:#a6e22e">imports</span><span style="color:#f92672">:</span> [
-    <span style="color:#a6e22e">RouterModule</span>.<span style="color:#a6e22e">forChild</span>(<span style="color:#a6e22e">homeRoutes</span>)
+<span style="color:#a90d91">@NgModule</span>({
+  <span style="color:#000">imports</span><span style="color:#000">:</span> [
+    <span style="color:#000">RouterModule</span>.<span style="color:#000">forChild</span>(<span style="color:#000">homeRoutes</span>)
   ],
-  <span style="color:#a6e22e">exports</span><span style="color:#f92672">:</span> [
-    <span style="color:#a6e22e">RouterModule</span>
+  <span style="color:#000">exports</span><span style="color:#000">:</span> [
+    <span style="color:#000">RouterModule</span>
   ]
 })
 
-<span style="color:#66d9ef">export</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">HomeRoutingModule</span> { }</code></pre></div>
+<span style="color:#a90d91">export</span> <span style="color:#a90d91">class</span> <span style="color:#000">HomeRoutingModule</span> { }</code></pre></div>
   			</section>
 
   			<footer class="post-footer">

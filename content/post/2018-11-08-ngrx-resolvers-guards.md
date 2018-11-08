@@ -73,6 +73,8 @@ Our book guard is a classic guard using ngrx state. I am consecutively calling:
 - Also, I have a `catchError` that returns an observable of false to say the guard can't pass.
 
 ```typescript
+// books.guard.ts
+
 import { Injectable } from '@angular/core';
 import { CanActivate } from '@angular/router';
 import { Store } from '@ngrx/store';
@@ -107,6 +109,8 @@ Since I didn't find any example of resolver using ngrx online, I pretty much cre
 As you can see the first part is identical to the guard, the only difference is at the end. Instead of returning an observable of true or false I am actually returning the data.
 
 ```typescript
+// authors.guard.ts
+
 import { Injectable } from '@angular/core';
 import { Resolve } from '@angular/router';
 import { select, Store } from '@ngrx/store';
@@ -124,7 +128,9 @@ export class AuthorsResolver implements Resolve<Author[]> {
 
   resolve(): Observable<Author[]> {
     return this.store.select(fromStore.getAuthorsLoaded).pipe(
-      tap(loaded => !loaded ? this.store.dispatch(new fromStore.LoadAuthors()) : undefined ),
+      tap(loaded => {
+        if (!loaded) return this.store.dispatch(new fromStore.LoadAuthors());
+      }),
       filter(loaded => loaded),
       take(1),
       switchMap(() => this.store.pipe(select(fromStore.getAuthorsData), take(1)))
@@ -144,6 +150,7 @@ What I am doing here is loaded the authors before the page loads and passing a v
 
 ```typescript
 // library.component.ts
+
 import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs/Observable';

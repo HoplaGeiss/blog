@@ -134,15 +134,7 @@ html{font-family:sans-serif;line-height:1.15;-ms-text-size-adjust:100%;-webkit-t
       			  
               </a>
             </div>
-            <div class="nav-menu">
-              <a class="rss" href="">
-                <i class="icon-rss"></i>
-              </a>
-                
-                <a class="menu" data-action="toc" data-target="toc"><i class="icon-location"></i></a>
-                
-                
-            </div>
+            
           </nav>
 
 
@@ -174,74 +166,74 @@ Pie charts are very useful to present a number of data, however I couldn&rsquo;t
 <p>Now, let&rsquo;s dive in!</p>
 
 <h3 id="component-skeleton">Component skeleton</h3>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-typescript" data-lang="typescript"><span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">Component</span>, <span style="color:#a6e22e">OnInit</span>, <span style="color:#a6e22e">OnChanges</span>, <span style="color:#a6e22e">ViewChild</span>, <span style="color:#a6e22e">ElementRef</span>, <span style="color:#a6e22e">Input</span> } <span style="color:#a6e22e">from</span> <span style="color:#e6db74">&#39;@angular/core&#39;</span>;
-<span style="color:#66d9ef">import</span> <span style="color:#f92672">*</span> <span style="color:#66d9ef">as</span> <span style="color:#a6e22e">d3</span> <span style="color:#a6e22e">from</span> <span style="color:#e6db74">&#39;d3&#39;</span>;
-<span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">SumPipe</span> } <span style="color:#a6e22e">from</span> <span style="color:#e6db74">&#39;../_pipes/sum.pipe&#39;</span>;
-<span style="color:#66d9ef">import</span> <span style="color:#f92672">*</span> <span style="color:#66d9ef">as</span> <span style="color:#a6e22e">_</span> <span style="color:#a6e22e">from</span> <span style="color:#e6db74">&#39;underscore&#39;</span>;
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-typescript" data-lang="typescript"><span style="color:#a90d91">import</span> { <span style="color:#000">Component</span>, <span style="color:#000">OnInit</span>, <span style="color:#000">OnChanges</span>, <span style="color:#000">ViewChild</span>, <span style="color:#000">ElementRef</span>, <span style="color:#000">Input</span> } <span style="color:#000">from</span> <span style="color:#c41a16">&#39;@angular/core&#39;</span>;
+<span style="color:#a90d91">import</span> <span style="color:#000">*</span> <span style="color:#a90d91">as</span> <span style="color:#000">d3</span> <span style="color:#000">from</span> <span style="color:#c41a16">&#39;d3&#39;</span>;
+<span style="color:#a90d91">import</span> { <span style="color:#000">SumPipe</span> } <span style="color:#000">from</span> <span style="color:#c41a16">&#39;../_pipes/sum.pipe&#39;</span>;
+<span style="color:#a90d91">import</span> <span style="color:#000">*</span> <span style="color:#a90d91">as</span> <span style="color:#000">_</span> <span style="color:#000">from</span> <span style="color:#c41a16">&#39;underscore&#39;</span>;
 
-<span style="color:#66d9ef">@Component</span>({
-    <span style="color:#a6e22e">selector</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;app-pie-chart&#39;</span>,
-    <span style="color:#a6e22e">styleUrls</span><span style="color:#f92672">:</span> [<span style="color:#e6db74">&#39;./pie-chart.component.scss&#39;</span>],
-    <span style="color:#a6e22e">template</span><span style="color:#f92672">:</span> <span style="color:#e6db74">`
-</span><span style="color:#e6db74">      &lt;div class=&#39;wrapper&#39;&gt;
-</span><span style="color:#e6db74">        &lt;div class=&#39;pie-chart&#39; #containerPieChart&gt;&lt;/div&gt;
-</span><span style="color:#e6db74">
-</span><span style="color:#e6db74">        &lt;div *ngIf=&#39;labels&#39;class=&#39;legend&#39; fxLayout=&#39;row&#39; fxLayoutAlign=&#39;center center&#39;&gt;
-</span><span style="color:#e6db74">          &lt;div *ngFor=&#39;let label of labels; let i = index&#39; fxLayout=&#39;row&#39; fxLayoutAlign=&#39;start center&#39; class=&#39;item&#39;&gt;
-</span><span style="color:#e6db74">            &lt;div class=&#39;circle&#39; [ngStyle]=&#39;{&#34;background&#34;: colourSlices[i]}&#39;&gt;&lt;/div&gt;
-</span><span style="color:#e6db74">            &lt;div&gt;{{label}}&lt;/div&gt;
-</span><span style="color:#e6db74">          &lt;/div&gt;
-</span><span style="color:#e6db74">        &lt;/div&gt;
-</span><span style="color:#e6db74">
-</span><span style="color:#e6db74">        &lt;div class=&#39;tooltip drilldownData&#39;&gt;
-</span><span style="color:#e6db74">          &lt;div class=&#39;header&#39; *ngIf=&#39;selectedSlice&#39;&gt;
-</span><span style="color:#e6db74">            &lt;div fxLayout=&#39;row&#39; fxLayoutAlign=&#39;start center&#39;&gt;
-</span><span style="color:#e6db74">              &lt;img [src]=&#39;&#34;assets/Icon-&#34; + selectedSlice.familyType + &#34;.svg&#34;&#39; alt=&#39;Database Icon&#39;&gt;
-</span><span style="color:#e6db74">              &lt;div fxLayout=&#39;column&#39; fxLayoutAlign=&#39;center start&#39;&gt;
-</span><span style="color:#e6db74">                &lt;div class=&#39;title&#39;&gt;{{selectedSlice.familyType}}&lt;/div&gt;
-</span><span style="color:#e6db74">                &lt;div&gt;Queries&lt;/div&gt;
-</span><span style="color:#e6db74">              &lt;/div&gt;
-</span><span style="color:#e6db74">            &lt;/div&gt;
-</span><span style="color:#e6db74">          &lt;/div&gt;
-</span><span style="color:#e6db74">          &lt;div class=&#39;body&#39; fxLayout=&#39;row&#39; fxLayoutWrap *ngIf=&#39;selectedSlice&#39;&gt;
-</span><span style="color:#e6db74">            &lt;div *ngFor=&#39;let item of selectedSlice.types&#39; class=&#39;item&#39; fxFlex=&#34;50%&#34;&gt;
-</span><span style="color:#e6db74">              &lt;div class=&#39;label&#39;&gt;{{item.type}}&lt;/div&gt;
-</span><span style="color:#e6db74">              &lt;div class=&#39;value&#39;&gt;{{item.amount}}&lt;/div&gt;
-</span><span style="color:#e6db74">            &lt;/div&gt;
-</span><span style="color:#e6db74">          &lt;/div&gt;
-</span><span style="color:#e6db74">        &lt;/div&gt;
-</span><span style="color:#e6db74">      &lt;/div&gt;
-</span><span style="color:#e6db74">    `</span>
+<span style="color:#a90d91">@Component</span>({
+    <span style="color:#000">selector</span><span style="color:#000">:</span> <span style="color:#c41a16">&#39;app-pie-chart&#39;</span>,
+    <span style="color:#000">styleUrls</span><span style="color:#000">:</span> [<span style="color:#c41a16">&#39;./pie-chart.component.scss&#39;</span>],
+    <span style="color:#000">template</span><span style="color:#000">:</span> <span style="color:#c41a16">`
+</span><span style="color:#c41a16">      &lt;div class=&#39;wrapper&#39;&gt;
+</span><span style="color:#c41a16">        &lt;div class=&#39;pie-chart&#39; #containerPieChart&gt;&lt;/div&gt;
+</span><span style="color:#c41a16">
+</span><span style="color:#c41a16">        &lt;div *ngIf=&#39;labels&#39;class=&#39;legend&#39; fxLayout=&#39;row&#39; fxLayoutAlign=&#39;center center&#39;&gt;
+</span><span style="color:#c41a16">          &lt;div *ngFor=&#39;let label of labels; let i = index&#39; fxLayout=&#39;row&#39; fxLayoutAlign=&#39;start center&#39; class=&#39;item&#39;&gt;
+</span><span style="color:#c41a16">            &lt;div class=&#39;circle&#39; [ngStyle]=&#39;{&#34;background&#34;: colourSlices[i]}&#39;&gt;&lt;/div&gt;
+</span><span style="color:#c41a16">            &lt;div&gt;{{label}}&lt;/div&gt;
+</span><span style="color:#c41a16">          &lt;/div&gt;
+</span><span style="color:#c41a16">        &lt;/div&gt;
+</span><span style="color:#c41a16">
+</span><span style="color:#c41a16">        &lt;div class=&#39;tooltip drilldownData&#39;&gt;
+</span><span style="color:#c41a16">          &lt;div class=&#39;header&#39; *ngIf=&#39;selectedSlice&#39;&gt;
+</span><span style="color:#c41a16">            &lt;div fxLayout=&#39;row&#39; fxLayoutAlign=&#39;start center&#39;&gt;
+</span><span style="color:#c41a16">              &lt;img [src]=&#39;&#34;assets/Icon-&#34; + selectedSlice.familyType + &#34;.svg&#34;&#39; alt=&#39;Database Icon&#39;&gt;
+</span><span style="color:#c41a16">              &lt;div fxLayout=&#39;column&#39; fxLayoutAlign=&#39;center start&#39;&gt;
+</span><span style="color:#c41a16">                &lt;div class=&#39;title&#39;&gt;{{selectedSlice.familyType}}&lt;/div&gt;
+</span><span style="color:#c41a16">                &lt;div&gt;Queries&lt;/div&gt;
+</span><span style="color:#c41a16">              &lt;/div&gt;
+</span><span style="color:#c41a16">            &lt;/div&gt;
+</span><span style="color:#c41a16">          &lt;/div&gt;
+</span><span style="color:#c41a16">          &lt;div class=&#39;body&#39; fxLayout=&#39;row&#39; fxLayoutWrap *ngIf=&#39;selectedSlice&#39;&gt;
+</span><span style="color:#c41a16">            &lt;div *ngFor=&#39;let item of selectedSlice.types&#39; class=&#39;item&#39; fxFlex=&#34;50%&#34;&gt;
+</span><span style="color:#c41a16">              &lt;div class=&#39;label&#39;&gt;{{item.type}}&lt;/div&gt;
+</span><span style="color:#c41a16">              &lt;div class=&#39;value&#39;&gt;{{item.amount}}&lt;/div&gt;
+</span><span style="color:#c41a16">            &lt;/div&gt;
+</span><span style="color:#c41a16">          &lt;/div&gt;
+</span><span style="color:#c41a16">        &lt;/div&gt;
+</span><span style="color:#c41a16">      &lt;/div&gt;
+</span><span style="color:#c41a16">    `</span>
 })
 
-<span style="color:#66d9ef">export</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">PieChartComponent</span> <span style="color:#66d9ef">implements</span> <span style="color:#a6e22e">OnInit</span>, <span style="color:#a6e22e">OnChanges</span> {
-  <span style="color:#66d9ef">@ViewChild</span>(<span style="color:#e6db74">&#39;containerPieChart&#39;</span>) <span style="color:#a6e22e">chartContainer</span>: <span style="color:#66d9ef">ElementRef</span>;
-  <span style="color:#66d9ef">@Input</span>() <span style="color:#a6e22e">data</span>: <span style="color:#66d9ef">any</span>;
-  <span style="color:#66d9ef">@Input</span>() <span style="color:#a6e22e">colours</span>: <span style="color:#66d9ef">Array</span><span style="color:#f92672">&lt;</span><span style="color:#66d9ef">string</span><span style="color:#f92672">&gt;</span>;
+<span style="color:#a90d91">export</span> <span style="color:#a90d91">class</span> <span style="color:#000">PieChartComponent</span> <span style="color:#a90d91">implements</span> <span style="color:#000">OnInit</span>, <span style="color:#000">OnChanges</span> {
+  <span style="color:#a90d91">@ViewChild</span>(<span style="color:#c41a16">&#39;containerPieChart&#39;</span>) <span style="color:#000">chartContainer</span>: <span style="color:#a90d91">ElementRef</span>;
+  <span style="color:#a90d91">@Input</span>() <span style="color:#000">data</span>: <span style="color:#a90d91">any</span>;
+  <span style="color:#a90d91">@Input</span>() <span style="color:#000">colours</span>: <span style="color:#a90d91">Array</span><span style="color:#000">&lt;</span><span style="color:#a90d91">string</span><span style="color:#000">&gt;</span>;
 
-  <span style="color:#a6e22e">hostElement</span>: <span style="color:#66d9ef">any</span>;
-  <span style="color:#a6e22e">svg</span>: <span style="color:#66d9ef">any</span>;
-  <span style="color:#a6e22e">radius</span>: <span style="color:#66d9ef">number</span>;
-  <span style="color:#a6e22e">innerRadius</span>: <span style="color:#66d9ef">number</span>;
-  <span style="color:#a6e22e">outerRadius</span>: <span style="color:#66d9ef">number</span>;
-  <span style="color:#a6e22e">htmlElement</span>: <span style="color:#66d9ef">HTMLElement</span>;
-  <span style="color:#a6e22e">arcGenerator</span>: <span style="color:#66d9ef">any</span>;
-  <span style="color:#a6e22e">arcHover</span>: <span style="color:#66d9ef">any</span>;
-  <span style="color:#a6e22e">pieGenerator</span>: <span style="color:#66d9ef">any</span>;
-  <span style="color:#a6e22e">path</span>: <span style="color:#66d9ef">any</span>;
-  <span style="color:#a6e22e">values</span>: <span style="color:#66d9ef">Array</span><span style="color:#f92672">&lt;</span><span style="color:#66d9ef">number</span><span style="color:#f92672">&gt;</span>;
-  <span style="color:#a6e22e">labels</span>: <span style="color:#66d9ef">Array</span><span style="color:#f92672">&lt;</span><span style="color:#66d9ef">string</span><span style="color:#f92672">&gt;</span>;
-  <span style="color:#a6e22e">tooltip</span>: <span style="color:#66d9ef">any</span>;
-  <span style="color:#a6e22e">centralLabel</span>: <span style="color:#66d9ef">any</span>;
-  <span style="color:#a6e22e">pieColours</span>: <span style="color:#66d9ef">any</span>;
-  <span style="color:#a6e22e">slices</span>: <span style="color:#66d9ef">Array</span><span style="color:#f92672">&lt;</span><span style="color:#a6e22e">any</span><span style="color:#f92672">&gt;</span>;
-  <span style="color:#a6e22e">selectedSlice</span>: <span style="color:#66d9ef">any</span>;
-  <span style="color:#a6e22e">colourSlices</span>: <span style="color:#66d9ef">Array</span><span style="color:#f92672">&lt;</span><span style="color:#66d9ef">string</span><span style="color:#f92672">&gt;</span>;
-  <span style="color:#a6e22e">arc</span>: <span style="color:#66d9ef">any</span>;
-  <span style="color:#a6e22e">arcEnter</span>: <span style="color:#66d9ef">any</span>;
+  <span style="color:#000">hostElement</span>: <span style="color:#a90d91">any</span>;
+  <span style="color:#000">svg</span>: <span style="color:#a90d91">any</span>;
+  <span style="color:#000">radius</span>: <span style="color:#a90d91">number</span>;
+  <span style="color:#000">innerRadius</span>: <span style="color:#a90d91">number</span>;
+  <span style="color:#000">outerRadius</span>: <span style="color:#a90d91">number</span>;
+  <span style="color:#000">htmlElement</span>: <span style="color:#a90d91">HTMLElement</span>;
+  <span style="color:#000">arcGenerator</span>: <span style="color:#a90d91">any</span>;
+  <span style="color:#000">arcHover</span>: <span style="color:#a90d91">any</span>;
+  <span style="color:#000">pieGenerator</span>: <span style="color:#a90d91">any</span>;
+  <span style="color:#000">path</span>: <span style="color:#a90d91">any</span>;
+  <span style="color:#000">values</span>: <span style="color:#a90d91">Array</span><span style="color:#000">&lt;</span><span style="color:#a90d91">number</span><span style="color:#000">&gt;</span>;
+  <span style="color:#000">labels</span>: <span style="color:#a90d91">Array</span><span style="color:#000">&lt;</span><span style="color:#a90d91">string</span><span style="color:#000">&gt;</span>;
+  <span style="color:#000">tooltip</span>: <span style="color:#a90d91">any</span>;
+  <span style="color:#000">centralLabel</span>: <span style="color:#a90d91">any</span>;
+  <span style="color:#000">pieColours</span>: <span style="color:#a90d91">any</span>;
+  <span style="color:#000">slices</span>: <span style="color:#a90d91">Array</span><span style="color:#000">&lt;</span><span style="color:#000">any</span><span style="color:#000">&gt;</span>;
+  <span style="color:#000">selectedSlice</span>: <span style="color:#a90d91">any</span>;
+  <span style="color:#000">colourSlices</span>: <span style="color:#a90d91">Array</span><span style="color:#000">&lt;</span><span style="color:#a90d91">string</span><span style="color:#000">&gt;</span>;
+  <span style="color:#000">arc</span>: <span style="color:#a90d91">any</span>;
+  <span style="color:#000">arcEnter</span>: <span style="color:#a90d91">any</span>;
 
-  <span style="color:#66d9ef">constructor</span>(
-    <span style="color:#66d9ef">private</span> <span style="color:#a6e22e">elRef</span>: <span style="color:#66d9ef">ElementRef</span>
+  <span style="color:#a90d91">constructor</span>(
+    <span style="color:#a90d91">private</span> <span style="color:#000">elRef</span>: <span style="color:#a90d91">ElementRef</span>
   ) {}
 }</code></pre></div>
 <p>The most important in this piece of code is the template. You can see it is split in three parts, the chart, the labels and the tooltip.</p>
@@ -249,102 +241,102 @@ Pie charts are very useful to present a number of data, however I couldn&rsquo;t
 <p>It is also worth noticing the inputs of this component. <code>data</code> is an array of object we want to plot and <code>colours</code> is an array of string that we will use for colouring the slices of the pie chart.</p>
 
 <h3 id="data-service">Data Service</h3>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-typescript" data-lang="typescript"><span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">Injectable</span> } <span style="color:#a6e22e">from</span> <span style="color:#e6db74">&#39;@angular/core&#39;</span>;
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-typescript" data-lang="typescript"><span style="color:#a90d91">import</span> { <span style="color:#000">Injectable</span> } <span style="color:#000">from</span> <span style="color:#c41a16">&#39;@angular/core&#39;</span>;
 
-<span style="color:#66d9ef">@Injectable</span>()
-<span style="color:#66d9ef">export</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">PieDataService</span> {
-  <span style="color:#a6e22e">generateData</span> <span style="color:#f92672">=</span> (<span style="color:#a6e22e">num</span>: <span style="color:#66d9ef">number</span>) <span style="color:#f92672">=&gt;</span> {
-    <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">operations</span> <span style="color:#f92672">=</span> [];
-    <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">labels</span> <span style="color:#f92672">=</span> [<span style="color:#e6db74">&#39;Devices&#39;</span>, <span style="color:#e6db74">&#39;Database&#39;</span>, <span style="color:#e6db74">&#39;API&#39;</span>];
-    <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">types</span> <span style="color:#f92672">=</span> [<span style="color:#e6db74">&#39;SnmpV1&#39;</span>, <span style="color:#e6db74">&#39;SnmpV2c&#39;</span>, <span style="color:#e6db74">&#39;SnmpV3&#39;</span>, <span style="color:#e6db74">&#39;HttpApi&#39;</span>, <span style="color:#e6db74">&#39;HttpBasic&#39;</span>, <span style="color:#e6db74">&#39;SshBasic&#39;</span>, <span style="color:#e6db74">&#39;SshRsa&#39;</span>, <span style="color:#e6db74">&#39;Wmi&#39;</span>, <span style="color:#e6db74">&#39;Sql&#39;</span>, <span style="color:#e6db74">&#39;MongoDb&#39;</span>];
+<span style="color:#a90d91">@Injectable</span>()
+<span style="color:#a90d91">export</span> <span style="color:#a90d91">class</span> <span style="color:#000">PieDataService</span> {
+  <span style="color:#000">generateData</span> <span style="color:#000">=</span> (<span style="color:#000">num</span>: <span style="color:#a90d91">number</span>) <span style="color:#000">=&gt;</span> {
+    <span style="color:#a90d91">const</span> <span style="color:#000">operations</span> <span style="color:#000">=</span> [];
+    <span style="color:#a90d91">const</span> <span style="color:#000">labels</span> <span style="color:#000">=</span> [<span style="color:#c41a16">&#39;Devices&#39;</span>, <span style="color:#c41a16">&#39;Database&#39;</span>, <span style="color:#c41a16">&#39;API&#39;</span>];
+    <span style="color:#a90d91">const</span> <span style="color:#000">types</span> <span style="color:#000">=</span> [<span style="color:#c41a16">&#39;SnmpV1&#39;</span>, <span style="color:#c41a16">&#39;SnmpV2c&#39;</span>, <span style="color:#c41a16">&#39;SnmpV3&#39;</span>, <span style="color:#c41a16">&#39;HttpApi&#39;</span>, <span style="color:#c41a16">&#39;HttpBasic&#39;</span>, <span style="color:#c41a16">&#39;SshBasic&#39;</span>, <span style="color:#c41a16">&#39;SshRsa&#39;</span>, <span style="color:#c41a16">&#39;Wmi&#39;</span>, <span style="color:#c41a16">&#39;Sql&#39;</span>, <span style="color:#c41a16">&#39;MongoDb&#39;</span>];
 
-    <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">let</span> <span style="color:#a6e22e">i</span> <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; <span style="color:#a6e22e">i</span> <span style="color:#f92672">&lt;</span> Math.<span style="color:#a6e22e">floor</span>(<span style="color:#ae81ff">1</span> <span style="color:#f92672">+</span> Math.<span style="color:#a6e22e">random</span>() <span style="color:#f92672">*</span> <span style="color:#a6e22e">num</span>); <span style="color:#a6e22e">i</span><span style="color:#f92672">++</span>) {
-      <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">operation</span> <span style="color:#f92672">=</span> {
-        <span style="color:#a6e22e">id</span>: <span style="color:#66d9ef">i</span>,
-        <span style="color:#a6e22e">familyType</span>: <span style="color:#66d9ef">labels</span>[Math.<span style="color:#a6e22e">floor</span>(Math.<span style="color:#a6e22e">random</span>() <span style="color:#f92672">*</span> <span style="color:#a6e22e">labels</span>.<span style="color:#a6e22e">length</span>)],
-        <span style="color:#a6e22e">name</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;MAN1-APC-01-Get-Power-Consumption&#39;</span>,
-        <span style="color:#a6e22e">type</span>: <span style="color:#66d9ef">types</span>[Math.<span style="color:#a6e22e">floor</span>(Math.<span style="color:#a6e22e">random</span>() <span style="color:#f92672">*</span> <span style="color:#a6e22e">types</span>.<span style="color:#a6e22e">length</span>)]
+    <span style="color:#a90d91">for</span> (<span style="color:#a90d91">let</span> <span style="color:#000">i</span> <span style="color:#000">=</span> <span style="color:#1c01ce">0</span>; <span style="color:#000">i</span> <span style="color:#000">&lt;</span> <span style="color:#a90d91">Math</span>.<span style="color:#000">floor</span>(<span style="color:#1c01ce">1</span> <span style="color:#000">+</span> <span style="color:#a90d91">Math</span>.<span style="color:#000">random</span>() <span style="color:#000">*</span> <span style="color:#000">num</span>); <span style="color:#000">i</span><span style="color:#000">++</span>) {
+      <span style="color:#a90d91">const</span> <span style="color:#000">operation</span> <span style="color:#000">=</span> {
+        <span style="color:#000">id</span>: <span style="color:#a90d91">i</span>,
+        <span style="color:#000">familyType</span>: <span style="color:#a90d91">labels</span>[<span style="color:#a90d91">Math</span>.<span style="color:#000">floor</span>(<span style="color:#a90d91">Math</span>.<span style="color:#000">random</span>() <span style="color:#000">*</span> <span style="color:#000">labels</span>.<span style="color:#000">length</span>)],
+        <span style="color:#000">name</span><span style="color:#000">:</span> <span style="color:#c41a16">&#39;MAN1-APC-01-Get-Power-Consumption&#39;</span>,
+        <span style="color:#000">type</span>: <span style="color:#a90d91">types</span>[<span style="color:#a90d91">Math</span>.<span style="color:#000">floor</span>(<span style="color:#a90d91">Math</span>.<span style="color:#000">random</span>() <span style="color:#000">*</span> <span style="color:#000">types</span>.<span style="color:#000">length</span>)]
       };
 
-      <span style="color:#a6e22e">operations</span>.<span style="color:#a6e22e">push</span>(<span style="color:#a6e22e">operation</span>);
+      <span style="color:#000">operations</span>.<span style="color:#000">push</span>(<span style="color:#000">operation</span>);
     }
 
-    <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">operations</span>;
+    <span style="color:#a90d91">return</span> <span style="color:#000">operations</span>;
   }
 }</code></pre></div>
 <p>In my example I am going to plot a pie chart of operations.</p>
 
 <h3 id="create-chart">Create chart</h3>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-typescript" data-lang="typescript"><span style="color:#a6e22e">createChart</span> <span style="color:#f92672">=</span> () <span style="color:#f92672">=&gt;</span> {
-  <span style="color:#75715e">// chart configuration
-</span><span style="color:#75715e"></span>  <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">hostElement</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">chartContainer</span>.<span style="color:#a6e22e">nativeElement</span>;
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-typescript" data-lang="typescript"><span style="color:#000">createChart</span> <span style="color:#000">=</span> () <span style="color:#000">=&gt;</span> {
+  <span style="color:#177500">// chart configuration
+</span><span style="color:#177500"></span>  <span style="color:#a90d91">this</span>.<span style="color:#000">hostElement</span> <span style="color:#000">=</span> <span style="color:#a90d91">this</span>.<span style="color:#000">chartContainer</span>.<span style="color:#000">nativeElement</span>;
 
-  <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">radius</span> <span style="color:#f92672">=</span> Math.<span style="color:#a6e22e">min</span>(<span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">hostElement</span>.<span style="color:#a6e22e">offsetWidth</span>, <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">hostElement</span>.<span style="color:#a6e22e">offsetHeight</span>) <span style="color:#960050;background-color:#1e0010">/ 2;</span>
-  <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">innerRadius</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">radius</span> <span style="color:#f92672">-</span> <span style="color:#ae81ff">80</span>;
-  <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">outerRadius</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">radius</span> <span style="color:#f92672">-</span> <span style="color:#ae81ff">15</span>;
-  <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">hoverRadius</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">radius</span> <span style="color:#f92672">-</span> <span style="color:#ae81ff">5</span>;
-  <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">pieColours</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">colours</span> <span style="color:#f92672">?</span> <span style="color:#a6e22e">d3</span>.<span style="color:#a6e22e">scaleOrdinal</span>().<span style="color:#a6e22e">range</span>(<span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">colours</span>) <span style="color:#f92672">:</span> <span style="color:#a6e22e">d3</span>.<span style="color:#a6e22e">scaleOrdinal</span>(<span style="color:#a6e22e">d3</span>.<span style="color:#a6e22e">schemeCategory20c</span>);
-  <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">tooltip</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">elRef</span>.<span style="color:#a6e22e">nativeElement</span>.<span style="color:#a6e22e">querySelector</span>(<span style="color:#e6db74">&#39;.tooltip&#39;</span>);
+  <span style="color:#a90d91">this</span>.<span style="color:#000">radius</span> <span style="color:#000">=</span> <span style="color:#a90d91">Math</span>.<span style="color:#000">min</span>(<span style="color:#a90d91">this</span>.<span style="color:#000">hostElement</span>.<span style="color:#000">offsetWidth</span>, <span style="color:#a90d91">this</span>.<span style="color:#000">hostElement</span>.<span style="color:#000">offsetHeight</span>) <span style="color:#000">/ 2;</span>
+  <span style="color:#a90d91">const</span> <span style="color:#000">innerRadius</span> <span style="color:#000">=</span> <span style="color:#a90d91">this</span>.<span style="color:#000">radius</span> <span style="color:#000">-</span> <span style="color:#1c01ce">80</span>;
+  <span style="color:#a90d91">const</span> <span style="color:#000">outerRadius</span> <span style="color:#000">=</span> <span style="color:#a90d91">this</span>.<span style="color:#000">radius</span> <span style="color:#000">-</span> <span style="color:#1c01ce">15</span>;
+  <span style="color:#a90d91">const</span> <span style="color:#000">hoverRadius</span> <span style="color:#000">=</span> <span style="color:#a90d91">this</span>.<span style="color:#000">radius</span> <span style="color:#000">-</span> <span style="color:#1c01ce">5</span>;
+  <span style="color:#a90d91">this</span>.<span style="color:#000">pieColours</span> <span style="color:#000">=</span> <span style="color:#a90d91">this</span>.<span style="color:#000">colours</span> <span style="color:#000">?</span> <span style="color:#000">d3</span>.<span style="color:#000">scaleOrdinal</span>().<span style="color:#000">range</span>(<span style="color:#a90d91">this</span>.<span style="color:#000">colours</span>) <span style="color:#000">:</span> <span style="color:#000">d3</span>.<span style="color:#000">scaleOrdinal</span>(<span style="color:#000">d3</span>.<span style="color:#000">schemeCategory20c</span>);
+  <span style="color:#a90d91">this</span>.<span style="color:#000">tooltip</span> <span style="color:#000">=</span> <span style="color:#a90d91">this</span>.<span style="color:#000">elRef</span>.<span style="color:#000">nativeElement</span>.<span style="color:#000">querySelector</span>(<span style="color:#c41a16">&#39;.tooltip&#39;</span>);
 
-  <span style="color:#75715e">// create a pie generator and tell it where to get numeric values from and whether sorting is needed or not
-</span><span style="color:#75715e"></span>  <span style="color:#75715e">// this is just a function that will be called to obtain data prior binding that data to elements of the chart
-</span><span style="color:#75715e"></span>  <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">pieGenerator</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">d3</span>.<span style="color:#a6e22e">pie</span>().<span style="color:#a6e22e">sort</span>(<span style="color:#66d9ef">null</span>).<span style="color:#a6e22e">value</span>((<span style="color:#a6e22e">d</span>: <span style="color:#66d9ef">number</span>) <span style="color:#f92672">=&gt;</span> <span style="color:#a6e22e">d</span>)([<span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>]);
+  <span style="color:#177500">// create a pie generator and tell it where to get numeric values from and whether sorting is needed or not
+</span><span style="color:#177500"></span>  <span style="color:#177500">// this is just a function that will be called to obtain data prior binding that data to elements of the chart
+</span><span style="color:#177500"></span>  <span style="color:#a90d91">this</span>.<span style="color:#000">pieGenerator</span> <span style="color:#000">=</span> <span style="color:#000">d3</span>.<span style="color:#000">pie</span>().<span style="color:#000">sort</span>(<span style="color:#a90d91">null</span>).<span style="color:#000">value</span>((<span style="color:#000">d</span>: <span style="color:#a90d91">number</span>) <span style="color:#000">=&gt;</span> <span style="color:#000">d</span>)([<span style="color:#1c01ce">0</span>, <span style="color:#1c01ce">0</span>, <span style="color:#1c01ce">0</span>]);
 
-  <span style="color:#75715e">// create an arc generator and configure it
-</span><span style="color:#75715e"></span>  <span style="color:#75715e">// this is just a function that will be called to obtain data prior binding that data to arc elements of the chart
-</span><span style="color:#75715e"></span>  <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">arcGenerator</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">d3</span>.<span style="color:#a6e22e">arc</span>()
-    .<span style="color:#a6e22e">innerRadius</span>(<span style="color:#a6e22e">innerRadius</span>)
-    .<span style="color:#a6e22e">outerRadius</span>(<span style="color:#a6e22e">outerRadius</span>);
+  <span style="color:#177500">// create an arc generator and configure it
+</span><span style="color:#177500"></span>  <span style="color:#177500">// this is just a function that will be called to obtain data prior binding that data to arc elements of the chart
+</span><span style="color:#177500"></span>  <span style="color:#a90d91">this</span>.<span style="color:#000">arcGenerator</span> <span style="color:#000">=</span> <span style="color:#000">d3</span>.<span style="color:#000">arc</span>()
+    .<span style="color:#000">innerRadius</span>(<span style="color:#000">innerRadius</span>)
+    .<span style="color:#000">outerRadius</span>(<span style="color:#000">outerRadius</span>);
 
-  <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">arcHover</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">d3</span>.<span style="color:#a6e22e">arc</span>()
-    .<span style="color:#a6e22e">innerRadius</span>(<span style="color:#a6e22e">innerRadius</span>)
-    .<span style="color:#a6e22e">outerRadius</span>(<span style="color:#a6e22e">hoverRadius</span>);
+  <span style="color:#a90d91">this</span>.<span style="color:#000">arcHover</span> <span style="color:#000">=</span> <span style="color:#000">d3</span>.<span style="color:#000">arc</span>()
+    .<span style="color:#000">innerRadius</span>(<span style="color:#000">innerRadius</span>)
+    .<span style="color:#000">outerRadius</span>(<span style="color:#000">hoverRadius</span>);
 
-  <span style="color:#75715e">// create svg element, configure dimentions and centre and add to DOM
-</span><span style="color:#75715e"></span>  <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">svg</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">d3</span>.<span style="color:#a6e22e">select</span>(<span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">hostElement</span>).<span style="color:#a6e22e">append</span>(<span style="color:#e6db74">&#39;svg&#39;</span>)
-    .<span style="color:#a6e22e">attr</span>(<span style="color:#e6db74">&#39;viewBox&#39;</span>, <span style="color:#e6db74">&#39;0, 0, &#39;</span> <span style="color:#f92672">+</span> <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">hostElement</span>.<span style="color:#a6e22e">offsetWidth</span> <span style="color:#f92672">+</span> <span style="color:#e6db74">&#39;, &#39;</span> <span style="color:#f92672">+</span> <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">hostElement</span>.<span style="color:#a6e22e">offsetHeight</span>)
-    .<span style="color:#a6e22e">append</span>(<span style="color:#e6db74">&#39;g&#39;</span>)
-    .<span style="color:#a6e22e">attr</span>(<span style="color:#e6db74">&#39;transform&#39;</span>, <span style="color:#e6db74">`translate(</span><span style="color:#e6db74">${</span><span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">hostElement</span>.<span style="color:#a6e22e">offsetWidth</span> <span style="color:#e6db74">/ 2}, ${this.hostElement.offsetHeight /</span> <span style="color:#ae81ff">2</span><span style="color:#e6db74">}</span><span style="color:#e6db74">)`</span>);
+  <span style="color:#177500">// create svg element, configure dimentions and centre and add to DOM
+</span><span style="color:#177500"></span>  <span style="color:#a90d91">this</span>.<span style="color:#000">svg</span> <span style="color:#000">=</span> <span style="color:#000">d3</span>.<span style="color:#000">select</span>(<span style="color:#a90d91">this</span>.<span style="color:#000">hostElement</span>).<span style="color:#000">append</span>(<span style="color:#c41a16">&#39;svg&#39;</span>)
+    .<span style="color:#000">attr</span>(<span style="color:#c41a16">&#39;viewBox&#39;</span>, <span style="color:#c41a16">&#39;0, 0, &#39;</span> <span style="color:#000">+</span> <span style="color:#a90d91">this</span>.<span style="color:#000">hostElement</span>.<span style="color:#000">offsetWidth</span> <span style="color:#000">+</span> <span style="color:#c41a16">&#39;, &#39;</span> <span style="color:#000">+</span> <span style="color:#a90d91">this</span>.<span style="color:#000">hostElement</span>.<span style="color:#000">offsetHeight</span>)
+    .<span style="color:#000">append</span>(<span style="color:#c41a16">&#39;g&#39;</span>)
+    .<span style="color:#000">attr</span>(<span style="color:#c41a16">&#39;transform&#39;</span>, <span style="color:#c41a16">`translate(</span><span style="color:#c41a16">${</span><span style="color:#a90d91">this</span>.<span style="color:#000">hostElement</span>.<span style="color:#000">offsetWidth</span> <span style="color:#c41a16">/ 2}, ${this.hostElement.offsetHeight /</span> <span style="color:#1c01ce">2</span><span style="color:#c41a16">}</span><span style="color:#c41a16">)`</span>);
 }</code></pre></div>
 <p>In this <code>createChart</code> method we mostly define variables and create the svg.</p>
 
 <h3 id="updatechart">updateChart</h3>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-typescript" data-lang="typescript"><span style="color:#a6e22e">updateChart</span> <span style="color:#f92672">=</span> (<span style="color:#a6e22e">firstRun</span>: <span style="color:#66d9ef">boolean</span>) <span style="color:#f92672">=&gt;</span> {
-  <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">vm</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">this</span>;
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-typescript" data-lang="typescript"><span style="color:#000">updateChart</span> <span style="color:#000">=</span> (<span style="color:#000">firstRun</span>: <span style="color:#a90d91">boolean</span>) <span style="color:#000">=&gt;</span> {
+  <span style="color:#a90d91">const</span> <span style="color:#000">vm</span> <span style="color:#000">=</span> <span style="color:#a90d91">this</span>;
 
-  <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">slices</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">updateSlices</span>(<span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">data</span>);
-  <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">labels</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">slices</span>.<span style="color:#a6e22e">map</span>(<span style="color:#a6e22e">slice</span> <span style="color:#f92672">=&gt;</span> <span style="color:#a6e22e">slice</span>.<span style="color:#a6e22e">familyType</span>);
-  <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">colourSlices</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">slices</span>.<span style="color:#a6e22e">map</span>(<span style="color:#a6e22e">slice</span> <span style="color:#f92672">=&gt;</span> <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">pieColours</span>(<span style="color:#a6e22e">slice</span>.<span style="color:#a6e22e">familyType</span>));
+  <span style="color:#a90d91">this</span>.<span style="color:#000">slices</span> <span style="color:#000">=</span> <span style="color:#a90d91">this</span>.<span style="color:#000">updateSlices</span>(<span style="color:#a90d91">this</span>.<span style="color:#000">data</span>);
+  <span style="color:#a90d91">this</span>.<span style="color:#000">labels</span> <span style="color:#000">=</span> <span style="color:#a90d91">this</span>.<span style="color:#000">slices</span>.<span style="color:#000">map</span>(<span style="color:#000">slice</span> <span style="color:#000">=&gt;</span> <span style="color:#000">slice</span>.<span style="color:#000">familyType</span>);
+  <span style="color:#a90d91">this</span>.<span style="color:#000">colourSlices</span> <span style="color:#000">=</span> <span style="color:#a90d91">this</span>.<span style="color:#000">slices</span>.<span style="color:#000">map</span>(<span style="color:#000">slice</span> <span style="color:#000">=&gt;</span> <span style="color:#a90d91">this</span>.<span style="color:#000">pieColours</span>(<span style="color:#000">slice</span>.<span style="color:#000">familyType</span>));
 
-  <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">values</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">firstRun</span> <span style="color:#f92672">?</span> [<span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>] <span style="color:#f92672">:</span> <span style="color:#a6e22e">_</span>.<span style="color:#a6e22e">toArray</span>(<span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">slices</span>).<span style="color:#a6e22e">map</span>(<span style="color:#a6e22e">slice</span> <span style="color:#f92672">=&gt;</span> <span style="color:#a6e22e">slice</span>.<span style="color:#a6e22e">amount</span>);
+  <span style="color:#a90d91">this</span>.<span style="color:#000">values</span> <span style="color:#000">=</span> <span style="color:#000">firstRun</span> <span style="color:#000">?</span> [<span style="color:#1c01ce">0</span>, <span style="color:#1c01ce">0</span>, <span style="color:#1c01ce">0</span>] <span style="color:#000">:</span> <span style="color:#000">_</span>.<span style="color:#000">toArray</span>(<span style="color:#a90d91">this</span>.<span style="color:#000">slices</span>).<span style="color:#000">map</span>(<span style="color:#000">slice</span> <span style="color:#000">=&gt;</span> <span style="color:#000">slice</span>.<span style="color:#000">amount</span>);
 
-  <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">pieGenerator</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">d3</span>.<span style="color:#a6e22e">pie</span>().<span style="color:#a6e22e">sort</span>(<span style="color:#66d9ef">null</span>).<span style="color:#a6e22e">value</span>((<span style="color:#a6e22e">d</span>: <span style="color:#66d9ef">number</span>) <span style="color:#f92672">=&gt;</span> <span style="color:#a6e22e">d</span>)(<span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">values</span>);
+  <span style="color:#a90d91">this</span>.<span style="color:#000">pieGenerator</span> <span style="color:#000">=</span> <span style="color:#000">d3</span>.<span style="color:#000">pie</span>().<span style="color:#000">sort</span>(<span style="color:#a90d91">null</span>).<span style="color:#000">value</span>((<span style="color:#000">d</span>: <span style="color:#a90d91">number</span>) <span style="color:#000">=&gt;</span> <span style="color:#000">d</span>)(<span style="color:#a90d91">this</span>.<span style="color:#000">values</span>);
 
-  <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">arc</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">svg</span>.<span style="color:#a6e22e">selectAll</span>(<span style="color:#e6db74">&#39;.arc&#39;</span>)
-    .<span style="color:#a6e22e">data</span>(<span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">pieGenerator</span>);
+  <span style="color:#a90d91">const</span> <span style="color:#000">arc</span> <span style="color:#000">=</span> <span style="color:#a90d91">this</span>.<span style="color:#000">svg</span>.<span style="color:#000">selectAll</span>(<span style="color:#c41a16">&#39;.arc&#39;</span>)
+    .<span style="color:#000">data</span>(<span style="color:#a90d91">this</span>.<span style="color:#000">pieGenerator</span>);
 
-  <span style="color:#a6e22e">arc</span>.<span style="color:#a6e22e">exit</span>().<span style="color:#a6e22e">remove</span>();
+  <span style="color:#000">arc</span>.<span style="color:#000">exit</span>().<span style="color:#000">remove</span>();
 
-  <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">arcEnter</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">arc</span>.<span style="color:#a6e22e">enter</span>().<span style="color:#a6e22e">append</span>(<span style="color:#e6db74">&#39;g&#39;</span>)
-    .<span style="color:#a6e22e">attr</span>(<span style="color:#e6db74">&#39;class&#39;</span>, <span style="color:#e6db74">&#39;arc&#39;</span>);
+  <span style="color:#a90d91">const</span> <span style="color:#000">arcEnter</span> <span style="color:#000">=</span> <span style="color:#000">arc</span>.<span style="color:#000">enter</span>().<span style="color:#000">append</span>(<span style="color:#c41a16">&#39;g&#39;</span>)
+    .<span style="color:#000">attr</span>(<span style="color:#c41a16">&#39;class&#39;</span>, <span style="color:#c41a16">&#39;arc&#39;</span>);
 
-  <span style="color:#a6e22e">arcEnter</span>.<span style="color:#a6e22e">append</span>(<span style="color:#e6db74">&#39;path&#39;</span>)
-    .<span style="color:#a6e22e">attr</span>(<span style="color:#e6db74">&#39;d&#39;</span>, <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">arcGenerator</span>)
-    .<span style="color:#a6e22e">each</span>((<span style="color:#a6e22e">values</span>) <span style="color:#f92672">=&gt;</span> <span style="color:#a6e22e">firstRun</span> <span style="color:#f92672">?</span> <span style="color:#a6e22e">values</span>.<span style="color:#a6e22e">storedValues</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">values</span> : <span style="color:#66d9ef">null</span>)
-    .<span style="color:#a6e22e">on</span>(<span style="color:#e6db74">&#39;mouseover&#39;</span>, <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">mouseover</span>)
-    .<span style="color:#a6e22e">on</span>(<span style="color:#e6db74">&#39;mouseout&#39;</span>, <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">mouseout</span>);
+  <span style="color:#000">arcEnter</span>.<span style="color:#000">append</span>(<span style="color:#c41a16">&#39;path&#39;</span>)
+    .<span style="color:#000">attr</span>(<span style="color:#c41a16">&#39;d&#39;</span>, <span style="color:#a90d91">this</span>.<span style="color:#000">arcGenerator</span>)
+    .<span style="color:#000">each</span>((<span style="color:#000">values</span>) <span style="color:#000">=&gt;</span> <span style="color:#000">firstRun</span> <span style="color:#000">?</span> <span style="color:#000">values</span>.<span style="color:#000">storedValues</span> <span style="color:#000">=</span> <span style="color:#000">values</span> : <span style="color:#a90d91">null</span>)
+    .<span style="color:#000">on</span>(<span style="color:#c41a16">&#39;mouseover&#39;</span>, <span style="color:#a90d91">this</span>.<span style="color:#000">mouseover</span>)
+    .<span style="color:#000">on</span>(<span style="color:#c41a16">&#39;mouseout&#39;</span>, <span style="color:#a90d91">this</span>.<span style="color:#000">mouseout</span>);
 
-  <span style="color:#75715e">// configure a transition to play on d elements of a path
-</span><span style="color:#75715e"></span>  <span style="color:#75715e">// whenever new values are passed in, the values and the previously stored values will be used
-</span><span style="color:#75715e"></span>  <span style="color:#75715e">// to compute the transition using interpolation
-</span><span style="color:#75715e"></span>  <span style="color:#a6e22e">d3</span>.<span style="color:#a6e22e">select</span>(<span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">hostElement</span>).<span style="color:#a6e22e">selectAll</span>(<span style="color:#e6db74">&#39;path&#39;</span>)
-    .<span style="color:#a6e22e">data</span>(<span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">pieGenerator</span>)
-    .<span style="color:#a6e22e">attr</span>(<span style="color:#e6db74">&#39;fill&#39;</span>, (<span style="color:#a6e22e">datum</span>, <span style="color:#a6e22e">index</span>) <span style="color:#f92672">=&gt;</span> <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">pieColours</span>(<span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">labels</span>[<span style="color:#a6e22e">index</span>]))
-    .<span style="color:#a6e22e">attr</span>(<span style="color:#e6db74">&#39;d&#39;</span>, <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">arcGenerator</span>)
-    .<span style="color:#a6e22e">transition</span>()
-    .<span style="color:#a6e22e">duration</span>(<span style="color:#ae81ff">750</span>)
-    .<span style="color:#a6e22e">attrTween</span>(<span style="color:#e6db74">&#39;d&#39;</span>, <span style="color:#66d9ef">function</span>(<span style="color:#a6e22e">newValues</span>, <span style="color:#a6e22e">i</span>){
-      <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">vm</span>.<span style="color:#a6e22e">arcTween</span>(<span style="color:#a6e22e">newValues</span>, <span style="color:#a6e22e">i</span>, <span style="color:#66d9ef">this</span>);
+  <span style="color:#177500">// configure a transition to play on d elements of a path
+</span><span style="color:#177500"></span>  <span style="color:#177500">// whenever new values are passed in, the values and the previously stored values will be used
+</span><span style="color:#177500"></span>  <span style="color:#177500">// to compute the transition using interpolation
+</span><span style="color:#177500"></span>  <span style="color:#000">d3</span>.<span style="color:#000">select</span>(<span style="color:#a90d91">this</span>.<span style="color:#000">hostElement</span>).<span style="color:#000">selectAll</span>(<span style="color:#c41a16">&#39;path&#39;</span>)
+    .<span style="color:#000">data</span>(<span style="color:#a90d91">this</span>.<span style="color:#000">pieGenerator</span>)
+    .<span style="color:#000">attr</span>(<span style="color:#c41a16">&#39;fill&#39;</span>, (<span style="color:#000">datum</span>, <span style="color:#000">index</span>) <span style="color:#000">=&gt;</span> <span style="color:#a90d91">this</span>.<span style="color:#000">pieColours</span>(<span style="color:#a90d91">this</span>.<span style="color:#000">labels</span>[<span style="color:#000">index</span>]))
+    .<span style="color:#000">attr</span>(<span style="color:#c41a16">&#39;d&#39;</span>, <span style="color:#a90d91">this</span>.<span style="color:#000">arcGenerator</span>)
+    .<span style="color:#000">transition</span>()
+    .<span style="color:#000">duration</span>(<span style="color:#1c01ce">750</span>)
+    .<span style="color:#000">attrTween</span>(<span style="color:#c41a16">&#39;d&#39;</span>, <span style="color:#a90d91">function</span>(<span style="color:#000">newValues</span>, <span style="color:#000">i</span>){
+      <span style="color:#a90d91">return</span> <span style="color:#000">vm</span>.<span style="color:#000">arcTween</span>(<span style="color:#000">newValues</span>, <span style="color:#000">i</span>, <span style="color:#a90d91">this</span>);
     });
 }</code></pre></div>
 <p>In the <code>updateChart</code> we do a number of things:</p>
@@ -359,100 +351,100 @@ Pie charts are very useful to present a number of data, however I couldn&rsquo;t
 </ul>
 
 <h3 id="other-methods">Other methods</h3>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-typescript" data-lang="typescript"><span style="color:#a6e22e">arcTween</span>(<span style="color:#a6e22e">newValues</span>, <span style="color:#a6e22e">i</span>, <span style="color:#a6e22e">slice</span>) {
-  <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">interpolation</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">d3</span>.<span style="color:#a6e22e">interpolate</span>(<span style="color:#a6e22e">slice</span>.<span style="color:#a6e22e">storedValues</span>, <span style="color:#a6e22e">newValues</span>);
-  <span style="color:#a6e22e">slice</span>.<span style="color:#a6e22e">storedValues</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">interpolation</span>(<span style="color:#ae81ff">0</span>);
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-typescript" data-lang="typescript"><span style="color:#000">arcTween</span>(<span style="color:#000">newValues</span>, <span style="color:#000">i</span>, <span style="color:#000">slice</span>) {
+  <span style="color:#a90d91">const</span> <span style="color:#000">interpolation</span> <span style="color:#000">=</span> <span style="color:#000">d3</span>.<span style="color:#000">interpolate</span>(<span style="color:#000">slice</span>.<span style="color:#000">storedValues</span>, <span style="color:#000">newValues</span>);
+  <span style="color:#000">slice</span>.<span style="color:#000">storedValues</span> <span style="color:#000">=</span> <span style="color:#000">interpolation</span>(<span style="color:#1c01ce">0</span>);
 
-  <span style="color:#66d9ef">return</span> (<span style="color:#a6e22e">t</span>) <span style="color:#f92672">=&gt;</span> {
-    <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">arcGenerator</span>(<span style="color:#a6e22e">interpolation</span>(<span style="color:#a6e22e">t</span>));
+  <span style="color:#a90d91">return</span> (<span style="color:#000">t</span>) <span style="color:#000">=&gt;</span> {
+    <span style="color:#a90d91">return</span> <span style="color:#a90d91">this</span>.<span style="color:#000">arcGenerator</span>(<span style="color:#000">interpolation</span>(<span style="color:#000">t</span>));
   };
 }
 
-<span style="color:#a6e22e">mouseover</span> <span style="color:#f92672">=</span> (<span style="color:#a6e22e">d</span>, <span style="color:#a6e22e">i</span>) <span style="color:#f92672">=&gt;</span> {
-  <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">selectedSlice</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">slices</span>[<span style="color:#a6e22e">i</span>];
+<span style="color:#000">mouseover</span> <span style="color:#000">=</span> (<span style="color:#000">d</span>, <span style="color:#000">i</span>) <span style="color:#000">=&gt;</span> {
+  <span style="color:#a90d91">this</span>.<span style="color:#000">selectedSlice</span> <span style="color:#000">=</span> <span style="color:#a90d91">this</span>.<span style="color:#000">slices</span>[<span style="color:#000">i</span>];
 
-  <span style="color:#a6e22e">d3</span>.<span style="color:#a6e22e">select</span>(<span style="color:#a6e22e">d3</span>.<span style="color:#a6e22e">event</span>.<span style="color:#a6e22e">currentTarget</span>).<span style="color:#a6e22e">transition</span>()
-    .<span style="color:#a6e22e">duration</span>(<span style="color:#ae81ff">200</span>)
-    .<span style="color:#a6e22e">attr</span>(<span style="color:#e6db74">&#39;d&#39;</span>, <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">arcHover</span>);
+  <span style="color:#000">d3</span>.<span style="color:#000">select</span>(<span style="color:#000">d3</span>.<span style="color:#000">event</span>.<span style="color:#000">currentTarget</span>).<span style="color:#000">transition</span>()
+    .<span style="color:#000">duration</span>(<span style="color:#1c01ce">200</span>)
+    .<span style="color:#000">attr</span>(<span style="color:#c41a16">&#39;d&#39;</span>, <span style="color:#a90d91">this</span>.<span style="color:#000">arcHover</span>);
 
-  <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">svg</span>.<span style="color:#a6e22e">append</span>(<span style="color:#e6db74">&#39;text&#39;</span>)
-    .<span style="color:#a6e22e">attr</span>(<span style="color:#e6db74">&#39;dy&#39;</span>, <span style="color:#e6db74">&#39;-10px&#39;</span>)
-    .<span style="color:#a6e22e">style</span>(<span style="color:#e6db74">&#39;text-anchor&#39;</span>, <span style="color:#e6db74">&#39;middle&#39;</span>)
-    .<span style="color:#a6e22e">attr</span>(<span style="color:#e6db74">&#39;class&#39;</span>, <span style="color:#e6db74">&#39;label&#39;</span>)
-    .<span style="color:#a6e22e">attr</span>(<span style="color:#e6db74">&#39;fill&#39;</span>, <span style="color:#e6db74">&#39;#57a1c6&#39;</span>)
-    .<span style="color:#a6e22e">text</span>(<span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">labels</span>[<span style="color:#a6e22e">i</span>]);
+  <span style="color:#a90d91">this</span>.<span style="color:#000">svg</span>.<span style="color:#000">append</span>(<span style="color:#c41a16">&#39;text&#39;</span>)
+    .<span style="color:#000">attr</span>(<span style="color:#c41a16">&#39;dy&#39;</span>, <span style="color:#c41a16">&#39;-10px&#39;</span>)
+    .<span style="color:#000">style</span>(<span style="color:#c41a16">&#39;text-anchor&#39;</span>, <span style="color:#c41a16">&#39;middle&#39;</span>)
+    .<span style="color:#000">attr</span>(<span style="color:#c41a16">&#39;class&#39;</span>, <span style="color:#c41a16">&#39;label&#39;</span>)
+    .<span style="color:#000">attr</span>(<span style="color:#c41a16">&#39;fill&#39;</span>, <span style="color:#c41a16">&#39;#57a1c6&#39;</span>)
+    .<span style="color:#000">text</span>(<span style="color:#a90d91">this</span>.<span style="color:#000">labels</span>[<span style="color:#000">i</span>]);
 
-  <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">svg</span>.<span style="color:#a6e22e">append</span>(<span style="color:#e6db74">&#39;text&#39;</span>)
-    .<span style="color:#a6e22e">attr</span>(<span style="color:#e6db74">&#39;dy&#39;</span>, <span style="color:#e6db74">&#39;20px&#39;</span>)
-    .<span style="color:#a6e22e">style</span>(<span style="color:#e6db74">&#39;text-anchor&#39;</span>, <span style="color:#e6db74">&#39;middle&#39;</span>)
-    .<span style="color:#a6e22e">attr</span>(<span style="color:#e6db74">&#39;class&#39;</span>, <span style="color:#e6db74">&#39;percent&#39;</span>)
-    .<span style="color:#a6e22e">attr</span>(<span style="color:#e6db74">&#39;fill&#39;</span>, <span style="color:#e6db74">&#39;#57a1c6&#39;</span>)
-    .<span style="color:#a6e22e">text</span>(<span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">toPercent</span>(<span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">values</span>[<span style="color:#a6e22e">i</span>], <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">SumPipe</span>().<span style="color:#a6e22e">transform</span>(<span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">values</span>)));
+  <span style="color:#a90d91">this</span>.<span style="color:#000">svg</span>.<span style="color:#000">append</span>(<span style="color:#c41a16">&#39;text&#39;</span>)
+    .<span style="color:#000">attr</span>(<span style="color:#c41a16">&#39;dy&#39;</span>, <span style="color:#c41a16">&#39;20px&#39;</span>)
+    .<span style="color:#000">style</span>(<span style="color:#c41a16">&#39;text-anchor&#39;</span>, <span style="color:#c41a16">&#39;middle&#39;</span>)
+    .<span style="color:#000">attr</span>(<span style="color:#c41a16">&#39;class&#39;</span>, <span style="color:#c41a16">&#39;percent&#39;</span>)
+    .<span style="color:#000">attr</span>(<span style="color:#c41a16">&#39;fill&#39;</span>, <span style="color:#c41a16">&#39;#57a1c6&#39;</span>)
+    .<span style="color:#000">text</span>(<span style="color:#a90d91">this</span>.<span style="color:#000">toPercent</span>(<span style="color:#a90d91">this</span>.<span style="color:#000">values</span>[<span style="color:#000">i</span>], <span style="color:#a90d91">new</span> <span style="color:#000">SumPipe</span>().<span style="color:#000">transform</span>(<span style="color:#a90d91">this</span>.<span style="color:#000">values</span>)));
 
-  <span style="color:#75715e">// Tooltip
-</span><span style="color:#75715e"></span>  <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">tooltip</span>.<span style="color:#a6e22e">style</span>.<span style="color:#a6e22e">visibility</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;visible&#39;</span>;
-  <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">tooltip</span>.<span style="color:#a6e22e">style</span>.<span style="color:#a6e22e">opacity</span> <span style="color:#f92672">=</span> <span style="color:#ae81ff">0.9</span>;
-  <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">tooltip</span>.<span style="color:#a6e22e">style</span>.<span style="color:#a6e22e">top</span> <span style="color:#f92672">=</span> (<span style="color:#a6e22e">d3</span>.<span style="color:#a6e22e">event</span>.<span style="color:#a6e22e">pageY</span>) <span style="color:#f92672">+</span> <span style="color:#e6db74">&#39;px&#39;</span>;
-  <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">tooltip</span>.<span style="color:#a6e22e">style</span>.<span style="color:#a6e22e">left</span> <span style="color:#f92672">=</span> (<span style="color:#a6e22e">d3</span>.<span style="color:#a6e22e">event</span>.<span style="color:#a6e22e">pageX</span> <span style="color:#f92672">-</span> <span style="color:#ae81ff">100</span> ) <span style="color:#f92672">+</span> <span style="color:#e6db74">&#39;px&#39;</span>;
+  <span style="color:#177500">// Tooltip
+</span><span style="color:#177500"></span>  <span style="color:#a90d91">this</span>.<span style="color:#000">tooltip</span>.<span style="color:#000">style</span>.<span style="color:#000">visibility</span> <span style="color:#000">=</span> <span style="color:#c41a16">&#39;visible&#39;</span>;
+  <span style="color:#a90d91">this</span>.<span style="color:#000">tooltip</span>.<span style="color:#000">style</span>.<span style="color:#000">opacity</span> <span style="color:#000">=</span> <span style="color:#1c01ce">0.9</span>;
+  <span style="color:#a90d91">this</span>.<span style="color:#000">tooltip</span>.<span style="color:#000">style</span>.<span style="color:#000">top</span> <span style="color:#000">=</span> (<span style="color:#000">d3</span>.<span style="color:#000">event</span>.<span style="color:#000">pageY</span>) <span style="color:#000">+</span> <span style="color:#c41a16">&#39;px&#39;</span>;
+  <span style="color:#a90d91">this</span>.<span style="color:#000">tooltip</span>.<span style="color:#000">style</span>.<span style="color:#000">left</span> <span style="color:#000">=</span> (<span style="color:#000">d3</span>.<span style="color:#000">event</span>.<span style="color:#000">pageX</span> <span style="color:#000">-</span> <span style="color:#1c01ce">100</span> ) <span style="color:#000">+</span> <span style="color:#c41a16">&#39;px&#39;</span>;
 }
 
-<span style="color:#a6e22e">mouseout</span> <span style="color:#f92672">=</span> () <span style="color:#f92672">=&gt;</span> {
-  <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">svg</span>.<span style="color:#a6e22e">select</span>(<span style="color:#e6db74">&#39;.label&#39;</span>).<span style="color:#a6e22e">remove</span>();
-  <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">svg</span>.<span style="color:#a6e22e">select</span>(<span style="color:#e6db74">&#39;.percent&#39;</span>).<span style="color:#a6e22e">remove</span>();
+<span style="color:#000">mouseout</span> <span style="color:#000">=</span> () <span style="color:#000">=&gt;</span> {
+  <span style="color:#a90d91">this</span>.<span style="color:#000">svg</span>.<span style="color:#000">select</span>(<span style="color:#c41a16">&#39;.label&#39;</span>).<span style="color:#000">remove</span>();
+  <span style="color:#a90d91">this</span>.<span style="color:#000">svg</span>.<span style="color:#000">select</span>(<span style="color:#c41a16">&#39;.percent&#39;</span>).<span style="color:#000">remove</span>();
 
-  <span style="color:#a6e22e">d3</span>.<span style="color:#a6e22e">select</span>(<span style="color:#a6e22e">d3</span>.<span style="color:#a6e22e">event</span>.<span style="color:#a6e22e">currentTarget</span>).<span style="color:#a6e22e">transition</span>()
-   .<span style="color:#a6e22e">duration</span>(<span style="color:#ae81ff">100</span>)
-   .<span style="color:#a6e22e">attr</span>(<span style="color:#e6db74">&#39;d&#39;</span>, <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">arcGenerator</span>);
+  <span style="color:#000">d3</span>.<span style="color:#000">select</span>(<span style="color:#000">d3</span>.<span style="color:#000">event</span>.<span style="color:#000">currentTarget</span>).<span style="color:#000">transition</span>()
+   .<span style="color:#000">duration</span>(<span style="color:#1c01ce">100</span>)
+   .<span style="color:#000">attr</span>(<span style="color:#c41a16">&#39;d&#39;</span>, <span style="color:#a90d91">this</span>.<span style="color:#000">arcGenerator</span>);
 
-  <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">tooltip</span>.<span style="color:#a6e22e">style</span>.<span style="color:#a6e22e">visibility</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;hidden&#39;</span>;
-  <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">tooltip</span>.<span style="color:#a6e22e">style</span>.<span style="color:#a6e22e">opacity</span> <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+  <span style="color:#a90d91">this</span>.<span style="color:#000">tooltip</span>.<span style="color:#000">style</span>.<span style="color:#000">visibility</span> <span style="color:#000">=</span> <span style="color:#c41a16">&#39;hidden&#39;</span>;
+  <span style="color:#a90d91">this</span>.<span style="color:#000">tooltip</span>.<span style="color:#000">style</span>.<span style="color:#000">opacity</span> <span style="color:#000">=</span> <span style="color:#1c01ce">0</span>;
 }
 
-<span style="color:#a6e22e">toPercent</span> <span style="color:#f92672">=</span> (<span style="color:#a6e22e">a</span>: <span style="color:#66d9ef">number</span>, <span style="color:#a6e22e">b</span>: <span style="color:#66d9ef">number</span>)<span style="color:#f92672">:</span> <span style="color:#66d9ef">string</span> <span style="color:#f92672">=&gt;</span> {
-  <span style="color:#66d9ef">return</span> Math.<span style="color:#a6e22e">round</span>( <span style="color:#a6e22e">a</span> <span style="color:#960050;background-color:#1e0010">/ b * 100) + &#39;%&#39;;</span>
+<span style="color:#000">toPercent</span> <span style="color:#000">=</span> (<span style="color:#000">a</span>: <span style="color:#a90d91">number</span>, <span style="color:#000">b</span>: <span style="color:#a90d91">number</span>)<span style="color:#000">:</span> <span style="color:#a90d91">string</span> <span style="color:#000">=&gt;</span> {
+  <span style="color:#a90d91">return</span> <span style="color:#a90d91">Math</span>.<span style="color:#000">round</span>( <span style="color:#000">a</span> <span style="color:#000">/ b * 100) + &#39;%&#39;;</span>
 }
 
-<span style="color:#a6e22e">updateSlices</span> <span style="color:#f92672">=</span> (<span style="color:#a6e22e">newData</span>: <span style="color:#66d9ef">Array</span><span style="color:#f92672">&lt;</span><span style="color:#a6e22e">any</span><span style="color:#f92672">&gt;</span>)<span style="color:#f92672">:</span> Array<span style="color:#f92672">&lt;</span><span style="color:#a6e22e">any</span><span style="color:#f92672">&gt;</span> <span style="color:#f92672">=&gt;</span> {
-  <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">queriesByFamilyTypes</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">_</span>.<span style="color:#a6e22e">groupBy</span>(<span style="color:#a6e22e">_</span>.<span style="color:#a6e22e">sortBy</span>(<span style="color:#a6e22e">newData</span>, <span style="color:#e6db74">&#39;familyType&#39;</span>), <span style="color:#e6db74">&#39;familyType&#39;</span>);
-  <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">results</span> <span style="color:#f92672">=</span> [];
+<span style="color:#000">updateSlices</span> <span style="color:#000">=</span> (<span style="color:#000">newData</span>: <span style="color:#a90d91">Array</span><span style="color:#000">&lt;</span><span style="color:#000">any</span><span style="color:#000">&gt;</span>)<span style="color:#000">:</span> <span style="color:#a90d91">Array</span><span style="color:#000">&lt;</span><span style="color:#000">any</span><span style="color:#000">&gt;</span> <span style="color:#000">=&gt;</span> {
+  <span style="color:#a90d91">const</span> <span style="color:#000">queriesByFamilyTypes</span> <span style="color:#000">=</span> <span style="color:#000">_</span>.<span style="color:#000">groupBy</span>(<span style="color:#000">_</span>.<span style="color:#000">sortBy</span>(<span style="color:#000">newData</span>, <span style="color:#c41a16">&#39;familyType&#39;</span>), <span style="color:#c41a16">&#39;familyType&#39;</span>);
+  <span style="color:#a90d91">const</span> <span style="color:#000">results</span> <span style="color:#000">=</span> [];
 
-  Object.<span style="color:#a6e22e">keys</span>(<span style="color:#a6e22e">queriesByFamilyTypes</span>).<span style="color:#a6e22e">map</span>((<span style="color:#a6e22e">familyType</span>) <span style="color:#f92672">=&gt;</span> {
-    <span style="color:#a6e22e">results</span>.<span style="color:#a6e22e">push</span>({
-      <span style="color:#a6e22e">familyType</span>: <span style="color:#66d9ef">familyType</span>,
-      <span style="color:#a6e22e">amount</span>: <span style="color:#66d9ef">queriesByFamilyTypes</span>[<span style="color:#a6e22e">familyType</span>].<span style="color:#a6e22e">length</span>,
-      <span style="color:#a6e22e">types</span><span style="color:#f92672">:</span> []
+  <span style="color:#a90d91">Object</span>.<span style="color:#000">keys</span>(<span style="color:#000">queriesByFamilyTypes</span>).<span style="color:#000">map</span>((<span style="color:#000">familyType</span>) <span style="color:#000">=&gt;</span> {
+    <span style="color:#000">results</span>.<span style="color:#000">push</span>({
+      <span style="color:#000">familyType</span>: <span style="color:#a90d91">familyType</span>,
+      <span style="color:#000">amount</span>: <span style="color:#a90d91">queriesByFamilyTypes</span>[<span style="color:#000">familyType</span>].<span style="color:#000">length</span>,
+      <span style="color:#000">types</span><span style="color:#000">:</span> []
     });
   });
 
-  <span style="color:#a6e22e">results</span>.<span style="color:#a6e22e">map</span>(<span style="color:#a6e22e">result</span> <span style="color:#f92672">=&gt;</span> {
-    <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">queries</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">newData</span>.<span style="color:#a6e22e">filter</span>(<span style="color:#a6e22e">query</span> <span style="color:#f92672">=&gt;</span> <span style="color:#a6e22e">query</span>.<span style="color:#a6e22e">familyType</span> <span style="color:#f92672">===</span> <span style="color:#a6e22e">result</span>.<span style="color:#a6e22e">familyType</span>);
-    <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">queriesByTypes</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">_</span>.<span style="color:#a6e22e">groupBy</span>(<span style="color:#a6e22e">_</span>.<span style="color:#a6e22e">sortBy</span>(<span style="color:#a6e22e">queries</span>, <span style="color:#e6db74">&#39;type&#39;</span>), <span style="color:#e6db74">&#39;type&#39;</span>);
+  <span style="color:#000">results</span>.<span style="color:#000">map</span>(<span style="color:#000">result</span> <span style="color:#000">=&gt;</span> {
+    <span style="color:#a90d91">const</span> <span style="color:#000">queries</span> <span style="color:#000">=</span> <span style="color:#000">newData</span>.<span style="color:#000">filter</span>(<span style="color:#000">query</span> <span style="color:#000">=&gt;</span> <span style="color:#000">query</span>.<span style="color:#000">familyType</span> <span style="color:#000">===</span> <span style="color:#000">result</span>.<span style="color:#000">familyType</span>);
+    <span style="color:#a90d91">const</span> <span style="color:#000">queriesByTypes</span> <span style="color:#000">=</span> <span style="color:#000">_</span>.<span style="color:#000">groupBy</span>(<span style="color:#000">_</span>.<span style="color:#000">sortBy</span>(<span style="color:#000">queries</span>, <span style="color:#c41a16">&#39;type&#39;</span>), <span style="color:#c41a16">&#39;type&#39;</span>);
 
-    Object.<span style="color:#a6e22e">keys</span>(<span style="color:#a6e22e">queriesByTypes</span>).<span style="color:#a6e22e">map</span>((<span style="color:#a6e22e">type</span>) <span style="color:#f92672">=&gt;</span> {
-      <span style="color:#a6e22e">result</span>.<span style="color:#a6e22e">types</span>.<span style="color:#a6e22e">push</span>({
-        <span style="color:#a6e22e">type</span>: <span style="color:#66d9ef">type</span>,
-        <span style="color:#a6e22e">amount</span>: <span style="color:#66d9ef">queriesByTypes</span>[<span style="color:#a6e22e">type</span>].<span style="color:#a6e22e">length</span>,
+    <span style="color:#a90d91">Object</span>.<span style="color:#000">keys</span>(<span style="color:#000">queriesByTypes</span>).<span style="color:#000">map</span>((<span style="color:#000">type</span>) <span style="color:#000">=&gt;</span> {
+      <span style="color:#000">result</span>.<span style="color:#000">types</span>.<span style="color:#000">push</span>({
+        <span style="color:#000">type</span>: <span style="color:#a90d91">type</span>,
+        <span style="color:#000">amount</span>: <span style="color:#a90d91">queriesByTypes</span>[<span style="color:#000">type</span>].<span style="color:#000">length</span>,
       });
     });
   });
 
-  <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">results</span>;
+  <span style="color:#a90d91">return</span> <span style="color:#000">results</span>;
 }</code></pre></div>
 <h3 id="oninit-onchanges">OnInit &amp; OnChanges</h3>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-typescript" data-lang="typescript"><span style="color:#a6e22e">ngOnInit() {</span>
-  <span style="color:#75715e">// create chart and render
-</span><span style="color:#75715e"></span>  <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">createChart</span>();
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-typescript" data-lang="typescript"><span style="color:#000">ngOnInit() {</span>
+  <span style="color:#177500">// create chart and render
+</span><span style="color:#177500"></span>  <span style="color:#a90d91">this</span>.<span style="color:#000">createChart</span>();
 
-  <span style="color:#75715e">// Initial update
-</span><span style="color:#75715e"></span>  <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">updateChart</span>(<span style="color:#66d9ef">true</span>);
+  <span style="color:#177500">// Initial update
+</span><span style="color:#177500"></span>  <span style="color:#a90d91">this</span>.<span style="color:#000">updateChart</span>(<span style="color:#a90d91">true</span>);
 
-  <span style="color:#75715e">// For animation purpose we load the real value after a second
-</span><span style="color:#75715e"></span>  <span style="color:#a6e22e">setTimeout</span>(() <span style="color:#f92672">=&gt;</span> <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">updateChart</span>(<span style="color:#66d9ef">false</span>), <span style="color:#ae81ff">50</span>);
+  <span style="color:#177500">// For animation purpose we load the real value after a second
+</span><span style="color:#177500"></span>  <span style="color:#000">setTimeout</span>(() <span style="color:#000">=&gt;</span> <span style="color:#a90d91">this</span>.<span style="color:#000">updateChart</span>(<span style="color:#a90d91">false</span>), <span style="color:#1c01ce">50</span>);
 }
 
-<span style="color:#a6e22e">ngOnChanges() {</span>
-  <span style="color:#75715e">// update chart on data input value change
-</span><span style="color:#75715e"></span>  <span style="color:#66d9ef">if</span> (<span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">svg</span>) <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">updateChart</span>(<span style="color:#66d9ef">false</span>);
+<span style="color:#000">ngOnChanges() {</span>
+  <span style="color:#177500">// update chart on data input value change
+</span><span style="color:#177500"></span>  <span style="color:#a90d91">if</span> (<span style="color:#a90d91">this</span>.<span style="color:#000">svg</span>) <span style="color:#a90d91">this</span>.<span style="color:#000">updateChart</span>(<span style="color:#a90d91">false</span>);
 }</code></pre></div>
 <p>Our <code>OnInit</code> method is a little peculiar, we first call update chart to initialize it and then call it a second time a little bit later to give it its real value. That&rsquo;s is done in order to have a nice animation.</p>
 

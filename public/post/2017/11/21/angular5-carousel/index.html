@@ -133,15 +133,7 @@ html{font-family:sans-serif;line-height:1.15;-ms-text-size-adjust:100%;-webkit-t
       			  
               </a>
             </div>
-            <div class="nav-menu">
-              <a class="rss" href="">
-                <i class="icon-rss"></i>
-              </a>
-                
-                <a class="menu" data-action="toc" data-target="toc"><i class="icon-location"></i></a>
-                
-                
-            </div>
+            
           </nav>
 
 
@@ -180,33 +172,33 @@ Requirements for our carousel</p>
 <p>Let&rsquo;s dive in!</p>
 
 <h3 id="template">Template</h3>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-typescript" data-lang="typescript"><span style="color:#66d9ef">@Component</span>({
-  <span style="color:#a6e22e">selector</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;app-carousel&#39;</span>,
-  <span style="color:#a6e22e">styleUrls</span><span style="color:#f92672">:</span> [<span style="color:#e6db74">&#39;./carousel.component.scss&#39;</span>],
-  <span style="color:#a6e22e">template</span><span style="color:#f92672">:</span> <span style="color:#e6db74">`
-</span><span style="color:#e6db74">    &lt;div class=&#39;wrapper&#39;&gt;
-</span><span style="color:#e6db74">      &lt;div class=&#39;carousel-wrapper&#39;&gt;
-</span><span style="color:#e6db74">        &lt;div class=&#39;carousel&#39; fxLayout=&#39;row&#39; fxLayoutAlign=&#39;center stretch&#39;&gt;
-</span><span style="color:#e6db74">          &lt;ul *ngFor=&#39;let items of batches&#39; fxLayout=&#39;row&#39; fxLayoutAlign=&#39;space-evenly stretch&#39;&gt;
-</span><span style="color:#e6db74">            &lt;li *ngFor=&#39;let item of items&#39; fxLayout=&#39;column&#39; fxLayoutAlign=&#39;center center&#39;&gt;
-</span><span style="color:#e6db74">              &lt;img src=&#39;assets/Icon-Database.svg&#39; alt=&#39;Widget Icon&#39;&gt;
-</span><span style="color:#e6db74">              &lt;div class=&#39;text&#39;&gt;{{item.title}}&lt;/div&gt;
-</span><span style="color:#e6db74">            &lt;/li&gt;
-</span><span style="color:#e6db74">          &lt;/ul&gt;
-</span><span style="color:#e6db74">        &lt;/div&gt;
-</span><span style="color:#e6db74">      &lt;/div&gt;
-</span><span style="color:#e6db74">
-</span><span style="color:#e6db74">      &lt;div *ngIf=&#39;batches.length &gt; 1&#39; class=&#39;arrow-left&#39; (click)=&#39;currentItem !== 0 ? slide(1) : null&#39;
-</span><span style="color:#e6db74">        [ngClass]=&#39;{&#34;disabled&#34;: currentItem === 0}&#39;&gt;
-</span><span style="color:#e6db74">        &lt;i class=&#39;material-icons&#39;&gt;keyboard_arrow_left&lt;/i&gt;
-</span><span style="color:#e6db74">      &lt;/div&gt;
-</span><span style="color:#e6db74">
-</span><span style="color:#e6db74">      &lt;div *ngIf=&#39;batches.length &gt; 1&#39; class=&#39;arrow-right&#39; (click)=&#39;currentItem !== batches.length - 1 ? slide(-1) : null&#39;
-</span><span style="color:#e6db74">        [ngClass]=&#39;{&#34;disabled&#34;: currentItem === batches.length - 1}&#39;&gt;
-</span><span style="color:#e6db74">        &lt;i class=&#39;material-icons&#39;&gt;keyboard_arrow_right&lt;/i&gt;
-</span><span style="color:#e6db74">      &lt;/div&gt;
-</span><span style="color:#e6db74">    &lt;/div&gt;
-</span><span style="color:#e6db74">  `</span>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-typescript" data-lang="typescript"><span style="color:#a90d91">@Component</span>({
+  <span style="color:#000">selector</span><span style="color:#000">:</span> <span style="color:#c41a16">&#39;app-carousel&#39;</span>,
+  <span style="color:#000">styleUrls</span><span style="color:#000">:</span> [<span style="color:#c41a16">&#39;./carousel.component.scss&#39;</span>],
+  <span style="color:#000">template</span><span style="color:#000">:</span> <span style="color:#c41a16">`
+</span><span style="color:#c41a16">    &lt;div class=&#39;wrapper&#39;&gt;
+</span><span style="color:#c41a16">      &lt;div class=&#39;carousel-wrapper&#39;&gt;
+</span><span style="color:#c41a16">        &lt;div class=&#39;carousel&#39; fxLayout=&#39;row&#39; fxLayoutAlign=&#39;center stretch&#39;&gt;
+</span><span style="color:#c41a16">          &lt;ul *ngFor=&#39;let items of batches&#39; fxLayout=&#39;row&#39; fxLayoutAlign=&#39;space-evenly stretch&#39;&gt;
+</span><span style="color:#c41a16">            &lt;li *ngFor=&#39;let item of items&#39; fxLayout=&#39;column&#39; fxLayoutAlign=&#39;center center&#39;&gt;
+</span><span style="color:#c41a16">              &lt;img src=&#39;assets/Icon-Database.svg&#39; alt=&#39;Widget Icon&#39;&gt;
+</span><span style="color:#c41a16">              &lt;div class=&#39;text&#39;&gt;{{item.title}}&lt;/div&gt;
+</span><span style="color:#c41a16">            &lt;/li&gt;
+</span><span style="color:#c41a16">          &lt;/ul&gt;
+</span><span style="color:#c41a16">        &lt;/div&gt;
+</span><span style="color:#c41a16">      &lt;/div&gt;
+</span><span style="color:#c41a16">
+</span><span style="color:#c41a16">      &lt;div *ngIf=&#39;batches.length &gt; 1&#39; class=&#39;arrow-left&#39; (click)=&#39;currentItem !== 0 ? slide(1) : null&#39;
+</span><span style="color:#c41a16">        [ngClass]=&#39;{&#34;disabled&#34;: currentItem === 0}&#39;&gt;
+</span><span style="color:#c41a16">        &lt;i class=&#39;material-icons&#39;&gt;keyboard_arrow_left&lt;/i&gt;
+</span><span style="color:#c41a16">      &lt;/div&gt;
+</span><span style="color:#c41a16">
+</span><span style="color:#c41a16">      &lt;div *ngIf=&#39;batches.length &gt; 1&#39; class=&#39;arrow-right&#39; (click)=&#39;currentItem !== batches.length - 1 ? slide(-1) : null&#39;
+</span><span style="color:#c41a16">        [ngClass]=&#39;{&#34;disabled&#34;: currentItem === batches.length - 1}&#39;&gt;
+</span><span style="color:#c41a16">        &lt;i class=&#39;material-icons&#39;&gt;keyboard_arrow_right&lt;/i&gt;
+</span><span style="color:#c41a16">      &lt;/div&gt;
+</span><span style="color:#c41a16">    &lt;/div&gt;
+</span><span style="color:#c41a16">  `</span>
 })</code></pre></div>
 <p>Our template is clearly separated in there parts:
 - The carousel with an icon and a label for each item
@@ -214,36 +206,36 @@ Requirements for our carousel</p>
 - The right arrow which is disabled when the user looks at the last batch of items.</p>
 
 <h3 id="component-with-life-cycle-methods">Component with life cycle methods</h3>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-typescript" data-lang="typescript"><span style="color:#66d9ef">export</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">CarouselComponent</span> <span style="color:#66d9ef">implements</span> <span style="color:#a6e22e">OnInit</span>, <span style="color:#a6e22e">AfterViewChecked</span> {
-  <span style="color:#66d9ef">@Input</span>() <span style="color:#a6e22e">items</span>: <span style="color:#66d9ef">Array</span><span style="color:#f92672">&lt;</span><span style="color:#a6e22e">object</span><span style="color:#f92672">&gt;</span>;
-  <span style="color:#a6e22e">currentItem</span> <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
-  <span style="color:#a6e22e">carousel</span>: <span style="color:#66d9ef">any</span>;
-  <span style="color:#a6e22e">position</span> <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
-  <span style="color:#a6e22e">increment</span>: <span style="color:#66d9ef">any</span>;
-  <span style="color:#a6e22e">translation</span> <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
-  <span style="color:#a6e22e">elementsPerSlide</span>: <span style="color:#66d9ef">number</span>;
-  <span style="color:#a6e22e">batches</span>: <span style="color:#66d9ef">Array</span><span style="color:#f92672">&lt;</span>Array<span style="color:#f92672">&lt;</span><span style="color:#a6e22e">object</span><span style="color:#f92672">&gt;&gt;</span> <span style="color:#f92672">=</span> [];
-  <span style="color:#a6e22e">carouselWidth</span>: <span style="color:#66d9ef">number</span>;
-  <span style="color:#a6e22e">carouselWrapper</span>: <span style="color:#66d9ef">any</span>;
-  <span style="color:#a6e22e">carouselWrapperWidth</span>: <span style="color:#66d9ef">number</span>;
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-typescript" data-lang="typescript"><span style="color:#a90d91">export</span> <span style="color:#a90d91">class</span> <span style="color:#000">CarouselComponent</span> <span style="color:#a90d91">implements</span> <span style="color:#000">OnInit</span>, <span style="color:#000">AfterViewChecked</span> {
+  <span style="color:#a90d91">@Input</span>() <span style="color:#000">items</span>: <span style="color:#a90d91">Array</span><span style="color:#000">&lt;</span><span style="color:#000">object</span><span style="color:#000">&gt;</span>;
+  <span style="color:#000">currentItem</span> <span style="color:#000">=</span> <span style="color:#1c01ce">0</span>;
+  <span style="color:#000">carousel</span>: <span style="color:#a90d91">any</span>;
+  <span style="color:#000">position</span> <span style="color:#000">=</span> <span style="color:#1c01ce">0</span>;
+  <span style="color:#000">increment</span>: <span style="color:#a90d91">any</span>;
+  <span style="color:#000">translation</span> <span style="color:#000">=</span> <span style="color:#1c01ce">0</span>;
+  <span style="color:#000">elementsPerSlide</span>: <span style="color:#a90d91">number</span>;
+  <span style="color:#000">batches</span>: <span style="color:#a90d91">Array</span><span style="color:#000">&lt;</span><span style="color:#a90d91">Array</span><span style="color:#000">&lt;</span><span style="color:#000">object</span><span style="color:#000">&gt;&gt;</span> <span style="color:#000">=</span> [];
+  <span style="color:#000">carouselWidth</span>: <span style="color:#a90d91">number</span>;
+  <span style="color:#000">carouselWrapper</span>: <span style="color:#a90d91">any</span>;
+  <span style="color:#000">carouselWrapperWidth</span>: <span style="color:#a90d91">number</span>;
 
-  <span style="color:#66d9ef">constructor</span> (
-    <span style="color:#66d9ef">private</span> <span style="color:#a6e22e">elementRef</span>: <span style="color:#66d9ef">ElementRef</span>,
-    <span style="color:#66d9ef">private</span> <span style="color:#a6e22e">changeDetectorRef</span>: <span style="color:#66d9ef">ChangeDetectorRef</span>
+  <span style="color:#a90d91">constructor</span> (
+    <span style="color:#a90d91">private</span> <span style="color:#000">elementRef</span>: <span style="color:#a90d91">ElementRef</span>,
+    <span style="color:#a90d91">private</span> <span style="color:#000">changeDetectorRef</span>: <span style="color:#a90d91">ChangeDetectorRef</span>
   ) {}
 
-  <span style="color:#a6e22e">ngOnInit() {</span>
-    <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">carousel</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">elementRef</span>.<span style="color:#a6e22e">nativeElement</span>.<span style="color:#a6e22e">querySelector</span>(<span style="color:#e6db74">&#39;.carousel&#39;</span>);
-    <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">carouselWrapper</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">elementRef</span>.<span style="color:#a6e22e">nativeElement</span>.<span style="color:#a6e22e">querySelector</span>(<span style="color:#e6db74">&#39;.carousel-wrapper&#39;</span>);
+  <span style="color:#000">ngOnInit() {</span>
+    <span style="color:#a90d91">this</span>.<span style="color:#000">carousel</span> <span style="color:#000">=</span> <span style="color:#a90d91">this</span>.<span style="color:#000">elementRef</span>.<span style="color:#000">nativeElement</span>.<span style="color:#000">querySelector</span>(<span style="color:#c41a16">&#39;.carousel&#39;</span>);
+    <span style="color:#a90d91">this</span>.<span style="color:#000">carouselWrapper</span> <span style="color:#000">=</span> <span style="color:#a90d91">this</span>.<span style="color:#000">elementRef</span>.<span style="color:#000">nativeElement</span>.<span style="color:#000">querySelector</span>(<span style="color:#c41a16">&#39;.carousel-wrapper&#39;</span>);
   }
 
-  <span style="color:#75715e">// On size changes, recalculate the bacthes
-</span><span style="color:#75715e"></span>  <span style="color:#a6e22e">ngAfterViewChecked() {</span>
-    <span style="color:#66d9ef">if</span> (<span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">carouselWrapper</span>.<span style="color:#a6e22e">offsetWidth</span> <span style="color:#f92672">!==</span> <span style="color:#ae81ff">0</span> <span style="color:#f92672">&amp;&amp;</span> <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">carouselWrapper</span>.<span style="color:#a6e22e">offsetWidth</span> <span style="color:#f92672">!==</span> <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">carouselWrapperWidth</span>) {
-      <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">carouselWrapperWidth</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">carouselWrapper</span>.<span style="color:#a6e22e">offsetWidth</span>;
+  <span style="color:#177500">// On size changes, recalculate the bacthes
+</span><span style="color:#177500"></span>  <span style="color:#000">ngAfterViewChecked() {</span>
+    <span style="color:#a90d91">if</span> (<span style="color:#a90d91">this</span>.<span style="color:#000">carouselWrapper</span>.<span style="color:#000">offsetWidth</span> <span style="color:#000">!==</span> <span style="color:#1c01ce">0</span> <span style="color:#000">&amp;&amp;</span> <span style="color:#a90d91">this</span>.<span style="color:#000">carouselWrapper</span>.<span style="color:#000">offsetWidth</span> <span style="color:#000">!==</span> <span style="color:#a90d91">this</span>.<span style="color:#000">carouselWrapperWidth</span>) {
+      <span style="color:#a90d91">this</span>.<span style="color:#000">carouselWrapperWidth</span> <span style="color:#000">=</span> <span style="color:#a90d91">this</span>.<span style="color:#000">carouselWrapper</span>.<span style="color:#000">offsetWidth</span>;
 
-      <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">renderBatches</span>();
-      <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">setBatchSize</span>();
+      <span style="color:#a90d91">this</span>.<span style="color:#000">renderBatches</span>();
+      <span style="color:#a90d91">this</span>.<span style="color:#000">setBatchSize</span>();
     }
   }
 }</code></pre></div>
@@ -256,144 +248,144 @@ Requirements for our carousel</p>
 </ul>
 
 <h3 id="renderbatches">renderBatches</h3>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-typescript" data-lang="typescript"><span style="color:#a6e22e">renderBatches</span> <span style="color:#f92672">=</span> () <span style="color:#f92672">=&gt;</span> {
-  <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">itemWidth</span> <span style="color:#f92672">=</span> <span style="color:#ae81ff">130</span>;
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-typescript" data-lang="typescript"><span style="color:#000">renderBatches</span> <span style="color:#000">=</span> () <span style="color:#000">=&gt;</span> {
+  <span style="color:#a90d91">const</span> <span style="color:#000">itemWidth</span> <span style="color:#000">=</span> <span style="color:#1c01ce">130</span>;
 
-  <span style="color:#75715e">// we split the items in batches
-</span><span style="color:#75715e"></span>  <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">elementsPerSlide</span> <span style="color:#f92672">=</span> Math.<span style="color:#a6e22e">floor</span>(<span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">carouselWrapperWidth</span> <span style="color:#960050;background-color:#1e0010">/ itemWidth);</span>
-  <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">batches</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">chunk</span>(<span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">items</span>, <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">elementsPerSlide</span>);
+  <span style="color:#177500">// we split the items in batches
+</span><span style="color:#177500"></span>  <span style="color:#a90d91">this</span>.<span style="color:#000">elementsPerSlide</span> <span style="color:#000">=</span> <span style="color:#a90d91">Math</span>.<span style="color:#000">floor</span>(<span style="color:#a90d91">this</span>.<span style="color:#000">carouselWrapperWidth</span> <span style="color:#000">/ itemWidth);</span>
+  <span style="color:#a90d91">this</span>.<span style="color:#000">batches</span> <span style="color:#000">=</span> <span style="color:#a90d91">this</span>.<span style="color:#000">chunk</span>(<span style="color:#a90d91">this</span>.<span style="color:#000">items</span>, <span style="color:#a90d91">this</span>.<span style="color:#000">elementsPerSlide</span>);
 
-  <span style="color:#75715e">// The carousel is 100 * ng batches wide
-</span><span style="color:#75715e"></span>  <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">carousel</span>.<span style="color:#a6e22e">style</span>.<span style="color:#a6e22e">width</span> <span style="color:#f92672">=</span> <span style="color:#ae81ff">100</span> <span style="color:#f92672">*</span> <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">batches</span>.<span style="color:#a6e22e">length</span> <span style="color:#f92672">+</span> <span style="color:#e6db74">&#39;%&#39;</span>;
+  <span style="color:#177500">// The carousel is 100 * ng batches wide
+</span><span style="color:#177500"></span>  <span style="color:#a90d91">this</span>.<span style="color:#000">carousel</span>.<span style="color:#000">style</span>.<span style="color:#000">width</span> <span style="color:#000">=</span> <span style="color:#1c01ce">100</span> <span style="color:#000">*</span> <span style="color:#a90d91">this</span>.<span style="color:#000">batches</span>.<span style="color:#000">length</span> <span style="color:#000">+</span> <span style="color:#c41a16">&#39;%&#39;</span>;
 
-  <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">increment</span> <span style="color:#f92672">=</span> (<span style="color:#ae81ff">100</span> <span style="color:#960050;background-color:#1e0010">/ this.batches.length);</span>
+  <span style="color:#a90d91">this</span>.<span style="color:#000">increment</span> <span style="color:#000">=</span> (<span style="color:#1c01ce">100</span> <span style="color:#000">/ this.batches.length);</span>
 
-  <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">changeDetectorRef</span>.<span style="color:#a6e22e">detectChanges</span>();
+  <span style="color:#a90d91">this</span>.<span style="color:#000">changeDetectorRef</span>.<span style="color:#000">detectChanges</span>();
 }</code></pre></div>
 <p>this methods calculates the number of elements to show per page based on the width of the carousel&rsquo;s wrapper and on the width of the elements. It then updates the width of the carousel, which needs to be 100 * number of batches.</p>
 
 <h3 id="setbatchsize">setBatchSize</h3>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-typescript" data-lang="typescript"><span style="color:#a6e22e">setBatchSize</span> <span style="color:#f92672">=</span> () <span style="color:#f92672">=&gt;</span> {
-  <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">ulElements</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">elementRef</span>.<span style="color:#a6e22e">nativeElement</span>.<span style="color:#a6e22e">querySelectorAll</span>(<span style="color:#e6db74">&#39;ul&#39;</span>);
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-typescript" data-lang="typescript"><span style="color:#000">setBatchSize</span> <span style="color:#000">=</span> () <span style="color:#000">=&gt;</span> {
+  <span style="color:#a90d91">const</span> <span style="color:#000">ulElements</span> <span style="color:#000">=</span> <span style="color:#a90d91">this</span>.<span style="color:#000">elementRef</span>.<span style="color:#000">nativeElement</span>.<span style="color:#000">querySelectorAll</span>(<span style="color:#c41a16">&#39;ul&#39;</span>);
 
-  <span style="color:#75715e">// Each ul element needs to be 100 / nb batches wide.
-</span><span style="color:#75715e"></span>  <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">let</span> <span style="color:#a6e22e">i</span> <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; <span style="color:#a6e22e">i</span> <span style="color:#f92672">&lt;</span> <span style="color:#a6e22e">ulElements</span>.<span style="color:#a6e22e">length</span>; <span style="color:#a6e22e">i</span><span style="color:#f92672">++</span>) {
-    <span style="color:#a6e22e">ulElements</span>[<span style="color:#a6e22e">i</span>].<span style="color:#a6e22e">style</span>.<span style="color:#a6e22e">width</span> <span style="color:#f92672">=</span> <span style="color:#ae81ff">100</span> <span style="color:#960050;background-color:#1e0010">/ this.batches.length + &#39;%&#39;;</span>
+  <span style="color:#177500">// Each ul element needs to be 100 / nb batches wide.
+</span><span style="color:#177500"></span>  <span style="color:#a90d91">for</span> (<span style="color:#a90d91">let</span> <span style="color:#000">i</span> <span style="color:#000">=</span> <span style="color:#1c01ce">0</span>; <span style="color:#000">i</span> <span style="color:#000">&lt;</span> <span style="color:#000">ulElements</span>.<span style="color:#000">length</span>; <span style="color:#000">i</span><span style="color:#000">++</span>) {
+    <span style="color:#000">ulElements</span>[<span style="color:#000">i</span>].<span style="color:#000">style</span>.<span style="color:#000">width</span> <span style="color:#000">=</span> <span style="color:#1c01ce">100</span> <span style="color:#000">/ this.batches.length + &#39;%&#39;;</span>
   }
 }</code></pre></div>
 <p>setBatchSize sets the width of each <code>ul</code> elements. Side by side the ul elements need to take the full width of the carousel.</p>
 
 <h3 id="slide">slide</h3>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-typescript" data-lang="typescript"><span style="color:#a6e22e">slide</span> <span style="color:#f92672">=</span> (<span style="color:#a6e22e">direction</span>: <span style="color:#66d9ef">number</span>) <span style="color:#f92672">=&gt;</span> {
-  <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">currentItem</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">currentItem</span> <span style="color:#f92672">-</span> <span style="color:#a6e22e">direction</span>;
-  <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">translation</span>  <span style="color:#f92672">=</span> <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">translation</span> <span style="color:#f92672">+</span> <span style="color:#a6e22e">direction</span> <span style="color:#f92672">*</span> <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">increment</span>;
-  <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">carousel</span>.<span style="color:#a6e22e">style</span>.<span style="color:#a6e22e">transform</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;translateX(&#39;</span> <span style="color:#f92672">+</span> <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">translation</span> <span style="color:#f92672">+</span> <span style="color:#e6db74">&#39;%)&#39;</span>;
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-typescript" data-lang="typescript"><span style="color:#000">slide</span> <span style="color:#000">=</span> (<span style="color:#000">direction</span>: <span style="color:#a90d91">number</span>) <span style="color:#000">=&gt;</span> {
+  <span style="color:#a90d91">this</span>.<span style="color:#000">currentItem</span> <span style="color:#000">=</span> <span style="color:#a90d91">this</span>.<span style="color:#000">currentItem</span> <span style="color:#000">-</span> <span style="color:#000">direction</span>;
+  <span style="color:#a90d91">this</span>.<span style="color:#000">translation</span>  <span style="color:#000">=</span> <span style="color:#a90d91">this</span>.<span style="color:#000">translation</span> <span style="color:#000">+</span> <span style="color:#000">direction</span> <span style="color:#000">*</span> <span style="color:#a90d91">this</span>.<span style="color:#000">increment</span>;
+  <span style="color:#a90d91">this</span>.<span style="color:#000">carousel</span>.<span style="color:#000">style</span>.<span style="color:#000">transform</span> <span style="color:#000">=</span> <span style="color:#c41a16">&#39;translateX(&#39;</span> <span style="color:#000">+</span> <span style="color:#a90d91">this</span>.<span style="color:#000">translation</span> <span style="color:#000">+</span> <span style="color:#c41a16">&#39;%)&#39;</span>;
 }</code></pre></div>
 <p>The slide method is called each time we click on an arrow. It is used to translate from one batch to the other.</p>
 
 <h3 id="chunk">chunk</h3>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-typescript" data-lang="typescript"><span style="color:#a6e22e">chunk</span> <span style="color:#f92672">=</span> (<span style="color:#a6e22e">arr</span>, <span style="color:#a6e22e">n</span>) <span style="color:#f92672">=&gt;</span> {
-  <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">arr</span>.<span style="color:#a6e22e">slice</span>(<span style="color:#ae81ff">0</span>, (<span style="color:#a6e22e">arr</span>.<span style="color:#a6e22e">length</span> <span style="color:#f92672">+</span> <span style="color:#a6e22e">n</span> <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>) <span style="color:#960050;background-color:#1e0010">/ n | 0).map((c, i) =&gt; arr.slice(n * i , n * i + n));</span>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-typescript" data-lang="typescript"><span style="color:#000">chunk</span> <span style="color:#000">=</span> (<span style="color:#000">arr</span>, <span style="color:#000">n</span>) <span style="color:#000">=&gt;</span> {
+  <span style="color:#a90d91">return</span> <span style="color:#000">arr</span>.<span style="color:#000">slice</span>(<span style="color:#1c01ce">0</span>, (<span style="color:#000">arr</span>.<span style="color:#000">length</span> <span style="color:#000">+</span> <span style="color:#000">n</span> <span style="color:#000">-</span> <span style="color:#1c01ce">1</span>) <span style="color:#000">/ n | 0).map((c, i) =&gt; arr.slice(n * i , n * i + n));</span>
 }</code></pre></div>
 <p>chunk is a simple method to split an array in an array of arrays of a specific size.</p>
 
 <h3 id="styling-and-component-usage">Styling and component usage</h3>
 
 <p>To finish find bellow how to use the carousel and the styling file I am using.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-typescript" data-lang="typescript"><span style="color:#75715e">// app.component.ts
-</span><span style="color:#75715e"></span><span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">Component</span>, <span style="color:#a6e22e">OnInit</span> } <span style="color:#a6e22e">from</span> <span style="color:#e6db74">&#39;@angular/core&#39;</span>;
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-typescript" data-lang="typescript"><span style="color:#177500">// app.component.ts
+</span><span style="color:#177500"></span><span style="color:#a90d91">import</span> { <span style="color:#000">Component</span>, <span style="color:#000">OnInit</span> } <span style="color:#000">from</span> <span style="color:#c41a16">&#39;@angular/core&#39;</span>;
 
-<span style="color:#66d9ef">@Component</span>({
-  <span style="color:#a6e22e">selector</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;app-root&#39;</span>,
-  <span style="color:#a6e22e">styleUrls</span><span style="color:#f92672">:</span> [<span style="color:#e6db74">&#39;./app.component.scss&#39;</span>],
-  <span style="color:#a6e22e">template</span><span style="color:#f92672">:</span> <span style="color:#e6db74">`
-</span><span style="color:#e6db74">    &lt;app-carousel [items]=&#39;widgets&#39;&gt;&lt;/app-carousel&gt;
-</span><span style="color:#e6db74">  `</span>
+<span style="color:#a90d91">@Component</span>({
+  <span style="color:#000">selector</span><span style="color:#000">:</span> <span style="color:#c41a16">&#39;app-root&#39;</span>,
+  <span style="color:#000">styleUrls</span><span style="color:#000">:</span> [<span style="color:#c41a16">&#39;./app.component.scss&#39;</span>],
+  <span style="color:#000">template</span><span style="color:#000">:</span> <span style="color:#c41a16">`
+</span><span style="color:#c41a16">    &lt;app-carousel [items]=&#39;widgets&#39;&gt;&lt;/app-carousel&gt;
+</span><span style="color:#c41a16">  `</span>
 })
-<span style="color:#66d9ef">export</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">AppComponent</span> <span style="color:#66d9ef">implements</span> <span style="color:#a6e22e">OnInit</span> {
-  <span style="color:#a6e22e">widgets</span>: <span style="color:#66d9ef">Array</span><span style="color:#f92672">&lt;</span><span style="color:#a6e22e">object</span><span style="color:#f92672">&gt;</span>;
+<span style="color:#a90d91">export</span> <span style="color:#a90d91">class</span> <span style="color:#000">AppComponent</span> <span style="color:#a90d91">implements</span> <span style="color:#000">OnInit</span> {
+  <span style="color:#000">widgets</span>: <span style="color:#a90d91">Array</span><span style="color:#000">&lt;</span><span style="color:#000">object</span><span style="color:#000">&gt;</span>;
 
-  <span style="color:#a6e22e">ngOnInit() {</span>
-    <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">widgets</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">generateWidgets</span>(<span style="color:#ae81ff">30</span>);
+  <span style="color:#000">ngOnInit() {</span>
+    <span style="color:#a90d91">this</span>.<span style="color:#000">widgets</span> <span style="color:#000">=</span> <span style="color:#a90d91">this</span>.<span style="color:#000">generateWidgets</span>(<span style="color:#1c01ce">30</span>);
   }
 
-  <span style="color:#a6e22e">generateWidgets</span> <span style="color:#f92672">=</span> (<span style="color:#a6e22e">num</span>: <span style="color:#66d9ef">number</span>) <span style="color:#f92672">=&gt;</span> {
-    <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">result</span> <span style="color:#f92672">=</span> [];
-    <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">let</span> <span style="color:#a6e22e">i</span> <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; <span style="color:#a6e22e">i</span> <span style="color:#f92672">&lt;</span> <span style="color:#a6e22e">num</span>; <span style="color:#a6e22e">i</span><span style="color:#f92672">++</span>) {
-      <span style="color:#a6e22e">result</span>.<span style="color:#a6e22e">push</span>({<span style="color:#a6e22e">title</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;Widget&#39;</span> <span style="color:#f92672">+</span> <span style="color:#a6e22e">i</span>});
+  <span style="color:#000">generateWidgets</span> <span style="color:#000">=</span> (<span style="color:#000">num</span>: <span style="color:#a90d91">number</span>) <span style="color:#000">=&gt;</span> {
+    <span style="color:#a90d91">const</span> <span style="color:#000">result</span> <span style="color:#000">=</span> [];
+    <span style="color:#a90d91">for</span> (<span style="color:#a90d91">let</span> <span style="color:#000">i</span> <span style="color:#000">=</span> <span style="color:#1c01ce">0</span>; <span style="color:#000">i</span> <span style="color:#000">&lt;</span> <span style="color:#000">num</span>; <span style="color:#000">i</span><span style="color:#000">++</span>) {
+      <span style="color:#000">result</span>.<span style="color:#000">push</span>({<span style="color:#000">title</span><span style="color:#000">:</span> <span style="color:#c41a16">&#39;Widget&#39;</span> <span style="color:#000">+</span> <span style="color:#000">i</span>});
     }
-    <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">result</span>;
+    <span style="color:#a90d91">return</span> <span style="color:#000">result</span>;
   }
-}</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-scss" data-lang="scss"><span style="color:#a6e22e">.wrapper</span>{
-  <span style="color:#f92672">width</span><span style="color:#a6e22e">:</span> <span style="color:#f92672">100</span><span style="color:#960050;background-color:#1e0010">%</span><span style="color:#f92672">;</span>
-  <span style="color:#f92672">position</span><span style="color:#a6e22e">:</span> <span style="color:#f92672">relative</span><span style="color:#f92672">;</span>
+}</code></pre></div><div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-scss" data-lang="scss"><span style="color:#3f6e75">.wrapper</span>{
+  <span style="color:#000">width</span><span style="color:#000">:</span> <span style="color:#000">100</span><span style="color:#000">%</span><span style="color:#000">;</span>
+  <span style="color:#000">position</span><span style="color:#000">:</span> <span style="color:#000">relative</span><span style="color:#000">;</span>
 }
 
-<span style="color:#a6e22e">.carousel-wrapper</span>{
-  <span style="color:#f92672">box-sizing</span><span style="color:#a6e22e">:</span> <span style="color:#f92672">border-box</span><span style="color:#f92672">;</span>
-  <span style="color:#f92672">padding</span><span style="color:#a6e22e">:</span> <span style="color:#f92672">0</span> <span style="color:#f92672">40px</span><span style="color:#f92672">;</span>
-  <span style="color:#f92672">overflow</span><span style="color:#a6e22e">:</span> <span style="color:#f92672">hidden</span><span style="color:#f92672">;</span>
-  <span style="color:#f92672">width</span><span style="color:#a6e22e">:</span> <span style="color:#f92672">100</span><span style="color:#960050;background-color:#1e0010">%</span><span style="color:#f92672">;</span>
-  <span style="color:#f92672">position</span><span style="color:#a6e22e">:</span> <span style="color:#f92672">relative</span><span style="color:#f92672">;</span>
+<span style="color:#3f6e75">.carousel-wrapper</span>{
+  <span style="color:#000">box-sizing</span><span style="color:#000">:</span> <span style="color:#000">border-box</span><span style="color:#000">;</span>
+  <span style="color:#000">padding</span><span style="color:#000">:</span> <span style="color:#000">0</span> <span style="color:#000">40px</span><span style="color:#000">;</span>
+  <span style="color:#000">overflow</span><span style="color:#000">:</span> <span style="color:#000">hidden</span><span style="color:#000">;</span>
+  <span style="color:#000">width</span><span style="color:#000">:</span> <span style="color:#000">100</span><span style="color:#000">%</span><span style="color:#000">;</span>
+  <span style="color:#000">position</span><span style="color:#000">:</span> <span style="color:#000">relative</span><span style="color:#000">;</span>
 }
 
-<span style="color:#a6e22e">.carousel</span>{
-  <span style="color:#f92672">position</span><span style="color:#a6e22e">:</span> <span style="color:#f92672">relative</span><span style="color:#f92672">;</span>
-  <span style="color:#f92672">overflow</span><span style="color:#a6e22e">:</span> <span style="color:#f92672">hidden</span><span style="color:#f92672">;</span>
-  <span style="color:#f92672">transition-duration</span><span style="color:#a6e22e">:</span> <span style="color:#f92672">1000ms</span><span style="color:#f92672">;</span>
+<span style="color:#3f6e75">.carousel</span>{
+  <span style="color:#000">position</span><span style="color:#000">:</span> <span style="color:#000">relative</span><span style="color:#000">;</span>
+  <span style="color:#000">overflow</span><span style="color:#000">:</span> <span style="color:#000">hidden</span><span style="color:#000">;</span>
+  <span style="color:#000">transition-duration</span><span style="color:#000">:</span> <span style="color:#000">1000ms</span><span style="color:#000">;</span>
 }
 
-<span style="color:#f92672">ul</span>{
-  <span style="color:#f92672">list-style</span><span style="color:#a6e22e">:</span> <span style="color:#f92672">none</span><span style="color:#f92672">;</span>
-  <span style="color:#f92672">position</span><span style="color:#a6e22e">:</span> <span style="color:#f92672">relative</span><span style="color:#f92672">;</span>
-  <span style="color:#f92672">float</span><span style="color:#a6e22e">:</span> <span style="color:#f92672">left</span><span style="color:#f92672">;</span>
-  <span style="color:#f92672">width</span><span style="color:#a6e22e">:</span> <span style="color:#f92672">100</span><span style="color:#960050;background-color:#1e0010">%</span>
+<span style="color:#000">ul</span>{
+  <span style="color:#000">list-style</span><span style="color:#000">:</span> <span style="color:#000">none</span><span style="color:#000">;</span>
+  <span style="color:#000">position</span><span style="color:#000">:</span> <span style="color:#000">relative</span><span style="color:#000">;</span>
+  <span style="color:#000">float</span><span style="color:#000">:</span> <span style="color:#000">left</span><span style="color:#000">;</span>
+  <span style="color:#000">width</span><span style="color:#000">:</span> <span style="color:#000">100</span><span style="color:#000">%</span>
 }
 
-<span style="color:#f92672">li</span>{
-  <span style="color:#f92672">width</span><span style="color:#a6e22e">:</span> <span style="color:#f92672">130px</span><span style="color:#f92672">;</span>
+<span style="color:#000">li</span>{
+  <span style="color:#000">width</span><span style="color:#000">:</span> <span style="color:#000">130px</span><span style="color:#000">;</span>
 }
 
-<span style="color:#a6e22e">.arrow-left</span><span style="color:#f92672">,</span> <span style="color:#a6e22e">.arrow-right</span>{
-  <span style="color:#f92672">position</span><span style="color:#a6e22e">:</span> <span style="color:#f92672">absolute</span><span style="color:#f92672">;</span>
-  <span style="color:#f92672">top</span><span style="color:#a6e22e">:</span> <span style="color:#f92672">6px</span><span style="color:#f92672">;</span>
-  <span style="color:#f92672">bottom</span><span style="color:#a6e22e">:</span> <span style="color:#f92672">6px</span><span style="color:#f92672">;</span>
-  <span style="color:#f92672">width</span><span style="color:#a6e22e">:</span> <span style="color:#f92672">40px</span><span style="color:#f92672">;</span>
-  <span style="color:#f92672">display</span><span style="color:#a6e22e">:</span> <span style="color:#f92672">flex</span><span style="color:#f92672">;</span>
-  <span style="color:#f92672">justify-content</span><span style="color:#a6e22e">:</span> <span style="color:#f92672">center</span><span style="color:#f92672">;</span>
-  <span style="color:#f92672">flex-direction</span><span style="color:#a6e22e">:</span> <span style="color:#f92672">column</span><span style="color:#f92672">;</span>
-  <span style="color:#f92672">align-items</span><span style="color:#a6e22e">:</span> <span style="color:#f92672">center</span><span style="color:#f92672">;</span>
-  <span style="color:#f92672">transition-duration</span><span style="color:#a6e22e">:</span> <span style="color:#f92672">300ms</span><span style="color:#f92672">;</span>
-  <span style="color:#f92672">background</span><span style="color:#a6e22e">:</span> <span style="color:#f92672">white</span><span style="color:#f92672">;</span>
-  <span style="color:#f92672">z-index</span><span style="color:#a6e22e">:</span> <span style="color:#f92672">2</span><span style="color:#f92672">;</span>
+<span style="color:#3f6e75">.arrow-left</span><span style="color:#000">,</span> <span style="color:#3f6e75">.arrow-right</span>{
+  <span style="color:#000">position</span><span style="color:#000">:</span> <span style="color:#000">absolute</span><span style="color:#000">;</span>
+  <span style="color:#000">top</span><span style="color:#000">:</span> <span style="color:#000">6px</span><span style="color:#000">;</span>
+  <span style="color:#000">bottom</span><span style="color:#000">:</span> <span style="color:#000">6px</span><span style="color:#000">;</span>
+  <span style="color:#000">width</span><span style="color:#000">:</span> <span style="color:#000">40px</span><span style="color:#000">;</span>
+  <span style="color:#000">display</span><span style="color:#000">:</span> <span style="color:#000">flex</span><span style="color:#000">;</span>
+  <span style="color:#000">justify-content</span><span style="color:#000">:</span> <span style="color:#000">center</span><span style="color:#000">;</span>
+  <span style="color:#000">flex-direction</span><span style="color:#000">:</span> <span style="color:#000">column</span><span style="color:#000">;</span>
+  <span style="color:#000">align-items</span><span style="color:#000">:</span> <span style="color:#000">center</span><span style="color:#000">;</span>
+  <span style="color:#000">transition-duration</span><span style="color:#000">:</span> <span style="color:#000">300ms</span><span style="color:#000">;</span>
+  <span style="color:#000">background</span><span style="color:#000">:</span> <span style="color:#000">white</span><span style="color:#000">;</span>
+  <span style="color:#000">z-index</span><span style="color:#000">:</span> <span style="color:#000">2</span><span style="color:#000">;</span>
 
-  <span style="color:#66d9ef">&amp;</span><span style="color:#a6e22e">:not</span><span style="color:#f92672">(</span><span style="color:#a6e22e">.disabled</span><span style="color:#f92672">)</span><span style="color:#a6e22e">:hover</span>{
-    <span style="color:#f92672">cursor</span><span style="color:#a6e22e">:</span> <span style="color:#f92672">pointer</span><span style="color:#f92672">;</span>
-    <span style="color:#f92672">background</span><span style="color:#a6e22e">:</span> <span style="color:#f92672">orange</span><span style="color:#f92672">;</span>
+  <span style="color:#a90d91">&amp;</span><span style="color:#000">:not</span><span style="color:#000">(</span><span style="color:#3f6e75">.disabled</span><span style="color:#000">)</span><span style="color:#000">:hover</span>{
+    <span style="color:#000">cursor</span><span style="color:#000">:</span> <span style="color:#000">pointer</span><span style="color:#000">;</span>
+    <span style="color:#000">background</span><span style="color:#000">:</span> <span style="color:#000">orange</span><span style="color:#000">;</span>
 
-    <span style="color:#f92672">i</span>{
-      <span style="color:#f92672">color</span><span style="color:#a6e22e">:</span> <span style="color:#f92672">white</span><span style="color:#f92672">;</span>
-    }
-  }
-
-  <span style="color:#66d9ef">&amp;</span><span style="color:#a6e22e">.disabled</span>{
-    <span style="color:#f92672">i</span>{
-      <span style="color:#f92672">color</span><span style="color:#a6e22e">:</span> <span style="color:#f92672">grey</span> <span style="color:#f92672">!</span><span style="color:#f92672">important</span><span style="color:#f92672">;</span>
+    <span style="color:#000">i</span>{
+      <span style="color:#000">color</span><span style="color:#000">:</span> <span style="color:#000">white</span><span style="color:#000">;</span>
     }
   }
 
-  <span style="color:#f92672">i</span>{
-    <span style="color:#f92672">font-size</span><span style="color:#a6e22e">:</span> <span style="color:#f92672">3</span><span style="color:#a6e22e">.2em</span><span style="color:#f92672">;</span>
-    <span style="color:#f92672">pointer-events</span><span style="color:#a6e22e">:</span> <span style="color:#f92672">none</span><span style="color:#f92672">;</span>
+  <span style="color:#a90d91">&amp;</span><span style="color:#3f6e75">.disabled</span>{
+    <span style="color:#000">i</span>{
+      <span style="color:#000">color</span><span style="color:#000">:</span> <span style="color:#000">grey</span> <span style="color:#000">!</span><span style="color:#000">important</span><span style="color:#000">;</span>
+    }
+  }
+
+  <span style="color:#000">i</span>{
+    <span style="color:#000">font-size</span><span style="color:#000">:</span> <span style="color:#000">3</span><span style="color:#3f6e75">.2em</span><span style="color:#000">;</span>
+    <span style="color:#000">pointer-events</span><span style="color:#000">:</span> <span style="color:#000">none</span><span style="color:#000">;</span>
   }
 }
 
-<span style="color:#a6e22e">.arrow-left</span>{
-  <span style="color:#f92672">left</span><span style="color:#a6e22e">:</span> <span style="color:#f92672">0px</span><span style="color:#f92672">;</span>
+<span style="color:#3f6e75">.arrow-left</span>{
+  <span style="color:#000">left</span><span style="color:#000">:</span> <span style="color:#000">0px</span><span style="color:#000">;</span>
 }
 
-<span style="color:#a6e22e">.arrow-right</span>{
-  <span style="color:#f92672">right</span><span style="color:#a6e22e">:</span> <span style="color:#f92672">0px</span><span style="color:#f92672">;</span>
+<span style="color:#3f6e75">.arrow-right</span>{
+  <span style="color:#000">right</span><span style="color:#000">:</span> <span style="color:#000">0px</span><span style="color:#000">;</span>
 }</code></pre></div>
 <p>That&rsquo;s it! Have a look there for the source code: <a href="https://github.com/HoplaGeiss/hopla-carousel">https://github.com/HoplaGeiss/hopla-carousel</a></p>
 

@@ -4,7 +4,7 @@ description: "Unit test an angular 5 component using ngOnChanges"
 tags:
   - angular5
 date: "2017-11-22"
-featured: true
+featured: false
 slug: angular5-unittest-ngonchanges
 image: /images/ngonchanges.png
 ---

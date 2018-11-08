@@ -4,7 +4,7 @@ description: "Create a simple modal using angular 4"
 tags:
   - angular4
 date: "2017-04-03"
-featured: true
+featured: false
 slug: angular4-create-modal
 image: /images/modal.png
 ---

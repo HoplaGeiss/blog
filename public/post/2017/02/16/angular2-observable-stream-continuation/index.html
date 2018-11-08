@@ -133,15 +133,7 @@ html{font-family:sans-serif;line-height:1.15;-ms-text-size-adjust:100%;-webkit-t
       			  
               </a>
             </div>
-            <div class="nav-menu">
-              <a class="rss" href="">
-                <i class="icon-rss"></i>
-              </a>
-                
-                <a class="menu" data-action="toc" data-target="toc"><i class="icon-location"></i></a>
-                
-                
-            </div>
+            
           </nav>
 
 
@@ -163,61 +155,61 @@ html{font-family:sans-serif;line-height:1.15;-ms-text-size-adjust:100%;-webkit-t
   				
 
 <p>Keeping an observable stream up and running is a common use case for many application. Lets take the example of an application with an input field taking a location as parameter which then calls foursquare&rsquo;s API at each key stroke to query the recommended location nearby. If an HTTP call to foursquare fails, we want our observable stream to stay up and running.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-typescript" data-lang="typescript"><span style="color:#75715e">// home.component.ts
-</span><span style="color:#75715e"></span><span style="color:#66d9ef">@Component</span>({
-  <span style="color:#a6e22e">selector</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;vs-home&#39;</span>,
-  <span style="color:#a6e22e">template</span><span style="color:#f92672">:</span> <span style="color:#e6db74">`
-</span><span style="color:#e6db74">    &lt;div class=&#34;home&#34;&gt;
-</span><span style="color:#e6db74">      &lt;form [formGroup]=&#34;form&#34;&gt;
-</span><span style="color:#e6db74">        &lt;md-input-container class=&#34;form-group&#34; &gt;
-</span><span style="color:#e6db74">          &lt;input md-input class=&#34;form-control&#34; formControlName=&#34;location&#34; placeholder=&#34;Choose a Location&#34;&gt;
-</span><span style="color:#e6db74">        &lt;/md-input-container&gt;
-</span><span style="color:#e6db74">      &lt;/form&gt;
-</span><span style="color:#e6db74">
-</span><span style="color:#e6db74">      &lt;h2&gt;Recommended venues close to this location:&lt;/h2&gt;
-</span><span style="color:#e6db74">
-</span><span style="color:#e6db74">      &lt;div *ngFor=&#34;let venue of venues | async&#34; &gt;
-</span><span style="color:#e6db74">        &lt;vs-venue [venue]=&#34;venue&#34;&gt;&lt;/vs-venue&gt;
-</span><span style="color:#e6db74">      &lt;/div&gt;
-</span><span style="color:#e6db74">    &lt;/div&gt;
-</span><span style="color:#e6db74">  `</span>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-typescript" data-lang="typescript"><span style="color:#177500">// home.component.ts
+</span><span style="color:#177500"></span><span style="color:#a90d91">@Component</span>({
+  <span style="color:#000">selector</span><span style="color:#000">:</span> <span style="color:#c41a16">&#39;vs-home&#39;</span>,
+  <span style="color:#000">template</span><span style="color:#000">:</span> <span style="color:#c41a16">`
+</span><span style="color:#c41a16">    &lt;div class=&#34;home&#34;&gt;
+</span><span style="color:#c41a16">      &lt;form [formGroup]=&#34;form&#34;&gt;
+</span><span style="color:#c41a16">        &lt;md-input-container class=&#34;form-group&#34; &gt;
+</span><span style="color:#c41a16">          &lt;input md-input class=&#34;form-control&#34; formControlName=&#34;location&#34; placeholder=&#34;Choose a Location&#34;&gt;
+</span><span style="color:#c41a16">        &lt;/md-input-container&gt;
+</span><span style="color:#c41a16">      &lt;/form&gt;
+</span><span style="color:#c41a16">
+</span><span style="color:#c41a16">      &lt;h2&gt;Recommended venues close to this location:&lt;/h2&gt;
+</span><span style="color:#c41a16">
+</span><span style="color:#c41a16">      &lt;div *ngFor=&#34;let venue of venues | async&#34; &gt;
+</span><span style="color:#c41a16">        &lt;vs-venue [venue]=&#34;venue&#34;&gt;&lt;/vs-venue&gt;
+</span><span style="color:#c41a16">      &lt;/div&gt;
+</span><span style="color:#c41a16">    &lt;/div&gt;
+</span><span style="color:#c41a16">  `</span>
 })
-<span style="color:#66d9ef">export</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">HomeComponent</span> <span style="color:#66d9ef">implements</span> <span style="color:#a6e22e">OnInit</span> {
-  <span style="color:#a6e22e">venues</span>: <span style="color:#66d9ef">Observable</span><span style="color:#f92672">&lt;</span><span style="color:#a6e22e">Venue</span>[]<span style="color:#f92672">&gt;</span>;
-  <span style="color:#a6e22e">form</span>: <span style="color:#66d9ef">any</span>;
+<span style="color:#a90d91">export</span> <span style="color:#a90d91">class</span> <span style="color:#000">HomeComponent</span> <span style="color:#a90d91">implements</span> <span style="color:#000">OnInit</span> {
+  <span style="color:#000">venues</span>: <span style="color:#a90d91">Observable</span><span style="color:#000">&lt;</span><span style="color:#000">Venue</span>[]<span style="color:#000">&gt;</span>;
+  <span style="color:#000">form</span>: <span style="color:#a90d91">any</span>;
 
-  <span style="color:#66d9ef">constructor</span>(
-    <span style="color:#66d9ef">private</span> <span style="color:#a6e22e">venueService</span>: <span style="color:#66d9ef">VenueService</span>,
-    <span style="color:#66d9ef">private</span> <span style="color:#a6e22e">formBuilder</span>: <span style="color:#66d9ef">FormBuilder</span>
+  <span style="color:#a90d91">constructor</span>(
+    <span style="color:#a90d91">private</span> <span style="color:#000">venueService</span>: <span style="color:#a90d91">VenueService</span>,
+    <span style="color:#a90d91">private</span> <span style="color:#000">formBuilder</span>: <span style="color:#a90d91">FormBuilder</span>
   ) {}
 
-  <span style="color:#a6e22e">ngOnInit() {</span>
-    <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">form</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">formBuilder</span>.<span style="color:#a6e22e">group</span>({
-      <span style="color:#a6e22e">location</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;&#39;</span>,
+  <span style="color:#000">ngOnInit() {</span>
+    <span style="color:#a90d91">this</span>.<span style="color:#000">form</span> <span style="color:#000">=</span> <span style="color:#a90d91">this</span>.<span style="color:#000">formBuilder</span>.<span style="color:#000">group</span>({
+      <span style="color:#000">location</span><span style="color:#000">:</span> <span style="color:#c41a16">&#39;&#39;</span>,
     });
 
-    <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">venues</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">form</span>.<span style="color:#a6e22e">valueChanges</span>
-      .<span style="color:#a6e22e">debounceTime</span>(<span style="color:#ae81ff">400</span>)
-      .<span style="color:#a6e22e">distinctUntilChanged</span>()
-      .<span style="color:#a6e22e">switchMap</span>(<span style="color:#a6e22e">term</span> <span style="color:#f92672">=&gt;</span> <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">venueService</span>.<span style="color:#a6e22e">search</span>(<span style="color:#a6e22e">term</span>.<span style="color:#a6e22e">location</span>))
-      .<span style="color:#66d9ef">catch</span>(<span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">handleError</span>);
+    <span style="color:#a90d91">this</span>.<span style="color:#000">venues</span> <span style="color:#000">=</span> <span style="color:#a90d91">this</span>.<span style="color:#000">form</span>.<span style="color:#000">valueChanges</span>
+      .<span style="color:#000">debounceTime</span>(<span style="color:#1c01ce">400</span>)
+      .<span style="color:#000">distinctUntilChanged</span>()
+      .<span style="color:#000">switchMap</span>(<span style="color:#000">term</span> <span style="color:#000">=&gt;</span> <span style="color:#a90d91">this</span>.<span style="color:#000">venueService</span>.<span style="color:#000">search</span>(<span style="color:#000">term</span>.<span style="color:#000">location</span>))
+      .<span style="color:#a90d91">catch</span>(<span style="color:#a90d91">this</span>.<span style="color:#000">handleError</span>);
   }
-}</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-typescript" data-lang="typescript"><span style="color:#75715e">// venue.service.component.ts
-</span><span style="color:#75715e"></span><span style="color:#a6e22e">search</span>(<span style="color:#a6e22e">term</span>: <span style="color:#66d9ef">string</span>)<span style="color:#f92672">:</span> <span style="color:#a6e22e">Observable</span><span style="color:#f92672">&lt;</span><span style="color:#a6e22e">Venue</span>[]<span style="color:#f92672">&gt;</span> {
-  <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">url</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;https://api.foursquare.com/v2/venues/explore?section=topPicks&#39;</span>;
-  <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">http</span>
-    .<span style="color:#a6e22e">get</span>(<span style="color:#e6db74">`</span><span style="color:#e6db74">${</span><span style="color:#a6e22e">url</span><span style="color:#e6db74">}</span><span style="color:#e6db74">&amp;near=</span><span style="color:#e6db74">${</span><span style="color:#a6e22e">term</span><span style="color:#e6db74">}</span><span style="color:#e6db74">`</span>)
-    .<span style="color:#a6e22e">map</span>(<span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">extractData</span>)
-    .<span style="color:#66d9ef">catch</span>(<span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">handleError</span>);
+}</code></pre></div><div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-typescript" data-lang="typescript"><span style="color:#177500">// venue.service.component.ts
+</span><span style="color:#177500"></span><span style="color:#000">search</span>(<span style="color:#000">term</span>: <span style="color:#a90d91">string</span>)<span style="color:#000">:</span> <span style="color:#000">Observable</span><span style="color:#000">&lt;</span><span style="color:#000">Venue</span>[]<span style="color:#000">&gt;</span> {
+  <span style="color:#a90d91">const</span> <span style="color:#000">url</span> <span style="color:#000">=</span> <span style="color:#c41a16">&#39;https://api.foursquare.com/v2/venues/explore?section=topPicks&#39;</span>;
+  <span style="color:#a90d91">return</span> <span style="color:#a90d91">this</span>.<span style="color:#000">http</span>
+    .<span style="color:#000">get</span>(<span style="color:#c41a16">`</span><span style="color:#c41a16">${</span><span style="color:#000">url</span><span style="color:#c41a16">}</span><span style="color:#c41a16">&amp;near=</span><span style="color:#c41a16">${</span><span style="color:#000">term</span><span style="color:#c41a16">}</span><span style="color:#c41a16">`</span>)
+    .<span style="color:#000">map</span>(<span style="color:#a90d91">this</span>.<span style="color:#000">extractData</span>)
+    .<span style="color:#a90d91">catch</span>(<span style="color:#a90d91">this</span>.<span style="color:#000">handleError</span>);
 }
 
-<span style="color:#66d9ef">private</span> <span style="color:#a6e22e">extractData</span>(<span style="color:#a6e22e">res</span>: <span style="color:#66d9ef">Response</span>) {
-    <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">body</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">res</span>.<span style="color:#a6e22e">json</span>().<span style="color:#a6e22e">response</span>;
-    <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">body</span>.<span style="color:#a6e22e">map</span>(<span style="color:#a6e22e">data</span> <span style="color:#f92672">=&gt;</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">Venue</span>(<span style="color:#a6e22e">data</span>.<span style="color:#a6e22e">venue</span>.<span style="color:#a6e22e">id</span>, <span style="color:#a6e22e">data</span>.<span style="color:#a6e22e">venue</span>.<span style="color:#a6e22e">name</span>));
+<span style="color:#a90d91">private</span> <span style="color:#000">extractData</span>(<span style="color:#000">res</span>: <span style="color:#a90d91">Response</span>) {
+    <span style="color:#a90d91">const</span> <span style="color:#000">body</span> <span style="color:#000">=</span> <span style="color:#000">res</span>.<span style="color:#000">json</span>().<span style="color:#000">response</span>;
+    <span style="color:#a90d91">return</span> <span style="color:#000">body</span>.<span style="color:#000">map</span>(<span style="color:#000">data</span> <span style="color:#000">=&gt;</span> <span style="color:#a90d91">new</span> <span style="color:#000">Venue</span>(<span style="color:#000">data</span>.<span style="color:#000">venue</span>.<span style="color:#000">id</span>, <span style="color:#000">data</span>.<span style="color:#000">venue</span>.<span style="color:#000">name</span>));
 }
 
-<span style="color:#66d9ef">private</span> <span style="color:#a6e22e">handleError</span> (<span style="color:#a6e22e">error</span>: <span style="color:#66d9ef">Response</span> <span style="color:#f92672">|</span> <span style="color:#a6e22e">any</span>) {
-   <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">Observable</span>.<span style="color:#66d9ef">throw</span>(<span style="color:#a6e22e">errMsg</span>);
+<span style="color:#a90d91">private</span> <span style="color:#000">handleError</span> (<span style="color:#000">error</span>: <span style="color:#a90d91">Response</span> <span style="color:#000">|</span> <span style="color:#000">any</span>) {
+   <span style="color:#a90d91">return</span> <span style="color:#000">Observable</span>.<span style="color:#a90d91">throw</span>(<span style="color:#000">errMsg</span>);
 }</code></pre></div>
 <p>The typical way to deal with errors when doing an http call is to catch errors. Since we are using observables, the <code>handleError</code> method needs to either return an Observable or throw an error.</p>
 
@@ -230,40 +222,40 @@ html{font-family:sans-serif;line-height:1.15;-ms-text-size-adjust:100%;-webkit-t
 <h4 id="solution-1">Solution 1</h4>
 
 <p>The first solution is to remove the catch and call <code>onErrorResumeNext</code>.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-typescript" data-lang="typescript"><span style="color:#75715e">// venue.service.component.ts
-</span><span style="color:#75715e"></span><span style="color:#a6e22e">search</span>(<span style="color:#a6e22e">term</span>: <span style="color:#66d9ef">string</span>)<span style="color:#f92672">:</span> <span style="color:#a6e22e">Observable</span><span style="color:#f92672">&lt;</span><span style="color:#a6e22e">Venue</span>[]<span style="color:#f92672">&gt;</span> {
-  <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">url</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;https://api.foursquare.com/v2/venues/explore?section=topPicks&#39;</span>;
-  <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">http</span>
-    .<span style="color:#a6e22e">get</span>(<span style="color:#e6db74">`</span><span style="color:#e6db74">${</span><span style="color:#a6e22e">url</span><span style="color:#e6db74">}</span><span style="color:#e6db74">&amp;near=</span><span style="color:#e6db74">${</span><span style="color:#a6e22e">term</span><span style="color:#e6db74">}</span><span style="color:#e6db74">`</span>)
-    .<span style="color:#a6e22e">map</span>(<span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">extractData</span>)
-    .<span style="color:#a6e22e">onErrorResumeNext</span>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-typescript" data-lang="typescript"><span style="color:#177500">// venue.service.component.ts
+</span><span style="color:#177500"></span><span style="color:#000">search</span>(<span style="color:#000">term</span>: <span style="color:#a90d91">string</span>)<span style="color:#000">:</span> <span style="color:#000">Observable</span><span style="color:#000">&lt;</span><span style="color:#000">Venue</span>[]<span style="color:#000">&gt;</span> {
+  <span style="color:#a90d91">const</span> <span style="color:#000">url</span> <span style="color:#000">=</span> <span style="color:#c41a16">&#39;https://api.foursquare.com/v2/venues/explore?section=topPicks&#39;</span>;
+  <span style="color:#a90d91">return</span> <span style="color:#a90d91">this</span>.<span style="color:#000">http</span>
+    .<span style="color:#000">get</span>(<span style="color:#c41a16">`</span><span style="color:#c41a16">${</span><span style="color:#000">url</span><span style="color:#c41a16">}</span><span style="color:#c41a16">&amp;near=</span><span style="color:#c41a16">${</span><span style="color:#000">term</span><span style="color:#c41a16">}</span><span style="color:#c41a16">`</span>)
+    .<span style="color:#000">map</span>(<span style="color:#a90d91">this</span>.<span style="color:#000">extractData</span>)
+    .<span style="color:#000">onErrorResumeNext</span>
 }
 
-<span style="color:#66d9ef">private</span> <span style="color:#a6e22e">extractData</span>(<span style="color:#a6e22e">res</span>: <span style="color:#66d9ef">Response</span>) {
-    <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">body</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">res</span>.<span style="color:#a6e22e">json</span>().<span style="color:#a6e22e">response</span>;
-    <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">body</span>.<span style="color:#a6e22e">map</span>(<span style="color:#a6e22e">data</span> <span style="color:#f92672">=&gt;</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">Venue</span>(<span style="color:#a6e22e">data</span>.<span style="color:#a6e22e">venue</span>.<span style="color:#a6e22e">id</span>, <span style="color:#a6e22e">data</span>.<span style="color:#a6e22e">venue</span>.<span style="color:#a6e22e">name</span>));
+<span style="color:#a90d91">private</span> <span style="color:#000">extractData</span>(<span style="color:#000">res</span>: <span style="color:#a90d91">Response</span>) {
+    <span style="color:#a90d91">const</span> <span style="color:#000">body</span> <span style="color:#000">=</span> <span style="color:#000">res</span>.<span style="color:#000">json</span>().<span style="color:#000">response</span>;
+    <span style="color:#a90d91">return</span> <span style="color:#000">body</span>.<span style="color:#000">map</span>(<span style="color:#000">data</span> <span style="color:#000">=&gt;</span> <span style="color:#a90d91">new</span> <span style="color:#000">Venue</span>(<span style="color:#000">data</span>.<span style="color:#000">venue</span>.<span style="color:#000">id</span>, <span style="color:#000">data</span>.<span style="color:#000">venue</span>.<span style="color:#000">name</span>));
 }</code></pre></div>
 <p>However this solution has its limits, we continue the stream, but we don&rsquo;t change the venues displayed, which is a little weird. The user would input a location, get the venues nearby and then if he changes the input and in case an error occurs he wouldn&rsquo;t be aware of it as the venues would stay the same.</p>
 
 <h4 id="solution-2">Solution 2</h4>
 
 <p>The second solution is to keep the catch, but return a different Observable without venues.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-typescript" data-lang="typescript"><span style="color:#75715e">// venue.service.component.ts
-</span><span style="color:#75715e"></span><span style="color:#a6e22e">search</span>(<span style="color:#a6e22e">term</span>: <span style="color:#66d9ef">string</span>)<span style="color:#f92672">:</span> <span style="color:#a6e22e">Observable</span><span style="color:#f92672">&lt;</span><span style="color:#a6e22e">Venue</span>[]<span style="color:#f92672">&gt;</span> {
-  <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">url</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;https://api.foursquare.com/v2/venues/explore?section=topPicks&#39;</span>;
-  <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">http</span>
-    .<span style="color:#a6e22e">get</span>(<span style="color:#e6db74">`</span><span style="color:#e6db74">${</span><span style="color:#a6e22e">url</span><span style="color:#e6db74">}</span><span style="color:#e6db74">&amp;near=</span><span style="color:#e6db74">${</span><span style="color:#a6e22e">term</span><span style="color:#e6db74">}</span><span style="color:#e6db74">`</span>)
-    .<span style="color:#a6e22e">map</span>(<span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">extractData</span>)
-    .<span style="color:#a6e22e">onErrorResumeNext</span>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-typescript" data-lang="typescript"><span style="color:#177500">// venue.service.component.ts
+</span><span style="color:#177500"></span><span style="color:#000">search</span>(<span style="color:#000">term</span>: <span style="color:#a90d91">string</span>)<span style="color:#000">:</span> <span style="color:#000">Observable</span><span style="color:#000">&lt;</span><span style="color:#000">Venue</span>[]<span style="color:#000">&gt;</span> {
+  <span style="color:#a90d91">const</span> <span style="color:#000">url</span> <span style="color:#000">=</span> <span style="color:#c41a16">&#39;https://api.foursquare.com/v2/venues/explore?section=topPicks&#39;</span>;
+  <span style="color:#a90d91">return</span> <span style="color:#a90d91">this</span>.<span style="color:#000">http</span>
+    .<span style="color:#000">get</span>(<span style="color:#c41a16">`</span><span style="color:#c41a16">${</span><span style="color:#000">url</span><span style="color:#c41a16">}</span><span style="color:#c41a16">&amp;near=</span><span style="color:#c41a16">${</span><span style="color:#000">term</span><span style="color:#c41a16">}</span><span style="color:#c41a16">`</span>)
+    .<span style="color:#000">map</span>(<span style="color:#a90d91">this</span>.<span style="color:#000">extractData</span>)
+    .<span style="color:#000">onErrorResumeNext</span>
 }
 
-<span style="color:#66d9ef">private</span> <span style="color:#a6e22e">extractData</span>(<span style="color:#a6e22e">res</span>: <span style="color:#66d9ef">Response</span>) {
-    <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">body</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">res</span>.<span style="color:#a6e22e">json</span>().<span style="color:#a6e22e">response</span>;
-    <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">body</span>.<span style="color:#a6e22e">map</span>(<span style="color:#a6e22e">data</span> <span style="color:#f92672">=&gt;</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">Venue</span>(<span style="color:#a6e22e">data</span>.<span style="color:#a6e22e">venue</span>.<span style="color:#a6e22e">id</span>, <span style="color:#a6e22e">data</span>.<span style="color:#a6e22e">venue</span>.<span style="color:#a6e22e">name</span>));
+<span style="color:#a90d91">private</span> <span style="color:#000">extractData</span>(<span style="color:#000">res</span>: <span style="color:#a90d91">Response</span>) {
+    <span style="color:#a90d91">const</span> <span style="color:#000">body</span> <span style="color:#000">=</span> <span style="color:#000">res</span>.<span style="color:#000">json</span>().<span style="color:#000">response</span>;
+    <span style="color:#a90d91">return</span> <span style="color:#000">body</span>.<span style="color:#000">map</span>(<span style="color:#000">data</span> <span style="color:#000">=&gt;</span> <span style="color:#a90d91">new</span> <span style="color:#000">Venue</span>(<span style="color:#000">data</span>.<span style="color:#000">venue</span>.<span style="color:#000">id</span>, <span style="color:#000">data</span>.<span style="color:#000">venue</span>.<span style="color:#000">name</span>));
 }
 
-<span style="color:#66d9ef">private</span> <span style="color:#a6e22e">handleError</span> (<span style="color:#a6e22e">error</span>: <span style="color:#66d9ef">Response</span> <span style="color:#f92672">|</span> <span style="color:#a6e22e">any</span>) {
-  <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">Observable</span>.<span style="color:#a6e22e">of</span>([]);
+<span style="color:#a90d91">private</span> <span style="color:#000">handleError</span> (<span style="color:#000">error</span>: <span style="color:#a90d91">Response</span> <span style="color:#000">|</span> <span style="color:#000">any</span>) {
+  <span style="color:#a90d91">return</span> <span style="color:#000">Observable</span>.<span style="color:#000">of</span>([]);
 }</code></pre></div>
   			</section>
 

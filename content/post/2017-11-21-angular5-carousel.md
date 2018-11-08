@@ -4,7 +4,7 @@ description: "Create a carousel using angular 5"
 tags:
   - angular5
 date: "2017-11-21"
-featured: true
+featured: false
 slug: angular5-carousel
 image: /images/carousel.png
 ---

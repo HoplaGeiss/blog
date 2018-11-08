@@ -133,15 +133,7 @@ html{font-family:sans-serif;line-height:1.15;-ms-text-size-adjust:100%;-webkit-t
       			  
               </a>
             </div>
-            <div class="nav-menu">
-              <a class="rss" href="">
-                <i class="icon-rss"></i>
-              </a>
-                
-                <a class="menu" data-action="toc" data-target="toc"><i class="icon-location"></i></a>
-                
-                
-            </div>
+            
           </nav>
 
 
@@ -162,66 +154,66 @@ html{font-family:sans-serif;line-height:1.15;-ms-text-size-adjust:100%;-webkit-t
   			<section class="post-content">
   				<p>After a while it gets annoying to see angular2&rsquo;s native <code>loading..</code> everytime to start your app. Today&rsquo;s post will show you how to change this.
 It is fairly easy to do, first let&rsquo;s take a look at our index.html file. I am going to use a <code>pre-bootstrap</code> wrapper to position our animation <code>pre-bootstrap-spinner</code> and a small label <code>pre-bootstrap-text</code>.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-html" data-lang="html"><span style="color:#75715e">&lt;!doctype html&gt;</span>
-&lt;<span style="color:#f92672">html</span>&gt;
-&lt;<span style="color:#f92672">head</span>&gt;
-  &lt;<span style="color:#f92672">meta</span> <span style="color:#a6e22e">charset</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;utf-8&#34;</span>&gt;
-  &lt;<span style="color:#f92672">title</span>&gt;XapiDemo&lt;/<span style="color:#f92672">title</span>&gt;
-  &lt;<span style="color:#f92672">base</span> <span style="color:#a6e22e">href</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;/&#34;</span>&gt;
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-html" data-lang="html"><span style="color:#633820">&lt;!doctype html&gt;</span>
+&lt;<span style="color:#000">html</span>&gt;
+&lt;<span style="color:#000">head</span>&gt;
+  &lt;<span style="color:#000">meta</span> <span style="color:#836c28">charset</span><span style="color:#000">=</span><span style="color:#c41a16">&#34;utf-8&#34;</span>&gt;
+  &lt;<span style="color:#000">title</span>&gt;XapiDemo&lt;/<span style="color:#000">title</span>&gt;
+  &lt;<span style="color:#000">base</span> <span style="color:#836c28">href</span><span style="color:#000">=</span><span style="color:#c41a16">&#34;/&#34;</span>&gt;
 
-  &lt;<span style="color:#f92672">meta</span> <span style="color:#a6e22e">name</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;viewport&#34;</span> <span style="color:#a6e22e">content</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;width=device-width, initial-scale=1&#34;</span>&gt;
-  &lt;<span style="color:#f92672">link</span> <span style="color:#a6e22e">rel</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;icon&#34;</span> <span style="color:#a6e22e">type</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;image/x-icon&#34;</span> <span style="color:#a6e22e">href</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;favicon.ico&#34;</span>&gt;
-&lt;/<span style="color:#f92672">head</span>&gt;
-&lt;<span style="color:#f92672">body</span>&gt;
-  &lt;<span style="color:#f92672">app-root</span>&gt;
-    &lt;<span style="color:#f92672">div</span> <span style="color:#a6e22e">class</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;pre-bootstrap&#34;</span>&gt;
-      &lt;<span style="color:#f92672">div</span> <span style="color:#a6e22e">class</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;pre-bootstrap-text&#34;</span>&gt;Loading..&lt;/<span style="color:#f92672">div</span>&gt;
-      &lt;<span style="color:#f92672">div</span> <span style="color:#a6e22e">class</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;pre-bootstrap-spinner&#34;</span>&gt;&lt;/<span style="color:#f92672">div</span>&gt;
-    &lt;/<span style="color:#f92672">div</span>&gt;
-  &lt;/<span style="color:#f92672">app-root</span>&gt;
-&lt;/<span style="color:#f92672">body</span>&gt;
-&lt;/<span style="color:#f92672">html</span>&gt;</code></pre></div>
+  &lt;<span style="color:#000">meta</span> <span style="color:#836c28">name</span><span style="color:#000">=</span><span style="color:#c41a16">&#34;viewport&#34;</span> <span style="color:#836c28">content</span><span style="color:#000">=</span><span style="color:#c41a16">&#34;width=device-width, initial-scale=1&#34;</span>&gt;
+  &lt;<span style="color:#000">link</span> <span style="color:#836c28">rel</span><span style="color:#000">=</span><span style="color:#c41a16">&#34;icon&#34;</span> <span style="color:#836c28">type</span><span style="color:#000">=</span><span style="color:#c41a16">&#34;image/x-icon&#34;</span> <span style="color:#836c28">href</span><span style="color:#000">=</span><span style="color:#c41a16">&#34;favicon.ico&#34;</span>&gt;
+&lt;/<span style="color:#000">head</span>&gt;
+&lt;<span style="color:#000">body</span>&gt;
+  &lt;<span style="color:#000">app-root</span>&gt;
+    &lt;<span style="color:#000">div</span> <span style="color:#836c28">class</span><span style="color:#000">=</span><span style="color:#c41a16">&#34;pre-bootstrap&#34;</span>&gt;
+      &lt;<span style="color:#000">div</span> <span style="color:#836c28">class</span><span style="color:#000">=</span><span style="color:#c41a16">&#34;pre-bootstrap-text&#34;</span>&gt;Loading..&lt;/<span style="color:#000">div</span>&gt;
+      &lt;<span style="color:#000">div</span> <span style="color:#836c28">class</span><span style="color:#000">=</span><span style="color:#c41a16">&#34;pre-bootstrap-spinner&#34;</span>&gt;&lt;/<span style="color:#000">div</span>&gt;
+    &lt;/<span style="color:#000">div</span>&gt;
+  &lt;/<span style="color:#000">app-root</span>&gt;
+&lt;/<span style="color:#000">body</span>&gt;
+&lt;/<span style="color:#000">html</span>&gt;</code></pre></div>
 <p>The styling is done with pure css animation.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-css" data-lang="css">.<span style="color:#a6e22e">pre-bootstrap</span>{
-  <span style="color:#66d9ef">position</span>: <span style="color:#66d9ef">absolute</span>;
-  <span style="color:#66d9ef">left</span>: calc(<span style="color:#ae81ff">50</span><span style="color:#66d9ef">%</span> <span style="color:#f92672">-</span> <span style="color:#ae81ff">30</span><span style="color:#66d9ef">px</span>);
-  <span style="color:#66d9ef">top</span>:  calc(<span style="color:#ae81ff">50</span><span style="color:#66d9ef">%</span> <span style="color:#f92672">-</span> <span style="color:#ae81ff">50</span><span style="color:#66d9ef">px</span>);
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-css" data-lang="css">.<span style="color:#3f6e75">pre-bootstrap</span>{
+  <span style="color:#a90d91">position</span>: <span style="color:#a90d91">absolute</span>;
+  <span style="color:#a90d91">left</span>: <span style="color:#a90d91">calc</span>(<span style="color:#1c01ce">50</span><span style="color:#a90d91">%</span> <span style="color:#000">-</span> <span style="color:#1c01ce">30</span><span style="color:#a90d91">px</span>);
+  <span style="color:#a90d91">top</span>:  <span style="color:#a90d91">calc</span>(<span style="color:#1c01ce">50</span><span style="color:#a90d91">%</span> <span style="color:#000">-</span> <span style="color:#1c01ce">50</span><span style="color:#a90d91">px</span>);
 }
 
-.<span style="color:#a6e22e">pre-bootstrap-text</span>{
-  <span style="color:#66d9ef">line-height</span>: <span style="color:#ae81ff">20</span><span style="color:#66d9ef">px</span>;
-  <span style="color:#66d9ef">margin-bottom</span>: <span style="color:#ae81ff">20</span><span style="color:#66d9ef">px</span>;
+.<span style="color:#3f6e75">pre-bootstrap-text</span>{
+  <span style="color:#a90d91">line-height</span>: <span style="color:#1c01ce">20</span><span style="color:#a90d91">px</span>;
+  <span style="color:#a90d91">margin-bottom</span>: <span style="color:#1c01ce">20</span><span style="color:#a90d91">px</span>;
 
-  <span style="color:#66d9ef">font-family</span>: Roboto,<span style="color:#e6db74">&#34;Helvetica Neue&#34;</span>,<span style="color:#66d9ef">sans-serif</span>;
+  <span style="color:#a90d91">font-family</span>: <span style="color:#000">Roboto</span>,<span style="color:#c41a16">&#34;Helvetica Neue&#34;</span>,<span style="color:#a90d91">sans-serif</span>;
 }
 
-.<span style="color:#a6e22e">pre-bootstrap-spinner</span> {
-  <span style="color:#66d9ef">width</span>: <span style="color:#ae81ff">60</span><span style="color:#66d9ef">px</span>;
-  <span style="color:#66d9ef">height</span>: <span style="color:#ae81ff">60</span><span style="color:#66d9ef">px</span>;
-  <span style="color:#66d9ef">background-color</span>: <span style="color:#ae81ff">#ff5252</span>;
+.<span style="color:#3f6e75">pre-bootstrap-spinner</span> {
+  <span style="color:#a90d91">width</span>: <span style="color:#1c01ce">60</span><span style="color:#a90d91">px</span>;
+  <span style="color:#a90d91">height</span>: <span style="color:#1c01ce">60</span><span style="color:#a90d91">px</span>;
+  <span style="color:#a90d91">background-color</span>: <span style="color:#1c01ce">#ff5252</span>;
 
-  <span style="color:#75715e">/*margin: 0 auto;
-</span><span style="color:#75715e">  margin-top: calc(25% - 40px);*/</span>
-  <span style="color:#66d9ef">-webkit-</span><span style="color:#66d9ef">animation</span>: sk-rotateplane <span style="color:#ae81ff">1.2</span><span style="color:#66d9ef">s</span> <span style="color:#66d9ef">infinite</span> <span style="color:#66d9ef">ease</span><span style="color:#f92672">-</span>in-out;
-  <span style="color:#66d9ef">animation</span>: sk-rotateplane <span style="color:#ae81ff">1.2</span><span style="color:#66d9ef">s</span> <span style="color:#66d9ef">infinite</span> <span style="color:#66d9ef">ease</span><span style="color:#f92672">-</span>in-out;
+  <span style="color:#177500">/*margin: 0 auto;
+</span><span style="color:#177500">  margin-top: calc(25% - 40px);*/</span>
+  <span style="color:#a90d91">-webkit-</span><span style="color:#a90d91">animation</span>: <span style="color:#000">sk-rotateplane</span> <span style="color:#1c01ce">1.2</span><span style="color:#a90d91">s</span> <span style="color:#a90d91">infinite</span> <span style="color:#a90d91">ease</span><span style="color:#000">-</span><span style="color:#000">in-out</span>;
+  <span style="color:#a90d91">animation</span>: <span style="color:#000">sk-rotateplane</span> <span style="color:#1c01ce">1.2</span><span style="color:#a90d91">s</span> <span style="color:#a90d91">infinite</span> <span style="color:#a90d91">ease</span><span style="color:#000">-</span><span style="color:#000">in-out</span>;
 }
 
-@<span style="color:#66d9ef">-webkit-keyframes</span> <span style="color:#f92672">sk-rotateplane</span> {
-  <span style="color:#f92672">0</span><span style="color:#f92672">%</span> { <span style="color:#66d9ef">-webkit-</span><span style="color:#66d9ef">transform</span>: perspective(<span style="color:#ae81ff">120</span><span style="color:#66d9ef">px</span>) }
-  <span style="color:#f92672">50</span><span style="color:#f92672">%</span> { <span style="color:#66d9ef">-webkit-</span><span style="color:#66d9ef">transform</span>: perspective(<span style="color:#ae81ff">120</span><span style="color:#66d9ef">px</span>) rotateY(<span style="color:#ae81ff">180</span><span style="color:#66d9ef">deg</span>) }
-  <span style="color:#f92672">100</span><span style="color:#f92672">%</span> { <span style="color:#66d9ef">-webkit-</span><span style="color:#66d9ef">transform</span>: perspective(<span style="color:#ae81ff">120</span><span style="color:#66d9ef">px</span>) rotateY(<span style="color:#ae81ff">180</span><span style="color:#66d9ef">deg</span>)  rotateX(<span style="color:#ae81ff">180</span><span style="color:#66d9ef">deg</span>) }
+@<span style="color:#a90d91">-webkit-keyframes</span> <span style="color:#000">sk-rotateplane</span> {
+  <span style="color:#000">0</span><span style="color:#000">%</span> { <span style="color:#a90d91">-webkit-</span><span style="color:#a90d91">transform</span>: <span style="color:#a90d91">perspective</span>(<span style="color:#1c01ce">120</span><span style="color:#a90d91">px</span>) }
+  <span style="color:#000">50</span><span style="color:#000">%</span> { <span style="color:#a90d91">-webkit-</span><span style="color:#a90d91">transform</span>: <span style="color:#a90d91">perspective</span>(<span style="color:#1c01ce">120</span><span style="color:#a90d91">px</span>) <span style="color:#a90d91">rotateY</span>(<span style="color:#1c01ce">180</span><span style="color:#a90d91">deg</span>) }
+  <span style="color:#000">100</span><span style="color:#000">%</span> { <span style="color:#a90d91">-webkit-</span><span style="color:#a90d91">transform</span>: <span style="color:#a90d91">perspective</span>(<span style="color:#1c01ce">120</span><span style="color:#a90d91">px</span>) <span style="color:#a90d91">rotateY</span>(<span style="color:#1c01ce">180</span><span style="color:#a90d91">deg</span>)  <span style="color:#a90d91">rotateX</span>(<span style="color:#1c01ce">180</span><span style="color:#a90d91">deg</span>) }
 }
 
-@<span style="color:#66d9ef">keyframes</span> <span style="color:#f92672">sk-rotateplane</span> {
-  <span style="color:#f92672">0</span><span style="color:#f92672">%</span> {
-    <span style="color:#66d9ef">transform</span>: perspective(<span style="color:#ae81ff">120</span><span style="color:#66d9ef">px</span>) rotateX(<span style="color:#ae81ff">0</span><span style="color:#66d9ef">deg</span>) rotateY(<span style="color:#ae81ff">0</span><span style="color:#66d9ef">deg</span>);
-    <span style="color:#66d9ef">-webkit-</span><span style="color:#66d9ef">transform</span>: perspective(<span style="color:#ae81ff">120</span><span style="color:#66d9ef">px</span>) rotateX(<span style="color:#ae81ff">0</span><span style="color:#66d9ef">deg</span>) rotateY(<span style="color:#ae81ff">0</span><span style="color:#66d9ef">deg</span>)
-  } <span style="color:#f92672">50</span><span style="color:#f92672">%</span> {
-    <span style="color:#66d9ef">transform</span>: perspective(<span style="color:#ae81ff">120</span><span style="color:#66d9ef">px</span>) rotateX(<span style="color:#ae81ff">-180.1</span><span style="color:#66d9ef">deg</span>) rotateY(<span style="color:#ae81ff">0</span><span style="color:#66d9ef">deg</span>);
-    <span style="color:#66d9ef">-webkit-</span><span style="color:#66d9ef">transform</span>: perspective(<span style="color:#ae81ff">120</span><span style="color:#66d9ef">px</span>) rotateX(<span style="color:#ae81ff">-180.1</span><span style="color:#66d9ef">deg</span>) rotateY(<span style="color:#ae81ff">0</span><span style="color:#66d9ef">deg</span>)
-  } <span style="color:#f92672">100</span><span style="color:#f92672">%</span> {
-    <span style="color:#66d9ef">transform</span>: perspective(<span style="color:#ae81ff">120</span><span style="color:#66d9ef">px</span>) rotateX(<span style="color:#ae81ff">-180</span><span style="color:#66d9ef">deg</span>) rotateY(<span style="color:#ae81ff">-179.9</span><span style="color:#66d9ef">deg</span>);
-    <span style="color:#66d9ef">-webkit-</span><span style="color:#66d9ef">transform</span>: perspective(<span style="color:#ae81ff">120</span><span style="color:#66d9ef">px</span>) rotateX(<span style="color:#ae81ff">-180</span><span style="color:#66d9ef">deg</span>) rotateY(<span style="color:#ae81ff">-179.9</span><span style="color:#66d9ef">deg</span>);
+@<span style="color:#a90d91">keyframes</span> <span style="color:#000">sk-rotateplane</span> {
+  <span style="color:#000">0</span><span style="color:#000">%</span> {
+    <span style="color:#a90d91">transform</span>: <span style="color:#a90d91">perspective</span>(<span style="color:#1c01ce">120</span><span style="color:#a90d91">px</span>) <span style="color:#a90d91">rotateX</span>(<span style="color:#1c01ce">0</span><span style="color:#a90d91">deg</span>) <span style="color:#a90d91">rotateY</span>(<span style="color:#1c01ce">0</span><span style="color:#a90d91">deg</span>);
+    <span style="color:#a90d91">-webkit-</span><span style="color:#a90d91">transform</span>: <span style="color:#a90d91">perspective</span>(<span style="color:#1c01ce">120</span><span style="color:#a90d91">px</span>) <span style="color:#a90d91">rotateX</span>(<span style="color:#1c01ce">0</span><span style="color:#a90d91">deg</span>) <span style="color:#a90d91">rotateY</span>(<span style="color:#1c01ce">0</span><span style="color:#a90d91">deg</span>)
+  } <span style="color:#000">50</span><span style="color:#000">%</span> {
+    <span style="color:#a90d91">transform</span>: <span style="color:#a90d91">perspective</span>(<span style="color:#1c01ce">120</span><span style="color:#a90d91">px</span>) <span style="color:#a90d91">rotateX</span>(<span style="color:#1c01ce">-180.1</span><span style="color:#a90d91">deg</span>) <span style="color:#a90d91">rotateY</span>(<span style="color:#1c01ce">0</span><span style="color:#a90d91">deg</span>);
+    <span style="color:#a90d91">-webkit-</span><span style="color:#a90d91">transform</span>: <span style="color:#a90d91">perspective</span>(<span style="color:#1c01ce">120</span><span style="color:#a90d91">px</span>) <span style="color:#a90d91">rotateX</span>(<span style="color:#1c01ce">-180.1</span><span style="color:#a90d91">deg</span>) <span style="color:#a90d91">rotateY</span>(<span style="color:#1c01ce">0</span><span style="color:#a90d91">deg</span>)
+  } <span style="color:#000">100</span><span style="color:#000">%</span> {
+    <span style="color:#a90d91">transform</span>: <span style="color:#a90d91">perspective</span>(<span style="color:#1c01ce">120</span><span style="color:#a90d91">px</span>) <span style="color:#a90d91">rotateX</span>(<span style="color:#1c01ce">-180</span><span style="color:#a90d91">deg</span>) <span style="color:#a90d91">rotateY</span>(<span style="color:#1c01ce">-179.9</span><span style="color:#a90d91">deg</span>);
+    <span style="color:#a90d91">-webkit-</span><span style="color:#a90d91">transform</span>: <span style="color:#a90d91">perspective</span>(<span style="color:#1c01ce">120</span><span style="color:#a90d91">px</span>) <span style="color:#a90d91">rotateX</span>(<span style="color:#1c01ce">-180</span><span style="color:#a90d91">deg</span>) <span style="color:#a90d91">rotateY</span>(<span style="color:#1c01ce">-179.9</span><span style="color:#a90d91">deg</span>);
   }
 }</code></pre></div>
   			</section>

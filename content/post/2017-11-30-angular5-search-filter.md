@@ -4,7 +4,7 @@ description: "Create search directive filtering a dynamic list with angular 5"
 tags:
   - angular5
 date: "2017-11-30"
-featured: true
+featured: false
 slug: angular5-search-filter
 image: /images/filter.jpg
 ---

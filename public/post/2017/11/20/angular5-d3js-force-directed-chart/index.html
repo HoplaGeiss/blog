@@ -134,15 +134,7 @@ html{font-family:sans-serif;line-height:1.15;-ms-text-size-adjust:100%;-webkit-t
       			  
               </a>
             </div>
-            <div class="nav-menu">
-              <a class="rss" href="">
-                <i class="icon-rss"></i>
-              </a>
-                
-                <a class="menu" data-action="toc" data-target="toc"><i class="icon-location"></i></a>
-                
-                
-            </div>
+            
           </nav>
 
 
@@ -173,97 +165,97 @@ html{font-family:sans-serif;line-height:1.15;-ms-text-size-adjust:100%;-webkit-t
 <p>Now, let&rsquo;s dive in!</p>
 
 <h3 id="component-skeleton">Component skeleton</h3>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-typescript" data-lang="typescript"><span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">Component</span>, <span style="color:#a6e22e">OnInit</span>, <span style="color:#a6e22e">OnChanges</span>, <span style="color:#a6e22e">ViewChild</span>, <span style="color:#a6e22e">ElementRef</span>, <span style="color:#a6e22e">Input</span>, <span style="color:#a6e22e">AfterViewChecked</span> } <span style="color:#a6e22e">from</span> <span style="color:#e6db74">&#39;@angular/core&#39;</span>;
-<span style="color:#66d9ef">import</span> <span style="color:#f92672">*</span> <span style="color:#66d9ef">as</span> <span style="color:#a6e22e">d3</span> <span style="color:#a6e22e">from</span> <span style="color:#e6db74">&#39;d3&#39;</span>;
-<span style="color:#66d9ef">import</span> <span style="color:#f92672">*</span> <span style="color:#66d9ef">as</span> <span style="color:#a6e22e">_</span> <span style="color:#a6e22e">from</span> <span style="color:#e6db74">&#39;underscore&#39;</span>;
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-typescript" data-lang="typescript"><span style="color:#a90d91">import</span> { <span style="color:#000">Component</span>, <span style="color:#000">OnInit</span>, <span style="color:#000">OnChanges</span>, <span style="color:#000">ViewChild</span>, <span style="color:#000">ElementRef</span>, <span style="color:#000">Input</span>, <span style="color:#000">AfterViewChecked</span> } <span style="color:#000">from</span> <span style="color:#c41a16">&#39;@angular/core&#39;</span>;
+<span style="color:#a90d91">import</span> <span style="color:#000">*</span> <span style="color:#a90d91">as</span> <span style="color:#000">d3</span> <span style="color:#000">from</span> <span style="color:#c41a16">&#39;d3&#39;</span>;
+<span style="color:#a90d91">import</span> <span style="color:#000">*</span> <span style="color:#a90d91">as</span> <span style="color:#000">_</span> <span style="color:#000">from</span> <span style="color:#c41a16">&#39;underscore&#39;</span>;
 
-<span style="color:#66d9ef">@Component</span>({
-  <span style="color:#a6e22e">selector</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;app-force-directed-chart&#39;</span>,
-  <span style="color:#a6e22e">styleUrls</span><span style="color:#f92672">:</span> [<span style="color:#e6db74">&#39;./force-directed-chart.component.scss&#39;</span>],
-  <span style="color:#a6e22e">template</span><span style="color:#f92672">:</span> <span style="color:#e6db74">`
-</span><span style="color:#e6db74">    &lt;div class=&#39;force-directed-chart&#39; #forceDirectedChartContainer&gt;
-</span><span style="color:#e6db74">      &lt;div class=&#39;tooltip&#39;&gt;
-</span><span style="color:#e6db74">        &lt;div fxLayout=&#39;row&#39; fxLayoutAlign=&#39;start center&#39; class=&#39;header&#39;&gt;
-</span><span style="color:#e6db74">          &lt;img src=&#39;assets/Icon-Sensors.svg&#39; alt=&#39;Sensors Icon&#39;&gt;
-</span><span style="color:#e6db74">          &lt;div fxLayout=&#39;column&#39; fxLayoutAlign=&#39;center start&#39;&gt;
-</span><span style="color:#e6db74">            &lt;div class=&#39;title&#39;&gt;{{node?.vendor}}&lt;/div&gt;
-</span><span style="color:#e6db74">            &lt;div&gt;{{node?.model}}&lt;/div&gt;
-</span><span style="color:#e6db74">          &lt;/div&gt;
-</span><span style="color:#e6db74">        &lt;/div&gt;
-</span><span style="color:#e6db74">        &lt;div fxLayout=&#39;column&#39; fxLayoutAlign=&#39;center start&#39; class=&#39;body&#39;&gt;
-</span><span style="color:#e6db74">          &lt;div class=&#39;subtitle&#39;&gt;Name&lt;/div&gt;
-</span><span style="color:#e6db74">          &lt;div&gt;{{node?.name}}&lt;/div&gt;
-</span><span style="color:#e6db74">          &lt;div class=&#39;subtitle&#39;&gt;IP&lt;/div&gt;
-</span><span style="color:#e6db74">          &lt;div&gt;{{node?.address}}&lt;/div&gt;
-</span><span style="color:#e6db74">          &lt;div class=&#39;subtitle&#39;&gt;Protocol&lt;/div&gt;
-</span><span style="color:#e6db74">          &lt;div&gt;{{node?.protocol}}&lt;/div&gt;
-</span><span style="color:#e6db74">        &lt;/div&gt;
-</span><span style="color:#e6db74">      &lt;/div&gt;
-</span><span style="color:#e6db74">    &lt;/div&gt;
-</span><span style="color:#e6db74">  `</span>
+<span style="color:#a90d91">@Component</span>({
+  <span style="color:#000">selector</span><span style="color:#000">:</span> <span style="color:#c41a16">&#39;app-force-directed-chart&#39;</span>,
+  <span style="color:#000">styleUrls</span><span style="color:#000">:</span> [<span style="color:#c41a16">&#39;./force-directed-chart.component.scss&#39;</span>],
+  <span style="color:#000">template</span><span style="color:#000">:</span> <span style="color:#c41a16">`
+</span><span style="color:#c41a16">    &lt;div class=&#39;force-directed-chart&#39; #forceDirectedChartContainer&gt;
+</span><span style="color:#c41a16">      &lt;div class=&#39;tooltip&#39;&gt;
+</span><span style="color:#c41a16">        &lt;div fxLayout=&#39;row&#39; fxLayoutAlign=&#39;start center&#39; class=&#39;header&#39;&gt;
+</span><span style="color:#c41a16">          &lt;img src=&#39;assets/Icon-Sensors.svg&#39; alt=&#39;Sensors Icon&#39;&gt;
+</span><span style="color:#c41a16">          &lt;div fxLayout=&#39;column&#39; fxLayoutAlign=&#39;center start&#39;&gt;
+</span><span style="color:#c41a16">            &lt;div class=&#39;title&#39;&gt;{{node?.vendor}}&lt;/div&gt;
+</span><span style="color:#c41a16">            &lt;div&gt;{{node?.model}}&lt;/div&gt;
+</span><span style="color:#c41a16">          &lt;/div&gt;
+</span><span style="color:#c41a16">        &lt;/div&gt;
+</span><span style="color:#c41a16">        &lt;div fxLayout=&#39;column&#39; fxLayoutAlign=&#39;center start&#39; class=&#39;body&#39;&gt;
+</span><span style="color:#c41a16">          &lt;div class=&#39;subtitle&#39;&gt;Name&lt;/div&gt;
+</span><span style="color:#c41a16">          &lt;div&gt;{{node?.name}}&lt;/div&gt;
+</span><span style="color:#c41a16">          &lt;div class=&#39;subtitle&#39;&gt;IP&lt;/div&gt;
+</span><span style="color:#c41a16">          &lt;div&gt;{{node?.address}}&lt;/div&gt;
+</span><span style="color:#c41a16">          &lt;div class=&#39;subtitle&#39;&gt;Protocol&lt;/div&gt;
+</span><span style="color:#c41a16">          &lt;div&gt;{{node?.protocol}}&lt;/div&gt;
+</span><span style="color:#c41a16">        &lt;/div&gt;
+</span><span style="color:#c41a16">      &lt;/div&gt;
+</span><span style="color:#c41a16">    &lt;/div&gt;
+</span><span style="color:#c41a16">  `</span>
 })
 
-<span style="color:#66d9ef">export</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">ForceDirectedChartComponent</span> <span style="color:#66d9ef">implements</span> <span style="color:#a6e22e">OnInit</span>, <span style="color:#a6e22e">OnChanges</span>, <span style="color:#a6e22e">AfterViewChecked</span> {
-  <span style="color:#66d9ef">@ViewChild</span>(<span style="color:#e6db74">&#39;forceDirectedChartContainer&#39;</span>) <span style="color:#66d9ef">private</span> <span style="color:#a6e22e">chartContainer</span>: <span style="color:#66d9ef">ElementRef</span>;
-  <span style="color:#66d9ef">@Input</span>() <span style="color:#a6e22e">data</span>: <span style="color:#66d9ef">Array</span><span style="color:#f92672">&lt;</span><span style="color:#a6e22e">any</span><span style="color:#f92672">&gt;</span>;
+<span style="color:#a90d91">export</span> <span style="color:#a90d91">class</span> <span style="color:#000">ForceDirectedChartComponent</span> <span style="color:#a90d91">implements</span> <span style="color:#000">OnInit</span>, <span style="color:#000">OnChanges</span>, <span style="color:#000">AfterViewChecked</span> {
+  <span style="color:#a90d91">@ViewChild</span>(<span style="color:#c41a16">&#39;forceDirectedChartContainer&#39;</span>) <span style="color:#a90d91">private</span> <span style="color:#000">chartContainer</span>: <span style="color:#a90d91">ElementRef</span>;
+  <span style="color:#a90d91">@Input</span>() <span style="color:#000">data</span>: <span style="color:#a90d91">Array</span><span style="color:#000">&lt;</span><span style="color:#000">any</span><span style="color:#000">&gt;</span>;
 
-  <span style="color:#a6e22e">node</span>: <span style="color:#66d9ef">any</span>;
+  <span style="color:#000">node</span>: <span style="color:#a90d91">any</span>;
 
-  <span style="color:#a6e22e">hostElement</span>: <span style="color:#66d9ef">any</span>;
-  <span style="color:#a6e22e">tooltip</span>: <span style="color:#66d9ef">any</span>;
+  <span style="color:#000">hostElement</span>: <span style="color:#a90d91">any</span>;
+  <span style="color:#000">tooltip</span>: <span style="color:#a90d91">any</span>;
 
-  <span style="color:#a6e22e">linkElements</span>: <span style="color:#66d9ef">any</span>;
-  <span style="color:#a6e22e">linkGroup</span>: <span style="color:#66d9ef">any</span>;
-  <span style="color:#a6e22e">nodeElements</span>: <span style="color:#66d9ef">any</span>;
-  <span style="color:#a6e22e">nodeGroup</span>: <span style="color:#66d9ef">any</span>;
-  <span style="color:#a6e22e">imageGroup</span>: <span style="color:#66d9ef">any</span>;
-  <span style="color:#a6e22e">textElements</span>: <span style="color:#66d9ef">any</span>;
-  <span style="color:#a6e22e">textGroup</span>: <span style="color:#66d9ef">any</span>;
-  <span style="color:#a6e22e">imageElements</span>: <span style="color:#66d9ef">any</span>;
-  <span style="color:#a6e22e">links</span>: <span style="color:#66d9ef">any</span>;
+  <span style="color:#000">linkElements</span>: <span style="color:#a90d91">any</span>;
+  <span style="color:#000">linkGroup</span>: <span style="color:#a90d91">any</span>;
+  <span style="color:#000">nodeElements</span>: <span style="color:#a90d91">any</span>;
+  <span style="color:#000">nodeGroup</span>: <span style="color:#a90d91">any</span>;
+  <span style="color:#000">imageGroup</span>: <span style="color:#a90d91">any</span>;
+  <span style="color:#000">textElements</span>: <span style="color:#a90d91">any</span>;
+  <span style="color:#000">textGroup</span>: <span style="color:#a90d91">any</span>;
+  <span style="color:#000">imageElements</span>: <span style="color:#a90d91">any</span>;
+  <span style="color:#000">links</span>: <span style="color:#a90d91">any</span>;
 
-  <span style="color:#a6e22e">margin</span>: <span style="color:#66d9ef">any</span>;
-  <span style="color:#a6e22e">width</span>: <span style="color:#66d9ef">any</span>;
-  <span style="color:#a6e22e">height</span>: <span style="color:#66d9ef">any</span>;
-  <span style="color:#a6e22e">hostElementHeight</span>: <span style="color:#66d9ef">number</span>;
+  <span style="color:#000">margin</span>: <span style="color:#a90d91">any</span>;
+  <span style="color:#000">width</span>: <span style="color:#a90d91">any</span>;
+  <span style="color:#000">height</span>: <span style="color:#a90d91">any</span>;
+  <span style="color:#000">hostElementHeight</span>: <span style="color:#a90d91">number</span>;
 
-  <span style="color:#a6e22e">color</span>: <span style="color:#66d9ef">any</span>;
+  <span style="color:#000">color</span>: <span style="color:#a90d91">any</span>;
 
-  <span style="color:#a6e22e">svg</span>: <span style="color:#66d9ef">any</span>;
-  <span style="color:#a6e22e">simulation</span>: <span style="color:#66d9ef">any</span>;
-  <span style="color:#a6e22e">sensors</span>: <span style="color:#66d9ef">any</span>;
+  <span style="color:#000">svg</span>: <span style="color:#a90d91">any</span>;
+  <span style="color:#000">simulation</span>: <span style="color:#a90d91">any</span>;
+  <span style="color:#000">sensors</span>: <span style="color:#a90d91">any</span>;
 
-  <span style="color:#a6e22e">smallCircleRadius</span> <span style="color:#f92672">=</span> <span style="color:#ae81ff">6</span>;
-  <span style="color:#a6e22e">largeCircleRadius</span> <span style="color:#f92672">=</span> <span style="color:#ae81ff">50</span>;
+  <span style="color:#000">smallCircleRadius</span> <span style="color:#000">=</span> <span style="color:#1c01ce">6</span>;
+  <span style="color:#000">largeCircleRadius</span> <span style="color:#000">=</span> <span style="color:#1c01ce">50</span>;
 
-  <span style="color:#a6e22e">status</span>: <span style="color:#66d9ef">string</span>;
+  <span style="color:#000">status</span>: <span style="color:#a90d91">string</span>;
 
-  <span style="color:#66d9ef">constructor</span>(
-    <span style="color:#66d9ef">private</span> <span style="color:#a6e22e">elementRef</span>: <span style="color:#66d9ef">ElementRef</span>
+  <span style="color:#a90d91">constructor</span>(
+    <span style="color:#a90d91">private</span> <span style="color:#000">elementRef</span>: <span style="color:#a90d91">ElementRef</span>
   ) {}
 }</code></pre></div>
 <p>Not so much going on here. In the template we define the containers for the svg and for the tooltip. In the component itself we just define loads and loads of variables.</p>
 
 <h3 id="life-cycle-methods">Life cycle methods</h3>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-typescript" data-lang="typescript"><span style="color:#a6e22e">ngOnInit() {</span>
-  <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">hostElement</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">chartContainer</span>.<span style="color:#a6e22e">nativeElement</span>;
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-typescript" data-lang="typescript"><span style="color:#000">ngOnInit() {</span>
+  <span style="color:#a90d91">this</span>.<span style="color:#000">hostElement</span> <span style="color:#000">=</span> <span style="color:#a90d91">this</span>.<span style="color:#000">chartContainer</span>.<span style="color:#000">nativeElement</span>;
 }
 
-<span style="color:#a6e22e">ngOnChanges() {</span>
-  <span style="color:#66d9ef">if</span> (<span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">data</span>.<span style="color:#a6e22e">length</span> <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">0</span> <span style="color:#f92672">&amp;&amp;</span> <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">svg</span>) {
-    <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">sensors</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">_</span>.<span style="color:#a6e22e">sortBy</span>(<span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">data</span>, <span style="color:#e6db74">&#39;familyType&#39;</span>);
-    <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">runSimulation</span>();
+<span style="color:#000">ngOnChanges() {</span>
+  <span style="color:#a90d91">if</span> (<span style="color:#a90d91">this</span>.<span style="color:#000">data</span>.<span style="color:#000">length</span> <span style="color:#000">&gt;</span> <span style="color:#1c01ce">0</span> <span style="color:#000">&amp;&amp;</span> <span style="color:#a90d91">this</span>.<span style="color:#000">svg</span>) {
+    <span style="color:#a90d91">this</span>.<span style="color:#000">sensors</span> <span style="color:#000">=</span> <span style="color:#000">_</span>.<span style="color:#000">sortBy</span>(<span style="color:#a90d91">this</span>.<span style="color:#000">data</span>, <span style="color:#c41a16">&#39;familyType&#39;</span>);
+    <span style="color:#a90d91">this</span>.<span style="color:#000">runSimulation</span>();
   }
 }
 
 () {
-  <span style="color:#66d9ef">if</span> (<span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">hostElement</span> <span style="color:#f92672">&amp;&amp;</span> <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">hostElement</span>.<span style="color:#a6e22e">offsetHeight</span> <span style="color:#f92672">!==</span> <span style="color:#ae81ff">0</span> <span style="color:#f92672">&amp;&amp;</span> <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">hostElement</span>.<span style="color:#a6e22e">offsetHeight</span> <span style="color:#f92672">!==</span> <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">hostElementHeight</span>) {
-    <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">hostElementHeight</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">hostElement</span>.<span style="color:#a6e22e">offsetHeight</span>;
-    <span style="color:#a6e22e">d3</span>.<span style="color:#a6e22e">select</span>(<span style="color:#e6db74">&#39;.svg&#39;</span>).<span style="color:#a6e22e">remove</span>();
-    <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">createChart</span>();
-    <span style="color:#66d9ef">if</span> (<span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">data</span>.<span style="color:#a6e22e">length</span> <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">0</span>) {
-      <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">sensors</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">_</span>.<span style="color:#a6e22e">sortBy</span>(<span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">data</span>, <span style="color:#e6db74">&#39;familyType&#39;</span>);
-      <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">runSimulation</span>();
+  <span style="color:#a90d91">if</span> (<span style="color:#a90d91">this</span>.<span style="color:#000">hostElement</span> <span style="color:#000">&amp;&amp;</span> <span style="color:#a90d91">this</span>.<span style="color:#000">hostElement</span>.<span style="color:#000">offsetHeight</span> <span style="color:#000">!==</span> <span style="color:#1c01ce">0</span> <span style="color:#000">&amp;&amp;</span> <span style="color:#a90d91">this</span>.<span style="color:#000">hostElement</span>.<span style="color:#000">offsetHeight</span> <span style="color:#000">!==</span> <span style="color:#a90d91">this</span>.<span style="color:#000">hostElementHeight</span>) {
+    <span style="color:#a90d91">this</span>.<span style="color:#000">hostElementHeight</span> <span style="color:#000">=</span> <span style="color:#a90d91">this</span>.<span style="color:#000">hostElement</span>.<span style="color:#000">offsetHeight</span>;
+    <span style="color:#000">d3</span>.<span style="color:#000">select</span>(<span style="color:#c41a16">&#39;.svg&#39;</span>).<span style="color:#000">remove</span>();
+    <span style="color:#a90d91">this</span>.<span style="color:#000">createChart</span>();
+    <span style="color:#a90d91">if</span> (<span style="color:#a90d91">this</span>.<span style="color:#000">data</span>.<span style="color:#000">length</span> <span style="color:#000">&gt;</span> <span style="color:#1c01ce">0</span>) {
+      <span style="color:#a90d91">this</span>.<span style="color:#000">sensors</span> <span style="color:#000">=</span> <span style="color:#000">_</span>.<span style="color:#000">sortBy</span>(<span style="color:#a90d91">this</span>.<span style="color:#000">data</span>, <span style="color:#c41a16">&#39;familyType&#39;</span>);
+      <span style="color:#a90d91">this</span>.<span style="color:#000">runSimulation</span>();
     }
   }
 }</code></pre></div>
@@ -276,268 +268,268 @@ html{font-family:sans-serif;line-height:1.15;-ms-text-size-adjust:100%;-webkit-t
 </ul>
 
 <h3 id="create-the-chart">Create the chart</h3>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-typescript" data-lang="typescript"><span style="color:#a6e22e">createChart</span> <span style="color:#f92672">=</span> () <span style="color:#f92672">=&gt;</span> {
-  <span style="color:#75715e">// Width &amp; height
-</span><span style="color:#75715e"></span>  <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">margin</span> <span style="color:#f92672">=</span> { <span style="color:#a6e22e">top</span>: <span style="color:#66d9ef">0</span>, <span style="color:#a6e22e">right</span>: <span style="color:#66d9ef">0</span>, <span style="color:#a6e22e">bottom</span>: <span style="color:#66d9ef">0</span>, <span style="color:#a6e22e">left</span>: <span style="color:#66d9ef">0</span>};
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-typescript" data-lang="typescript"><span style="color:#000">createChart</span> <span style="color:#000">=</span> () <span style="color:#000">=&gt;</span> {
+  <span style="color:#177500">// Width &amp; height
+</span><span style="color:#177500"></span>  <span style="color:#a90d91">this</span>.<span style="color:#000">margin</span> <span style="color:#000">=</span> { <span style="color:#000">top</span>: <span style="color:#a90d91">0</span>, <span style="color:#000">right</span>: <span style="color:#a90d91">0</span>, <span style="color:#000">bottom</span>: <span style="color:#a90d91">0</span>, <span style="color:#000">left</span>: <span style="color:#a90d91">0</span>};
 
-  <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">width</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">hostElement</span>.<span style="color:#a6e22e">offsetWidth</span> <span style="color:#f92672">-</span> <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">margin</span>.<span style="color:#a6e22e">left</span> <span style="color:#f92672">-</span> <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">margin</span>.<span style="color:#a6e22e">right</span>;
-  <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">height</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">hostElement</span>.<span style="color:#a6e22e">offsetHeight</span> <span style="color:#f92672">-</span> <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">margin</span>.<span style="color:#a6e22e">top</span> <span style="color:#f92672">-</span> <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">margin</span>.<span style="color:#a6e22e">bottom</span>;
+  <span style="color:#a90d91">this</span>.<span style="color:#000">width</span> <span style="color:#000">=</span> <span style="color:#a90d91">this</span>.<span style="color:#000">hostElement</span>.<span style="color:#000">offsetWidth</span> <span style="color:#000">-</span> <span style="color:#a90d91">this</span>.<span style="color:#000">margin</span>.<span style="color:#000">left</span> <span style="color:#000">-</span> <span style="color:#a90d91">this</span>.<span style="color:#000">margin</span>.<span style="color:#000">right</span>;
+  <span style="color:#a90d91">this</span>.<span style="color:#000">height</span> <span style="color:#000">=</span> <span style="color:#a90d91">this</span>.<span style="color:#000">hostElement</span>.<span style="color:#000">offsetHeight</span> <span style="color:#000">-</span> <span style="color:#a90d91">this</span>.<span style="color:#000">margin</span>.<span style="color:#000">top</span> <span style="color:#000">-</span> <span style="color:#a90d91">this</span>.<span style="color:#000">margin</span>.<span style="color:#000">bottom</span>;
 
-  <span style="color:#75715e">// Color
-</span><span style="color:#75715e"></span>  <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">color</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">d3</span>.<span style="color:#a6e22e">scaleOrdinal</span>(<span style="color:#a6e22e">d3</span>.<span style="color:#a6e22e">schemeCategory20</span>);
+  <span style="color:#177500">// Color
+</span><span style="color:#177500"></span>  <span style="color:#a90d91">this</span>.<span style="color:#000">color</span> <span style="color:#000">=</span> <span style="color:#000">d3</span>.<span style="color:#000">scaleOrdinal</span>(<span style="color:#000">d3</span>.<span style="color:#000">schemeCategory20</span>);
 
-  <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">svg</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">d3</span>.<span style="color:#a6e22e">select</span>(<span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">hostElement</span>)
-    .<span style="color:#a6e22e">append</span>(<span style="color:#e6db74">&#39;svg&#39;</span>)
-    .<span style="color:#a6e22e">attr</span>(<span style="color:#e6db74">&#39;width&#39;</span>, <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">hostElement</span>.<span style="color:#a6e22e">offsetWidth</span>)
-    .<span style="color:#a6e22e">attr</span>(<span style="color:#e6db74">&#39;height&#39;</span>, <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">hostElement</span>.<span style="color:#a6e22e">offsetHeight</span>)
-    .<span style="color:#a6e22e">append</span>(<span style="color:#e6db74">&#39;g&#39;</span>)
-    .<span style="color:#a6e22e">attr</span>(<span style="color:#e6db74">&#39;transform&#39;</span>, <span style="color:#e6db74">&#39;translate(&#39;</span> <span style="color:#f92672">+</span> <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">margin</span>.<span style="color:#a6e22e">left</span> <span style="color:#f92672">+</span> <span style="color:#e6db74">&#39;,&#39;</span> <span style="color:#f92672">+</span> <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">margin</span>.<span style="color:#a6e22e">top</span> <span style="color:#f92672">+</span> <span style="color:#e6db74">&#39;)&#39;</span>);
+  <span style="color:#a90d91">this</span>.<span style="color:#000">svg</span> <span style="color:#000">=</span> <span style="color:#000">d3</span>.<span style="color:#000">select</span>(<span style="color:#a90d91">this</span>.<span style="color:#000">hostElement</span>)
+    .<span style="color:#000">append</span>(<span style="color:#c41a16">&#39;svg&#39;</span>)
+    .<span style="color:#000">attr</span>(<span style="color:#c41a16">&#39;width&#39;</span>, <span style="color:#a90d91">this</span>.<span style="color:#000">hostElement</span>.<span style="color:#000">offsetWidth</span>)
+    .<span style="color:#000">attr</span>(<span style="color:#c41a16">&#39;height&#39;</span>, <span style="color:#a90d91">this</span>.<span style="color:#000">hostElement</span>.<span style="color:#000">offsetHeight</span>)
+    .<span style="color:#000">append</span>(<span style="color:#c41a16">&#39;g&#39;</span>)
+    .<span style="color:#000">attr</span>(<span style="color:#c41a16">&#39;transform&#39;</span>, <span style="color:#c41a16">&#39;translate(&#39;</span> <span style="color:#000">+</span> <span style="color:#a90d91">this</span>.<span style="color:#000">margin</span>.<span style="color:#000">left</span> <span style="color:#000">+</span> <span style="color:#c41a16">&#39;,&#39;</span> <span style="color:#000">+</span> <span style="color:#a90d91">this</span>.<span style="color:#000">margin</span>.<span style="color:#000">top</span> <span style="color:#000">+</span> <span style="color:#c41a16">&#39;)&#39;</span>);
 
-  <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">linkGroup</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">svg</span>.<span style="color:#a6e22e">append</span>(<span style="color:#e6db74">&#39;g&#39;</span>).<span style="color:#a6e22e">attr</span>(<span style="color:#e6db74">&#39;class&#39;</span>, <span style="color:#e6db74">&#39;links&#39;</span>);
-  <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">nodeGroup</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">svg</span>.<span style="color:#a6e22e">append</span>(<span style="color:#e6db74">&#39;g&#39;</span>).<span style="color:#a6e22e">attr</span>(<span style="color:#e6db74">&#39;class&#39;</span>, <span style="color:#e6db74">&#39;nodes&#39;</span>);
-  <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">textGroup</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">svg</span>.<span style="color:#a6e22e">append</span>(<span style="color:#e6db74">&#39;g&#39;</span>).<span style="color:#a6e22e">attr</span>(<span style="color:#e6db74">&#39;class&#39;</span>, <span style="color:#e6db74">&#39;labels&#39;</span>);
-  <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">imageGroup</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">svg</span>.<span style="color:#a6e22e">append</span>(<span style="color:#e6db74">&#39;g&#39;</span>).<span style="color:#a6e22e">attr</span>(<span style="color:#e6db74">&#39;class&#39;</span>, <span style="color:#e6db74">&#39;images&#39;</span>);
+  <span style="color:#a90d91">this</span>.<span style="color:#000">linkGroup</span> <span style="color:#000">=</span> <span style="color:#a90d91">this</span>.<span style="color:#000">svg</span>.<span style="color:#000">append</span>(<span style="color:#c41a16">&#39;g&#39;</span>).<span style="color:#000">attr</span>(<span style="color:#c41a16">&#39;class&#39;</span>, <span style="color:#c41a16">&#39;links&#39;</span>);
+  <span style="color:#a90d91">this</span>.<span style="color:#000">nodeGroup</span> <span style="color:#000">=</span> <span style="color:#a90d91">this</span>.<span style="color:#000">svg</span>.<span style="color:#000">append</span>(<span style="color:#c41a16">&#39;g&#39;</span>).<span style="color:#000">attr</span>(<span style="color:#c41a16">&#39;class&#39;</span>, <span style="color:#c41a16">&#39;nodes&#39;</span>);
+  <span style="color:#a90d91">this</span>.<span style="color:#000">textGroup</span> <span style="color:#000">=</span> <span style="color:#a90d91">this</span>.<span style="color:#000">svg</span>.<span style="color:#000">append</span>(<span style="color:#c41a16">&#39;g&#39;</span>).<span style="color:#000">attr</span>(<span style="color:#c41a16">&#39;class&#39;</span>, <span style="color:#c41a16">&#39;labels&#39;</span>);
+  <span style="color:#a90d91">this</span>.<span style="color:#000">imageGroup</span> <span style="color:#000">=</span> <span style="color:#a90d91">this</span>.<span style="color:#000">svg</span>.<span style="color:#000">append</span>(<span style="color:#c41a16">&#39;g&#39;</span>).<span style="color:#000">attr</span>(<span style="color:#c41a16">&#39;class&#39;</span>, <span style="color:#c41a16">&#39;images&#39;</span>);
 
-  <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">tooltip</span> <span style="color:#f92672">=</span>  <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">elementRef</span>.<span style="color:#a6e22e">nativeElement</span>.<span style="color:#a6e22e">querySelector</span>(<span style="color:#e6db74">&#39;.tooltip&#39;</span>);
+  <span style="color:#a90d91">this</span>.<span style="color:#000">tooltip</span> <span style="color:#000">=</span>  <span style="color:#a90d91">this</span>.<span style="color:#000">elementRef</span>.<span style="color:#000">nativeElement</span>.<span style="color:#000">querySelector</span>(<span style="color:#c41a16">&#39;.tooltip&#39;</span>);
 }</code></pre></div>
 <p>This method creates the svg and instantiates the different groups and the tooltip.</p>
 
 <h3 id="run-the-simulation">Run the simulation</h3>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-typescript" data-lang="typescript"><span style="color:#a6e22e">runSimulation</span> <span style="color:#f92672">=</span> () <span style="color:#f92672">=&gt;</span> {
-  <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">simulation</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">d3</span>.<span style="color:#a6e22e">forceSimulation</span>()
-    .<span style="color:#a6e22e">force</span>(<span style="color:#e6db74">&#39;link&#39;</span>, <span style="color:#a6e22e">d3</span>.<span style="color:#a6e22e">forceLink</span>().<span style="color:#a6e22e">id</span>((<span style="color:#a6e22e">node</span>: <span style="color:#66d9ef">any</span>) <span style="color:#f92672">=&gt;</span> <span style="color:#a6e22e">node</span>.<span style="color:#a6e22e">id</span>).<span style="color:#a6e22e">distance</span>(<span style="color:#ae81ff">30</span>))
-    .<span style="color:#a6e22e">force</span>(<span style="color:#e6db74">&#39;collide&#39;</span>, <span style="color:#a6e22e">d3</span>.<span style="color:#a6e22e">forceCollide</span><span style="color:#f92672">&lt;</span><span style="color:#a6e22e">any</span><span style="color:#f92672">&gt;</span>( <span style="color:#a6e22e">d</span> <span style="color:#f92672">=&gt;</span> <span style="color:#a6e22e">d</span>.<span style="color:#a6e22e">r</span> <span style="color:#f92672">+</span> <span style="color:#ae81ff">8</span> ).<span style="color:#a6e22e">iterations</span>(<span style="color:#ae81ff">16</span>))
-    .<span style="color:#a6e22e">force</span>(<span style="color:#e6db74">&#39;charge&#39;</span>, <span style="color:#a6e22e">d3</span>.<span style="color:#a6e22e">forceManyBody</span>()
-      .<span style="color:#a6e22e">strength</span>(<span style="color:#f92672">-</span><span style="color:#ae81ff">100</span>)
-      .<span style="color:#a6e22e">distanceMax</span>(<span style="color:#ae81ff">200</span>)
-      .<span style="color:#a6e22e">distanceMin</span>(<span style="color:#ae81ff">60</span>)
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-typescript" data-lang="typescript"><span style="color:#000">runSimulation</span> <span style="color:#000">=</span> () <span style="color:#000">=&gt;</span> {
+  <span style="color:#a90d91">this</span>.<span style="color:#000">simulation</span> <span style="color:#000">=</span> <span style="color:#000">d3</span>.<span style="color:#000">forceSimulation</span>()
+    .<span style="color:#000">force</span>(<span style="color:#c41a16">&#39;link&#39;</span>, <span style="color:#000">d3</span>.<span style="color:#000">forceLink</span>().<span style="color:#000">id</span>((<span style="color:#000">node</span>: <span style="color:#a90d91">any</span>) <span style="color:#000">=&gt;</span> <span style="color:#000">node</span>.<span style="color:#000">id</span>).<span style="color:#000">distance</span>(<span style="color:#1c01ce">30</span>))
+    .<span style="color:#000">force</span>(<span style="color:#c41a16">&#39;collide&#39;</span>, <span style="color:#000">d3</span>.<span style="color:#000">forceCollide</span><span style="color:#000">&lt;</span><span style="color:#000">any</span><span style="color:#000">&gt;</span>( <span style="color:#000">d</span> <span style="color:#000">=&gt;</span> <span style="color:#000">d</span>.<span style="color:#000">r</span> <span style="color:#000">+</span> <span style="color:#1c01ce">8</span> ).<span style="color:#000">iterations</span>(<span style="color:#1c01ce">16</span>))
+    .<span style="color:#000">force</span>(<span style="color:#c41a16">&#39;charge&#39;</span>, <span style="color:#000">d3</span>.<span style="color:#000">forceManyBody</span>()
+      .<span style="color:#000">strength</span>(<span style="color:#000">-</span><span style="color:#1c01ce">100</span>)
+      .<span style="color:#000">distanceMax</span>(<span style="color:#1c01ce">200</span>)
+      .<span style="color:#000">distanceMin</span>(<span style="color:#1c01ce">60</span>)
     )
-    .<span style="color:#a6e22e">force</span>(<span style="color:#e6db74">&#39;center&#39;</span>, <span style="color:#a6e22e">d3</span>.<span style="color:#a6e22e">forceCenter</span>(<span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">width</span> <span style="color:#e6db74">/ 2, this.height /</span> <span style="color:#ae81ff">2</span>));
+    .<span style="color:#000">force</span>(<span style="color:#c41a16">&#39;center&#39;</span>, <span style="color:#000">d3</span>.<span style="color:#000">forceCenter</span>(<span style="color:#a90d91">this</span>.<span style="color:#000">width</span> <span style="color:#c41a16">/ 2, this.height /</span> <span style="color:#1c01ce">2</span>));
 
-  <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">render</span>();
+  <span style="color:#a90d91">this</span>.<span style="color:#000">render</span>();
 
-  <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">simulation</span>.<span style="color:#a6e22e">nodes</span>(<span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">sensors</span>).<span style="color:#a6e22e">on</span>(<span style="color:#e6db74">&#39;tick&#39;</span>, () <span style="color:#f92672">=&gt;</span> {
-    <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">nodeElements</span>
-      .<span style="color:#a6e22e">attr</span>(<span style="color:#e6db74">&#39;cx&#39;</span>, <span style="color:#a6e22e">node</span> <span style="color:#f92672">=&gt;</span> <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">placeElementX</span>(<span style="color:#a6e22e">node</span>) )
-      .<span style="color:#a6e22e">attr</span>(<span style="color:#e6db74">&#39;cy&#39;</span>, <span style="color:#a6e22e">node</span> <span style="color:#f92672">=&gt;</span> <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">placeElementY</span>(<span style="color:#a6e22e">node</span>))
-      .<span style="color:#a6e22e">attr</span>(<span style="color:#e6db74">&#39;fill&#39;</span>, <span style="color:#a6e22e">node</span> <span style="color:#f92672">=&gt;</span> <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">color</span>(<span style="color:#a6e22e">node</span>.<span style="color:#a6e22e">familyType</span>));
+  <span style="color:#a90d91">this</span>.<span style="color:#000">simulation</span>.<span style="color:#000">nodes</span>(<span style="color:#a90d91">this</span>.<span style="color:#000">sensors</span>).<span style="color:#000">on</span>(<span style="color:#c41a16">&#39;tick&#39;</span>, () <span style="color:#000">=&gt;</span> {
+    <span style="color:#a90d91">this</span>.<span style="color:#000">nodeElements</span>
+      .<span style="color:#000">attr</span>(<span style="color:#c41a16">&#39;cx&#39;</span>, <span style="color:#000">node</span> <span style="color:#000">=&gt;</span> <span style="color:#a90d91">this</span>.<span style="color:#000">placeElementX</span>(<span style="color:#000">node</span>) )
+      .<span style="color:#000">attr</span>(<span style="color:#c41a16">&#39;cy&#39;</span>, <span style="color:#000">node</span> <span style="color:#000">=&gt;</span> <span style="color:#a90d91">this</span>.<span style="color:#000">placeElementY</span>(<span style="color:#000">node</span>))
+      .<span style="color:#000">attr</span>(<span style="color:#c41a16">&#39;fill&#39;</span>, <span style="color:#000">node</span> <span style="color:#000">=&gt;</span> <span style="color:#a90d91">this</span>.<span style="color:#000">color</span>(<span style="color:#000">node</span>.<span style="color:#000">familyType</span>));
 
-    <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">linkElements</span>
-      .<span style="color:#a6e22e">attr</span>(<span style="color:#e6db74">&#39;x1&#39;</span>, <span style="color:#a6e22e">node</span> <span style="color:#f92672">=&gt;</span> <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">placeElementX</span>(<span style="color:#a6e22e">node</span>.<span style="color:#a6e22e">source</span>))
-      .<span style="color:#a6e22e">attr</span>(<span style="color:#e6db74">&#39;y1&#39;</span>, <span style="color:#a6e22e">node</span> <span style="color:#f92672">=&gt;</span> <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">placeElementY</span>(<span style="color:#a6e22e">node</span>.<span style="color:#a6e22e">source</span>))
-      .<span style="color:#a6e22e">attr</span>(<span style="color:#e6db74">&#39;x2&#39;</span>, <span style="color:#a6e22e">node</span> <span style="color:#f92672">=&gt;</span> <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">placeElementX</span>(<span style="color:#a6e22e">node</span>.<span style="color:#a6e22e">target</span>))
-      .<span style="color:#a6e22e">attr</span>(<span style="color:#e6db74">&#39;y2&#39;</span>, <span style="color:#a6e22e">node</span> <span style="color:#f92672">=&gt;</span> <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">placeElementY</span>(<span style="color:#a6e22e">node</span>.<span style="color:#a6e22e">target</span>));
+    <span style="color:#a90d91">this</span>.<span style="color:#000">linkElements</span>
+      .<span style="color:#000">attr</span>(<span style="color:#c41a16">&#39;x1&#39;</span>, <span style="color:#000">node</span> <span style="color:#000">=&gt;</span> <span style="color:#a90d91">this</span>.<span style="color:#000">placeElementX</span>(<span style="color:#000">node</span>.<span style="color:#000">source</span>))
+      .<span style="color:#000">attr</span>(<span style="color:#c41a16">&#39;y1&#39;</span>, <span style="color:#000">node</span> <span style="color:#000">=&gt;</span> <span style="color:#a90d91">this</span>.<span style="color:#000">placeElementY</span>(<span style="color:#000">node</span>.<span style="color:#000">source</span>))
+      .<span style="color:#000">attr</span>(<span style="color:#c41a16">&#39;x2&#39;</span>, <span style="color:#000">node</span> <span style="color:#000">=&gt;</span> <span style="color:#a90d91">this</span>.<span style="color:#000">placeElementX</span>(<span style="color:#000">node</span>.<span style="color:#000">target</span>))
+      .<span style="color:#000">attr</span>(<span style="color:#c41a16">&#39;y2&#39;</span>, <span style="color:#000">node</span> <span style="color:#000">=&gt;</span> <span style="color:#a90d91">this</span>.<span style="color:#000">placeElementY</span>(<span style="color:#000">node</span>.<span style="color:#000">target</span>));
 
-    <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">textElements</span>
-      .<span style="color:#a6e22e">attr</span>(<span style="color:#e6db74">&#39;x&#39;</span>, <span style="color:#a6e22e">groups</span> <span style="color:#f92672">=&gt;</span> <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">placeElementX</span>(<span style="color:#a6e22e">groups</span>[<span style="color:#a6e22e">groups</span>.<span style="color:#a6e22e">length</span> <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>]))
-      .<span style="color:#a6e22e">attr</span>(<span style="color:#e6db74">&#39;y&#39;</span>, <span style="color:#a6e22e">groups</span> <span style="color:#f92672">=&gt;</span> <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">placeElementY</span>(<span style="color:#a6e22e">groups</span>[<span style="color:#a6e22e">groups</span>.<span style="color:#a6e22e">length</span> <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>]))
-      .<span style="color:#a6e22e">text</span>(<span style="color:#a6e22e">groups</span> <span style="color:#f92672">=&gt;</span> <span style="color:#a6e22e">groups</span>[<span style="color:#ae81ff">0</span>].<span style="color:#a6e22e">familyType</span>);
+    <span style="color:#a90d91">this</span>.<span style="color:#000">textElements</span>
+      .<span style="color:#000">attr</span>(<span style="color:#c41a16">&#39;x&#39;</span>, <span style="color:#000">groups</span> <span style="color:#000">=&gt;</span> <span style="color:#a90d91">this</span>.<span style="color:#000">placeElementX</span>(<span style="color:#000">groups</span>[<span style="color:#000">groups</span>.<span style="color:#000">length</span> <span style="color:#000">-</span> <span style="color:#1c01ce">1</span>]))
+      .<span style="color:#000">attr</span>(<span style="color:#c41a16">&#39;y&#39;</span>, <span style="color:#000">groups</span> <span style="color:#000">=&gt;</span> <span style="color:#a90d91">this</span>.<span style="color:#000">placeElementY</span>(<span style="color:#000">groups</span>[<span style="color:#000">groups</span>.<span style="color:#000">length</span> <span style="color:#000">-</span> <span style="color:#1c01ce">1</span>]))
+      .<span style="color:#000">text</span>(<span style="color:#000">groups</span> <span style="color:#000">=&gt;</span> <span style="color:#000">groups</span>[<span style="color:#1c01ce">0</span>].<span style="color:#000">familyType</span>);
   });
 
-  <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">simulation</span>.<span style="color:#a6e22e">force</span>(<span style="color:#e6db74">&#39;link&#39;</span>).<span style="color:#a6e22e">links</span>(<span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">links</span>);
+  <span style="color:#a90d91">this</span>.<span style="color:#000">simulation</span>.<span style="color:#000">force</span>(<span style="color:#c41a16">&#39;link&#39;</span>).<span style="color:#000">links</span>(<span style="color:#a90d91">this</span>.<span style="color:#000">links</span>);
 }</code></pre></div>
 <p>The simulation defines all sorts of physic parameters like how strongly the node are attracted or repulsed from each other, the minimum and maximum distance between nodes and so on.</p>
 
 <p>On tick, we define the new location of the node. To do this we are using <code>placeElementX</code> and <code>placeElementY</code> because we want to keep the node within our container.</p>
 
 <h3 id="render">Render</h3>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-typescript" data-lang="typescript"><span style="color:#a6e22e">render</span> <span style="color:#f92672">=</span> () <span style="color:#f92672">=&gt;</span> {
-  <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">links</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">createLinks</span>();
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-typescript" data-lang="typescript"><span style="color:#000">render</span> <span style="color:#000">=</span> () <span style="color:#000">=&gt;</span> {
+  <span style="color:#a90d91">this</span>.<span style="color:#000">links</span> <span style="color:#000">=</span> <span style="color:#a90d91">this</span>.<span style="color:#000">createLinks</span>();
 
-  <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">linkElements</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">linkGroup</span>.<span style="color:#a6e22e">selectAll</span>(<span style="color:#e6db74">&#39;line&#39;</span>)
-    .<span style="color:#a6e22e">data</span>(<span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">links</span>, <span style="color:#a6e22e">link</span> <span style="color:#f92672">=&gt;</span> <span style="color:#a6e22e">link</span>.<span style="color:#a6e22e">target</span>.<span style="color:#a6e22e">id</span> <span style="color:#f92672">+</span> <span style="color:#a6e22e">link</span>.<span style="color:#a6e22e">source</span>.<span style="color:#a6e22e">id</span>);
+  <span style="color:#a90d91">this</span>.<span style="color:#000">linkElements</span> <span style="color:#000">=</span> <span style="color:#a90d91">this</span>.<span style="color:#000">linkGroup</span>.<span style="color:#000">selectAll</span>(<span style="color:#c41a16">&#39;line&#39;</span>)
+    .<span style="color:#000">data</span>(<span style="color:#a90d91">this</span>.<span style="color:#000">links</span>, <span style="color:#000">link</span> <span style="color:#000">=&gt;</span> <span style="color:#000">link</span>.<span style="color:#000">target</span>.<span style="color:#000">id</span> <span style="color:#000">+</span> <span style="color:#000">link</span>.<span style="color:#000">source</span>.<span style="color:#000">id</span>);
 
-  <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">linkElements</span>.<span style="color:#a6e22e">exit</span>().<span style="color:#a6e22e">remove</span>();
+  <span style="color:#a90d91">this</span>.<span style="color:#000">linkElements</span>.<span style="color:#000">exit</span>().<span style="color:#000">remove</span>();
 
-  <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">linkEnter</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">linkElements</span>
-    .<span style="color:#a6e22e">enter</span>().<span style="color:#a6e22e">append</span>(<span style="color:#e6db74">&#39;line&#39;</span>)
-    .<span style="color:#a6e22e">attr</span>(<span style="color:#e6db74">&#39;stroke-width&#39;</span>, <span style="color:#ae81ff">1</span>)
-    .<span style="color:#a6e22e">attr</span>(<span style="color:#e6db74">&#39;stroke&#39;</span>, <span style="color:#e6db74">&#39;#d2d7d3&#39;</span>);
+  <span style="color:#a90d91">const</span> <span style="color:#000">linkEnter</span> <span style="color:#000">=</span> <span style="color:#a90d91">this</span>.<span style="color:#000">linkElements</span>
+    .<span style="color:#000">enter</span>().<span style="color:#000">append</span>(<span style="color:#c41a16">&#39;line&#39;</span>)
+    .<span style="color:#000">attr</span>(<span style="color:#c41a16">&#39;stroke-width&#39;</span>, <span style="color:#1c01ce">1</span>)
+    .<span style="color:#000">attr</span>(<span style="color:#c41a16">&#39;stroke&#39;</span>, <span style="color:#c41a16">&#39;#d2d7d3&#39;</span>);
 
-  <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">linkElements</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">linkEnter</span>.<span style="color:#a6e22e">merge</span>(<span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">linkElements</span>);
+  <span style="color:#a90d91">this</span>.<span style="color:#000">linkElements</span> <span style="color:#000">=</span> <span style="color:#000">linkEnter</span>.<span style="color:#000">merge</span>(<span style="color:#a90d91">this</span>.<span style="color:#000">linkElements</span>);
 
-	<span style="color:#75715e">// nodes
-</span><span style="color:#75715e"></span>  <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">nodeElements</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">nodeGroup</span>.<span style="color:#a6e22e">selectAll</span>(<span style="color:#e6db74">&#39;circle&#39;</span>)
-    .<span style="color:#a6e22e">data</span>(<span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">sensors</span>, <span style="color:#a6e22e">node</span> <span style="color:#f92672">=&gt;</span> <span style="color:#a6e22e">node</span>.<span style="color:#a6e22e">id</span>);
+	<span style="color:#177500">// nodes
+</span><span style="color:#177500"></span>  <span style="color:#a90d91">this</span>.<span style="color:#000">nodeElements</span> <span style="color:#000">=</span> <span style="color:#a90d91">this</span>.<span style="color:#000">nodeGroup</span>.<span style="color:#000">selectAll</span>(<span style="color:#c41a16">&#39;circle&#39;</span>)
+    .<span style="color:#000">data</span>(<span style="color:#a90d91">this</span>.<span style="color:#000">sensors</span>, <span style="color:#000">node</span> <span style="color:#000">=&gt;</span> <span style="color:#000">node</span>.<span style="color:#000">id</span>);
 
-  <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">nodeElements</span>.<span style="color:#a6e22e">exit</span>().<span style="color:#a6e22e">remove</span>();
+  <span style="color:#a90d91">this</span>.<span style="color:#000">nodeElements</span>.<span style="color:#000">exit</span>().<span style="color:#000">remove</span>();
 
-  <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">nodeEnter</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">nodeElements</span>
-    .<span style="color:#a6e22e">enter</span>()
-    .<span style="color:#a6e22e">append</span>(<span style="color:#e6db74">&#39;circle&#39;</span>)
-    .<span style="color:#a6e22e">attr</span>(<span style="color:#e6db74">&#39;r&#39;</span>, <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">smallCircleRadius</span>)
-    .<span style="color:#a6e22e">attr</span>(<span style="color:#e6db74">&#39;fill&#39;</span>, <span style="color:#a6e22e">node</span> <span style="color:#f92672">=&gt;</span> <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">color</span>(<span style="color:#a6e22e">node</span>.<span style="color:#a6e22e">familyType</span>))
-    .<span style="color:#a6e22e">on</span>(<span style="color:#e6db74">&#39;mouseover&#39;</span>, <span style="color:#a6e22e">node</span> <span style="color:#f92672">=&gt;</span> <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">mouseover</span>(<span style="color:#a6e22e">node</span>))
-    .<span style="color:#a6e22e">on</span>(<span style="color:#e6db74">&#39;mouseout&#39;</span>, <span style="color:#a6e22e">node</span> <span style="color:#f92672">=&gt;</span> <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">mouseout</span>())
-    .<span style="color:#a6e22e">call</span>(<span style="color:#a6e22e">d3</span>.<span style="color:#a6e22e">drag</span>()
-      .<span style="color:#a6e22e">on</span>(<span style="color:#e6db74">&#39;start&#39;</span>, <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">dragstarted</span>)
-      .<span style="color:#a6e22e">on</span>(<span style="color:#e6db74">&#39;drag&#39;</span>, <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">dragged</span>)
-      .<span style="color:#a6e22e">on</span>(<span style="color:#e6db74">&#39;end&#39;</span>, <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">dragended</span>));
+  <span style="color:#a90d91">const</span> <span style="color:#000">nodeEnter</span> <span style="color:#000">=</span> <span style="color:#a90d91">this</span>.<span style="color:#000">nodeElements</span>
+    .<span style="color:#000">enter</span>()
+    .<span style="color:#000">append</span>(<span style="color:#c41a16">&#39;circle&#39;</span>)
+    .<span style="color:#000">attr</span>(<span style="color:#c41a16">&#39;r&#39;</span>, <span style="color:#a90d91">this</span>.<span style="color:#000">smallCircleRadius</span>)
+    .<span style="color:#000">attr</span>(<span style="color:#c41a16">&#39;fill&#39;</span>, <span style="color:#000">node</span> <span style="color:#000">=&gt;</span> <span style="color:#a90d91">this</span>.<span style="color:#000">color</span>(<span style="color:#000">node</span>.<span style="color:#000">familyType</span>))
+    .<span style="color:#000">on</span>(<span style="color:#c41a16">&#39;mouseover&#39;</span>, <span style="color:#000">node</span> <span style="color:#000">=&gt;</span> <span style="color:#a90d91">this</span>.<span style="color:#000">mouseover</span>(<span style="color:#000">node</span>))
+    .<span style="color:#000">on</span>(<span style="color:#c41a16">&#39;mouseout&#39;</span>, <span style="color:#000">node</span> <span style="color:#000">=&gt;</span> <span style="color:#a90d91">this</span>.<span style="color:#000">mouseout</span>())
+    .<span style="color:#000">call</span>(<span style="color:#000">d3</span>.<span style="color:#000">drag</span>()
+      .<span style="color:#000">on</span>(<span style="color:#c41a16">&#39;start&#39;</span>, <span style="color:#a90d91">this</span>.<span style="color:#000">dragstarted</span>)
+      .<span style="color:#000">on</span>(<span style="color:#c41a16">&#39;drag&#39;</span>, <span style="color:#a90d91">this</span>.<span style="color:#000">dragged</span>)
+      .<span style="color:#000">on</span>(<span style="color:#c41a16">&#39;end&#39;</span>, <span style="color:#a90d91">this</span>.<span style="color:#000">dragended</span>));
 
-  <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">nodeElements</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">nodeEnter</span>.<span style="color:#a6e22e">merge</span>(<span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">nodeElements</span>);
+  <span style="color:#a90d91">this</span>.<span style="color:#000">nodeElements</span> <span style="color:#000">=</span> <span style="color:#000">nodeEnter</span>.<span style="color:#000">merge</span>(<span style="color:#a90d91">this</span>.<span style="color:#000">nodeElements</span>);
 
-  <span style="color:#75715e">// text labels
-</span><span style="color:#75715e"></span>  <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">groups</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">_</span>.<span style="color:#a6e22e">toArray</span>(<span style="color:#a6e22e">_</span>.<span style="color:#a6e22e">groupBy</span>(<span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">sensors</span>.<span style="color:#a6e22e">slice</span>(), <span style="color:#e6db74">&#39;familyType&#39;</span>));
+  <span style="color:#177500">// text labels
+</span><span style="color:#177500"></span>  <span style="color:#a90d91">const</span> <span style="color:#000">groups</span> <span style="color:#000">=</span> <span style="color:#000">_</span>.<span style="color:#000">toArray</span>(<span style="color:#000">_</span>.<span style="color:#000">groupBy</span>(<span style="color:#a90d91">this</span>.<span style="color:#000">sensors</span>.<span style="color:#000">slice</span>(), <span style="color:#c41a16">&#39;familyType&#39;</span>));
 
-  <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">textElements</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">textGroup</span>.<span style="color:#a6e22e">selectAll</span>(<span style="color:#e6db74">&#39;text&#39;</span>)
-    .<span style="color:#a6e22e">data</span>(<span style="color:#a6e22e">groups</span>, <span style="color:#a6e22e">group</span> <span style="color:#f92672">=&gt;</span> <span style="color:#a6e22e">group</span>);
+  <span style="color:#a90d91">this</span>.<span style="color:#000">textElements</span> <span style="color:#000">=</span> <span style="color:#a90d91">this</span>.<span style="color:#000">textGroup</span>.<span style="color:#000">selectAll</span>(<span style="color:#c41a16">&#39;text&#39;</span>)
+    .<span style="color:#000">data</span>(<span style="color:#000">groups</span>, <span style="color:#000">group</span> <span style="color:#000">=&gt;</span> <span style="color:#000">group</span>);
 
-  <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">textElements</span>.<span style="color:#a6e22e">exit</span>().<span style="color:#a6e22e">remove</span>();
+  <span style="color:#a90d91">this</span>.<span style="color:#000">textElements</span>.<span style="color:#000">exit</span>().<span style="color:#000">remove</span>();
 
-  <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">textEnter</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">textElements</span>
-    .<span style="color:#a6e22e">enter</span>()
-    .<span style="color:#a6e22e">append</span>(<span style="color:#e6db74">&#39;text&#39;</span>)
-    .<span style="color:#a6e22e">attr</span>(<span style="color:#e6db74">&#39;dx&#39;</span>, <span style="color:#ae81ff">15</span>)
-    .<span style="color:#a6e22e">attr</span>(<span style="color:#e6db74">&#39;dy&#39;</span>, <span style="color:#ae81ff">4</span>)
-    .<span style="color:#a6e22e">attr</span>(<span style="color:#e6db74">&#39;pointer-events&#39;</span>, <span style="color:#e6db74">&#39;none&#39;</span>)
-    .<span style="color:#a6e22e">attr</span>(<span style="color:#e6db74">&#39;font-size&#39;</span>, <span style="color:#ae81ff">14</span>)
-    .<span style="color:#a6e22e">attr</span>(<span style="color:#e6db74">&#39;text-anchor&#39;</span>, <span style="color:#e6db74">&#39;start&#39;</span>)
-    .<span style="color:#a6e22e">attr</span>(<span style="color:#e6db74">&#39;fill&#39;</span>, <span style="color:#a6e22e">group</span> <span style="color:#f92672">=&gt;</span> <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">color</span>(<span style="color:#a6e22e">group</span>[<span style="color:#ae81ff">0</span>].<span style="color:#a6e22e">familyType</span>));
+  <span style="color:#a90d91">const</span> <span style="color:#000">textEnter</span> <span style="color:#000">=</span> <span style="color:#a90d91">this</span>.<span style="color:#000">textElements</span>
+    .<span style="color:#000">enter</span>()
+    .<span style="color:#000">append</span>(<span style="color:#c41a16">&#39;text&#39;</span>)
+    .<span style="color:#000">attr</span>(<span style="color:#c41a16">&#39;dx&#39;</span>, <span style="color:#1c01ce">15</span>)
+    .<span style="color:#000">attr</span>(<span style="color:#c41a16">&#39;dy&#39;</span>, <span style="color:#1c01ce">4</span>)
+    .<span style="color:#000">attr</span>(<span style="color:#c41a16">&#39;pointer-events&#39;</span>, <span style="color:#c41a16">&#39;none&#39;</span>)
+    .<span style="color:#000">attr</span>(<span style="color:#c41a16">&#39;font-size&#39;</span>, <span style="color:#1c01ce">14</span>)
+    .<span style="color:#000">attr</span>(<span style="color:#c41a16">&#39;text-anchor&#39;</span>, <span style="color:#c41a16">&#39;start&#39;</span>)
+    .<span style="color:#000">attr</span>(<span style="color:#c41a16">&#39;fill&#39;</span>, <span style="color:#000">group</span> <span style="color:#000">=&gt;</span> <span style="color:#a90d91">this</span>.<span style="color:#000">color</span>(<span style="color:#000">group</span>[<span style="color:#1c01ce">0</span>].<span style="color:#000">familyType</span>));
 
-  <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">textElements</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">textEnter</span>.<span style="color:#a6e22e">merge</span>(<span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">textElements</span>);
+  <span style="color:#a90d91">this</span>.<span style="color:#000">textElements</span> <span style="color:#000">=</span> <span style="color:#000">textEnter</span>.<span style="color:#000">merge</span>(<span style="color:#a90d91">this</span>.<span style="color:#000">textElements</span>);
 }</code></pre></div>
 <p>Here we crunch the data and define the enter, update and exit behaviour for the nodes, the labels and the links.</p>
 
 <h3 id="other-methods">Other methods</h3>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-typescript" data-lang="typescript"><span style="color:#a6e22e">createLinks</span> <span style="color:#f92672">=</span> () <span style="color:#f92672">=&gt;</span> {
-  <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">groups</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">_</span>.<span style="color:#a6e22e">groupBy</span>(<span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">sensors</span>.<span style="color:#a6e22e">slice</span>(), <span style="color:#e6db74">&#39;familyType&#39;</span>);
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-typescript" data-lang="typescript"><span style="color:#000">createLinks</span> <span style="color:#000">=</span> () <span style="color:#000">=&gt;</span> {
+  <span style="color:#a90d91">const</span> <span style="color:#000">groups</span> <span style="color:#000">=</span> <span style="color:#000">_</span>.<span style="color:#000">groupBy</span>(<span style="color:#a90d91">this</span>.<span style="color:#000">sensors</span>.<span style="color:#000">slice</span>(), <span style="color:#c41a16">&#39;familyType&#39;</span>);
 
-  <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">computedLinks</span> <span style="color:#f92672">=</span> [];
-  Object.<span style="color:#a6e22e">keys</span>(<span style="color:#a6e22e">groups</span>).<span style="color:#a6e22e">map</span>((<span style="color:#a6e22e">key</span>, <span style="color:#a6e22e">i</span>) <span style="color:#f92672">=&gt;</span> {
-    <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">familyTypeSensors</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">groups</span>[<span style="color:#a6e22e">key</span>].<span style="color:#a6e22e">sort</span>();
-    <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">let</span> <span style="color:#a6e22e">j</span> <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; <span style="color:#a6e22e">j</span> <span style="color:#f92672">&lt;</span> <span style="color:#a6e22e">familyTypeSensors</span>.<span style="color:#a6e22e">length</span>; <span style="color:#a6e22e">j</span><span style="color:#f92672">++</span>) {
-      <span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">j</span> <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">0</span>) <span style="color:#a6e22e">computedLinks</span>.<span style="color:#a6e22e">push</span>({
-        <span style="color:#a6e22e">source</span>: <span style="color:#66d9ef">familyTypeSensors</span>[<span style="color:#a6e22e">j</span>],
-        <span style="color:#a6e22e">target</span>: <span style="color:#66d9ef">familyTypeSensors</span>[<span style="color:#a6e22e">j</span> <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>]
+  <span style="color:#a90d91">const</span> <span style="color:#000">computedLinks</span> <span style="color:#000">=</span> [];
+  <span style="color:#a90d91">Object</span>.<span style="color:#000">keys</span>(<span style="color:#000">groups</span>).<span style="color:#000">map</span>((<span style="color:#000">key</span>, <span style="color:#000">i</span>) <span style="color:#000">=&gt;</span> {
+    <span style="color:#a90d91">const</span> <span style="color:#000">familyTypeSensors</span> <span style="color:#000">=</span> <span style="color:#000">groups</span>[<span style="color:#000">key</span>].<span style="color:#000">sort</span>();
+    <span style="color:#a90d91">for</span> (<span style="color:#a90d91">let</span> <span style="color:#000">j</span> <span style="color:#000">=</span> <span style="color:#1c01ce">0</span>; <span style="color:#000">j</span> <span style="color:#000">&lt;</span> <span style="color:#000">familyTypeSensors</span>.<span style="color:#000">length</span>; <span style="color:#000">j</span><span style="color:#000">++</span>) {
+      <span style="color:#a90d91">if</span> (<span style="color:#000">j</span> <span style="color:#000">&gt;</span> <span style="color:#1c01ce">0</span>) <span style="color:#000">computedLinks</span>.<span style="color:#000">push</span>({
+        <span style="color:#000">source</span>: <span style="color:#a90d91">familyTypeSensors</span>[<span style="color:#000">j</span>],
+        <span style="color:#000">target</span>: <span style="color:#a90d91">familyTypeSensors</span>[<span style="color:#000">j</span> <span style="color:#000">-</span> <span style="color:#1c01ce">1</span>]
       });
     }
   });
 
-  <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">computedLinks</span>;
+  <span style="color:#a90d91">return</span> <span style="color:#000">computedLinks</span>;
 }
 
-<span style="color:#a6e22e">dragstarted</span> <span style="color:#f92672">=</span> (<span style="color:#a6e22e">d</span>) <span style="color:#f92672">=&gt;</span> {
-  <span style="color:#66d9ef">if</span> (<span style="color:#f92672">!</span><span style="color:#a6e22e">d3</span>.<span style="color:#a6e22e">event</span>.<span style="color:#a6e22e">active</span>) <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">simulation</span>.<span style="color:#a6e22e">alphaTarget</span>(<span style="color:#ae81ff">0.3</span>).<span style="color:#a6e22e">restart</span>();
-  <span style="color:#a6e22e">d</span>.<span style="color:#a6e22e">fx</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">d</span>.<span style="color:#a6e22e">x</span>;
-  <span style="color:#a6e22e">d</span>.<span style="color:#a6e22e">fy</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">d</span>.<span style="color:#a6e22e">y</span>;
+<span style="color:#000">dragstarted</span> <span style="color:#000">=</span> (<span style="color:#000">d</span>) <span style="color:#000">=&gt;</span> {
+  <span style="color:#a90d91">if</span> (<span style="color:#000">!</span><span style="color:#000">d3</span>.<span style="color:#000">event</span>.<span style="color:#000">active</span>) <span style="color:#a90d91">this</span>.<span style="color:#000">simulation</span>.<span style="color:#000">alphaTarget</span>(<span style="color:#1c01ce">0.3</span>).<span style="color:#000">restart</span>();
+  <span style="color:#000">d</span>.<span style="color:#000">fx</span> <span style="color:#000">=</span> <span style="color:#000">d</span>.<span style="color:#000">x</span>;
+  <span style="color:#000">d</span>.<span style="color:#000">fy</span> <span style="color:#000">=</span> <span style="color:#000">d</span>.<span style="color:#000">y</span>;
 }
 
-<span style="color:#a6e22e">dragged</span> <span style="color:#f92672">=</span> (<span style="color:#a6e22e">d</span>) <span style="color:#f92672">=&gt;</span> {
-  <span style="color:#a6e22e">d</span>.<span style="color:#a6e22e">fx</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">d3</span>.<span style="color:#a6e22e">event</span>.<span style="color:#a6e22e">x</span>;
-  <span style="color:#a6e22e">d</span>.<span style="color:#a6e22e">fy</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">d3</span>.<span style="color:#a6e22e">event</span>.<span style="color:#a6e22e">y</span>;
+<span style="color:#000">dragged</span> <span style="color:#000">=</span> (<span style="color:#000">d</span>) <span style="color:#000">=&gt;</span> {
+  <span style="color:#000">d</span>.<span style="color:#000">fx</span> <span style="color:#000">=</span> <span style="color:#000">d3</span>.<span style="color:#000">event</span>.<span style="color:#000">x</span>;
+  <span style="color:#000">d</span>.<span style="color:#000">fy</span> <span style="color:#000">=</span> <span style="color:#000">d3</span>.<span style="color:#000">event</span>.<span style="color:#000">y</span>;
 }
 
-<span style="color:#a6e22e">dragended</span> <span style="color:#f92672">=</span> (<span style="color:#a6e22e">d</span>) <span style="color:#f92672">=&gt;</span> {
-  <span style="color:#66d9ef">if</span> (<span style="color:#f92672">!</span><span style="color:#a6e22e">d3</span>.<span style="color:#a6e22e">event</span>.<span style="color:#a6e22e">active</span>) <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">simulation</span>.<span style="color:#a6e22e">alphaTarget</span>(<span style="color:#ae81ff">0</span>);
-  <span style="color:#a6e22e">d</span>.<span style="color:#a6e22e">fx</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">null</span>;
-  <span style="color:#a6e22e">d</span>.<span style="color:#a6e22e">fy</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">null</span>;
+<span style="color:#000">dragended</span> <span style="color:#000">=</span> (<span style="color:#000">d</span>) <span style="color:#000">=&gt;</span> {
+  <span style="color:#a90d91">if</span> (<span style="color:#000">!</span><span style="color:#000">d3</span>.<span style="color:#000">event</span>.<span style="color:#000">active</span>) <span style="color:#a90d91">this</span>.<span style="color:#000">simulation</span>.<span style="color:#000">alphaTarget</span>(<span style="color:#1c01ce">0</span>);
+  <span style="color:#000">d</span>.<span style="color:#000">fx</span> <span style="color:#000">=</span> <span style="color:#a90d91">null</span>;
+  <span style="color:#000">d</span>.<span style="color:#000">fy</span> <span style="color:#000">=</span> <span style="color:#a90d91">null</span>;
 }
 
-<span style="color:#a6e22e">mouseover</span> <span style="color:#f92672">=</span> (<span style="color:#a6e22e">node</span>) <span style="color:#f92672">=&gt;</span> {
-  <span style="color:#75715e">// placement
-</span><span style="color:#75715e"></span>  <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">tooltip</span>.<span style="color:#a6e22e">style</span>.<span style="color:#a6e22e">visibility</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;visible&#39;</span>;
-  <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">tooltip</span>.<span style="color:#a6e22e">style</span>.<span style="color:#a6e22e">opacity</span> <span style="color:#f92672">=</span> <span style="color:#ae81ff">0.9</span>;
-  <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">tooltip</span>.<span style="color:#a6e22e">style</span>.<span style="color:#a6e22e">top</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">d3</span>.<span style="color:#a6e22e">event</span>.<span style="color:#a6e22e">pageY</span> <span style="color:#f92672">+</span> <span style="color:#e6db74">&#39;px&#39;</span>;
-  <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">tooltip</span>.<span style="color:#a6e22e">style</span>.<span style="color:#a6e22e">left</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">d3</span>.<span style="color:#a6e22e">event</span>.<span style="color:#a6e22e">pageX</span> <span style="color:#f92672">+</span> <span style="color:#e6db74">&#39;px&#39;</span>;
+<span style="color:#000">mouseover</span> <span style="color:#000">=</span> (<span style="color:#000">node</span>) <span style="color:#000">=&gt;</span> {
+  <span style="color:#177500">// placement
+</span><span style="color:#177500"></span>  <span style="color:#a90d91">this</span>.<span style="color:#000">tooltip</span>.<span style="color:#000">style</span>.<span style="color:#000">visibility</span> <span style="color:#000">=</span> <span style="color:#c41a16">&#39;visible&#39;</span>;
+  <span style="color:#a90d91">this</span>.<span style="color:#000">tooltip</span>.<span style="color:#000">style</span>.<span style="color:#000">opacity</span> <span style="color:#000">=</span> <span style="color:#1c01ce">0.9</span>;
+  <span style="color:#a90d91">this</span>.<span style="color:#000">tooltip</span>.<span style="color:#000">style</span>.<span style="color:#000">top</span> <span style="color:#000">=</span> <span style="color:#000">d3</span>.<span style="color:#000">event</span>.<span style="color:#000">pageY</span> <span style="color:#000">+</span> <span style="color:#c41a16">&#39;px&#39;</span>;
+  <span style="color:#a90d91">this</span>.<span style="color:#000">tooltip</span>.<span style="color:#000">style</span>.<span style="color:#000">left</span> <span style="color:#000">=</span> <span style="color:#000">d3</span>.<span style="color:#000">event</span>.<span style="color:#000">pageX</span> <span style="color:#000">+</span> <span style="color:#c41a16">&#39;px&#39;</span>;
 
-  <span style="color:#75715e">// Values
-</span><span style="color:#75715e"></span>  <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">node</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">node</span>;
-  <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">status</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">findStatus</span>(<span style="color:#a6e22e">node</span>);
+  <span style="color:#177500">// Values
+</span><span style="color:#177500"></span>  <span style="color:#a90d91">this</span>.<span style="color:#000">node</span> <span style="color:#000">=</span> <span style="color:#000">node</span>;
+  <span style="color:#a90d91">this</span>.<span style="color:#000">status</span> <span style="color:#000">=</span> <span style="color:#a90d91">this</span>.<span style="color:#000">findStatus</span>(<span style="color:#000">node</span>);
 }
 
-<span style="color:#a6e22e">findStatus</span> <span style="color:#f92672">=</span> (<span style="color:#a6e22e">node</span>)<span style="color:#f92672">:</span> <span style="color:#66d9ef">string</span> <span style="color:#f92672">=&gt;</span> {
-  <span style="color:#66d9ef">let</span> <span style="color:#a6e22e">status</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;&#39;</span>;
-  <span style="color:#66d9ef">if</span> (<span style="color:#f92672">!</span><span style="color:#a6e22e">node</span>.<span style="color:#a6e22e">activated</span>) <span style="color:#a6e22e">status</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;Not activated&#39;</span>;
-  <span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">node</span>.<span style="color:#a6e22e">activated</span> <span style="color:#f92672">&amp;&amp;</span> <span style="color:#a6e22e">node</span>.<span style="color:#a6e22e">online</span>)  <span style="color:#a6e22e">status</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;Online&#39;</span>;
-  <span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">node</span>.<span style="color:#a6e22e">activated</span> <span style="color:#f92672">&amp;&amp;</span> <span style="color:#f92672">!</span><span style="color:#a6e22e">node</span>.<span style="color:#a6e22e">online</span>) <span style="color:#a6e22e">status</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;Offline&#39;</span>;
-  <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">status</span>;
+<span style="color:#000">findStatus</span> <span style="color:#000">=</span> (<span style="color:#000">node</span>)<span style="color:#000">:</span> <span style="color:#a90d91">string</span> <span style="color:#000">=&gt;</span> {
+  <span style="color:#a90d91">let</span> <span style="color:#000">status</span> <span style="color:#000">=</span> <span style="color:#c41a16">&#39;&#39;</span>;
+  <span style="color:#a90d91">if</span> (<span style="color:#000">!</span><span style="color:#000">node</span>.<span style="color:#000">activated</span>) <span style="color:#000">status</span> <span style="color:#000">=</span> <span style="color:#c41a16">&#39;Not activated&#39;</span>;
+  <span style="color:#a90d91">if</span> (<span style="color:#000">node</span>.<span style="color:#000">activated</span> <span style="color:#000">&amp;&amp;</span> <span style="color:#000">node</span>.<span style="color:#000">online</span>)  <span style="color:#000">status</span> <span style="color:#000">=</span> <span style="color:#c41a16">&#39;Online&#39;</span>;
+  <span style="color:#a90d91">if</span> (<span style="color:#000">node</span>.<span style="color:#000">activated</span> <span style="color:#000">&amp;&amp;</span> <span style="color:#000">!</span><span style="color:#000">node</span>.<span style="color:#000">online</span>) <span style="color:#000">status</span> <span style="color:#000">=</span> <span style="color:#c41a16">&#39;Offline&#39;</span>;
+  <span style="color:#a90d91">return</span> <span style="color:#000">status</span>;
 }
 
-<span style="color:#a6e22e">mouseout</span> <span style="color:#f92672">=</span> () <span style="color:#f92672">=&gt;</span> {
-  <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">tooltip</span>.<span style="color:#a6e22e">style</span>.<span style="color:#a6e22e">visibility</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;hidden&#39;</span>;
-  <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">tooltip</span>.<span style="color:#a6e22e">style</span>.<span style="color:#a6e22e">opacity</span> <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+<span style="color:#000">mouseout</span> <span style="color:#000">=</span> () <span style="color:#000">=&gt;</span> {
+  <span style="color:#a90d91">this</span>.<span style="color:#000">tooltip</span>.<span style="color:#000">style</span>.<span style="color:#000">visibility</span> <span style="color:#000">=</span> <span style="color:#c41a16">&#39;hidden&#39;</span>;
+  <span style="color:#a90d91">this</span>.<span style="color:#000">tooltip</span>.<span style="color:#000">style</span>.<span style="color:#000">opacity</span> <span style="color:#000">=</span> <span style="color:#1c01ce">0</span>;
 }
 
-<span style="color:#a6e22e">placeElementY</span> <span style="color:#f92672">=</span> (<span style="color:#a6e22e">node</span>)<span style="color:#f92672">:</span> <span style="color:#66d9ef">number</span> <span style="color:#f92672">=&gt;</span> {
-  <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">radius</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">smallCircleRadius</span>;
+<span style="color:#000">placeElementY</span> <span style="color:#000">=</span> (<span style="color:#000">node</span>)<span style="color:#000">:</span> <span style="color:#a90d91">number</span> <span style="color:#000">=&gt;</span> {
+  <span style="color:#a90d91">const</span> <span style="color:#000">radius</span> <span style="color:#000">=</span> <span style="color:#a90d91">this</span>.<span style="color:#000">smallCircleRadius</span>;
 
-  <span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">node</span>.<span style="color:#a6e22e">y</span> <span style="color:#f92672">&lt;</span> <span style="color:#a6e22e">radius</span>) <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">radius</span>;
-  <span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">node</span>.<span style="color:#a6e22e">y</span> <span style="color:#f92672">&gt;</span> <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">height</span> <span style="color:#f92672">-</span> <span style="color:#a6e22e">radius</span>) <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">height</span> <span style="color:#f92672">-</span> <span style="color:#a6e22e">radius</span>;
-  <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">node</span>.<span style="color:#a6e22e">y</span>;
+  <span style="color:#a90d91">if</span> (<span style="color:#000">node</span>.<span style="color:#000">y</span> <span style="color:#000">&lt;</span> <span style="color:#000">radius</span>) <span style="color:#a90d91">return</span> <span style="color:#000">radius</span>;
+  <span style="color:#a90d91">if</span> (<span style="color:#000">node</span>.<span style="color:#000">y</span> <span style="color:#000">&gt;</span> <span style="color:#a90d91">this</span>.<span style="color:#000">height</span> <span style="color:#000">-</span> <span style="color:#000">radius</span>) <span style="color:#a90d91">return</span> <span style="color:#a90d91">this</span>.<span style="color:#000">height</span> <span style="color:#000">-</span> <span style="color:#000">radius</span>;
+  <span style="color:#a90d91">return</span> <span style="color:#000">node</span>.<span style="color:#000">y</span>;
 }
 
-<span style="color:#a6e22e">placeElementX</span> <span style="color:#f92672">=</span> (<span style="color:#a6e22e">node</span>)<span style="color:#f92672">:</span> <span style="color:#66d9ef">number</span> <span style="color:#f92672">=&gt;</span> {
-  <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">radius</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">smallCircleRadius</span>;
+<span style="color:#000">placeElementX</span> <span style="color:#000">=</span> (<span style="color:#000">node</span>)<span style="color:#000">:</span> <span style="color:#a90d91">number</span> <span style="color:#000">=&gt;</span> {
+  <span style="color:#a90d91">const</span> <span style="color:#000">radius</span> <span style="color:#000">=</span> <span style="color:#a90d91">this</span>.<span style="color:#000">smallCircleRadius</span>;
 
-  <span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">node</span>.<span style="color:#a6e22e">x</span> <span style="color:#f92672">&lt;</span> <span style="color:#a6e22e">radius</span>) <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">radius</span>;
-  <span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">node</span>.<span style="color:#a6e22e">x</span> <span style="color:#f92672">&gt;</span> <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">width</span> <span style="color:#f92672">-</span> <span style="color:#a6e22e">radius</span>) <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">width</span> <span style="color:#f92672">-</span> <span style="color:#a6e22e">radius</span>;
-  <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">node</span>.<span style="color:#a6e22e">x</span>;
+  <span style="color:#a90d91">if</span> (<span style="color:#000">node</span>.<span style="color:#000">x</span> <span style="color:#000">&lt;</span> <span style="color:#000">radius</span>) <span style="color:#a90d91">return</span> <span style="color:#000">radius</span>;
+  <span style="color:#a90d91">if</span> (<span style="color:#000">node</span>.<span style="color:#000">x</span> <span style="color:#000">&gt;</span> <span style="color:#a90d91">this</span>.<span style="color:#000">width</span> <span style="color:#000">-</span> <span style="color:#000">radius</span>) <span style="color:#a90d91">return</span> <span style="color:#a90d91">this</span>.<span style="color:#000">width</span> <span style="color:#000">-</span> <span style="color:#000">radius</span>;
+  <span style="color:#a90d91">return</span> <span style="color:#000">node</span>.<span style="color:#000">x</span>;
 }</code></pre></div>
 <h3 id="data-service">Data service</h3>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-typescript" data-lang="typescript"><span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">Injectable</span>, <span style="color:#a6e22e">OnInit</span> } <span style="color:#a6e22e">from</span> <span style="color:#e6db74">&#39;@angular/core&#39;</span>;
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-typescript" data-lang="typescript"><span style="color:#a90d91">import</span> { <span style="color:#000">Injectable</span>, <span style="color:#000">OnInit</span> } <span style="color:#000">from</span> <span style="color:#c41a16">&#39;@angular/core&#39;</span>;
 
-<span style="color:#66d9ef">@Injectable</span>()
-<span style="color:#66d9ef">export</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">ForceDirectedDataService</span> {
-  <span style="color:#a6e22e">sensors</span> <span style="color:#f92672">=</span> [];
-  <span style="color:#a6e22e">families</span> <span style="color:#f92672">=</span> [<span style="color:#e6db74">&#39;Temperature&#39;</span>, <span style="color:#e6db74">&#39;Luminosity&#39;</span>, <span style="color:#e6db74">&#39;Noise&#39;</span>, <span style="color:#e6db74">&#39;Humidity&#39;</span>, <span style="color:#e6db74">&#39;Dust&#39;</span>];
-  <span style="color:#a6e22e">maxSensors</span> <span style="color:#f92672">=</span> <span style="color:#ae81ff">30</span>;
+<span style="color:#a90d91">@Injectable</span>()
+<span style="color:#a90d91">export</span> <span style="color:#a90d91">class</span> <span style="color:#000">ForceDirectedDataService</span> {
+  <span style="color:#000">sensors</span> <span style="color:#000">=</span> [];
+  <span style="color:#000">families</span> <span style="color:#000">=</span> [<span style="color:#c41a16">&#39;Temperature&#39;</span>, <span style="color:#c41a16">&#39;Luminosity&#39;</span>, <span style="color:#c41a16">&#39;Noise&#39;</span>, <span style="color:#c41a16">&#39;Humidity&#39;</span>, <span style="color:#c41a16">&#39;Dust&#39;</span>];
+  <span style="color:#000">maxSensors</span> <span style="color:#000">=</span> <span style="color:#1c01ce">30</span>;
 
-  <span style="color:#a6e22e">createSensors</span> <span style="color:#f92672">=</span> (<span style="color:#a6e22e">num</span>: <span style="color:#66d9ef">number</span>) <span style="color:#f92672">=&gt;</span> {
-    <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">max</span> <span style="color:#f92672">=</span> Math.<span style="color:#a6e22e">floor</span>(Math.<span style="color:#a6e22e">random</span>() <span style="color:#f92672">*</span> <span style="color:#a6e22e">num</span>);
-    <span style="color:#75715e">// create sensors
-</span><span style="color:#75715e"></span>    <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">results</span> <span style="color:#f92672">=</span> [];
-    <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">let</span> <span style="color:#a6e22e">i</span> <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; <span style="color:#a6e22e">i</span> <span style="color:#f92672">&lt;</span> <span style="color:#a6e22e">max</span>; <span style="color:#a6e22e">i</span><span style="color:#f92672">++</span>) {
-      <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">result</span> <span style="color:#f92672">=</span> {
-        <span style="color:#a6e22e">id</span>: <span style="color:#66d9ef">i</span>,
-        <span style="color:#a6e22e">familyType</span>: <span style="color:#66d9ef">this.families</span>[Math.<span style="color:#a6e22e">floor</span>(Math.<span style="color:#a6e22e">random</span>() <span style="color:#f92672">*</span> <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">families</span>.<span style="color:#a6e22e">length</span>)],
-        <span style="color:#a6e22e">address</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;192.168.0.1&#39;</span>,
-        <span style="color:#a6e22e">name</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;MAN1-PMC-Temperature-Sensor-01&#39;</span>,
-        <span style="color:#a6e22e">vendor</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;Veris&#39;</span>,
-        <span style="color:#a6e22e">model</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;TED00&#39;</span>,
-        <span style="color:#a6e22e">protocol</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;3-Wire&#39;</span>
+  <span style="color:#000">createSensors</span> <span style="color:#000">=</span> (<span style="color:#000">num</span>: <span style="color:#a90d91">number</span>) <span style="color:#000">=&gt;</span> {
+    <span style="color:#a90d91">const</span> <span style="color:#000">max</span> <span style="color:#000">=</span> <span style="color:#a90d91">Math</span>.<span style="color:#000">floor</span>(<span style="color:#a90d91">Math</span>.<span style="color:#000">random</span>() <span style="color:#000">*</span> <span style="color:#000">num</span>);
+    <span style="color:#177500">// create sensors
+</span><span style="color:#177500"></span>    <span style="color:#a90d91">const</span> <span style="color:#000">results</span> <span style="color:#000">=</span> [];
+    <span style="color:#a90d91">for</span> (<span style="color:#a90d91">let</span> <span style="color:#000">i</span> <span style="color:#000">=</span> <span style="color:#1c01ce">0</span>; <span style="color:#000">i</span> <span style="color:#000">&lt;</span> <span style="color:#000">max</span>; <span style="color:#000">i</span><span style="color:#000">++</span>) {
+      <span style="color:#a90d91">const</span> <span style="color:#000">result</span> <span style="color:#000">=</span> {
+        <span style="color:#000">id</span>: <span style="color:#a90d91">i</span>,
+        <span style="color:#000">familyType</span>: <span style="color:#a90d91">this.families</span>[<span style="color:#a90d91">Math</span>.<span style="color:#000">floor</span>(<span style="color:#a90d91">Math</span>.<span style="color:#000">random</span>() <span style="color:#000">*</span> <span style="color:#a90d91">this</span>.<span style="color:#000">families</span>.<span style="color:#000">length</span>)],
+        <span style="color:#000">address</span><span style="color:#000">:</span> <span style="color:#c41a16">&#39;192.168.0.1&#39;</span>,
+        <span style="color:#000">name</span><span style="color:#000">:</span> <span style="color:#c41a16">&#39;MAN1-PMC-Temperature-Sensor-01&#39;</span>,
+        <span style="color:#000">vendor</span><span style="color:#000">:</span> <span style="color:#c41a16">&#39;Veris&#39;</span>,
+        <span style="color:#000">model</span><span style="color:#000">:</span> <span style="color:#c41a16">&#39;TED00&#39;</span>,
+        <span style="color:#000">protocol</span><span style="color:#000">:</span> <span style="color:#c41a16">&#39;3-Wire&#39;</span>
       };
-      <span style="color:#a6e22e">results</span>.<span style="color:#a6e22e">push</span>(<span style="color:#a6e22e">result</span>);
+      <span style="color:#000">results</span>.<span style="color:#000">push</span>(<span style="color:#000">result</span>);
     }
-    <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">results</span>;
+    <span style="color:#a90d91">return</span> <span style="color:#000">results</span>;
   }
 }</code></pre></div>
 <h3 id="styling">Styling</h3>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-scss" data-lang="scss"><span style="color:#a6e22e">.force-directed-chart</span> {
-  <span style="color:#f92672">width</span><span style="color:#a6e22e">:</span> <span style="color:#f92672">100</span><span style="color:#960050;background-color:#1e0010">%</span><span style="color:#f92672">;</span>
-  <span style="color:#f92672">height</span><span style="color:#a6e22e">:</span> <span style="color:#f92672">400px</span> <span style="color:#f92672">!</span><span style="color:#f92672">important</span><span style="color:#f92672">;</span>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-scss" data-lang="scss"><span style="color:#3f6e75">.force-directed-chart</span> {
+  <span style="color:#000">width</span><span style="color:#000">:</span> <span style="color:#000">100</span><span style="color:#000">%</span><span style="color:#000">;</span>
+  <span style="color:#000">height</span><span style="color:#000">:</span> <span style="color:#000">400px</span> <span style="color:#000">!</span><span style="color:#000">important</span><span style="color:#000">;</span>
 }
 
-<span style="color:#a6e22e">.tooltip</span>{
-  <span style="color:#f92672">position</span><span style="color:#a6e22e">:</span> <span style="color:#f92672">absolute</span><span style="color:#f92672">;</span>
-  <span style="color:#f92672">background</span><span style="color:#a6e22e">:</span> #f5f6f5<span style="color:#f92672">;</span>
-  <span style="color:#f92672">box-shadow</span><span style="color:#a6e22e">:</span> <span style="color:#f92672">0</span> <span style="color:#f92672">1px</span> <span style="color:#f92672">3px</span> <span style="color:#f92672">rgba</span><span style="color:#f92672">(</span><span style="color:#f92672">0</span><span style="color:#f92672">,</span><span style="color:#f92672">0</span><span style="color:#f92672">,</span><span style="color:#f92672">0</span><span style="color:#f92672">,</span><span style="color:#f92672">0</span><span style="color:#a6e22e">.12</span><span style="color:#f92672">),</span> <span style="color:#f92672">0</span> <span style="color:#f92672">1px</span> <span style="color:#f92672">2px</span> <span style="color:#f92672">rgba</span><span style="color:#f92672">(</span><span style="color:#f92672">0</span><span style="color:#f92672">,</span><span style="color:#f92672">0</span><span style="color:#f92672">,</span><span style="color:#f92672">0</span><span style="color:#f92672">,</span><span style="color:#f92672">0</span><span style="color:#a6e22e">.24</span><span style="color:#f92672">);</span>
+<span style="color:#3f6e75">.tooltip</span>{
+  <span style="color:#000">position</span><span style="color:#000">:</span> <span style="color:#000">absolute</span><span style="color:#000">;</span>
+  <span style="color:#000">background</span><span style="color:#000">:</span> <span style="color:#000">#f5f6f5</span><span style="color:#000">;</span>
+  <span style="color:#000">box-shadow</span><span style="color:#000">:</span> <span style="color:#000">0</span> <span style="color:#000">1px</span> <span style="color:#000">3px</span> <span style="color:#000">rgba</span><span style="color:#000">(</span><span style="color:#000">0</span><span style="color:#000">,</span><span style="color:#000">0</span><span style="color:#000">,</span><span style="color:#000">0</span><span style="color:#000">,</span><span style="color:#000">0</span><span style="color:#3f6e75">.12</span><span style="color:#000">),</span> <span style="color:#000">0</span> <span style="color:#000">1px</span> <span style="color:#000">2px</span> <span style="color:#000">rgba</span><span style="color:#000">(</span><span style="color:#000">0</span><span style="color:#000">,</span><span style="color:#000">0</span><span style="color:#000">,</span><span style="color:#000">0</span><span style="color:#000">,</span><span style="color:#000">0</span><span style="color:#3f6e75">.24</span><span style="color:#000">);</span>
 
-  <span style="color:#f92672">opacity</span><span style="color:#a6e22e">:</span> <span style="color:#f92672">0</span><span style="color:#f92672">;</span>
-  <span style="color:#f92672">transition</span><span style="color:#a6e22e">:</span> <span style="color:#f92672">visibility</span> <span style="color:#f92672">0s</span><span style="color:#f92672">,</span> <span style="color:#f92672">opacity</span> <span style="color:#f92672">0</span><span style="color:#a6e22e">.5s</span> <span style="color:#f92672">linear</span><span style="color:#f92672">;</span>
-  <span style="color:#f92672">visibility</span><span style="color:#a6e22e">:</span> <span style="color:#f92672">hidden</span><span style="color:#f92672">;</span>
-  <span style="color:#f92672">pointer-events</span><span style="color:#a6e22e">:</span> <span style="color:#f92672">none</span><span style="color:#f92672">;</span>
+  <span style="color:#000">opacity</span><span style="color:#000">:</span> <span style="color:#000">0</span><span style="color:#000">;</span>
+  <span style="color:#000">transition</span><span style="color:#000">:</span> <span style="color:#000">visibility</span> <span style="color:#000">0s</span><span style="color:#000">,</span> <span style="color:#000">opacity</span> <span style="color:#000">0</span><span style="color:#3f6e75">.5s</span> <span style="color:#000">linear</span><span style="color:#000">;</span>
+  <span style="color:#000">visibility</span><span style="color:#000">:</span> <span style="color:#000">hidden</span><span style="color:#000">;</span>
+  <span style="color:#000">pointer-events</span><span style="color:#000">:</span> <span style="color:#000">none</span><span style="color:#000">;</span>
 
-  <span style="color:#a6e22e">.header</span>{
-    <span style="color:#f92672">color</span><span style="color:#a6e22e">:</span> <span style="color:#960050;background-color:#1e0010">$</span><span style="color:#f92672">primary</span><span style="color:#f92672">;</span>
-    <span style="color:#f92672">padding</span><span style="color:#a6e22e">:</span> <span style="color:#f92672">20px</span><span style="color:#f92672">;</span>
-    <span style="color:#f92672">border-bottom</span><span style="color:#a6e22e">:</span> <span style="color:#f92672">1px</span> <span style="color:#f92672">solid</span> <span style="color:#960050;background-color:#1e0010">$</span><span style="color:#f92672">border-color</span><span style="color:#f92672">;</span>
-    <span style="color:#a6e22e">.title</span>{
-      <span style="color:#f92672">font-weight</span><span style="color:#a6e22e">:</span> <span style="color:#f92672">bold</span><span style="color:#f92672">;</span>
-      <span style="color:#f92672">font-size</span><span style="color:#a6e22e">:</span> <span style="color:#f92672">1</span><span style="color:#a6e22e">.2em</span><span style="color:#f92672">;</span>
+  <span style="color:#3f6e75">.header</span>{
+    <span style="color:#000">color</span><span style="color:#000">:</span> <span style="color:#000">$</span><span style="color:#000">primary</span><span style="color:#000">;</span>
+    <span style="color:#000">padding</span><span style="color:#000">:</span> <span style="color:#000">20px</span><span style="color:#000">;</span>
+    <span style="color:#000">border-bottom</span><span style="color:#000">:</span> <span style="color:#000">1px</span> <span style="color:#000">solid</span> <span style="color:#000">$</span><span style="color:#000">border-color</span><span style="color:#000">;</span>
+    <span style="color:#3f6e75">.title</span>{
+      <span style="color:#000">font-weight</span><span style="color:#000">:</span> <span style="color:#000">bold</span><span style="color:#000">;</span>
+      <span style="color:#000">font-size</span><span style="color:#000">:</span> <span style="color:#000">1</span><span style="color:#3f6e75">.2em</span><span style="color:#000">;</span>
     }
 
-    <span style="color:#f92672">img</span>{
-      <span style="color:#f92672">margin-right</span><span style="color:#a6e22e">:</span> <span style="color:#f92672">20px</span><span style="color:#f92672">;</span>
+    <span style="color:#000">img</span>{
+      <span style="color:#000">margin-right</span><span style="color:#000">:</span> <span style="color:#000">20px</span><span style="color:#000">;</span>
     }
   }
 
-  <span style="color:#a6e22e">.body</span>{
-    <span style="color:#a6e22e">.subtitle</span>{
-      <span style="color:#f92672">font-weight</span><span style="color:#a6e22e">:</span> <span style="color:#f92672">bold</span><span style="color:#f92672">;</span>
-      <span style="color:#f92672">color</span><span style="color:#a6e22e">:</span> <span style="color:#960050;background-color:#1e0010">$</span><span style="color:#f92672">primary</span><span style="color:#f92672">;</span>
-      <span style="color:#f92672">filter</span><span style="color:#a6e22e">:</span> <span style="color:#f92672">brightness</span><span style="color:#f92672">(</span><span style="color:#f92672">90</span><span style="color:#960050;background-color:#1e0010">%</span><span style="color:#f92672">);</span>
+  <span style="color:#3f6e75">.body</span>{
+    <span style="color:#3f6e75">.subtitle</span>{
+      <span style="color:#000">font-weight</span><span style="color:#000">:</span> <span style="color:#000">bold</span><span style="color:#000">;</span>
+      <span style="color:#000">color</span><span style="color:#000">:</span> <span style="color:#000">$</span><span style="color:#000">primary</span><span style="color:#000">;</span>
+      <span style="color:#000">filter</span><span style="color:#000">:</span> <span style="color:#000">brightness</span><span style="color:#000">(</span><span style="color:#000">90</span><span style="color:#000">%</span><span style="color:#000">);</span>
     }
-    <span style="color:#f92672">padding</span><span style="color:#a6e22e">:</span> <span style="color:#f92672">20px</span><span style="color:#f92672">;</span>
+    <span style="color:#000">padding</span><span style="color:#000">:</span> <span style="color:#000">20px</span><span style="color:#000">;</span>
   }
 }</code></pre></div>
 <p>Happy plotting! Have a look at the source code here: <a href="https://github.com/HoplaGeiss/hopla-force-directed-chart">https://github.com/HoplaGeiss/hopla-force-directed-chart</a></p>

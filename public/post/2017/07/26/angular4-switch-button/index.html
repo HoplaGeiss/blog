@@ -133,15 +133,7 @@ html{font-family:sans-serif;line-height:1.15;-ms-text-size-adjust:100%;-webkit-t
       			  
               </a>
             </div>
-            <div class="nav-menu">
-              <a class="rss" href="">
-                <i class="icon-rss"></i>
-              </a>
-                
-                <a class="menu" data-action="toc" data-target="toc"><i class="icon-location"></i></a>
-                
-                
-            </div>
+            
           </nav>
 
 
@@ -163,72 +155,72 @@ html{font-family:sans-serif;line-height:1.15;-ms-text-size-adjust:100%;-webkit-t
   				<p>Ever wondered how to create a switch button in angular4 without using css frameworks? Here we go..</p>
 
 <p>Let&rsquo;s take a look at the component first.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-typescript" data-lang="typescript"><span style="color:#75715e">// app.component.ts
-</span><span style="color:#75715e"></span><span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">Component</span> } <span style="color:#a6e22e">from</span> <span style="color:#e6db74">&#39;@angular/core&#39;</span>;
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-typescript" data-lang="typescript"><span style="color:#177500">// app.component.ts
+</span><span style="color:#177500"></span><span style="color:#a90d91">import</span> { <span style="color:#000">Component</span> } <span style="color:#000">from</span> <span style="color:#c41a16">&#39;@angular/core&#39;</span>;
 
-<span style="color:#66d9ef">@Component</span>({
-  <span style="color:#a6e22e">selector</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;app-root&#39;</span>,
-  <span style="color:#a6e22e">template</span><span style="color:#f92672">:</span> <span style="color:#e6db74">`
-</span><span style="color:#e6db74">    &lt;div class=&#34;switch&#34;&gt;
-</span><span style="color:#e6db74">      &lt;input id=&#39;switch-input&#39; type=&#39;checkbox&#39; [checked]=&#39;switchActive&#39; (click)=&#39;toggle()&#39;&gt;
-</span><span style="color:#e6db74">      &lt;label for=&#39;switch-input&#39;&gt;&lt;/label&gt;
-</span><span style="color:#e6db74">    &lt;/div&gt;
-</span><span style="color:#e6db74">  `</span>
+<span style="color:#a90d91">@Component</span>({
+  <span style="color:#000">selector</span><span style="color:#000">:</span> <span style="color:#c41a16">&#39;app-root&#39;</span>,
+  <span style="color:#000">template</span><span style="color:#000">:</span> <span style="color:#c41a16">`
+</span><span style="color:#c41a16">    &lt;div class=&#34;switch&#34;&gt;
+</span><span style="color:#c41a16">      &lt;input id=&#39;switch-input&#39; type=&#39;checkbox&#39; [checked]=&#39;switchActive&#39; (click)=&#39;toggle()&#39;&gt;
+</span><span style="color:#c41a16">      &lt;label for=&#39;switch-input&#39;&gt;&lt;/label&gt;
+</span><span style="color:#c41a16">    &lt;/div&gt;
+</span><span style="color:#c41a16">  `</span>
 })
-<span style="color:#66d9ef">export</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">AppComponent</span> {
-  <span style="color:#a6e22e">switchActive</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">false</span>
+<span style="color:#a90d91">export</span> <span style="color:#a90d91">class</span> <span style="color:#000">AppComponent</span> {
+  <span style="color:#000">switchActive</span> <span style="color:#000">=</span> <span style="color:#a90d91">false</span>
 
-  <span style="color:#a6e22e">toggle</span> <span style="color:#f92672">=</span> () <span style="color:#f92672">=&gt;</span> {
-    <span style="color:#66d9ef">if</span> (<span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">switchActive</span>) {
-      <span style="color:#75715e">// Do something
-</span><span style="color:#75715e"></span>    } <span style="color:#66d9ef">else</span> {
-      <span style="color:#75715e">// Do something else
-</span><span style="color:#75715e"></span>    }
+  <span style="color:#000">toggle</span> <span style="color:#000">=</span> () <span style="color:#000">=&gt;</span> {
+    <span style="color:#a90d91">if</span> (<span style="color:#a90d91">this</span>.<span style="color:#000">switchActive</span>) {
+      <span style="color:#177500">// Do something
+</span><span style="color:#177500"></span>    } <span style="color:#a90d91">else</span> {
+      <span style="color:#177500">// Do something else
+</span><span style="color:#177500"></span>    }
 
-    <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">switchActive</span> <span style="color:#f92672">=</span> <span style="color:#f92672">!</span><span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">switchActive</span>;
+    <span style="color:#a90d91">this</span>.<span style="color:#000">switchActive</span> <span style="color:#000">=</span> <span style="color:#000">!</span><span style="color:#a90d91">this</span>.<span style="color:#000">switchActive</span>;
   }
 }</code></pre></div>
 <p>As you can see the component is base on a simple checkbox element and a toggle function to change the state of this component. Let&rsquo;s put some styling on top of that..</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-scss" data-lang="scss"><span style="color:#f92672">/</span><span style="color:#f92672">deep</span><span style="color:#f92672">/</span> <span style="color:#a6e22e">.switch</span>{
-  <span style="color:#f92672">input</span> {
-    <span style="color:#f92672">position</span><span style="color:#a6e22e">:</span> <span style="color:#f92672">absolute</span><span style="color:#f92672">;</span>
-    <span style="color:#f92672">margin-left</span><span style="color:#a6e22e">:</span> <span style="color:#f92672">-9999px</span><span style="color:#f92672">;</span>
-    <span style="color:#f92672">visibility</span><span style="color:#a6e22e">:</span> <span style="color:#f92672">hidden</span><span style="color:#f92672">;</span>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-scss" data-lang="scss"><span style="color:#000">/</span><span style="color:#000">deep</span><span style="color:#000">/</span> <span style="color:#3f6e75">.switch</span>{
+  <span style="color:#000">input</span> {
+    <span style="color:#000">position</span><span style="color:#000">:</span> <span style="color:#000">absolute</span><span style="color:#000">;</span>
+    <span style="color:#000">margin-left</span><span style="color:#000">:</span> <span style="color:#000">-9999px</span><span style="color:#000">;</span>
+    <span style="color:#000">visibility</span><span style="color:#000">:</span> <span style="color:#000">hidden</span><span style="color:#000">;</span>
   }
 
-  <span style="color:#f92672">label</span> {
-    <span style="color:#f92672">display</span><span style="color:#a6e22e">:</span> <span style="color:#f92672">block</span><span style="color:#f92672">;</span>
-    <span style="color:#f92672">position</span><span style="color:#a6e22e">:</span> <span style="color:#f92672">relative</span><span style="color:#f92672">;</span>
-    <span style="color:#f92672">cursor</span><span style="color:#a6e22e">:</span> <span style="color:#f92672">pointer</span><span style="color:#f92672">;</span>
-    <span style="color:#f92672">outline</span><span style="color:#a6e22e">:</span> <span style="color:#f92672">none</span><span style="color:#f92672">;</span>
-    <span style="color:#f92672">user-select</span><span style="color:#a6e22e">:</span> <span style="color:#f92672">none</span><span style="color:#f92672">;</span>
-    <span style="color:#f92672">width</span><span style="color:#a6e22e">:</span> <span style="color:#f92672">46px</span><span style="color:#f92672">;</span>
-    <span style="color:#f92672">height</span><span style="color:#a6e22e">:</span> <span style="color:#f92672">24px</span><span style="color:#f92672">;</span>
-    <span style="color:#f92672">border-radius</span><span style="color:#a6e22e">:</span> <span style="color:#f92672">24px</span><span style="color:#f92672">;</span>
-    <span style="color:#f92672">transition</span><span style="color:#a6e22e">:</span> <span style="color:#f92672">background</span> <span style="color:#f92672">0</span><span style="color:#a6e22e">.4s</span><span style="color:#f92672">;</span>
-    <span style="color:#f92672">border</span><span style="color:#a6e22e">:</span> <span style="color:#f92672">2px</span> <span style="color:#f92672">solid</span> #dddddd<span style="color:#f92672">;</span>
+  <span style="color:#000">label</span> {
+    <span style="color:#000">display</span><span style="color:#000">:</span> <span style="color:#000">block</span><span style="color:#000">;</span>
+    <span style="color:#000">position</span><span style="color:#000">:</span> <span style="color:#000">relative</span><span style="color:#000">;</span>
+    <span style="color:#000">cursor</span><span style="color:#000">:</span> <span style="color:#000">pointer</span><span style="color:#000">;</span>
+    <span style="color:#000">outline</span><span style="color:#000">:</span> <span style="color:#000">none</span><span style="color:#000">;</span>
+    <span style="color:#000">user-select</span><span style="color:#000">:</span> <span style="color:#000">none</span><span style="color:#000">;</span>
+    <span style="color:#000">width</span><span style="color:#000">:</span> <span style="color:#000">46px</span><span style="color:#000">;</span>
+    <span style="color:#000">height</span><span style="color:#000">:</span> <span style="color:#000">24px</span><span style="color:#000">;</span>
+    <span style="color:#000">border-radius</span><span style="color:#000">:</span> <span style="color:#000">24px</span><span style="color:#000">;</span>
+    <span style="color:#000">transition</span><span style="color:#000">:</span> <span style="color:#000">background</span> <span style="color:#000">0</span><span style="color:#3f6e75">.4s</span><span style="color:#000">;</span>
+    <span style="color:#000">border</span><span style="color:#000">:</span> <span style="color:#000">2px</span> <span style="color:#000">solid</span> <span style="color:#000">#dddddd</span><span style="color:#000">;</span>
 
-    <span style="color:#66d9ef">&amp;</span><span style="color:#a6e22e">:after</span>{
-      <span style="color:#f92672">display</span><span style="color:#a6e22e">:</span> <span style="color:#f92672">block</span><span style="color:#f92672">;</span>
-      <span style="color:#f92672">position</span><span style="color:#a6e22e">:</span> <span style="color:#f92672">absolute</span><span style="color:#f92672">;</span>
-      <span style="color:#f92672">content</span><span style="color:#a6e22e">:</span> <span style="color:#e6db74">&#34;&#34;</span><span style="color:#f92672">;</span>
-      <span style="color:#f92672">top</span><span style="color:#a6e22e">:</span> <span style="color:#f92672">2px</span><span style="color:#f92672">;</span>
-      <span style="color:#f92672">left</span><span style="color:#a6e22e">:</span> <span style="color:#f92672">2px</span><span style="color:#f92672">;</span>
-      <span style="color:#f92672">bottom</span><span style="color:#a6e22e">:</span> <span style="color:#f92672">2px</span><span style="color:#f92672">;</span>
-      <span style="color:#f92672">width</span><span style="color:#a6e22e">:</span> <span style="color:#f92672">16px</span><span style="color:#f92672">;</span>
-      <span style="color:#f92672">background-color</span><span style="color:#a6e22e">:</span> <span style="color:#f92672">blue</span><span style="color:#f92672">;</span>
-      <span style="color:#f92672">border-radius</span><span style="color:#a6e22e">:</span> <span style="color:#f92672">20px</span><span style="color:#f92672">;</span>
-      <span style="color:#f92672">transition</span><span style="color:#a6e22e">:</span> <span style="color:#f92672">margin</span> <span style="color:#f92672">0</span><span style="color:#a6e22e">.4s</span><span style="color:#f92672">,</span> <span style="color:#f92672">background</span> <span style="color:#f92672">0</span><span style="color:#a6e22e">.4s</span><span style="color:#f92672">;</span>
+    <span style="color:#a90d91">&amp;</span><span style="color:#000">:after</span>{
+      <span style="color:#000">display</span><span style="color:#000">:</span> <span style="color:#000">block</span><span style="color:#000">;</span>
+      <span style="color:#000">position</span><span style="color:#000">:</span> <span style="color:#000">absolute</span><span style="color:#000">;</span>
+      <span style="color:#000">content</span><span style="color:#000">:</span> <span style="color:#c41a16">&#34;&#34;</span><span style="color:#000">;</span>
+      <span style="color:#000">top</span><span style="color:#000">:</span> <span style="color:#000">2px</span><span style="color:#000">;</span>
+      <span style="color:#000">left</span><span style="color:#000">:</span> <span style="color:#000">2px</span><span style="color:#000">;</span>
+      <span style="color:#000">bottom</span><span style="color:#000">:</span> <span style="color:#000">2px</span><span style="color:#000">;</span>
+      <span style="color:#000">width</span><span style="color:#000">:</span> <span style="color:#000">16px</span><span style="color:#000">;</span>
+      <span style="color:#000">background-color</span><span style="color:#000">:</span> <span style="color:#000">blue</span><span style="color:#000">;</span>
+      <span style="color:#000">border-radius</span><span style="color:#000">:</span> <span style="color:#000">20px</span><span style="color:#000">;</span>
+      <span style="color:#000">transition</span><span style="color:#000">:</span> <span style="color:#000">margin</span> <span style="color:#000">0</span><span style="color:#3f6e75">.4s</span><span style="color:#000">,</span> <span style="color:#000">background</span> <span style="color:#000">0</span><span style="color:#3f6e75">.4s</span><span style="color:#000">;</span>
     }
   }
 
-  <span style="color:#f92672">input</span><span style="color:#a6e22e">:checked</span> <span style="color:#f92672">+</span> <span style="color:#f92672">label</span> {
-    <span style="color:#f92672">border-color</span><span style="color:#a6e22e">:</span> <span style="color:#f92672">blue</span><span style="color:#f92672">;</span>
+  <span style="color:#000">input</span><span style="color:#000">:checked</span> <span style="color:#000">+</span> <span style="color:#000">label</span> {
+    <span style="color:#000">border-color</span><span style="color:#000">:</span> <span style="color:#000">blue</span><span style="color:#000">;</span>
   }
 
-  <span style="color:#f92672">input</span><span style="color:#a6e22e">:checked</span> <span style="color:#f92672">+</span> <span style="color:#f92672">label</span><span style="color:#a6e22e">:after</span> {
-    <span style="color:#f92672">margin-left</span><span style="color:#a6e22e">:</span> <span style="color:#f92672">22px</span><span style="color:#f92672">;</span>
-    <span style="color:#f92672">background-color</span><span style="color:#a6e22e">:</span> <span style="color:#f92672">blue</span><span style="color:#f92672">;</span>
+  <span style="color:#000">input</span><span style="color:#000">:checked</span> <span style="color:#000">+</span> <span style="color:#000">label</span><span style="color:#000">:after</span> {
+    <span style="color:#000">margin-left</span><span style="color:#000">:</span> <span style="color:#000">22px</span><span style="color:#000">;</span>
+    <span style="color:#000">background-color</span><span style="color:#000">:</span> <span style="color:#000">blue</span><span style="color:#000">;</span>
   }
 }</code></pre></div>
 <p>Note I am using <code>/deep/</code> so that I can define this styling once and from anywhere in my app instead of having to redefine it each time I am using this component. Typically I keep global styling in my <code>app.component.scss</code>.</p>

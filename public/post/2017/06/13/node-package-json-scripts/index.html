@@ -133,15 +133,7 @@ html{font-family:sans-serif;line-height:1.15;-ms-text-size-adjust:100%;-webkit-t
       			  
               </a>
             </div>
-            <div class="nav-menu">
-              <a class="rss" href="">
-                <i class="icon-rss"></i>
-              </a>
-                
-                <a class="menu" data-action="toc" data-target="toc"><i class="icon-location"></i></a>
-                
-                
-            </div>
+            
           </nav>
 
 
@@ -181,19 +173,19 @@ html{font-family:sans-serif;line-height:1.15;-ms-text-size-adjust:100%;-webkit-t
 <p>2- configure jasmine</p>
 
 <p>spec/support/jasmine.json</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-json" data-lang="json">{
-  <span style="color:#f92672">&#34;spec_dir&#34;</span>: <span style="color:#e6db74">&#34;&#34;</span>,
-  <span style="color:#f92672">&#34;spec_files&#34;</span>: [
-    <span style="color:#e6db74">&#34;services/**/*.spec.js&#34;</span>,
-    <span style="color:#e6db74">&#34;controllers/**/*.spec.js&#34;</span>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-json" data-lang="json">{
+  <span style="color:#000">&#34;spec_dir&#34;</span>: <span style="color:#c41a16">&#34;&#34;</span>,
+  <span style="color:#000">&#34;spec_files&#34;</span>: [
+    <span style="color:#c41a16">&#34;services/**/*.spec.js&#34;</span>,
+    <span style="color:#c41a16">&#34;controllers/**/*.spec.js&#34;</span>
   ],
-  <span style="color:#f92672">&#34;stopSpecOnExpectationFailure&#34;</span>: <span style="color:#66d9ef">false</span>,
-  <span style="color:#f92672">&#34;random&#34;</span>: <span style="color:#66d9ef">false</span>
+  <span style="color:#000">&#34;stopSpecOnExpectationFailure&#34;</span>: <span style="color:#a90d91">false</span>,
+  <span style="color:#000">&#34;random&#34;</span>: <span style="color:#a90d91">false</span>
 }</code></pre></div>
 <p>3- Configure scripts in package.json</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-json" data-lang="json">{
-  <span style="color:#f92672">&#34;scripts&#34;</span>: {
-    <span style="color:#f92672">&#34;test&#34;</span>: <span style="color:#e6db74">&#34;./node_modules/nodemon/bin/nodemon.js --exec ./node_modules/jasmine/bin/jasmine.js&#34;</span>,
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-json" data-lang="json">{
+  <span style="color:#000">&#34;scripts&#34;</span>: {
+    <span style="color:#000">&#34;test&#34;</span>: <span style="color:#c41a16">&#34;./node_modules/nodemon/bin/nodemon.js --exec ./node_modules/jasmine/bin/jasmine.js&#34;</span>,
   }
 }</code></pre></div>
 <h1 id="ng-test-code-coverage">ng test &ndash;code-coverage</h1>
@@ -204,21 +196,21 @@ html{font-family:sans-serif;line-height:1.15;-ms-text-size-adjust:100%;-webkit-t
 <code>npm install istanbul --save-dev</code></p>
 
 <p>2- configure istanbul</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#75715e"># .istanbul.yml</span>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#177500"># .istanbul.yml</span>
 instrumentation:
-  include-all-sources: <span style="color:#66d9ef">true</span>
-  verbose: <span style="color:#66d9ef">true</span>
-  excludes: [<span style="color:#e6db74">&#34;**/*.spec.js&#34;</span>]
+  include-all-sources: <span style="color:#a90d91">true</span>
+  verbose: <span style="color:#a90d91">true</span>
+  excludes: [<span style="color:#c41a16">&#34;**/*.spec.js&#34;</span>]
 reporting:
-  dir: <span style="color:#e6db74">&#34;coverage&#34;</span></code></pre></div>
+  dir: <span style="color:#c41a16">&#34;coverage&#34;</span></code></pre></div>
 <p>Two very important settings here that I struggled to find:
 - <code>include-all-sources</code>: this makes sure all the files are included in the report, not just only the one loaded by the spec files.
 - <code>excludes</code>: this removes the spec files from the report.</p>
 
 <p>3- Configure scripts in package.json</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-json" data-lang="json">{
-  <span style="color:#f92672">&#34;scripts&#34;</span>: {
-    <span style="color:#f92672">&#34;coverage&#34;</span>: <span style="color:#e6db74">&#34;node_modules/istanbul/lib/cli.js cover node_modules/jasmine/bin/jasmine.js&#34;</span>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-json" data-lang="json">{
+  <span style="color:#000">&#34;scripts&#34;</span>: {
+    <span style="color:#000">&#34;coverage&#34;</span>: <span style="color:#c41a16">&#34;node_modules/istanbul/lib/cli.js cover node_modules/jasmine/bin/jasmine.js&#34;</span>
   }
 }</code></pre></div>
 <p>Note: the only difference with @angular/cli is there will be a couple more files in the coverage folder, I didn&rsquo;t find out how to crack this, but I guess it works alright like this.</p>
@@ -237,9 +229,9 @@ reporting:
 Anyhow make sure you have an eslint configuration at the root folder</p>
 
 <p>3- Configure scripts in package.json</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-json" data-lang="json">{
-  <span style="color:#f92672">&#34;scripts&#34;</span>: {
-    <span style="color:#f92672">&#34;lint&#34;</span>: <span style="color:#e6db74">&#34;node_modules/.bin/eslint **/*.js&#34;</span>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-json" data-lang="json">{
+  <span style="color:#000">&#34;scripts&#34;</span>: {
+    <span style="color:#000">&#34;lint&#34;</span>: <span style="color:#c41a16">&#34;node_modules/.bin/eslint **/*.js&#34;</span>
   }
 }</code></pre></div>
   			</section>

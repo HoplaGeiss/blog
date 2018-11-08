@@ -133,15 +133,7 @@ html{font-family:sans-serif;line-height:1.15;-ms-text-size-adjust:100%;-webkit-t
       			  
               </a>
             </div>
-            <div class="nav-menu">
-              <a class="rss" href="">
-                <i class="icon-rss"></i>
-              </a>
-                
-                <a class="menu" data-action="toc" data-target="toc"><i class="icon-location"></i></a>
-                
-                
-            </div>
+            
           </nav>
 
 
@@ -170,27 +162,27 @@ html{font-family:sans-serif;line-height:1.15;-ms-text-size-adjust:100%;-webkit-t
 </ul>
 
 <p>Next you need to make sure to expose the module of your application in an <code>index.ts</code> file at the root of your application</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-typescript" data-lang="typescript"><span style="color:#75715e">// index.ts
-</span><span style="color:#75715e"></span><span style="color:#66d9ef">export</span> <span style="color:#f92672">*</span> <span style="color:#a6e22e">from</span> <span style="color:#e6db74">&#39;./src/app/app.module&#39;</span>;</code></pre></div>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-typescript" data-lang="typescript"><span style="color:#177500">// index.ts
+</span><span style="color:#177500"></span><span style="color:#a90d91">export</span> <span style="color:#000">*</span> <span style="color:#000">from</span> <span style="color:#c41a16">&#39;./src/app/app.module&#39;</span>;</code></pre></div>
 <p>Also make sure to change the name of the export in the module file. This will be the name of the module to be imported.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-typescript" data-lang="typescript"><span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">BrowserModule</span> } <span style="color:#a6e22e">from</span> <span style="color:#e6db74">&#39;@angular/platform-browser&#39;</span>;
-<span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">NgModule</span> } <span style="color:#a6e22e">from</span> <span style="color:#e6db74">&#39;@angular/core&#39;</span>;
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-typescript" data-lang="typescript"><span style="color:#a90d91">import</span> { <span style="color:#000">BrowserModule</span> } <span style="color:#000">from</span> <span style="color:#c41a16">&#39;@angular/platform-browser&#39;</span>;
+<span style="color:#a90d91">import</span> { <span style="color:#000">NgModule</span> } <span style="color:#000">from</span> <span style="color:#c41a16">&#39;@angular/core&#39;</span>;
 
-<span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">AppComponent</span> } <span style="color:#a6e22e">from</span> <span style="color:#e6db74">&#39;./app.component&#39;</span>;
+<span style="color:#a90d91">import</span> { <span style="color:#000">AppComponent</span> } <span style="color:#000">from</span> <span style="color:#c41a16">&#39;./app.component&#39;</span>;
 
-<span style="color:#66d9ef">@NgModule</span>({
-  <span style="color:#a6e22e">imports</span><span style="color:#f92672">:</span> [
-    <span style="color:#a6e22e">BrowserModule</span>,
+<span style="color:#a90d91">@NgModule</span>({
+  <span style="color:#000">imports</span><span style="color:#000">:</span> [
+    <span style="color:#000">BrowserModule</span>,
   ],
-  <span style="color:#a6e22e">declarations</span><span style="color:#f92672">:</span> [
-    <span style="color:#a6e22e">AppComponent</span>
+  <span style="color:#000">declarations</span><span style="color:#000">:</span> [
+    <span style="color:#000">AppComponent</span>
   ],
-  <span style="color:#a6e22e">bootstrap</span><span style="color:#f92672">:</span> [<span style="color:#a6e22e">AppComponent</span>],
-  <span style="color:#a6e22e">exports</span><span style="color:#f92672">:</span> [
-    <span style="color:#a6e22e">AppComponent</span>
+  <span style="color:#000">bootstrap</span><span style="color:#000">:</span> [<span style="color:#000">AppComponent</span>],
+  <span style="color:#000">exports</span><span style="color:#000">:</span> [
+    <span style="color:#000">AppComponent</span>
   ]
 })
-<span style="color:#66d9ef">export</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">MyAwesomeModule</span> { }</code></pre></div>
+<span style="color:#a90d91">export</span> <span style="color:#a90d91">class</span> <span style="color:#000">MyAwesomeModule</span> { }</code></pre></div>
 <p>Then deploying your app on npm is as easy as running <code>npm publish</code></p>
 
 <p>Finally you can check if all worked properly by creating another app and installing your new package through npm!</p>
