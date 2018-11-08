@@ -173,64 +173,62 @@ html{font-family:sans-serif;line-height:1.15;-ms-text-size-adjust:100%;-webkit-t
 <p>Now, let&rsquo;s dive in!</p>
 
 <h3 id="component-skeleton">Component skeleton</h3>
-<div class="highlight" style="background: #272822"><pre style="line-height: 125%"><span></span><span style="color: #66d9ef">import</span> <span style="color: #f8f8f2">{</span> <span style="color: #a6e22e">Component</span><span style="color: #f8f8f2">,</span> <span style="color: #a6e22e">ElementRef</span><span style="color: #f8f8f2">,</span> <span style="color: #a6e22e">Input</span><span style="color: #f8f8f2">,</span> <span style="color: #a6e22e">ViewChild</span><span style="color: #f8f8f2">,</span> <span style="color: #a6e22e">OnInit</span><span style="color: #f8f8f2">,</span> <span style="color: #a6e22e">OnChanges</span><span style="color: #f8f8f2">,</span> <span style="color: #a6e22e">AfterViewChecked</span> <span style="color: #f8f8f2">}</span> <span style="color: #a6e22e">from</span> <span style="color: #e6db74">&#39;@angular/core&#39;</span><span style="color: #f8f8f2">;</span>
-<span style="color: #66d9ef">import</span> <span style="color: #f92672">*</span> <span style="color: #66d9ef">as</span> <span style="color: #a6e22e">d3</span> <span style="color: #a6e22e">from</span> <span style="color: #e6db74">&#39;d3&#39;</span><span style="color: #f8f8f2">;</span>
-<span style="color: #66d9ef">import</span> <span style="color: #f92672">*</span> <span style="color: #66d9ef">as</span> <span style="color: #a6e22e">_</span> <span style="color: #a6e22e">from</span> <span style="color: #e6db74">&#39;underscore&#39;</span><span style="color: #f8f8f2">;</span>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-typescript" data-lang="typescript"><span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">Component</span>, <span style="color:#a6e22e">ElementRef</span>, <span style="color:#a6e22e">Input</span>, <span style="color:#a6e22e">ViewChild</span>, <span style="color:#a6e22e">OnInit</span>, <span style="color:#a6e22e">OnChanges</span>, <span style="color:#a6e22e">AfterViewChecked</span> } <span style="color:#a6e22e">from</span> <span style="color:#e6db74">&#39;@angular/core&#39;</span>;
+<span style="color:#66d9ef">import</span> <span style="color:#f92672">*</span> <span style="color:#66d9ef">as</span> <span style="color:#a6e22e">d3</span> <span style="color:#a6e22e">from</span> <span style="color:#e6db74">&#39;d3&#39;</span>;
+<span style="color:#66d9ef">import</span> <span style="color:#f92672">*</span> <span style="color:#66d9ef">as</span> <span style="color:#a6e22e">_</span> <span style="color:#a6e22e">from</span> <span style="color:#e6db74">&#39;underscore&#39;</span>;
 
-<span style="color: #66d9ef">@Component</span><span style="color: #f8f8f2">({</span>
-  <span style="color: #a6e22e">selector</span><span style="color: #f92672">:</span> <span style="color: #e6db74">&#39;app-bubble-chart&#39;</span><span style="color: #f8f8f2">,</span>
-  <span style="color: #a6e22e">styleUrls</span><span style="color: #f92672">:</span> <span style="color: #f8f8f2">[</span><span style="color: #e6db74">&#39;./bubble-chart.component.scss&#39;</span><span style="color: #f8f8f2">],</span>
-  <span style="color: #a6e22e">template</span><span style="color: #f92672">:</span> <span style="color: #e6db74">`</span>
-<span style="color: #e6db74">    &lt;div class=&#39;bubble-chart&#39; #bubbleChartContainer&gt;</span>
-<span style="color: #e6db74">      &lt;div class=&#39;tooltip&#39;&gt;</span>
-<span style="color: #e6db74">        &lt;div fxLayout=&#39;row&#39; fxLayoutAlign=&#39;start center&#39;&gt;</span>
-<span style="color: #e6db74">          &lt;img *ngIf=&#39;type&#39; [src]=&quot;&#39;assets/Icon-&#39; + type + &#39;.svg&#39;&quot; [alt]=&quot;type +&#39; Icon&#39;&quot;&gt;</span>
-<span style="color: #e6db74">          &lt;div fxLayout=&#39;column&#39; fxLayoutAlign=&#39;center center&#39;&gt;</span>
-<span style="color: #e6db74">            &lt;div class=&#39;title&#39;&gt;{{type}}&lt;/div&gt;</span>
-<span style="color: #e6db74">            &lt;div&gt;{{amount}}&lt;/div&gt;</span>
-<span style="color: #e6db74">          &lt;/div&gt;</span>
-<span style="color: #e6db74">        &lt;/div&gt;</span>
-<span style="color: #e6db74">      &lt;/div&gt;</span>
-<span style="color: #e6db74">    &lt;/div&gt;</span>
-<span style="color: #e6db74">  `</span>
-<span style="color: #f8f8f2">})</span>
-<span style="color: #66d9ef">export</span> <span style="color: #66d9ef">class</span> <span style="color: #a6e22e">BubbleChartComponent</span> <span style="color: #66d9ef">implements</span> <span style="color: #a6e22e">OnInit</span><span style="color: #f8f8f2">,</span> <span style="color: #a6e22e">OnChanges</span><span style="color: #f8f8f2">,</span> <span style="color: #a6e22e">AfterViewChecked</span> <span style="color: #f8f8f2">{</span>
-  <span style="color: #66d9ef">@ViewChild</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;bubbleChartContainer&#39;</span><span style="color: #f8f8f2">)</span> <span style="color: #66d9ef">private</span> <span style="color: #a6e22e">chartContainer</span>: <span style="color: #66d9ef">ElementRef</span><span style="color: #f8f8f2">;</span>
-  <span style="color: #66d9ef">@Input</span><span style="color: #f8f8f2">()</span> <span style="color: #66d9ef">private</span> <span style="color: #a6e22e">data</span>: <span style="color: #66d9ef">Array</span><span style="color: #f92672">&lt;</span><span style="color: #a6e22e">any</span><span style="color: #f92672">&gt;</span><span style="color: #f8f8f2">;</span>
+<span style="color:#66d9ef">@Component</span>({
+  <span style="color:#a6e22e">selector</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;app-bubble-chart&#39;</span>,
+  <span style="color:#a6e22e">styleUrls</span><span style="color:#f92672">:</span> [<span style="color:#e6db74">&#39;./bubble-chart.component.scss&#39;</span>],
+  <span style="color:#a6e22e">template</span><span style="color:#f92672">:</span> <span style="color:#e6db74">`
+</span><span style="color:#e6db74">    &lt;div class=&#39;bubble-chart&#39; #bubbleChartContainer&gt;
+</span><span style="color:#e6db74">      &lt;div class=&#39;tooltip&#39;&gt;
+</span><span style="color:#e6db74">        &lt;div fxLayout=&#39;row&#39; fxLayoutAlign=&#39;start center&#39;&gt;
+</span><span style="color:#e6db74">          &lt;img *ngIf=&#39;type&#39; [src]=&#34;&#39;assets/Icon-&#39; + type + &#39;.svg&#39;&#34; [alt]=&#34;type +&#39; Icon&#39;&#34;&gt;
+</span><span style="color:#e6db74">          &lt;div fxLayout=&#39;column&#39; fxLayoutAlign=&#39;center center&#39;&gt;
+</span><span style="color:#e6db74">            &lt;div class=&#39;title&#39;&gt;{{type}}&lt;/div&gt;
+</span><span style="color:#e6db74">            &lt;div&gt;{{amount}}&lt;/div&gt;
+</span><span style="color:#e6db74">          &lt;/div&gt;
+</span><span style="color:#e6db74">        &lt;/div&gt;
+</span><span style="color:#e6db74">      &lt;/div&gt;
+</span><span style="color:#e6db74">    &lt;/div&gt;
+</span><span style="color:#e6db74">  `</span>
+})
+<span style="color:#66d9ef">export</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">BubbleChartComponent</span> <span style="color:#66d9ef">implements</span> <span style="color:#a6e22e">OnInit</span>, <span style="color:#a6e22e">OnChanges</span>, <span style="color:#a6e22e">AfterViewChecked</span> {
+  <span style="color:#66d9ef">@ViewChild</span>(<span style="color:#e6db74">&#39;bubbleChartContainer&#39;</span>) <span style="color:#66d9ef">private</span> <span style="color:#a6e22e">chartContainer</span>: <span style="color:#66d9ef">ElementRef</span>;
+  <span style="color:#66d9ef">@Input</span>() <span style="color:#66d9ef">private</span> <span style="color:#a6e22e">data</span>: <span style="color:#66d9ef">Array</span><span style="color:#f92672">&lt;</span><span style="color:#a6e22e">any</span><span style="color:#f92672">&gt;</span>;
 
-  <span style="color: #a6e22e">svg</span>: <span style="color: #66d9ef">any</span><span style="color: #f8f8f2">;</span>
-  <span style="color: #a6e22e">pack</span>: <span style="color: #66d9ef">any</span><span style="color: #f8f8f2">;</span>
-  <span style="color: #a6e22e">transition</span>: <span style="color: #66d9ef">number</span><span style="color: #f8f8f2">;</span>
-  <span style="color: #a6e22e">color</span>: <span style="color: #66d9ef">any</span><span style="color: #f8f8f2">;</span>
-  <span style="color: #a6e22e">bubbles</span>: <span style="color: #66d9ef">Array</span><span style="color: #f92672">&lt;</span><span style="color: #a6e22e">any</span><span style="color: #f92672">&gt;</span> <span style="color: #f92672">=</span> <span style="color: #f8f8f2">[];</span>
-  <span style="color: #a6e22e">tooltip</span>: <span style="color: #66d9ef">any</span><span style="color: #f8f8f2">;</span>
-  <span style="color: #a6e22e">amount</span> <span style="color: #f92672">=</span> <span style="color: #ae81ff">0</span><span style="color: #f8f8f2">;</span>
-  <span style="color: #a6e22e">type</span>: <span style="color: #66d9ef">string</span><span style="color: #f8f8f2">;</span>
-  <span style="color: #a6e22e">hostElement</span>: <span style="color: #66d9ef">any</span><span style="color: #f8f8f2">;</span>
-  <span style="color: #a6e22e">hostElementWidth</span>: <span style="color: #66d9ef">number</span><span style="color: #f8f8f2">;</span>
+  <span style="color:#a6e22e">svg</span>: <span style="color:#66d9ef">any</span>;
+  <span style="color:#a6e22e">pack</span>: <span style="color:#66d9ef">any</span>;
+  <span style="color:#a6e22e">transition</span>: <span style="color:#66d9ef">number</span>;
+  <span style="color:#a6e22e">color</span>: <span style="color:#66d9ef">any</span>;
+  <span style="color:#a6e22e">bubbles</span>: <span style="color:#66d9ef">Array</span><span style="color:#f92672">&lt;</span><span style="color:#a6e22e">any</span><span style="color:#f92672">&gt;</span> <span style="color:#f92672">=</span> [];
+  <span style="color:#a6e22e">tooltip</span>: <span style="color:#66d9ef">any</span>;
+  <span style="color:#a6e22e">amount</span> <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+  <span style="color:#a6e22e">type</span>: <span style="color:#66d9ef">string</span>;
+  <span style="color:#a6e22e">hostElement</span>: <span style="color:#66d9ef">any</span>;
+  <span style="color:#a6e22e">hostElementWidth</span>: <span style="color:#66d9ef">number</span>;
 
-  <span style="color: #66d9ef">constructor</span><span style="color: #f8f8f2">(</span>
-    <span style="color: #66d9ef">private</span> <span style="color: #a6e22e">elementRef</span>: <span style="color: #66d9ef">ElementRef</span>
-  <span style="color: #f8f8f2">)</span> <span style="color: #f8f8f2">{}</span>
+  <span style="color:#66d9ef">constructor</span>(
+    <span style="color:#66d9ef">private</span> <span style="color:#a6e22e">elementRef</span>: <span style="color:#66d9ef">ElementRef</span>
+  ) {}
 
-  <span style="color: #a6e22e">ngOnInit() {</span>
-    <span style="color: #66d9ef">this</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">hostElement</span> <span style="color: #f92672">=</span> <span style="color: #66d9ef">this</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">chartContainer</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">nativeElement</span><span style="color: #f8f8f2">;</span>
-  <span style="color: #f8f8f2">}</span>
+  <span style="color:#a6e22e">ngOnInit() {</span>
+    <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">hostElement</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">chartContainer</span>.<span style="color:#a6e22e">nativeElement</span>;
+  }
 
-  <span style="color: #a6e22e">ngOnChanges() {</span>
-    <span style="color: #66d9ef">if</span> <span style="color: #f8f8f2">(</span><span style="color: #66d9ef">this</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">data</span> <span style="color: #f92672">&amp;&amp;</span> <span style="color: #66d9ef">this</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">data</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">length</span> <span style="color: #f92672">&gt;</span> <span style="color: #ae81ff">0</span> <span style="color: #f92672">&amp;&amp;</span> <span style="color: #66d9ef">this</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">svg</span><span style="color: #f8f8f2">)</span> <span style="color: #66d9ef">this</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">updateChart</span><span style="color: #f8f8f2">();</span>
-  <span style="color: #f8f8f2">}</span>
+  <span style="color:#a6e22e">ngOnChanges() {</span>
+    <span style="color:#66d9ef">if</span> (<span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">data</span> <span style="color:#f92672">&amp;&amp;</span> <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">data</span>.<span style="color:#a6e22e">length</span> <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">0</span> <span style="color:#f92672">&amp;&amp;</span> <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">svg</span>) <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">updateChart</span>();
+  }
 
-  <span style="color: #a6e22e">ngAfterViewChecked</span> <span style="color: #f8f8f2">()</span> <span style="color: #f8f8f2">{</span>
-    <span style="color: #66d9ef">if</span> <span style="color: #f8f8f2">(</span><span style="color: #66d9ef">this</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">hostElement</span> <span style="color: #f92672">&amp;&amp;</span> <span style="color: #66d9ef">this</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">hostElement</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">offsetWidth</span> <span style="color: #f92672">!==</span> <span style="color: #ae81ff">0</span> <span style="color: #f92672">&amp;&amp;</span> <span style="color: #66d9ef">this</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">hostElement</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">offsetWidth</span> <span style="color: #f92672">!==</span> <span style="color: #66d9ef">this</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">hostElementWidth</span><span style="color: #f8f8f2">)</span> <span style="color: #f8f8f2">{</span>
-      <span style="color: #66d9ef">this</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">hostElementWidth</span> <span style="color: #f92672">=</span> <span style="color: #66d9ef">this</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">hostElement</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">offsetWidth</span><span style="color: #f8f8f2">;</span>
-      <span style="color: #a6e22e">d3</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">select</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;.bubble-chart svg&#39;</span><span style="color: #f8f8f2">).</span><span style="color: #a6e22e">remove</span><span style="color: #f8f8f2">();</span>
-      <span style="color: #66d9ef">this</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">createChart</span><span style="color: #f8f8f2">();</span>
-      <span style="color: #66d9ef">if</span> <span style="color: #f8f8f2">(</span><span style="color: #66d9ef">this</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">data</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">length</span> <span style="color: #f92672">&gt;</span> <span style="color: #ae81ff">0</span><span style="color: #f8f8f2">)</span> <span style="color: #66d9ef">this</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">updateChart</span><span style="color: #f8f8f2">();</span>
-    <span style="color: #f8f8f2">}</span>
-  <span style="color: #f8f8f2">}</span>
-</pre></div>
-
+  <span style="color:#a6e22e">ngAfterViewChecked</span> () {
+    <span style="color:#66d9ef">if</span> (<span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">hostElement</span> <span style="color:#f92672">&amp;&amp;</span> <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">hostElement</span>.<span style="color:#a6e22e">offsetWidth</span> <span style="color:#f92672">!==</span> <span style="color:#ae81ff">0</span> <span style="color:#f92672">&amp;&amp;</span> <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">hostElement</span>.<span style="color:#a6e22e">offsetWidth</span> <span style="color:#f92672">!==</span> <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">hostElementWidth</span>) {
+      <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">hostElementWidth</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">hostElement</span>.<span style="color:#a6e22e">offsetWidth</span>;
+      <span style="color:#a6e22e">d3</span>.<span style="color:#a6e22e">select</span>(<span style="color:#e6db74">&#39;.bubble-chart svg&#39;</span>).<span style="color:#a6e22e">remove</span>();
+      <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">createChart</span>();
+      <span style="color:#66d9ef">if</span> (<span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">data</span>.<span style="color:#a6e22e">length</span> <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">0</span>) <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">updateChart</span>();
+    }
+  }</code></pre></div>
 <p>This snippet encompasses the most important part of the component, let&rsquo;s go through it step by step.</p>
 
 <p>The template:</p>
@@ -255,27 +253,25 @@ html{font-family:sans-serif;line-height:1.15;-ms-text-size-adjust:100%;-webkit-t
 </ul>
 
 <h3 id="create-the-chart">Create the chart</h3>
-<div class="highlight" style="background: #272822"><pre style="line-height: 125%"><span></span><span style="color: #a6e22e">createChart</span> <span style="color: #f92672">=</span> <span style="color: #f8f8f2">()</span> <span style="color: #f92672">=&gt;</span> <span style="color: #f8f8f2">{</span>
-  <span style="color: #66d9ef">this</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">transition</span> <span style="color: #f92672">=</span> <span style="color: #ae81ff">700</span><span style="color: #f8f8f2">;</span>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-typescript" data-lang="typescript"><span style="color:#a6e22e">createChart</span> <span style="color:#f92672">=</span> () <span style="color:#f92672">=&gt;</span> {
+  <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">transition</span> <span style="color:#f92672">=</span> <span style="color:#ae81ff">700</span>;
 
-  <span style="color: #66d9ef">const</span> <span style="color: #a6e22e">margin</span> <span style="color: #f92672">=</span> <span style="color: #f8f8f2">{</span> <span style="color: #a6e22e">top</span>: <span style="color: #66d9ef">0</span><span style="color: #f8f8f2">,</span> <span style="color: #a6e22e">right</span>: <span style="color: #66d9ef">0</span><span style="color: #f8f8f2">,</span> <span style="color: #a6e22e">bottom</span>: <span style="color: #66d9ef">0</span><span style="color: #f8f8f2">,</span> <span style="color: #a6e22e">left</span>: <span style="color: #66d9ef">0</span><span style="color: #f8f8f2">};</span>
-  <span style="color: #66d9ef">const</span> <span style="color: #a6e22e">width</span> <span style="color: #f92672">=</span> <span style="color: #66d9ef">this</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">hostElement</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">offsetWidth</span> <span style="color: #f92672">-</span> <span style="color: #a6e22e">margin</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">left</span> <span style="color: #f92672">-</span> <span style="color: #a6e22e">margin</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">right</span><span style="color: #f8f8f2">;</span>
-  <span style="color: #66d9ef">const</span> <span style="color: #a6e22e">height</span> <span style="color: #f92672">=</span> <span style="color: #66d9ef">this</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">hostElement</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">offsetHeight</span> <span style="color: #f92672">-</span> <span style="color: #a6e22e">margin</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">top</span> <span style="color: #f92672">-</span> <span style="color: #a6e22e">margin</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">bottom</span><span style="color: #f8f8f2">;</span>
+  <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">margin</span> <span style="color:#f92672">=</span> { <span style="color:#a6e22e">top</span>: <span style="color:#66d9ef">0</span>, <span style="color:#a6e22e">right</span>: <span style="color:#66d9ef">0</span>, <span style="color:#a6e22e">bottom</span>: <span style="color:#66d9ef">0</span>, <span style="color:#a6e22e">left</span>: <span style="color:#66d9ef">0</span>};
+  <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">width</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">hostElement</span>.<span style="color:#a6e22e">offsetWidth</span> <span style="color:#f92672">-</span> <span style="color:#a6e22e">margin</span>.<span style="color:#a6e22e">left</span> <span style="color:#f92672">-</span> <span style="color:#a6e22e">margin</span>.<span style="color:#a6e22e">right</span>;
+  <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">height</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">hostElement</span>.<span style="color:#a6e22e">offsetHeight</span> <span style="color:#f92672">-</span> <span style="color:#a6e22e">margin</span>.<span style="color:#a6e22e">top</span> <span style="color:#f92672">-</span> <span style="color:#a6e22e">margin</span>.<span style="color:#a6e22e">bottom</span>;
 
-  <span style="color: #66d9ef">this</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">svg</span> <span style="color: #f92672">=</span> <span style="color: #a6e22e">d3</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">select</span><span style="color: #f8f8f2">(</span><span style="color: #66d9ef">this</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">hostElement</span><span style="color: #f8f8f2">)</span>
-    <span style="color: #f8f8f2">.</span><span style="color: #a6e22e">append</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;svg&#39;</span><span style="color: #f8f8f2">)</span>
-    <span style="color: #f8f8f2">.</span><span style="color: #a6e22e">attr</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;width&#39;</span><span style="color: #f8f8f2">,</span> <span style="color: #a6e22e">width</span> <span style="color: #f92672">+</span> <span style="color: #a6e22e">margin</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">left</span> <span style="color: #f92672">+</span> <span style="color: #a6e22e">margin</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">right</span><span style="color: #f8f8f2">)</span>
-    <span style="color: #f8f8f2">.</span><span style="color: #a6e22e">attr</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;height&#39;</span><span style="color: #f8f8f2">,</span> <span style="color: #a6e22e">height</span> <span style="color: #f92672">+</span> <span style="color: #a6e22e">margin</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">top</span> <span style="color: #f92672">+</span> <span style="color: #a6e22e">margin</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">bottom</span><span style="color: #f8f8f2">);</span>
+  <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">svg</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">d3</span>.<span style="color:#a6e22e">select</span>(<span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">hostElement</span>)
+    .<span style="color:#a6e22e">append</span>(<span style="color:#e6db74">&#39;svg&#39;</span>)
+    .<span style="color:#a6e22e">attr</span>(<span style="color:#e6db74">&#39;width&#39;</span>, <span style="color:#a6e22e">width</span> <span style="color:#f92672">+</span> <span style="color:#a6e22e">margin</span>.<span style="color:#a6e22e">left</span> <span style="color:#f92672">+</span> <span style="color:#a6e22e">margin</span>.<span style="color:#a6e22e">right</span>)
+    .<span style="color:#a6e22e">attr</span>(<span style="color:#e6db74">&#39;height&#39;</span>, <span style="color:#a6e22e">height</span> <span style="color:#f92672">+</span> <span style="color:#a6e22e">margin</span>.<span style="color:#a6e22e">top</span> <span style="color:#f92672">+</span> <span style="color:#a6e22e">margin</span>.<span style="color:#a6e22e">bottom</span>);
 
-  <span style="color: #66d9ef">this</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">pack</span> <span style="color: #f92672">=</span> <span style="color: #a6e22e">d3</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">pack</span><span style="color: #f8f8f2">()</span>
-    <span style="color: #f8f8f2">.</span><span style="color: #a6e22e">size</span><span style="color: #f8f8f2">([</span><span style="color: #a6e22e">width</span><span style="color: #f8f8f2">,</span> <span style="color: #a6e22e">height</span><span style="color: #f8f8f2">])</span>
-    <span style="color: #f8f8f2">.</span><span style="color: #a6e22e">padding</span><span style="color: #f8f8f2">(</span><span style="color: #ae81ff">1.5</span><span style="color: #f8f8f2">);</span>
+  <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">pack</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">d3</span>.<span style="color:#a6e22e">pack</span>()
+    .<span style="color:#a6e22e">size</span>([<span style="color:#a6e22e">width</span>, <span style="color:#a6e22e">height</span>])
+    .<span style="color:#a6e22e">padding</span>(<span style="color:#ae81ff">1.5</span>);
 
-  <span style="color: #66d9ef">this</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">color</span> <span style="color: #f92672">=</span> <span style="color: #a6e22e">d3</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">scaleOrdinal</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">d3</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">schemeCategory20c</span><span style="color: #f8f8f2">);</span>
-  <span style="color: #66d9ef">this</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">tooltip</span> <span style="color: #f92672">=</span> <span style="color: #66d9ef">this</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">elementRef</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">nativeElement</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">querySelector</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;.tooltip&#39;</span><span style="color: #f8f8f2">);</span>
-<span style="color: #f8f8f2">}</span>
-</pre></div>
-
+  <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">color</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">d3</span>.<span style="color:#a6e22e">scaleOrdinal</span>(<span style="color:#a6e22e">d3</span>.<span style="color:#a6e22e">schemeCategory20c</span>);
+  <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">tooltip</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">elementRef</span>.<span style="color:#a6e22e">nativeElement</span>.<span style="color:#a6e22e">querySelector</span>(<span style="color:#e6db74">&#39;.tooltip&#39;</span>);
+}</code></pre></div>
 <p>Here we:</p>
 
 <ul>
@@ -285,167 +281,159 @@ html{font-family:sans-serif;line-height:1.15;-ms-text-size-adjust:100%;-webkit-t
 </ul>
 
 <h3 id="update-the-chart">Update the chart</h3>
-<div class="highlight" style="background: #272822"><pre style="line-height: 125%"><span></span><span style="color: #a6e22e">updateChart</span> <span style="color: #f92672">=</span> <span style="color: #f8f8f2">()</span> <span style="color: #f92672">=&gt;</span> <span style="color: #f8f8f2">{</span>
-  <span style="color: #66d9ef">this</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">bubbles</span> <span style="color: #f92672">=</span> <span style="color: #66d9ef">this</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">updateBubbles</span><span style="color: #f8f8f2">(</span><span style="color: #66d9ef">this</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">data</span><span style="color: #f8f8f2">);</span>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-typescript" data-lang="typescript"><span style="color:#a6e22e">updateChart</span> <span style="color:#f92672">=</span> () <span style="color:#f92672">=&gt;</span> {
+  <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">bubbles</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">updateBubbles</span>(<span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">data</span>);
 
-  <span style="color: #66d9ef">const</span> <span style="color: #a6e22e">hierarchy</span> <span style="color: #f92672">=</span> <span style="color: #a6e22e">d3</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">hierarchy</span><span style="color: #f8f8f2">({</span> <span style="color: #a6e22e">children</span>: <span style="color: #66d9ef">this.bubbles</span> <span style="color: #f8f8f2">})</span>
-    <span style="color: #f8f8f2">.</span><span style="color: #a6e22e">sum</span><span style="color: #f8f8f2">((</span><span style="color: #a6e22e">d</span>: <span style="color: #66d9ef">any</span><span style="color: #f8f8f2">)</span> <span style="color: #f92672">=&gt;</span> <span style="color: #f8f8f2">{</span>
-      <span style="color: #75715e">// Crazy stuff.. here in sum we path all the node, not only the leafs</span>
-      <span style="color: #75715e">// So we need to ignore the roots</span>
-      <span style="color: #66d9ef">if</span> <span style="color: #f8f8f2">(</span><span style="color: #a6e22e">d</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">children</span><span style="color: #f8f8f2">)</span> <span style="color: #66d9ef">return</span> <span style="color: #ae81ff">0</span><span style="color: #f8f8f2">;</span>
-      <span style="color: #66d9ef">return</span> <span style="color: #a6e22e">d</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">amount</span><span style="color: #f8f8f2">;</span>
-    <span style="color: #f8f8f2">});</span>
+  <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">hierarchy</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">d3</span>.<span style="color:#a6e22e">hierarchy</span>({ <span style="color:#a6e22e">children</span>: <span style="color:#66d9ef">this.bubbles</span> })
+    .<span style="color:#a6e22e">sum</span>((<span style="color:#a6e22e">d</span>: <span style="color:#66d9ef">any</span>) <span style="color:#f92672">=&gt;</span> {
+      <span style="color:#75715e">// Crazy stuff.. here in sum we path all the node, not only the leafs
+</span><span style="color:#75715e"></span>      <span style="color:#75715e">// So we need to ignore the roots
+</span><span style="color:#75715e"></span>      <span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">d</span>.<span style="color:#a6e22e">children</span>) <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>;
+      <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">d</span>.<span style="color:#a6e22e">amount</span>;
+    });
 
-  <span style="color: #75715e">// JOIN</span>
-  <span style="color: #66d9ef">const</span> <span style="color: #a6e22e">node</span> <span style="color: #f92672">=</span> <span style="color: #66d9ef">this</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">svg</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">selectAll</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;g&#39;</span><span style="color: #f8f8f2">)</span>
-    <span style="color: #f8f8f2">.</span><span style="color: #a6e22e">data</span><span style="color: #f8f8f2">(</span><span style="color: #66d9ef">this</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">pack</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">hierarchy</span><span style="color: #f8f8f2">).</span><span style="color: #a6e22e">leaves</span><span style="color: #f8f8f2">(),</span> <span style="color: #a6e22e">d</span> <span style="color: #f92672">=&gt;</span> <span style="color: #a6e22e">d</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">data</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">type</span><span style="color: #f8f8f2">);</span>
+  <span style="color:#75715e">// JOIN
+</span><span style="color:#75715e"></span>  <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">node</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">svg</span>.<span style="color:#a6e22e">selectAll</span>(<span style="color:#e6db74">&#39;g&#39;</span>)
+    .<span style="color:#a6e22e">data</span>(<span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">pack</span>(<span style="color:#a6e22e">hierarchy</span>).<span style="color:#a6e22e">leaves</span>(), <span style="color:#a6e22e">d</span> <span style="color:#f92672">=&gt;</span> <span style="color:#a6e22e">d</span>.<span style="color:#a6e22e">data</span>.<span style="color:#a6e22e">type</span>);
 
-  <span style="color: #66d9ef">const</span> <span style="color: #a6e22e">nodeEnter</span> <span style="color: #f92672">=</span> <span style="color: #a6e22e">node</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">enter</span><span style="color: #f8f8f2">()</span>
-    <span style="color: #f8f8f2">.</span><span style="color: #a6e22e">append</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;g&#39;</span><span style="color: #f8f8f2">)</span>
-    <span style="color: #f8f8f2">.</span><span style="color: #a6e22e">attr</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;transform&#39;</span><span style="color: #f8f8f2">,</span> <span style="color: #a6e22e">d</span> <span style="color: #f92672">=&gt;</span> <span style="color: #e6db74">&#39;translate(&#39;</span> <span style="color: #f92672">+</span> <span style="color: #a6e22e">d</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">x</span> <span style="color: #f92672">+</span> <span style="color: #e6db74">&#39;, &#39;</span> <span style="color: #f92672">+</span> <span style="color: #a6e22e">d</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">y</span> <span style="color: #f92672">+</span> <span style="color: #e6db74">&#39;)&#39;</span><span style="color: #f8f8f2">);</span>
+  <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">nodeEnter</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">node</span>.<span style="color:#a6e22e">enter</span>()
+    .<span style="color:#a6e22e">append</span>(<span style="color:#e6db74">&#39;g&#39;</span>)
+    .<span style="color:#a6e22e">attr</span>(<span style="color:#e6db74">&#39;transform&#39;</span>, <span style="color:#a6e22e">d</span> <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;translate(&#39;</span> <span style="color:#f92672">+</span> <span style="color:#a6e22e">d</span>.<span style="color:#a6e22e">x</span> <span style="color:#f92672">+</span> <span style="color:#e6db74">&#39;, &#39;</span> <span style="color:#f92672">+</span> <span style="color:#a6e22e">d</span>.<span style="color:#a6e22e">y</span> <span style="color:#f92672">+</span> <span style="color:#e6db74">&#39;)&#39;</span>);
 
-  <span style="color: #75715e">// ENTER</span>
-  <span style="color: #a6e22e">nodeEnter</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">append</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;circle&#39;</span><span style="color: #f8f8f2">)</span>
-    <span style="color: #f8f8f2">.</span><span style="color: #a6e22e">style</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;fill&#39;</span><span style="color: #f8f8f2">,</span> <span style="color: #e6db74">&#39;#fff&#39;</span><span style="color: #f8f8f2">)</span>
-    <span style="color: #f8f8f2">.</span><span style="color: #a6e22e">attr</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;r&#39;</span><span style="color: #f8f8f2">,</span> <span style="color: #a6e22e">d</span> <span style="color: #f92672">=&gt;</span> <span style="color: #ae81ff">1</span><span style="color: #a6e22e">e</span><span style="color: #f92672">-</span><span style="color: #ae81ff">6</span><span style="color: #f8f8f2">)</span>
-    <span style="color: #f8f8f2">.</span><span style="color: #a6e22e">on</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;mouseover&#39;</span><span style="color: #f8f8f2">,</span> <span style="color: #66d9ef">this</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">mouseover</span><span style="color: #f8f8f2">)</span>
-    <span style="color: #f8f8f2">.</span><span style="color: #a6e22e">on</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;mouseout&#39;</span><span style="color: #f8f8f2">,</span> <span style="color: #66d9ef">this</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">mouseout</span><span style="color: #f8f8f2">)</span>
-    <span style="color: #f8f8f2">.</span><span style="color: #a6e22e">transition</span><span style="color: #f8f8f2">()</span>
-    <span style="color: #f8f8f2">.</span><span style="color: #a6e22e">duration</span><span style="color: #f8f8f2">(</span><span style="color: #ae81ff">700</span><span style="color: #f8f8f2">)</span>
-    <span style="color: #f8f8f2">.</span><span style="color: #a6e22e">attr</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;r&#39;</span><span style="color: #f8f8f2">,</span> <span style="color: #a6e22e">d</span> <span style="color: #f92672">=&gt;</span> <span style="color: #a6e22e">d</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">r</span><span style="color: #f8f8f2">)</span>
-    <span style="color: #f8f8f2">.</span><span style="color: #a6e22e">style</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;fill&#39;</span><span style="color: #f8f8f2">,</span> <span style="color: #a6e22e">d</span> <span style="color: #f92672">=&gt;</span> <span style="color: #66d9ef">this</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">color</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">d</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">data</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">type</span><span style="color: #f8f8f2">));</span>
+  <span style="color:#75715e">// ENTER
+</span><span style="color:#75715e"></span>  <span style="color:#a6e22e">nodeEnter</span>.<span style="color:#a6e22e">append</span>(<span style="color:#e6db74">&#39;circle&#39;</span>)
+    .<span style="color:#a6e22e">style</span>(<span style="color:#e6db74">&#39;fill&#39;</span>, <span style="color:#e6db74">&#39;#fff&#39;</span>)
+    .<span style="color:#a6e22e">attr</span>(<span style="color:#e6db74">&#39;r&#39;</span>, <span style="color:#a6e22e">d</span> <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">1</span><span style="color:#a6e22e">e</span><span style="color:#f92672">-</span><span style="color:#ae81ff">6</span>)
+    .<span style="color:#a6e22e">on</span>(<span style="color:#e6db74">&#39;mouseover&#39;</span>, <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">mouseover</span>)
+    .<span style="color:#a6e22e">on</span>(<span style="color:#e6db74">&#39;mouseout&#39;</span>, <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">mouseout</span>)
+    .<span style="color:#a6e22e">transition</span>()
+    .<span style="color:#a6e22e">duration</span>(<span style="color:#ae81ff">700</span>)
+    .<span style="color:#a6e22e">attr</span>(<span style="color:#e6db74">&#39;r&#39;</span>, <span style="color:#a6e22e">d</span> <span style="color:#f92672">=&gt;</span> <span style="color:#a6e22e">d</span>.<span style="color:#a6e22e">r</span>)
+    .<span style="color:#a6e22e">style</span>(<span style="color:#e6db74">&#39;fill&#39;</span>, <span style="color:#a6e22e">d</span> <span style="color:#f92672">=&gt;</span> <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">color</span>(<span style="color:#a6e22e">d</span>.<span style="color:#a6e22e">data</span>.<span style="color:#a6e22e">type</span>));
 
-  <span style="color: #a6e22e">nodeEnter</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">append</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;image&#39;</span><span style="color: #f8f8f2">)</span>
-    <span style="color: #f8f8f2">.</span><span style="color: #a6e22e">attr</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;xlink:href&#39;</span><span style="color: #f8f8f2">,</span> <span style="color: #a6e22e">d</span> <span style="color: #f92672">=&gt;</span> <span style="color: #e6db74">&#39;assets/Icon-&#39;</span> <span style="color: #f92672">+</span> <span style="color: #a6e22e">d</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">data</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">type</span> <span style="color: #f92672">+</span> <span style="color: #e6db74">&#39;-HL.svg&#39;</span><span style="color: #f8f8f2">)</span>
-    <span style="color: #f8f8f2">.</span><span style="color: #a6e22e">attr</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;width&#39;</span><span style="color: #f8f8f2">,</span> <span style="color: #ae81ff">1</span><span style="color: #a6e22e">e</span><span style="color: #f92672">-</span><span style="color: #ae81ff">6</span><span style="color: #f8f8f2">)</span>
-    <span style="color: #f8f8f2">.</span><span style="color: #a6e22e">attr</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;height&#39;</span><span style="color: #f8f8f2">,</span> <span style="color: #ae81ff">1</span><span style="color: #a6e22e">e</span><span style="color: #f92672">-</span><span style="color: #ae81ff">6</span><span style="color: #f8f8f2">)</span>
-    <span style="color: #f8f8f2">.</span><span style="color: #a6e22e">attr</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;x&#39;</span><span style="color: #f8f8f2">,</span> <span style="color: #a6e22e">d</span> <span style="color: #f92672">=&gt;</span> <span style="color: #f92672">-</span> <span style="color: #a6e22e">d</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">r</span> <span style="color: #f92672">/</span> <span style="color: #ae81ff">2</span><span style="color: #f8f8f2">)</span>
-    <span style="color: #f8f8f2">.</span><span style="color: #a6e22e">attr</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;y&#39;</span><span style="color: #f8f8f2">,</span> <span style="color: #a6e22e">d</span> <span style="color: #f92672">=&gt;</span> <span style="color: #f92672">-</span> <span style="color: #a6e22e">d</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">r</span> <span style="color: #f92672">/</span> <span style="color: #ae81ff">2</span><span style="color: #f8f8f2">)</span>
-    <span style="color: #f8f8f2">.</span><span style="color: #a6e22e">attr</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;pointer-events&#39;</span><span style="color: #f8f8f2">,</span> <span style="color: #e6db74">&#39;none&#39;</span><span style="color: #f8f8f2">)</span>
-    <span style="color: #f8f8f2">.</span><span style="color: #a6e22e">transition</span><span style="color: #f8f8f2">()</span>
-    <span style="color: #f8f8f2">.</span><span style="color: #a6e22e">duration</span><span style="color: #f8f8f2">(</span><span style="color: #66d9ef">this</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">transition</span><span style="color: #f8f8f2">)</span>
-    <span style="color: #f8f8f2">.</span><span style="color: #a6e22e">attr</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;width&#39;</span><span style="color: #f8f8f2">,</span> <span style="color: #a6e22e">d</span> <span style="color: #f92672">=&gt;</span> <span style="color: #a6e22e">d</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">r</span><span style="color: #f8f8f2">)</span>
-    <span style="color: #f8f8f2">.</span><span style="color: #a6e22e">attr</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;height&#39;</span><span style="color: #f8f8f2">,</span> <span style="color: #a6e22e">d</span> <span style="color: #f92672">=&gt;</span> <span style="color: #a6e22e">d</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">r</span><span style="color: #f8f8f2">);</span>
+  <span style="color:#a6e22e">nodeEnter</span>.<span style="color:#a6e22e">append</span>(<span style="color:#e6db74">&#39;image&#39;</span>)
+    .<span style="color:#a6e22e">attr</span>(<span style="color:#e6db74">&#39;xlink:href&#39;</span>, <span style="color:#a6e22e">d</span> <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;assets/Icon-&#39;</span> <span style="color:#f92672">+</span> <span style="color:#a6e22e">d</span>.<span style="color:#a6e22e">data</span>.<span style="color:#a6e22e">type</span> <span style="color:#f92672">+</span> <span style="color:#e6db74">&#39;-HL.svg&#39;</span>)
+    .<span style="color:#a6e22e">attr</span>(<span style="color:#e6db74">&#39;width&#39;</span>, <span style="color:#ae81ff">1</span><span style="color:#a6e22e">e</span><span style="color:#f92672">-</span><span style="color:#ae81ff">6</span>)
+    .<span style="color:#a6e22e">attr</span>(<span style="color:#e6db74">&#39;height&#39;</span>, <span style="color:#ae81ff">1</span><span style="color:#a6e22e">e</span><span style="color:#f92672">-</span><span style="color:#ae81ff">6</span>)
+    .<span style="color:#a6e22e">attr</span>(<span style="color:#e6db74">&#39;x&#39;</span>, <span style="color:#a6e22e">d</span> <span style="color:#f92672">=&gt;</span> <span style="color:#f92672">-</span> <span style="color:#a6e22e">d</span>.<span style="color:#a6e22e">r</span> <span style="color:#960050;background-color:#1e0010">/ 2)</span>
+    .<span style="color:#a6e22e">attr</span>(<span style="color:#e6db74">&#39;y&#39;</span>, <span style="color:#a6e22e">d</span> <span style="color:#f92672">=&gt;</span> <span style="color:#f92672">-</span> <span style="color:#a6e22e">d</span>.<span style="color:#a6e22e">r</span> <span style="color:#960050;background-color:#1e0010">/ 2)</span>
+    .<span style="color:#a6e22e">attr</span>(<span style="color:#e6db74">&#39;pointer-events&#39;</span>, <span style="color:#e6db74">&#39;none&#39;</span>)
+    .<span style="color:#a6e22e">transition</span>()
+    .<span style="color:#a6e22e">duration</span>(<span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">transition</span>)
+    .<span style="color:#a6e22e">attr</span>(<span style="color:#e6db74">&#39;width&#39;</span>, <span style="color:#a6e22e">d</span> <span style="color:#f92672">=&gt;</span> <span style="color:#a6e22e">d</span>.<span style="color:#a6e22e">r</span>)
+    .<span style="color:#a6e22e">attr</span>(<span style="color:#e6db74">&#39;height&#39;</span>, <span style="color:#a6e22e">d</span> <span style="color:#f92672">=&gt;</span> <span style="color:#a6e22e">d</span>.<span style="color:#a6e22e">r</span>);
 
-  <span style="color: #75715e">// EXIT</span>
-  <span style="color: #a6e22e">node</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">select</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;circle&#39;</span><span style="color: #f8f8f2">).</span><span style="color: #a6e22e">exit</span><span style="color: #f8f8f2">()</span>
-    <span style="color: #f8f8f2">.</span><span style="color: #a6e22e">transition</span><span style="color: #f8f8f2">()</span>
-    <span style="color: #f8f8f2">.</span><span style="color: #a6e22e">duration</span><span style="color: #f8f8f2">(</span><span style="color: #ae81ff">700</span><span style="color: #f8f8f2">)</span>
-    <span style="color: #f8f8f2">.</span><span style="color: #a6e22e">attr</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;r&#39;</span><span style="color: #f8f8f2">,</span> <span style="color: #a6e22e">d</span> <span style="color: #f92672">=&gt;</span> <span style="color: #ae81ff">1</span><span style="color: #a6e22e">e</span><span style="color: #f92672">-</span><span style="color: #ae81ff">6</span><span style="color: #f8f8f2">)</span>
-    <span style="color: #f8f8f2">.</span><span style="color: #a6e22e">remove</span><span style="color: #f8f8f2">();</span>
+  <span style="color:#75715e">// EXIT
+</span><span style="color:#75715e"></span>  <span style="color:#a6e22e">node</span>.<span style="color:#a6e22e">select</span>(<span style="color:#e6db74">&#39;circle&#39;</span>).<span style="color:#a6e22e">exit</span>()
+    .<span style="color:#a6e22e">transition</span>()
+    .<span style="color:#a6e22e">duration</span>(<span style="color:#ae81ff">700</span>)
+    .<span style="color:#a6e22e">attr</span>(<span style="color:#e6db74">&#39;r&#39;</span>, <span style="color:#a6e22e">d</span> <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">1</span><span style="color:#a6e22e">e</span><span style="color:#f92672">-</span><span style="color:#ae81ff">6</span>)
+    .<span style="color:#a6e22e">remove</span>();
 
-  <span style="color: #a6e22e">node</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">select</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;image&#39;</span><span style="color: #f8f8f2">).</span><span style="color: #a6e22e">exit</span><span style="color: #f8f8f2">()</span>
-    <span style="color: #f8f8f2">.</span><span style="color: #a6e22e">transition</span><span style="color: #f8f8f2">()</span>
-    <span style="color: #f8f8f2">.</span><span style="color: #a6e22e">duration</span><span style="color: #f8f8f2">(</span><span style="color: #ae81ff">700</span><span style="color: #f8f8f2">)</span>
-    <span style="color: #f8f8f2">.</span><span style="color: #a6e22e">attr</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;width&#39;</span><span style="color: #f8f8f2">,</span> <span style="color: #a6e22e">d</span> <span style="color: #f92672">=&gt;</span> <span style="color: #ae81ff">1</span><span style="color: #a6e22e">e</span><span style="color: #f92672">-</span><span style="color: #ae81ff">6</span><span style="color: #f8f8f2">)</span>
-    <span style="color: #f8f8f2">.</span><span style="color: #a6e22e">attr</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;height&#39;</span><span style="color: #f8f8f2">,</span> <span style="color: #a6e22e">d</span> <span style="color: #f92672">=&gt;</span> <span style="color: #ae81ff">1</span><span style="color: #a6e22e">e</span><span style="color: #f92672">-</span><span style="color: #ae81ff">6</span><span style="color: #f8f8f2">)</span>
-    <span style="color: #f8f8f2">.</span><span style="color: #a6e22e">remove</span><span style="color: #f8f8f2">();</span>
+  <span style="color:#a6e22e">node</span>.<span style="color:#a6e22e">select</span>(<span style="color:#e6db74">&#39;image&#39;</span>).<span style="color:#a6e22e">exit</span>()
+    .<span style="color:#a6e22e">transition</span>()
+    .<span style="color:#a6e22e">duration</span>(<span style="color:#ae81ff">700</span>)
+    .<span style="color:#a6e22e">attr</span>(<span style="color:#e6db74">&#39;width&#39;</span>, <span style="color:#a6e22e">d</span> <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">1</span><span style="color:#a6e22e">e</span><span style="color:#f92672">-</span><span style="color:#ae81ff">6</span>)
+    .<span style="color:#a6e22e">attr</span>(<span style="color:#e6db74">&#39;height&#39;</span>, <span style="color:#a6e22e">d</span> <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">1</span><span style="color:#a6e22e">e</span><span style="color:#f92672">-</span><span style="color:#ae81ff">6</span>)
+    .<span style="color:#a6e22e">remove</span>();
 
-  <span style="color: #a6e22e">node</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">exit</span><span style="color: #f8f8f2">()</span>
-    <span style="color: #f8f8f2">.</span><span style="color: #a6e22e">transition</span><span style="color: #f8f8f2">()</span>
-    <span style="color: #f8f8f2">.</span><span style="color: #a6e22e">duration</span><span style="color: #f8f8f2">(</span><span style="color: #ae81ff">700</span><span style="color: #f8f8f2">)</span>
-    <span style="color: #f8f8f2">.</span><span style="color: #a6e22e">remove</span><span style="color: #f8f8f2">();</span>
+  <span style="color:#a6e22e">node</span>.<span style="color:#a6e22e">exit</span>()
+    .<span style="color:#a6e22e">transition</span>()
+    .<span style="color:#a6e22e">duration</span>(<span style="color:#ae81ff">700</span>)
+    .<span style="color:#a6e22e">remove</span>();
 
-  <span style="color: #75715e">// UPDATE</span>
-  <span style="color: #a6e22e">node</span>
-    <span style="color: #f8f8f2">.</span><span style="color: #a6e22e">transition</span><span style="color: #f8f8f2">()</span>
-    <span style="color: #f8f8f2">.</span><span style="color: #a6e22e">duration</span><span style="color: #f8f8f2">(</span><span style="color: #ae81ff">700</span><span style="color: #f8f8f2">)</span>
-    <span style="color: #f8f8f2">.</span><span style="color: #a6e22e">attr</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;transform&#39;</span><span style="color: #f8f8f2">,</span> <span style="color: #a6e22e">d</span> <span style="color: #f92672">=&gt;</span> <span style="color: #e6db74">&#39;translate(&#39;</span> <span style="color: #f92672">+</span> <span style="color: #a6e22e">d</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">x</span> <span style="color: #f92672">+</span> <span style="color: #e6db74">&#39;, &#39;</span> <span style="color: #f92672">+</span> <span style="color: #a6e22e">d</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">y</span> <span style="color: #f92672">+</span> <span style="color: #e6db74">&#39;)&#39;</span><span style="color: #f8f8f2">)</span>
-    <span style="color: #f8f8f2">.</span><span style="color: #a6e22e">style</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;fill&#39;</span><span style="color: #f8f8f2">,</span> <span style="color: #e6db74">&#39;#3a403d&#39;</span><span style="color: #f8f8f2">);</span>
+  <span style="color:#75715e">// UPDATE
+</span><span style="color:#75715e"></span>  <span style="color:#a6e22e">node</span>
+    .<span style="color:#a6e22e">transition</span>()
+    .<span style="color:#a6e22e">duration</span>(<span style="color:#ae81ff">700</span>)
+    .<span style="color:#a6e22e">attr</span>(<span style="color:#e6db74">&#39;transform&#39;</span>, <span style="color:#a6e22e">d</span> <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;translate(&#39;</span> <span style="color:#f92672">+</span> <span style="color:#a6e22e">d</span>.<span style="color:#a6e22e">x</span> <span style="color:#f92672">+</span> <span style="color:#e6db74">&#39;, &#39;</span> <span style="color:#f92672">+</span> <span style="color:#a6e22e">d</span>.<span style="color:#a6e22e">y</span> <span style="color:#f92672">+</span> <span style="color:#e6db74">&#39;)&#39;</span>)
+    .<span style="color:#a6e22e">style</span>(<span style="color:#e6db74">&#39;fill&#39;</span>, <span style="color:#e6db74">&#39;#3a403d&#39;</span>);
 
-  <span style="color: #a6e22e">node</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">select</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;circle&#39;</span><span style="color: #f8f8f2">).</span><span style="color: #a6e22e">transition</span><span style="color: #f8f8f2">()</span>
-    <span style="color: #f8f8f2">.</span><span style="color: #a6e22e">duration</span><span style="color: #f8f8f2">(</span><span style="color: #ae81ff">700</span><span style="color: #f8f8f2">)</span>
-    <span style="color: #f8f8f2">.</span><span style="color: #a6e22e">attr</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;r&#39;</span><span style="color: #f8f8f2">,</span> <span style="color: #a6e22e">d</span> <span style="color: #f92672">=&gt;</span> <span style="color: #a6e22e">d</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">r</span><span style="color: #f8f8f2">);</span>
+  <span style="color:#a6e22e">node</span>.<span style="color:#a6e22e">select</span>(<span style="color:#e6db74">&#39;circle&#39;</span>).<span style="color:#a6e22e">transition</span>()
+    .<span style="color:#a6e22e">duration</span>(<span style="color:#ae81ff">700</span>)
+    .<span style="color:#a6e22e">attr</span>(<span style="color:#e6db74">&#39;r&#39;</span>, <span style="color:#a6e22e">d</span> <span style="color:#f92672">=&gt;</span> <span style="color:#a6e22e">d</span>.<span style="color:#a6e22e">r</span>);
 
-  <span style="color: #a6e22e">node</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">select</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;image&#39;</span><span style="color: #f8f8f2">).</span><span style="color: #a6e22e">transition</span><span style="color: #f8f8f2">()</span>
-    <span style="color: #f8f8f2">.</span><span style="color: #a6e22e">duration</span><span style="color: #f8f8f2">(</span><span style="color: #ae81ff">700</span><span style="color: #f8f8f2">)</span>
-    <span style="color: #f8f8f2">.</span><span style="color: #a6e22e">attr</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;x&#39;</span><span style="color: #f8f8f2">,</span> <span style="color: #a6e22e">d</span> <span style="color: #f92672">=&gt;</span> <span style="color: #f92672">-</span> <span style="color: #a6e22e">d</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">r</span> <span style="color: #f92672">/</span> <span style="color: #ae81ff">2</span><span style="color: #f8f8f2">)</span>
-    <span style="color: #f8f8f2">.</span><span style="color: #a6e22e">attr</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;y&#39;</span><span style="color: #f8f8f2">,</span> <span style="color: #a6e22e">d</span> <span style="color: #f92672">=&gt;</span> <span style="color: #f92672">-</span> <span style="color: #a6e22e">d</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">r</span> <span style="color: #f92672">/</span> <span style="color: #ae81ff">2</span><span style="color: #f8f8f2">)</span>
-    <span style="color: #f8f8f2">.</span><span style="color: #a6e22e">attr</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;width&#39;</span><span style="color: #f8f8f2">,</span> <span style="color: #a6e22e">d</span> <span style="color: #f92672">=&gt;</span> <span style="color: #a6e22e">d</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">r</span><span style="color: #f8f8f2">)</span>
-    <span style="color: #f8f8f2">.</span><span style="color: #a6e22e">attr</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;height&#39;</span><span style="color: #f8f8f2">,</span> <span style="color: #a6e22e">d</span> <span style="color: #f92672">=&gt;</span> <span style="color: #a6e22e">d</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">r</span><span style="color: #f8f8f2">);</span>
-<span style="color: #f8f8f2">}</span>
-</pre></div>
-
+  <span style="color:#a6e22e">node</span>.<span style="color:#a6e22e">select</span>(<span style="color:#e6db74">&#39;image&#39;</span>).<span style="color:#a6e22e">transition</span>()
+    .<span style="color:#a6e22e">duration</span>(<span style="color:#ae81ff">700</span>)
+    .<span style="color:#a6e22e">attr</span>(<span style="color:#e6db74">&#39;x&#39;</span>, <span style="color:#a6e22e">d</span> <span style="color:#f92672">=&gt;</span> <span style="color:#f92672">-</span> <span style="color:#a6e22e">d</span>.<span style="color:#a6e22e">r</span> <span style="color:#960050;background-color:#1e0010">/ 2)</span>
+    .<span style="color:#a6e22e">attr</span>(<span style="color:#e6db74">&#39;y&#39;</span>, <span style="color:#a6e22e">d</span> <span style="color:#f92672">=&gt;</span> <span style="color:#f92672">-</span> <span style="color:#a6e22e">d</span>.<span style="color:#a6e22e">r</span> <span style="color:#960050;background-color:#1e0010">/ 2)</span>
+    .<span style="color:#a6e22e">attr</span>(<span style="color:#e6db74">&#39;width&#39;</span>, <span style="color:#a6e22e">d</span> <span style="color:#f92672">=&gt;</span> <span style="color:#a6e22e">d</span>.<span style="color:#a6e22e">r</span>)
+    .<span style="color:#a6e22e">attr</span>(<span style="color:#e6db74">&#39;height&#39;</span>, <span style="color:#a6e22e">d</span> <span style="color:#f92672">=&gt;</span> <span style="color:#a6e22e">d</span>.<span style="color:#a6e22e">r</span>);
+}</code></pre></div>
 <p>Here we crunch the data and define the enter, update and exit behaviour for the circles and the images.</p>
 
 <h3 id="helpers">Helpers</h3>
-<div class="highlight" style="background: #272822"><pre style="line-height: 125%"><span></span>  <span style="color: #a6e22e">updateBubbles</span> <span style="color: #f92672">=</span> <span style="color: #f8f8f2">(</span><span style="color: #a6e22e">newData</span>: <span style="color: #66d9ef">Array</span><span style="color: #f92672">&lt;</span><span style="color: #a6e22e">any</span><span style="color: #f92672">&gt;</span><span style="color: #f8f8f2">)</span><span style="color: #f92672">:</span> <span style="color: #f8f8f2">Array</span><span style="color: #f92672">&lt;</span><span style="color: #a6e22e">any</span><span style="color: #f92672">&gt;</span> <span style="color: #f92672">=&gt;</span> <span style="color: #f8f8f2">{</span>
-    <span style="color: #66d9ef">const</span> <span style="color: #a6e22e">dataByTypes</span> <span style="color: #f92672">=</span> <span style="color: #a6e22e">_</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">groupBy</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">_</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">sortBy</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">newData</span><span style="color: #f8f8f2">,</span> <span style="color: #e6db74">&#39;type&#39;</span><span style="color: #f8f8f2">),</span> <span style="color: #e6db74">&#39;type&#39;</span><span style="color: #f8f8f2">);</span>
-    <span style="color: #66d9ef">const</span> <span style="color: #a6e22e">results</span> <span style="color: #f92672">=</span> <span style="color: #f8f8f2">[];</span>
-    <span style="color: #f8f8f2">Object.</span><span style="color: #a6e22e">keys</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">dataByTypes</span><span style="color: #f8f8f2">).</span><span style="color: #a6e22e">map</span><span style="color: #f8f8f2">((</span><span style="color: #a6e22e">key</span><span style="color: #f8f8f2">,</span> <span style="color: #a6e22e">index</span><span style="color: #f8f8f2">)</span> <span style="color: #f92672">=&gt;</span> <span style="color: #f8f8f2">{</span>
-      <span style="color: #a6e22e">results</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">push</span><span style="color: #f8f8f2">({</span>
-        <span style="color: #a6e22e">type</span>: <span style="color: #66d9ef">key</span><span style="color: #f8f8f2">,</span>
-        <span style="color: #a6e22e">amount</span>: <span style="color: #66d9ef">dataByTypes</span><span style="color: #f8f8f2">[</span><span style="color: #a6e22e">key</span><span style="color: #f8f8f2">].</span><span style="color: #a6e22e">length</span>
-      <span style="color: #f8f8f2">});</span>
-    <span style="color: #f8f8f2">});</span>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-typescript" data-lang="typescript">  <span style="color:#a6e22e">updateBubbles</span> <span style="color:#f92672">=</span> (<span style="color:#a6e22e">newData</span>: <span style="color:#66d9ef">Array</span><span style="color:#f92672">&lt;</span><span style="color:#a6e22e">any</span><span style="color:#f92672">&gt;</span>)<span style="color:#f92672">:</span> Array<span style="color:#f92672">&lt;</span><span style="color:#a6e22e">any</span><span style="color:#f92672">&gt;</span> <span style="color:#f92672">=&gt;</span> {
+    <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">dataByTypes</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">_</span>.<span style="color:#a6e22e">groupBy</span>(<span style="color:#a6e22e">_</span>.<span style="color:#a6e22e">sortBy</span>(<span style="color:#a6e22e">newData</span>, <span style="color:#e6db74">&#39;type&#39;</span>), <span style="color:#e6db74">&#39;type&#39;</span>);
+    <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">results</span> <span style="color:#f92672">=</span> [];
+    Object.<span style="color:#a6e22e">keys</span>(<span style="color:#a6e22e">dataByTypes</span>).<span style="color:#a6e22e">map</span>((<span style="color:#a6e22e">key</span>, <span style="color:#a6e22e">index</span>) <span style="color:#f92672">=&gt;</span> {
+      <span style="color:#a6e22e">results</span>.<span style="color:#a6e22e">push</span>({
+        <span style="color:#a6e22e">type</span>: <span style="color:#66d9ef">key</span>,
+        <span style="color:#a6e22e">amount</span>: <span style="color:#66d9ef">dataByTypes</span>[<span style="color:#a6e22e">key</span>].<span style="color:#a6e22e">length</span>
+      });
+    });
 
-    <span style="color: #66d9ef">return</span> <span style="color: #a6e22e">results</span><span style="color: #f8f8f2">;</span>
-  <span style="color: #f8f8f2">}</span>
+    <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">results</span>;
+  }
 
-  <span style="color: #a6e22e">mouseover</span> <span style="color: #f92672">=</span> <span style="color: #f8f8f2">(</span><span style="color: #a6e22e">d</span><span style="color: #f8f8f2">,</span> <span style="color: #a6e22e">i</span><span style="color: #f8f8f2">)</span> <span style="color: #f92672">=&gt;</span> <span style="color: #f8f8f2">{</span>
-    <span style="color: #75715e">// placement</span>
-    <span style="color: #66d9ef">this</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">tooltip</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">style</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">visibility</span> <span style="color: #f92672">=</span> <span style="color: #e6db74">&#39;visible&#39;</span><span style="color: #f8f8f2">;</span>
-    <span style="color: #66d9ef">this</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">tooltip</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">style</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">opacity</span> <span style="color: #f92672">=</span> <span style="color: #ae81ff">0.9</span><span style="color: #f8f8f2">;</span>
-    <span style="color: #66d9ef">this</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">tooltip</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">style</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">top</span> <span style="color: #f92672">=</span> <span style="color: #a6e22e">d3</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">event</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">pageY</span> <span style="color: #f92672">+</span> <span style="color: #e6db74">&#39;px&#39;</span><span style="color: #f8f8f2">;</span>
-    <span style="color: #66d9ef">this</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">tooltip</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">style</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">left</span> <span style="color: #f92672">=</span> <span style="color: #a6e22e">d3</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">event</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">pageX</span> <span style="color: #f92672">+</span> <span style="color: #e6db74">&#39;px&#39;</span><span style="color: #f8f8f2">;</span>
+  <span style="color:#a6e22e">mouseover</span> <span style="color:#f92672">=</span> (<span style="color:#a6e22e">d</span>, <span style="color:#a6e22e">i</span>) <span style="color:#f92672">=&gt;</span> {
+    <span style="color:#75715e">// placement
+</span><span style="color:#75715e"></span>    <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">tooltip</span>.<span style="color:#a6e22e">style</span>.<span style="color:#a6e22e">visibility</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;visible&#39;</span>;
+    <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">tooltip</span>.<span style="color:#a6e22e">style</span>.<span style="color:#a6e22e">opacity</span> <span style="color:#f92672">=</span> <span style="color:#ae81ff">0.9</span>;
+    <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">tooltip</span>.<span style="color:#a6e22e">style</span>.<span style="color:#a6e22e">top</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">d3</span>.<span style="color:#a6e22e">event</span>.<span style="color:#a6e22e">pageY</span> <span style="color:#f92672">+</span> <span style="color:#e6db74">&#39;px&#39;</span>;
+    <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">tooltip</span>.<span style="color:#a6e22e">style</span>.<span style="color:#a6e22e">left</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">d3</span>.<span style="color:#a6e22e">event</span>.<span style="color:#a6e22e">pageX</span> <span style="color:#f92672">+</span> <span style="color:#e6db74">&#39;px&#39;</span>;
 
-    <span style="color: #75715e">// Values</span>
-    <span style="color: #66d9ef">this</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">amount</span> <span style="color: #f92672">=</span> <span style="color: #a6e22e">d</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">data</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">amount</span><span style="color: #f8f8f2">;</span>
-    <span style="color: #66d9ef">this</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">type</span> <span style="color: #f92672">=</span> <span style="color: #a6e22e">d</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">data</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">type</span><span style="color: #f8f8f2">;</span>
-  <span style="color: #f8f8f2">}</span>
+    <span style="color:#75715e">// Values
+</span><span style="color:#75715e"></span>    <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">amount</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">d</span>.<span style="color:#a6e22e">data</span>.<span style="color:#a6e22e">amount</span>;
+    <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">type</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">d</span>.<span style="color:#a6e22e">data</span>.<span style="color:#a6e22e">type</span>;
+  }
 
-  <span style="color: #a6e22e">mouseout</span> <span style="color: #f92672">=</span> <span style="color: #f8f8f2">()</span> <span style="color: #f92672">=&gt;</span> <span style="color: #f8f8f2">{</span>
-    <span style="color: #66d9ef">this</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">tooltip</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">style</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">visibility</span> <span style="color: #f92672">=</span> <span style="color: #e6db74">&#39;hidden&#39;</span><span style="color: #f8f8f2">;</span>
-    <span style="color: #66d9ef">this</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">tooltip</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">style</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">opacity</span> <span style="color: #f92672">=</span> <span style="color: #ae81ff">0</span><span style="color: #f8f8f2">;</span>
-  <span style="color: #f8f8f2">}</span>
-</pre></div>
-
+  <span style="color:#a6e22e">mouseout</span> <span style="color:#f92672">=</span> () <span style="color:#f92672">=&gt;</span> {
+    <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">tooltip</span>.<span style="color:#a6e22e">style</span>.<span style="color:#a6e22e">visibility</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;hidden&#39;</span>;
+    <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">tooltip</span>.<span style="color:#a6e22e">style</span>.<span style="color:#a6e22e">opacity</span> <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+  }</code></pre></div>
 <h3 id="data-service">Data Service</h3>
-<div class="highlight" style="background: #272822"><pre style="line-height: 125%"><span></span><span style="color: #66d9ef">import</span> <span style="color: #f8f8f2">{</span> <span style="color: #a6e22e">Injectable</span> <span style="color: #f8f8f2">}</span> <span style="color: #a6e22e">from</span> <span style="color: #e6db74">&#39;@angular/core&#39;</span><span style="color: #f8f8f2">;</span>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-typescript" data-lang="typescript"><span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">Injectable</span> } <span style="color:#a6e22e">from</span> <span style="color:#e6db74">&#39;@angular/core&#39;</span>;
 
-<span style="color: #66d9ef">@Injectable</span><span style="color: #f8f8f2">()</span>
-<span style="color: #66d9ef">export</span> <span style="color: #66d9ef">class</span> <span style="color: #a6e22e">BubbleChartDataService</span> <span style="color: #f8f8f2">{</span>
-  <span style="color: #a6e22e">generateData</span> <span style="color: #f92672">=</span> <span style="color: #f8f8f2">(</span><span style="color: #a6e22e">num</span>: <span style="color: #66d9ef">number</span><span style="color: #f8f8f2">)</span> <span style="color: #f92672">=&gt;</span> <span style="color: #f8f8f2">{</span>
-    <span style="color: #66d9ef">const</span> <span style="color: #a6e22e">results</span> <span style="color: #f92672">=</span> <span style="color: #f8f8f2">[];</span>
-    <span style="color: #66d9ef">const</span> <span style="color: #a6e22e">devices</span> <span style="color: #f92672">=</span> <span style="color: #f8f8f2">[</span><span style="color: #e6db74">&#39;Printer&#39;</span><span style="color: #f8f8f2">,</span> <span style="color: #e6db74">&#39;Router&#39;</span><span style="color: #f8f8f2">,</span> <span style="color: #e6db74">&#39;Tablet&#39;</span><span style="color: #f8f8f2">,</span> <span style="color: #e6db74">&#39;Workstation&#39;</span><span style="color: #f8f8f2">];</span>
+<span style="color:#66d9ef">@Injectable</span>()
+<span style="color:#66d9ef">export</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">BubbleChartDataService</span> {
+  <span style="color:#a6e22e">generateData</span> <span style="color:#f92672">=</span> (<span style="color:#a6e22e">num</span>: <span style="color:#66d9ef">number</span>) <span style="color:#f92672">=&gt;</span> {
+    <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">results</span> <span style="color:#f92672">=</span> [];
+    <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">devices</span> <span style="color:#f92672">=</span> [<span style="color:#e6db74">&#39;Printer&#39;</span>, <span style="color:#e6db74">&#39;Router&#39;</span>, <span style="color:#e6db74">&#39;Tablet&#39;</span>, <span style="color:#e6db74">&#39;Workstation&#39;</span>];
 
-    <span style="color: #66d9ef">for</span> <span style="color: #f8f8f2">(</span><span style="color: #66d9ef">let</span> <span style="color: #a6e22e">i</span> <span style="color: #f92672">=</span> <span style="color: #ae81ff">0</span><span style="color: #f8f8f2">;</span> <span style="color: #a6e22e">i</span> <span style="color: #f92672">&lt;</span> <span style="color: #a6e22e">num</span><span style="color: #f8f8f2">;</span> <span style="color: #a6e22e">i</span><span style="color: #f92672">++</span><span style="color: #f8f8f2">)</span> <span style="color: #f8f8f2">{</span>
-      <span style="color: #66d9ef">const</span> <span style="color: #a6e22e">result</span> <span style="color: #f92672">=</span> <span style="color: #f8f8f2">{</span>
-        <span style="color: #a6e22e">id</span>: <span style="color: #66d9ef">i</span><span style="color: #f8f8f2">,</span>
-        <span style="color: #a6e22e">type</span>: <span style="color: #66d9ef">devices</span><span style="color: #f8f8f2">[Math.</span><span style="color: #a6e22e">floor</span><span style="color: #f8f8f2">(Math.</span><span style="color: #a6e22e">random</span><span style="color: #f8f8f2">()</span> <span style="color: #f92672">*</span> <span style="color: #a6e22e">devices</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">length</span><span style="color: #f8f8f2">)]</span>
-      <span style="color: #f8f8f2">};</span>
+    <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">let</span> <span style="color:#a6e22e">i</span> <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; <span style="color:#a6e22e">i</span> <span style="color:#f92672">&lt;</span> <span style="color:#a6e22e">num</span>; <span style="color:#a6e22e">i</span><span style="color:#f92672">++</span>) {
+      <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">result</span> <span style="color:#f92672">=</span> {
+        <span style="color:#a6e22e">id</span>: <span style="color:#66d9ef">i</span>,
+        <span style="color:#a6e22e">type</span>: <span style="color:#66d9ef">devices</span>[Math.<span style="color:#a6e22e">floor</span>(Math.<span style="color:#a6e22e">random</span>() <span style="color:#f92672">*</span> <span style="color:#a6e22e">devices</span>.<span style="color:#a6e22e">length</span>)]
+      };
 
-      <span style="color: #a6e22e">results</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">push</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">result</span><span style="color: #f8f8f2">);</span>
-    <span style="color: #f8f8f2">}</span>
+      <span style="color:#a6e22e">results</span>.<span style="color:#a6e22e">push</span>(<span style="color:#a6e22e">result</span>);
+    }
 
-    <span style="color: #66d9ef">return</span> <span style="color: #a6e22e">results</span><span style="color: #f8f8f2">;</span>
-  <span style="color: #f8f8f2">}</span>
-<span style="color: #f8f8f2">}</span>
-</pre></div>
-
+    <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">results</span>;
+  }
+}</code></pre></div>
 <h3 id="styling">Styling</h3>
-<div class="highlight" style="background: #272822"><pre style="line-height: 125%"><span></span><span style="color: #a6e22e">.bubble-chart</span><span style="color: #f8f8f2">{</span>
-  <span style="color: #f92672">width</span><span style="color: #a6e22e">:</span> <span style="color: #f92672">100</span><span style="color: #960050; background-color: #1e0010">%</span><span style="color: #f92672">;</span>
-  <span style="color: #f92672">height</span><span style="color: #a6e22e">:</span> <span style="color: #f92672">100</span><span style="color: #960050; background-color: #1e0010">%</span> <span style="color: #f92672">!important;</span>
-<span style="color: #f8f8f2">}</span>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-scss" data-lang="scss"><span style="color:#a6e22e">.bubble-chart</span>{
+  <span style="color:#f92672">width</span><span style="color:#a6e22e">:</span> <span style="color:#f92672">100</span><span style="color:#960050;background-color:#1e0010">%</span><span style="color:#f92672">;</span>
+  <span style="color:#f92672">height</span><span style="color:#a6e22e">:</span> <span style="color:#f92672">100</span><span style="color:#960050;background-color:#1e0010">%</span> <span style="color:#f92672">!</span><span style="color:#f92672">important</span><span style="color:#f92672">;</span>
+}
 
-<span style="color: #a6e22e">.tooltip</span><span style="color: #f8f8f2">{</span>
-  <span style="color: #f92672">position</span><span style="color: #a6e22e">:</span> <span style="color: #f92672">absolute;</span>
-  <span style="color: #f92672">background</span><span style="color: #a6e22e">:</span> <span style="color: #f8f8f2">#f5f6f5</span><span style="color: #f92672">;</span>
-  <span style="color: #f92672">box-shadow</span><span style="color: #a6e22e">:</span> <span style="color: #f92672">0</span> <span style="color: #f92672">1px</span> <span style="color: #f92672">3px</span> <span style="color: #f92672">rgba(0,0,0,0</span><span style="color: #a6e22e">.12</span><span style="color: #f92672">),</span> <span style="color: #f92672">0</span> <span style="color: #f92672">1px</span> <span style="color: #f92672">2px</span> <span style="color: #f92672">rgba(0,0,0,0</span><span style="color: #a6e22e">.24</span><span style="color: #f92672">);</span>
-  <span style="color: #f92672">padding</span><span style="color: #a6e22e">:</span> <span style="color: #f92672">20px;</span>
-  <span style="color: #f92672">color</span><span style="color: #a6e22e">:</span> <span style="color: #f8f8f2">#57a1c6</span><span style="color: #f92672">;</span>
-  <span style="color: #f92672">opacity</span><span style="color: #a6e22e">:</span> <span style="color: #f92672">0;</span>
-  <span style="color: #f92672">transition</span><span style="color: #a6e22e">:</span> <span style="color: #f92672">visibility</span> <span style="color: #f92672">0s,</span> <span style="color: #f92672">opacity</span> <span style="color: #f92672">0</span><span style="color: #a6e22e">.5s</span> <span style="color: #f92672">linear;</span>
-  <span style="color: #f92672">visibility</span><span style="color: #a6e22e">:</span> <span style="color: #f92672">hidden;</span>
-  <span style="color: #f92672">pointer-events</span><span style="color: #a6e22e">:</span> <span style="color: #f92672">none;</span>
+<span style="color:#a6e22e">.tooltip</span>{
+  <span style="color:#f92672">position</span><span style="color:#a6e22e">:</span> <span style="color:#f92672">absolute</span><span style="color:#f92672">;</span>
+  <span style="color:#f92672">background</span><span style="color:#a6e22e">:</span> #f5f6f5<span style="color:#f92672">;</span>
+  <span style="color:#f92672">box-shadow</span><span style="color:#a6e22e">:</span> <span style="color:#f92672">0</span> <span style="color:#f92672">1px</span> <span style="color:#f92672">3px</span> <span style="color:#f92672">rgba</span><span style="color:#f92672">(</span><span style="color:#f92672">0</span><span style="color:#f92672">,</span><span style="color:#f92672">0</span><span style="color:#f92672">,</span><span style="color:#f92672">0</span><span style="color:#f92672">,</span><span style="color:#f92672">0</span><span style="color:#a6e22e">.12</span><span style="color:#f92672">),</span> <span style="color:#f92672">0</span> <span style="color:#f92672">1px</span> <span style="color:#f92672">2px</span> <span style="color:#f92672">rgba</span><span style="color:#f92672">(</span><span style="color:#f92672">0</span><span style="color:#f92672">,</span><span style="color:#f92672">0</span><span style="color:#f92672">,</span><span style="color:#f92672">0</span><span style="color:#f92672">,</span><span style="color:#f92672">0</span><span style="color:#a6e22e">.24</span><span style="color:#f92672">);</span>
+  <span style="color:#f92672">padding</span><span style="color:#a6e22e">:</span> <span style="color:#f92672">20px</span><span style="color:#f92672">;</span>
+  <span style="color:#f92672">color</span><span style="color:#a6e22e">:</span> #57a1c6<span style="color:#f92672">;</span>
+  <span style="color:#f92672">opacity</span><span style="color:#a6e22e">:</span> <span style="color:#f92672">0</span><span style="color:#f92672">;</span>
+  <span style="color:#f92672">transition</span><span style="color:#a6e22e">:</span> <span style="color:#f92672">visibility</span> <span style="color:#f92672">0s</span><span style="color:#f92672">,</span> <span style="color:#f92672">opacity</span> <span style="color:#f92672">0</span><span style="color:#a6e22e">.5s</span> <span style="color:#f92672">linear</span><span style="color:#f92672">;</span>
+  <span style="color:#f92672">visibility</span><span style="color:#a6e22e">:</span> <span style="color:#f92672">hidden</span><span style="color:#f92672">;</span>
+  <span style="color:#f92672">pointer-events</span><span style="color:#a6e22e">:</span> <span style="color:#f92672">none</span><span style="color:#f92672">;</span>
 
-  <span style="color: #f92672">img</span><span style="color: #f8f8f2">{</span>
-    <span style="color: #f92672">margin-right</span><span style="color: #a6e22e">:</span> <span style="color: #f92672">20px;</span>
-  <span style="color: #f8f8f2">}</span>
-<span style="color: #f8f8f2">}</span>
-</pre></div>
-
+  <span style="color:#f92672">img</span>{
+    <span style="color:#f92672">margin-right</span><span style="color:#a6e22e">:</span> <span style="color:#f92672">20px</span><span style="color:#f92672">;</span>
+  }
+}</code></pre></div>
 <p>That&rsquo;s all for this post.. Have a look here for the source code:
 <a href="https://github.com/HoplaGeiss/hopla-bubble-chart">https://github.com/HoplaGeiss/hopla-bubble-chart</a></p>
 

@@ -3,6 +3,16 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>http://www.muller.tech/post/2018/11/08/ngrx-resolvers-guards/</loc>
+    <lastmod>2018-11-08T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://www.muller.tech/post/2017/12/01/angular5-input-directive/</loc>
+    <lastmod>2017-12-01T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
     <loc>http://www.muller.tech/post/2017/11/30/angular5-search-filter/</loc>
     <lastmod>2017-11-30T00:00:00+00:00</lastmod>
   </url>
@@ -171,7 +181,7 @@
   
   <url>
     <loc>http://www.muller.tech/tags/angular5/</loc>
-    <lastmod>2017-11-30T00:00:00+00:00</lastmod>
+    <lastmod>2018-11-08T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -189,13 +199,25 @@
   
   <url>
     <loc>http://www.muller.tech/</loc>
-    <lastmod>2017-11-30T00:00:00+00:00</lastmod>
+    <lastmod>2018-11-08T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>http://www.muller.tech/tags/git/</loc>
     <lastmod>2017-01-17T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://www.muller.tech/tags/guards/</loc>
+    <lastmod>2018-11-08T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://www.muller.tech/tags/ngrx/</loc>
+    <lastmod>2018-11-08T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -207,7 +229,13 @@
   
   <url>
     <loc>http://www.muller.tech/post/</loc>
-    <lastmod>2017-11-30T00:00:00+00:00</lastmod>
+    <lastmod>2018-11-08T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://www.muller.tech/tags/resolvers/</loc>
+    <lastmod>2018-11-08T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   

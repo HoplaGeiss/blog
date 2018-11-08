@@ -20,7 +20,7 @@
       <description>Dropdowns are a very common way of displaying multiple choice inputs. Today&amp;rsquo;s post is about creating a dropdown without using bootstrap or other styling frameworks.
 If you are in a hurry, you can checkout the code on my github account: https://github.com/HoplaGeiss/hopla-dropdown
 Let&amp;rsquo;s first take a look at the main component.
-// app.component.ts import { Component, OnInit } from &amp;#39;@angular/core&amp;#39;; @Component({ selector: &amp;#39;app-root&amp;#39;, styleUrls: [&amp;#39;./app.component.scss&amp;#39;], template: ` &amp;lt;div class=&amp;#39;wrapper&amp;#39;&amp;gt; &amp;lt;div class=&amp;#39;selected-item&amp;#39; fxLayout=&amp;quot;row&amp;quot; fxLayoutAlign=&amp;quot;space-between center&amp;quot; [ngClass]=&amp;#39;{&amp;quot;active&amp;quot;: dropdownActive}&amp;#39;&amp;gt; &amp;lt;div&amp;gt;{{selectedItem}}&amp;lt;/div&amp;gt; &amp;lt;i class=&amp;#39;material-icons&amp;#39; (click)=&amp;#39;toggleDropdown()&amp;#39;&amp;gt;keyboard_arrow_down&amp;lt;/i&amp;gt; &amp;lt;div class=&amp;#39;dropdown&amp;#39; [hidden]=&amp;#39;!</description>
+// app.component.ts import { Component, OnInit } from &amp;#39;@angular/core&amp;#39;; @Component({ selector: &amp;#39;app-root&amp;#39;, styleUrls: [&amp;#39;./app.component.scss&amp;#39;], template: ` &amp;lt;div class=&amp;#39;wrapper&amp;#39;&amp;gt; &amp;lt;div class=&amp;#39;selected-item&amp;#39; fxLayout=&amp;#34;row&amp;#34; fxLayoutAlign=&amp;#34;space-between center&amp;#34; [ngClass]=&amp;#39;{&amp;#34;active&amp;#34;: dropdownActive}&amp;#39;&amp;gt; &amp;lt;div&amp;gt;{{selectedItem}}&amp;lt;/div&amp;gt; &amp;lt;i class=&amp;#39;material-icons&amp;#39; (click)=&amp;#39;toggleDropdown()&amp;#39;&amp;gt;keyboard_arrow_down&amp;lt;/i&amp;gt; &amp;lt;div class=&amp;#39;dropdown&amp;#39; [hidden]=&amp;#39;!</description>
     </item>
     
     <item>
@@ -52,7 +52,7 @@ Following the DRY principle, you should aim at having a template for the home an
       <guid>http://www.muller.tech/post/2017/07/26/angular4-switch-button/</guid>
       <description>Ever wondered how to create a switch button in angular4 without using css frameworks? Here we go..
 Let&amp;rsquo;s take a look at the component first.
-// app.component.ts import { Component } from &amp;#39;@angular/core&amp;#39;; @Component({ selector: &amp;#39;app-root&amp;#39;, template: ` &amp;lt;div class=&amp;quot;switch&amp;quot;&amp;gt; &amp;lt;input id=&amp;#39;switch-input&amp;#39; type=&amp;#39;checkbox&amp;#39; [checked]=&amp;#39;switchActive&amp;#39; (click)=&amp;#39;toggle()&amp;#39;&amp;gt; &amp;lt;label for=&amp;#39;switch-input&amp;#39;&amp;gt;&amp;lt;/label&amp;gt; &amp;lt;/div&amp;gt; ` }) export class AppComponent { switchActive = false toggle = () =&amp;gt; { if (this.switchActive) { // Do something } else { // Do something else } this.</description>
+// app.component.ts import { Component } from &amp;#39;@angular/core&amp;#39;; @Component({ selector: &amp;#39;app-root&amp;#39;, template: ` &amp;lt;div class=&amp;#34;switch&amp;#34;&amp;gt; &amp;lt;input id=&amp;#39;switch-input&amp;#39; type=&amp;#39;checkbox&amp;#39; [checked]=&amp;#39;switchActive&amp;#39; (click)=&amp;#39;toggle()&amp;#39;&amp;gt; &amp;lt;label for=&amp;#39;switch-input&amp;#39;&amp;gt;&amp;lt;/label&amp;gt; &amp;lt;/div&amp;gt; ` }) export class AppComponent { switchActive = false toggle = () =&amp;gt; { if (this.switchActive) { // Do something  } else { // Do something else  } this.</description>
     </item>
     
     <item>

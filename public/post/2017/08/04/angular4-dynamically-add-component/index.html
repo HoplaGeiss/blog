@@ -95,7 +95,7 @@
         },
         "datePublished": "2017-08-04",
         "dateModified": "2017-08-04",
-        "wordCount": 502,
+        "wordCount": 499,
         "keywords": ["angular4"]
     }
     </script>
@@ -153,7 +153,7 @@ html{font-family:sans-serif;line-height:1.15;-ms-text-size-adjust:100%;-webkit-t
 
   			<header class="post-header">
   				<span class="post-meta">
-						<span class="post-date">4 Aug 2017</span> <span class="reading-time">| <span class="estimated-reading-time">3 min.</span> (<span class="word-count">502</span> words)</span></span>
+						<span class="post-date">4 Aug 2017</span> <span class="reading-time">| <span class="estimated-reading-time">3 min.</span> (<span class="word-count">499</span> words)</span></span>
   				</span>
   				<div class="clear"></div>
   				<h1 class="post-title">Angular 4 - Dynamically add components to the DOM</h1>
@@ -169,139 +169,121 @@ html{font-family:sans-serif;line-height:1.15;-ms-text-size-adjust:100%;-webkit-t
 <p>If you are looking to add a &lsquo;single bit of content&rsquo; to a component, you can use <code>ng-content</code>.</p>
 
 <p>In the following example we have two components. <code>AppComponent</code> calls <code>HoplaComponent</code> and passes him some content. <code>HoplaComponent</code> access this content thanks to <code>ng-content</code>.</p>
-<div class="highlight" style="background: #272822"><pre style="line-height: 125%"><span></span><span style="color: #a6e22e">template</span><span style="color: #f92672">:</span> <span style="color: #e6db74">`</span>
-<span style="color: #e6db74">  &lt;app-hopla&gt;</span>
-<span style="color: #e6db74">    Some content I want to add to my component.</span>
-<span style="color: #e6db74">  &lt;/app-hopla&gt;</span>
-<span style="color: #e6db74">`</span>
-</pre></div>
-<div class="highlight" style="background: #272822"><pre style="line-height: 125%"><span></span><span style="color: #a6e22e">template</span><span style="color: #f92672">:</span> <span style="color: #e6db74">`</span>
-<span style="color: #e6db74">  &lt;ng-content&gt;&lt;/ng-content&gt;</span>
-<span style="color: #e6db74">`</span>
-</pre></div>
-
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-typescript" data-lang="typescript"><span style="color:#a6e22e">template</span><span style="color:#f92672">:</span> <span style="color:#e6db74">`
+</span><span style="color:#e6db74">  &lt;app-hopla&gt;
+</span><span style="color:#e6db74">    Some content I want to add to my component.
+</span><span style="color:#e6db74">  &lt;/app-hopla&gt;
+</span><span style="color:#e6db74">`</span></code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-typescript" data-lang="typescript"><span style="color:#a6e22e">template</span><span style="color:#f92672">:</span> <span style="color:#e6db74">`
+</span><span style="color:#e6db74">  &lt;ng-content&gt;&lt;/ng-content&gt;
+</span><span style="color:#e6db74">`</span></code></pre></div>
 <h2 id="multiple-contents">Multiple contents</h2>
 
 <p>If you would like to add multiple content to a component you can still use <code>ng-content</code>, but in a slightly different way!</p>
 
 <p>All you need to do is wrap your contents in divs and call them from your other component with a <code>select</code>.</p>
-<div class="highlight" style="background: #272822"><pre style="line-height: 125%"><span></span><span style="color: #a6e22e">template</span><span style="color: #f92672">:</span> <span style="color: #e6db74">`</span>
-<span style="color: #e6db74">  &lt;app-hopla&gt;</span>
-<span style="color: #e6db74">    &lt;div class=&#39;header&#39;&gt;My title&lt;/div&gt;</span>
-<span style="color: #e6db74">    &lt;div class=&#39;footer&#39;&gt;My footer&lt;/div&gt;</span>
-<span style="color: #e6db74">  &lt;/app-hopla&gt;</span>
-<span style="color: #e6db74">`</span>
-</pre></div>
-<div class="highlight" style="background: #272822"><pre style="line-height: 125%"><span></span><span style="color: #a6e22e">template</span><span style="color: #f92672">:</span> <span style="color: #e6db74">`</span>
-<span style="color: #e6db74">  &lt;ng-content select=&#39;.header&#39;&gt;&lt;/ng-content&gt;</span>
-<span style="color: #e6db74">  &lt;ng-content select=&#39;.footer&#39;&gt;&lt;/ng-content&gt;</span>
-<span style="color: #e6db74">`</span>
-</pre></div>
-
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-typescript" data-lang="typescript"><span style="color:#a6e22e">template</span><span style="color:#f92672">:</span> <span style="color:#e6db74">`
+</span><span style="color:#e6db74">  &lt;app-hopla&gt;
+</span><span style="color:#e6db74">    &lt;div class=&#39;header&#39;&gt;My title&lt;/div&gt;
+</span><span style="color:#e6db74">    &lt;div class=&#39;footer&#39;&gt;My footer&lt;/div&gt;
+</span><span style="color:#e6db74">  &lt;/app-hopla&gt;
+</span><span style="color:#e6db74">`</span></code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-typescript" data-lang="typescript"><span style="color:#a6e22e">template</span><span style="color:#f92672">:</span> <span style="color:#e6db74">`
+</span><span style="color:#e6db74">  &lt;ng-content select=&#39;.header&#39;&gt;&lt;/ng-content&gt;
+</span><span style="color:#e6db74">  &lt;ng-content select=&#39;.footer&#39;&gt;&lt;/ng-content&gt;
+</span><span style="color:#e6db74">`</span></code></pre></div>
 <h2 id="dynamic-content">Dynamic content</h2>
 
 <p>Let&rsquo;s go a step further. Let&rsquo;s see what happens if we try to use <code>ng-content</code> and <code>select</code> with dynamic content.</p>
-<div class="highlight" style="background: #272822"><pre style="line-height: 125%"><span></span><span style="color: #66d9ef">@Component</span><span style="color: #f8f8f2">({</span>
-  <span style="color: #a6e22e">selector</span><span style="color: #f92672">:</span> <span style="color: #e6db74">&#39;app-root&#39;</span><span style="color: #f8f8f2">,</span>
-  <span style="color: #a6e22e">template</span><span style="color: #f92672">:</span> <span style="color: #e6db74">`</span>
-<span style="color: #e6db74">    &lt;div *ngFor=&#39;let component of [0, 1]&#39;&gt;</span>
-<span style="color: #e6db74">      &lt;app-hopla&gt;</span>
-<span style="color: #e6db74">        &lt;div class=&#39;content_0&#39;&gt;A&lt;/div&gt;</span>
-<span style="color: #e6db74">        &lt;div class=&#39;content_1&#39;&gt;B&lt;/div&gt;</span>
-<span style="color: #e6db74">      &lt;/app-hopla&gt;</span>
-<span style="color: #e6db74">    &lt;/div&gt;</span>
-<span style="color: #e6db74">  `</span>
-<span style="color: #f8f8f2">})</span>
-<span style="color: #66d9ef">export</span> <span style="color: #66d9ef">class</span> <span style="color: #a6e22e">AppComponent</span> <span style="color: #f8f8f2">{</span>
-<span style="color: #f8f8f2">}</span>
-</pre></div>
-<div class="highlight" style="background: #272822"><pre style="line-height: 125%"><span></span><span style="color: #66d9ef">@Component</span><span style="color: #f8f8f2">({</span>
-  <span style="color: #a6e22e">selector</span><span style="color: #f92672">:</span> <span style="color: #e6db74">&#39;app-hopla&#39;</span><span style="color: #f8f8f2">,</span>
-  <span style="color: #a6e22e">template</span><span style="color: #f92672">:</span> <span style="color: #e6db74">`</span>
-<span style="color: #e6db74">    &lt;ng-content select=&#39;&quot;.content&quot;index&#39;&gt;&lt;/ng-content&gt;</span>
-<span style="color: #e6db74">  `</span>
-<span style="color: #f8f8f2">})</span>
-<span style="color: #66d9ef">export</span> <span style="color: #66d9ef">class</span> <span style="color: #a6e22e">HoplaComponent</span> <span style="color: #f8f8f2">{</span>
-  <span style="color: #66d9ef">@Input</span><span style="color: #f8f8f2">()</span> <span style="color: #a6e22e">index</span>: <span style="color: #66d9ef">number</span><span style="color: #f8f8f2">;</span>
-<span style="color: #f8f8f2">}</span>
-</pre></div>
-
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-typescript" data-lang="typescript"><span style="color:#66d9ef">@Component</span>({
+  <span style="color:#a6e22e">selector</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;app-root&#39;</span>,
+  <span style="color:#a6e22e">template</span><span style="color:#f92672">:</span> <span style="color:#e6db74">`
+</span><span style="color:#e6db74">    &lt;div *ngFor=&#39;let component of [0, 1]&#39;&gt;
+</span><span style="color:#e6db74">      &lt;app-hopla&gt;
+</span><span style="color:#e6db74">        &lt;div class=&#39;content_0&#39;&gt;A&lt;/div&gt;
+</span><span style="color:#e6db74">        &lt;div class=&#39;content_1&#39;&gt;B&lt;/div&gt;
+</span><span style="color:#e6db74">      &lt;/app-hopla&gt;
+</span><span style="color:#e6db74">    &lt;/div&gt;
+</span><span style="color:#e6db74">  `</span>
+})
+<span style="color:#66d9ef">export</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">AppComponent</span> {
+}</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-typescript" data-lang="typescript"><span style="color:#66d9ef">@Component</span>({
+  <span style="color:#a6e22e">selector</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;app-hopla&#39;</span>,
+  <span style="color:#a6e22e">template</span><span style="color:#f92672">:</span> <span style="color:#e6db74">`
+</span><span style="color:#e6db74">    &lt;ng-content select=&#39;&#34;.content&#34;index&#39;&gt;&lt;/ng-content&gt;
+</span><span style="color:#e6db74">  `</span>
+})
+<span style="color:#66d9ef">export</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">HoplaComponent</span> {
+  <span style="color:#66d9ef">@Input</span>() <span style="color:#a6e22e">index</span>: <span style="color:#66d9ef">number</span>;
+}</code></pre></div>
 <p>That won&rsquo;t work.. <code>select</code> is not designed to work with dynamic content. We need another approach to make that work!</p>
 
 <p>We are going to use <a href="https://github.com/gund/ng-dynamic-component">ng-dynamic-component</a> to do the heavy lifting for us!</p>
-<div class="highlight" style="background: #272822"><pre style="line-height: 125%"><span></span><span style="color: #75715e">// app.component.ts</span>
-<span style="color: #66d9ef">import</span> <span style="color: #f8f8f2">{</span> <span style="color: #a6e22e">Component</span> <span style="color: #f8f8f2">}</span> <span style="color: #a6e22e">from</span> <span style="color: #e6db74">&#39;@angular/core&#39;</span><span style="color: #f8f8f2">;</span>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-typescript" data-lang="typescript"><span style="color:#75715e">// app.component.ts
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">Component</span> } <span style="color:#a6e22e">from</span> <span style="color:#e6db74">&#39;@angular/core&#39;</span>;
 
-<span style="color: #66d9ef">@Component</span><span style="color: #f8f8f2">({</span>
-  <span style="color: #a6e22e">selector</span><span style="color: #f92672">:</span> <span style="color: #e6db74">&#39;app-root&#39;</span><span style="color: #f8f8f2">,</span>
-  <span style="color: #a6e22e">template</span><span style="color: #f92672">:</span> <span style="color: #e6db74">`</span>
-<span style="color: #e6db74">    &lt;div *ngFor=&#39;let component of components&#39;&gt;</span>
-<span style="color: #e6db74">      &lt;app-hopla [type]=&#39;component.type&#39;&gt;&lt;/app-hopla&gt;</span>
-<span style="color: #e6db74">    &lt;/div&gt;</span>
-<span style="color: #e6db74">  `</span>
-<span style="color: #f8f8f2">})</span>
-<span style="color: #66d9ef">export</span> <span style="color: #66d9ef">class</span> <span style="color: #a6e22e">AppComponent</span> <span style="color: #f8f8f2">{</span>
-  <span style="color: #a6e22e">components</span> <span style="color: #f92672">=</span> <span style="color: #f8f8f2">[</span>
-    <span style="color: #f8f8f2">{</span> <span style="color: #a6e22e">type</span><span style="color: #f92672">:</span> <span style="color: #e6db74">&#39;a&#39;</span> <span style="color: #f8f8f2">},</span>
-    <span style="color: #f8f8f2">{</span> <span style="color: #a6e22e">type</span><span style="color: #f92672">:</span> <span style="color: #e6db74">&#39;b&#39;</span> <span style="color: #f8f8f2">}</span>
-  <span style="color: #f8f8f2">];</span>
-<span style="color: #f8f8f2">}</span>
-</pre></div>
-
+<span style="color:#66d9ef">@Component</span>({
+  <span style="color:#a6e22e">selector</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;app-root&#39;</span>,
+  <span style="color:#a6e22e">template</span><span style="color:#f92672">:</span> <span style="color:#e6db74">`
+</span><span style="color:#e6db74">    &lt;div *ngFor=&#39;let component of components&#39;&gt;
+</span><span style="color:#e6db74">      &lt;app-hopla [type]=&#39;component.type&#39;&gt;&lt;/app-hopla&gt;
+</span><span style="color:#e6db74">    &lt;/div&gt;
+</span><span style="color:#e6db74">  `</span>
+})
+<span style="color:#66d9ef">export</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">AppComponent</span> {
+  <span style="color:#a6e22e">components</span> <span style="color:#f92672">=</span> [
+    { <span style="color:#a6e22e">type</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;a&#39;</span> },
+    { <span style="color:#a6e22e">type</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;b&#39;</span> }
+  ];
+}</code></pre></div>
 <p>We are going to go a step further from the previous Example. Instead of trying to pass dynamic content, we will pass dynamic components! As you can see in this example we try to display a list of components.</p>
-<div class="highlight" style="background: #272822"><pre style="line-height: 125%"><span></span><span style="color: #75715e">// hopla.component.ts</span>
-<span style="color: #66d9ef">import</span> <span style="color: #f8f8f2">{</span> <span style="color: #a6e22e">Component</span><span style="color: #f8f8f2">,</span> <span style="color: #a6e22e">OnChanges</span><span style="color: #f8f8f2">,</span> <span style="color: #a6e22e">Input</span> <span style="color: #f8f8f2">}</span> <span style="color: #a6e22e">from</span> <span style="color: #e6db74">&#39;@angular/core&#39;</span><span style="color: #f8f8f2">;</span>
-<span style="color: #66d9ef">import</span> <span style="color: #f8f8f2">{</span> <span style="color: #a6e22e">AComponent</span> <span style="color: #f8f8f2">}</span> <span style="color: #a6e22e">from</span> <span style="color: #e6db74">&#39;./a.component&#39;</span><span style="color: #f8f8f2">;</span>
-<span style="color: #66d9ef">import</span> <span style="color: #f8f8f2">{</span> <span style="color: #a6e22e">BComponent</span> <span style="color: #f8f8f2">}</span> <span style="color: #a6e22e">from</span> <span style="color: #e6db74">&#39;./b.component&#39;</span><span style="color: #f8f8f2">;</span>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-typescript" data-lang="typescript"><span style="color:#75715e">// hopla.component.ts
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">Component</span>, <span style="color:#a6e22e">OnChanges</span>, <span style="color:#a6e22e">Input</span> } <span style="color:#a6e22e">from</span> <span style="color:#e6db74">&#39;@angular/core&#39;</span>;
+<span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">AComponent</span> } <span style="color:#a6e22e">from</span> <span style="color:#e6db74">&#39;./a.component&#39;</span>;
+<span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">BComponent</span> } <span style="color:#a6e22e">from</span> <span style="color:#e6db74">&#39;./b.component&#39;</span>;
 
-<span style="color: #66d9ef">@Component</span><span style="color: #f8f8f2">({</span>
-  <span style="color: #a6e22e">selector</span><span style="color: #f92672">:</span> <span style="color: #e6db74">&#39;app-hopla&#39;</span><span style="color: #f8f8f2">,</span>
-  <span style="color: #a6e22e">template</span><span style="color: #f92672">:</span> <span style="color: #e6db74">`</span>
-<span style="color: #e6db74">    &lt;ndc-dynamic [ndcDynamicComponent]=&#39;selectedComponent&#39;&gt;&lt;/ndc-dynamic&gt;</span>
-<span style="color: #e6db74">  `</span>
-<span style="color: #f8f8f2">})</span>
-<span style="color: #66d9ef">export</span> <span style="color: #66d9ef">class</span> <span style="color: #a6e22e">HoplaComponent</span> <span style="color: #66d9ef">implements</span> <span style="color: #a6e22e">OnChanges</span> <span style="color: #f8f8f2">{</span>
-  <span style="color: #66d9ef">@Input</span><span style="color: #f8f8f2">()</span> <span style="color: #a6e22e">type</span>: <span style="color: #66d9ef">string</span><span style="color: #f8f8f2">;</span>
+<span style="color:#66d9ef">@Component</span>({
+  <span style="color:#a6e22e">selector</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;app-hopla&#39;</span>,
+  <span style="color:#a6e22e">template</span><span style="color:#f92672">:</span> <span style="color:#e6db74">`
+</span><span style="color:#e6db74">    &lt;ndc-dynamic [ndcDynamicComponent]=&#39;selectedComponent&#39;&gt;&lt;/ndc-dynamic&gt;
+</span><span style="color:#e6db74">  `</span>
+})
+<span style="color:#66d9ef">export</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">HoplaComponent</span> <span style="color:#66d9ef">implements</span> <span style="color:#a6e22e">OnChanges</span> {
+  <span style="color:#66d9ef">@Input</span>() <span style="color:#a6e22e">type</span>: <span style="color:#66d9ef">string</span>;
 
-  <span style="color: #a6e22e">selectedComponent</span>: <span style="color: #66d9ef">any</span><span style="color: #f8f8f2">;</span>
+  <span style="color:#a6e22e">selectedComponent</span>: <span style="color:#66d9ef">any</span>;
 
-  <span style="color: #a6e22e">ngOnChanges() {</span>
-    <span style="color: #66d9ef">if</span> <span style="color: #f8f8f2">(</span><span style="color: #66d9ef">this</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">type</span><span style="color: #f8f8f2">)</span> <span style="color: #f8f8f2">{</span>
-      <span style="color: #66d9ef">if</span> <span style="color: #f8f8f2">(</span><span style="color: #66d9ef">this</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">type</span> <span style="color: #f92672">===</span> <span style="color: #e6db74">&#39;a&#39;</span><span style="color: #f8f8f2">)</span> <span style="color: #66d9ef">this</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">selectedComponent</span> <span style="color: #f92672">=</span> <span style="color: #a6e22e">AComponent</span><span style="color: #f8f8f2">;</span>
-      <span style="color: #66d9ef">if</span> <span style="color: #f8f8f2">(</span><span style="color: #66d9ef">this</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">type</span> <span style="color: #f92672">===</span> <span style="color: #e6db74">&#39;b&#39;</span><span style="color: #f8f8f2">)</span> <span style="color: #66d9ef">this</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">selectedComponent</span> <span style="color: #f92672">=</span> <span style="color: #a6e22e">BComponent</span><span style="color: #f8f8f2">;</span>
-    <span style="color: #f8f8f2">}</span>
-  <span style="color: #f8f8f2">}</span>
-<span style="color: #f8f8f2">}</span>
-</pre></div>
-
+  <span style="color:#a6e22e">ngOnChanges() {</span>
+    <span style="color:#66d9ef">if</span> (<span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">type</span>) {
+      <span style="color:#66d9ef">if</span> (<span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">type</span> <span style="color:#f92672">===</span> <span style="color:#e6db74">&#39;a&#39;</span>) <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">selectedComponent</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">AComponent</span>;
+      <span style="color:#66d9ef">if</span> (<span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">type</span> <span style="color:#f92672">===</span> <span style="color:#e6db74">&#39;b&#39;</span>) <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">selectedComponent</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">BComponent</span>;
+    }
+  }
+}</code></pre></div>
 <p>That is where the magic happens. Depending on the type input, we display a different component!</p>
-<div class="highlight" style="background: #272822"><pre style="line-height: 125%"><span></span><span style="color: #75715e">// app.module.ts</span>
-<span style="color: #66d9ef">import</span> <span style="color: #f8f8f2">{</span> <span style="color: #a6e22e">BrowserModule</span> <span style="color: #f8f8f2">}</span> <span style="color: #a6e22e">from</span> <span style="color: #e6db74">&#39;@angular/platform-browser&#39;</span><span style="color: #f8f8f2">;</span>
-<span style="color: #66d9ef">import</span> <span style="color: #f8f8f2">{</span> <span style="color: #a6e22e">NgModule</span> <span style="color: #f8f8f2">}</span> <span style="color: #a6e22e">from</span> <span style="color: #e6db74">&#39;@angular/core&#39;</span><span style="color: #f8f8f2">;</span>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-typescript" data-lang="typescript"><span style="color:#75715e">// app.module.ts
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">BrowserModule</span> } <span style="color:#a6e22e">from</span> <span style="color:#e6db74">&#39;@angular/platform-browser&#39;</span>;
+<span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">NgModule</span> } <span style="color:#a6e22e">from</span> <span style="color:#e6db74">&#39;@angular/core&#39;</span>;
 
-<span style="color: #66d9ef">import</span> <span style="color: #f8f8f2">{</span> <span style="color: #a6e22e">DynamicModule</span> <span style="color: #f8f8f2">}</span> <span style="color: #a6e22e">from</span> <span style="color: #e6db74">&#39;ng-dynamic-component&#39;</span><span style="color: #f8f8f2">;</span>
+<span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">DynamicModule</span> } <span style="color:#a6e22e">from</span> <span style="color:#e6db74">&#39;ng-dynamic-component&#39;</span>;
 
-<span style="color: #66d9ef">import</span> <span style="color: #f8f8f2">{</span> <span style="color: #a6e22e">AComponent</span> <span style="color: #f8f8f2">}</span> <span style="color: #a6e22e">from</span> <span style="color: #e6db74">&#39;./a.component&#39;</span><span style="color: #f8f8f2">;</span>
-<span style="color: #66d9ef">import</span> <span style="color: #f8f8f2">{</span> <span style="color: #a6e22e">BComponent</span> <span style="color: #f8f8f2">}</span> <span style="color: #a6e22e">from</span> <span style="color: #e6db74">&#39;./b.component&#39;</span><span style="color: #f8f8f2">;</span>
-<span style="color: #66d9ef">import</span> <span style="color: #f8f8f2">{</span> <span style="color: #a6e22e">HoplaComponent</span> <span style="color: #f8f8f2">}</span> <span style="color: #a6e22e">from</span> <span style="color: #e6db74">&#39;./hopla.component&#39;</span><span style="color: #f8f8f2">;</span>
-<span style="color: #66d9ef">import</span> <span style="color: #f8f8f2">{</span> <span style="color: #a6e22e">AppComponent</span> <span style="color: #f8f8f2">}</span> <span style="color: #a6e22e">from</span> <span style="color: #e6db74">&#39;./app.component&#39;</span><span style="color: #f8f8f2">;</span>
+<span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">AComponent</span> } <span style="color:#a6e22e">from</span> <span style="color:#e6db74">&#39;./a.component&#39;</span>;
+<span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">BComponent</span> } <span style="color:#a6e22e">from</span> <span style="color:#e6db74">&#39;./b.component&#39;</span>;
+<span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">HoplaComponent</span> } <span style="color:#a6e22e">from</span> <span style="color:#e6db74">&#39;./hopla.component&#39;</span>;
+<span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">AppComponent</span> } <span style="color:#a6e22e">from</span> <span style="color:#e6db74">&#39;./app.component&#39;</span>;
 
-<span style="color: #66d9ef">@NgModule</span><span style="color: #f8f8f2">({</span>
-  <span style="color: #a6e22e">declarations</span><span style="color: #f92672">:</span> <span style="color: #f8f8f2">[</span>
-    <span style="color: #a6e22e">AppComponent</span><span style="color: #f8f8f2">,</span>
-    <span style="color: #a6e22e">AComponent</span><span style="color: #f8f8f2">,</span>
-    <span style="color: #a6e22e">BComponent</span><span style="color: #f8f8f2">,</span>
-    <span style="color: #a6e22e">HoplaComponent</span>
-  <span style="color: #f8f8f2">],</span>
-  <span style="color: #a6e22e">imports</span><span style="color: #f92672">:</span> <span style="color: #f8f8f2">[</span>
-    <span style="color: #a6e22e">BrowserModule</span><span style="color: #f8f8f2">,</span>
-    <span style="color: #a6e22e">DynamicModule</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">withComponents</span><span style="color: #f8f8f2">([</span> <span style="color: #a6e22e">AComponent</span><span style="color: #f8f8f2">,</span> <span style="color: #a6e22e">BComponent</span> <span style="color: #f8f8f2">])</span>
-  <span style="color: #f8f8f2">],</span>
-  <span style="color: #a6e22e">bootstrap</span><span style="color: #f92672">:</span> <span style="color: #f8f8f2">[</span> <span style="color: #a6e22e">AppComponent</span> <span style="color: #f8f8f2">]</span>
-<span style="color: #f8f8f2">})</span>
-<span style="color: #66d9ef">export</span> <span style="color: #66d9ef">class</span> <span style="color: #a6e22e">AppModule</span> <span style="color: #f8f8f2">{</span> <span style="color: #f8f8f2">}</span>
-</pre></div>
-
+<span style="color:#66d9ef">@NgModule</span>({
+  <span style="color:#a6e22e">declarations</span><span style="color:#f92672">:</span> [
+    <span style="color:#a6e22e">AppComponent</span>,
+    <span style="color:#a6e22e">AComponent</span>,
+    <span style="color:#a6e22e">BComponent</span>,
+    <span style="color:#a6e22e">HoplaComponent</span>
+  ],
+  <span style="color:#a6e22e">imports</span><span style="color:#f92672">:</span> [
+    <span style="color:#a6e22e">BrowserModule</span>,
+    <span style="color:#a6e22e">DynamicModule</span>.<span style="color:#a6e22e">withComponents</span>([ <span style="color:#a6e22e">AComponent</span>, <span style="color:#a6e22e">BComponent</span> ])
+  ],
+  <span style="color:#a6e22e">bootstrap</span><span style="color:#f92672">:</span> [ <span style="color:#a6e22e">AppComponent</span> ]
+})
+<span style="color:#66d9ef">export</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">AppModule</span> { }</code></pre></div>
 <p>Note in the module we need to load all the possible components, so that <code>DynamicModule</code> can dynamically load is inside <code>HoplaComponent</code>.</p>
 
   			</section>

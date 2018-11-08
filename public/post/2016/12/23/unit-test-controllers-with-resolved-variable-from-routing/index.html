@@ -167,72 +167,70 @@ html{font-family:sans-serif;line-height:1.15;-ms-text-size-adjust:100%;-webkit-t
 <p>Today&rsquo;s post is about testing a controller that uses variables from a resolve function in the routing.</p>
 
 <p>This is a real life example used in translations, say we want to handle different languages, we need to load the available languages and the selected one from a service.</p>
-<div class="highlight" style="background: #272822"><pre style="line-height: 125%"><span></span><span style="color: #a6e22e">$stateProvider</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">state</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;locales&#39;</span><span style="color: #f8f8f2">,</span> <span style="color: #f8f8f2">{</span>
-  <span style="color: #a6e22e">url</span><span style="color: #f92672">:</span> <span style="color: #e6db74">&#39;/locales&#39;</span><span style="color: #f8f8f2">,</span>
-  <span style="color: #a6e22e">templateUrl</span><span style="color: #f92672">:</span> <span style="color: #e6db74">&#39;views/locales.html&#39;</span><span style="color: #f8f8f2">,</span>
-  <span style="color: #a6e22e">controller</span><span style="color: #f92672">:</span> <span style="color: #e6db74">&#39;LocaleCtrl&#39;</span><span style="color: #f8f8f2">,</span>
-  <span style="color: #a6e22e">data</span><span style="color: #f92672">:</span> <span style="color: #f8f8f2">{</span>
-    <span style="color: #a6e22e">secure</span><span style="color: #f92672">:</span> <span style="color: #66d9ef">true</span><span style="color: #f8f8f2">,</span>
-    <span style="color: #a6e22e">backState</span><span style="color: #f92672">:</span> <span style="color: #e6db74">&#39;settings&#39;</span>
-  <span style="color: #f8f8f2">},</span>
-  <span style="color: #a6e22e">resolve</span><span style="color: #f92672">:</span> <span style="color: #f8f8f2">{</span>
-    <span style="color: #a6e22e">availableLocales</span><span style="color: #f92672">:</span> <span style="color: #66d9ef">function</span> <span style="color: #f8f8f2">(</span><span style="color: #a6e22e">i18n</span><span style="color: #f8f8f2">)</span> <span style="color: #f8f8f2">{</span>
-      <span style="color: #66d9ef">return</span> <span style="color: #a6e22e">i18n</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">getAvailableLocales</span><span style="color: #f8f8f2">();</span>
-    <span style="color: #f8f8f2">},</span>
-    <span style="color: #a6e22e">selectedLocale</span><span style="color: #f92672">:</span> <span style="color: #66d9ef">function</span> <span style="color: #f8f8f2">(</span><span style="color: #a6e22e">i18n</span><span style="color: #f8f8f2">)</span> <span style="color: #f8f8f2">{</span>
-      <span style="color: #66d9ef">return</span> <span style="color: #a6e22e">i18n</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">getLocale</span><span style="color: #f8f8f2">();</span>
-    <span style="color: #f8f8f2">}</span>
-  <span style="color: #f8f8f2">}</span>
-<span style="color: #f8f8f2">})</span>
-</pre></div>
-
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-javascript" data-lang="javascript"><span style="color:#a6e22e">$stateProvider</span>.<span style="color:#a6e22e">state</span>(<span style="color:#e6db74">&#39;locales&#39;</span>, {
+  <span style="color:#a6e22e">url</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;/locales&#39;</span>,
+  <span style="color:#a6e22e">templateUrl</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;views/locales.html&#39;</span>,
+  <span style="color:#a6e22e">controller</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;LocaleCtrl&#39;</span>,
+  <span style="color:#a6e22e">data</span><span style="color:#f92672">:</span> {
+    <span style="color:#a6e22e">secure</span><span style="color:#f92672">:</span> <span style="color:#66d9ef">true</span>,
+    <span style="color:#a6e22e">backState</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;settings&#39;</span>
+  },
+  <span style="color:#a6e22e">resolve</span><span style="color:#f92672">:</span> {
+    <span style="color:#a6e22e">availableLocales</span><span style="color:#f92672">:</span> <span style="color:#66d9ef">function</span> (<span style="color:#a6e22e">i18n</span>) {
+      <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">i18n</span>.<span style="color:#a6e22e">getAvailableLocales</span>();
+    },
+    <span style="color:#a6e22e">selectedLocale</span><span style="color:#f92672">:</span> <span style="color:#66d9ef">function</span> (<span style="color:#a6e22e">i18n</span>) {
+      <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">i18n</span>.<span style="color:#a6e22e">getLocale</span>();
+    }
+  }
+})
+</code></pre></div>
 <h3 id="solution">Solution</h3>
-<div class="highlight" style="background: #272822"><pre style="line-height: 125%"><span></span><span style="color: #f8f8f2">(</span><span style="color: #66d9ef">function</span> <span style="color: #f8f8f2">()</span> <span style="color: #f8f8f2">{</span>
-  <span style="color: #e6db74">&#39;use strict&#39;</span><span style="color: #f8f8f2">;</span>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-javascript" data-lang="javascript">(<span style="color:#66d9ef">function</span> () {
+  <span style="color:#e6db74">&#39;use strict&#39;</span>;
 
-  <span style="color: #a6e22e">describe</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;Controller: LocaleCtrl&#39;</span><span style="color: #f8f8f2">,</span> <span style="color: #66d9ef">function</span> <span style="color: #f8f8f2">()</span> <span style="color: #f8f8f2">{</span>
-    <span style="color: #66d9ef">var</span> <span style="color: #a6e22e">LocaleCtrl</span><span style="color: #f8f8f2">,</span>
-      <span style="color: #a6e22e">$rootScope</span><span style="color: #f8f8f2">,</span>
-      <span style="color: #a6e22e">authService</span><span style="color: #f8f8f2">,</span>
-      <span style="color: #a6e22e">i18n</span><span style="color: #f8f8f2">,</span>
-      <span style="color: #a6e22e">availableLocales</span><span style="color: #f8f8f2">,</span>
-      <span style="color: #a6e22e">selectedLocale</span><span style="color: #f8f8f2">,</span>
-      <span style="color: #a6e22e">scope</span><span style="color: #f8f8f2">;</span>
+  <span style="color:#a6e22e">describe</span>(<span style="color:#e6db74">&#39;Controller: LocaleCtrl&#39;</span>, <span style="color:#66d9ef">function</span> () {
+    <span style="color:#66d9ef">var</span> <span style="color:#a6e22e">LocaleCtrl</span>,
+      <span style="color:#a6e22e">$rootScope</span>,
+      <span style="color:#a6e22e">authService</span>,
+      <span style="color:#a6e22e">i18n</span>,
+      <span style="color:#a6e22e">availableLocales</span>,
+      <span style="color:#a6e22e">selectedLocale</span>,
+      <span style="color:#a6e22e">scope</span>;
 
-    <span style="color: #a6e22e">beforeEach</span><span style="color: #f8f8f2">(</span><span style="color: #66d9ef">function</span> <span style="color: #f8f8f2">()</span> <span style="color: #f8f8f2">{</span>
-      <span style="color: #a6e22e">module</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;fuji.app.controllers&#39;</span><span style="color: #f8f8f2">);</span>
+    <span style="color:#a6e22e">beforeEach</span>(<span style="color:#66d9ef">function</span> () {
+      <span style="color:#a6e22e">module</span>(<span style="color:#e6db74">&#39;fuji.app.controllers&#39;</span>);
 
-      <span style="color: #a6e22e">inject</span><span style="color: #f8f8f2">(</span><span style="color: #66d9ef">function</span> <span style="color: #f8f8f2">(</span><span style="color: #a6e22e">$controller</span><span style="color: #f8f8f2">,</span> <span style="color: #a6e22e">_$rootScope_</span><span style="color: #f8f8f2">,</span> <span style="color: #a6e22e">_authService_</span><span style="color: #f8f8f2">,</span> <span style="color: #a6e22e">_i18n_</span><span style="color: #f8f8f2">)</span> <span style="color: #f8f8f2">{</span>
-        <span style="color: #a6e22e">$rootScope</span> <span style="color: #f92672">=</span> <span style="color: #a6e22e">_$rootScope_</span><span style="color: #f8f8f2">;</span>
-        <span style="color: #a6e22e">authService</span> <span style="color: #f92672">=</span> <span style="color: #a6e22e">_authService_</span><span style="color: #f8f8f2">;</span>
-        <span style="color: #a6e22e">i18n</span> <span style="color: #f92672">=</span> <span style="color: #a6e22e">_i18n_</span><span style="color: #f8f8f2">;</span>
-        <span style="color: #a6e22e">availableLocales</span> <span style="color: #f92672">=</span> <span style="color: #f8f8f2">[</span><span style="color: #e6db74">&#39;en&#39;</span><span style="color: #f8f8f2">,</span> <span style="color: #e6db74">&#39;fr&#39;</span><span style="color: #f8f8f2">];</span>
-        <span style="color: #a6e22e">selectedLocale</span> <span style="color: #f92672">=</span> <span style="color: #e6db74">&#39;fr&#39;</span><span style="color: #f8f8f2">;</span>
+      <span style="color:#a6e22e">inject</span>(<span style="color:#66d9ef">function</span> (<span style="color:#a6e22e">$controller</span>, <span style="color:#a6e22e">_$rootScope_</span>, <span style="color:#a6e22e">_authService_</span>, <span style="color:#a6e22e">_i18n_</span>) {
+        <span style="color:#a6e22e">$rootScope</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">_$rootScope_</span>;
+        <span style="color:#a6e22e">authService</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">_authService_</span>;
+        <span style="color:#a6e22e">i18n</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">_i18n_</span>;
+        <span style="color:#a6e22e">availableLocales</span> <span style="color:#f92672">=</span> [<span style="color:#e6db74">&#39;en&#39;</span>, <span style="color:#e6db74">&#39;fr&#39;</span>];
+        <span style="color:#a6e22e">selectedLocale</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;fr&#39;</span>;
 
-        <span style="color: #a6e22e">authService</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">getEmployeeId</span> <span style="color: #f92672">=</span> <span style="color: #66d9ef">function</span> <span style="color: #f8f8f2">()</span> <span style="color: #f8f8f2">{</span>
-          <span style="color: #66d9ef">return</span> <span style="color: #ae81ff">2</span><span style="color: #f8f8f2">;</span>
-        <span style="color: #f8f8f2">};</span>
+        <span style="color:#a6e22e">authService</span>.<span style="color:#a6e22e">getEmployeeId</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">function</span> () {
+          <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">2</span>;
+        };
 
-        <span style="color: #a6e22e">scope</span> <span style="color: #f92672">=</span> <span style="color: #a6e22e">$rootScope</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">$new</span><span style="color: #f8f8f2">();</span>
-        <span style="color: #a6e22e">LocaleCtrl</span> <span style="color: #f92672">=</span> <span style="color: #a6e22e">$controller</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;LocaleCtrl&#39;</span><span style="color: #f8f8f2">,</span> <span style="color: #f8f8f2">{</span>
-          <span style="color: #a6e22e">$scope</span><span style="color: #f92672">:</span> <span style="color: #a6e22e">scope</span><span style="color: #f8f8f2">,</span>
-          <span style="color: #a6e22e">availableLocales</span><span style="color: #f92672">:</span> <span style="color: #a6e22e">availableLocales</span><span style="color: #f8f8f2">,</span>
-          <span style="color: #a6e22e">selectedLocale</span><span style="color: #f92672">:</span> <span style="color: #a6e22e">selectedLocale</span>
-        <span style="color: #f8f8f2">});</span>
+        <span style="color:#a6e22e">scope</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">$rootScope</span>.<span style="color:#a6e22e">$new</span>();
+        <span style="color:#a6e22e">LocaleCtrl</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">$controller</span>(<span style="color:#e6db74">&#39;LocaleCtrl&#39;</span>, {
+          <span style="color:#a6e22e">$scope</span><span style="color:#f92672">:</span> <span style="color:#a6e22e">scope</span>,
+          <span style="color:#a6e22e">availableLocales</span><span style="color:#f92672">:</span> <span style="color:#a6e22e">availableLocales</span>,
+          <span style="color:#a6e22e">selectedLocale</span><span style="color:#f92672">:</span> <span style="color:#a6e22e">selectedLocale</span>
+        });
 
-        <span style="color: #a6e22e">$rootScope</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">$digest</span><span style="color: #f8f8f2">();</span>
-      <span style="color: #f8f8f2">});</span>
-    <span style="color: #f8f8f2">});</span>
+        <span style="color:#a6e22e">$rootScope</span>.<span style="color:#a6e22e">$digest</span>();
+      });
+    });
 
-    <span style="color: #75715e">// List of assertions</span>
-    <span style="color: #75715e">//.</span>
-    <span style="color: #75715e">//.</span>
-    <span style="color: #75715e">//.</span>
-
-  <span style="color: #f8f8f2">});</span>
-<span style="color: #f8f8f2">})();</span>
-</pre></div>
-
+    <span style="color:#75715e">// List of assertions
+</span><span style="color:#75715e"></span>    <span style="color:#75715e">//.
+</span><span style="color:#75715e"></span>    <span style="color:#75715e">//.
+</span><span style="color:#75715e"></span>    <span style="color:#75715e">//.
+</span><span style="color:#75715e"></span>
+  });
+})();
+</code></pre></div>
 <h3 id="analysis">Analysis</h3>
 
 <p>The solution is to inject <code>availableLocales</code> and <code>selectedLocale</code> into the scope.</p>

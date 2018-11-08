@@ -165,44 +165,40 @@ html{font-family:sans-serif;line-height:1.15;-ms-text-size-adjust:100%;-webkit-t
 <p>In this post you will learn how to unit test a component that uses <code>ngOnChanges</code>.</p>
 
 <h3 id="component-under-test">Component under test</h3>
-<div class="highlight" style="background: #272822"><pre style="line-height: 125%"><span></span><span style="color: #66d9ef">import</span> <span style="color: #f8f8f2">{</span> <span style="color: #a6e22e">Component</span><span style="color: #f8f8f2">,</span> <span style="color: #a6e22e">OnInit</span><span style="color: #f8f8f2">,</span> <span style="color: #a6e22e">OnChanges</span> <span style="color: #f8f8f2">}</span> <span style="color: #a6e22e">from</span> <span style="color: #e6db74">&#39;@angular/core&#39;</span><span style="color: #f8f8f2">;</span>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-typescript" data-lang="typescript"><span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">Component</span>, <span style="color:#a6e22e">OnInit</span>, <span style="color:#a6e22e">OnChanges</span> } <span style="color:#a6e22e">from</span> <span style="color:#e6db74">&#39;@angular/core&#39;</span>;
 
-<span style="color: #66d9ef">@Component</span><span style="color: #f8f8f2">({</span>
-  <span style="color: #a6e22e">selector</span><span style="color: #f92672">:</span> <span style="color: #e6db74">&#39;hopla-component&#39;</span><span style="color: #f8f8f2">,</span>
-  <span style="color: #a6e22e">template</span><span style="color: #f92672">:</span> <span style="color: #e6db74">`</span>
-<span style="color: #e6db74">    &lt;div&gt;Hopla Hopla&lt;/div&gt;</span>
-<span style="color: #e6db74">  `</span>
-<span style="color: #f8f8f2">})</span>
-<span style="color: #66d9ef">export</span> <span style="color: #66d9ef">class</span> <span style="color: #a6e22e">HoplaComponent</span> <span style="color: #66d9ef">implements</span> <span style="color: #a6e22e">OnInit</span><span style="color: #f8f8f2">,</span> <span style="color: #a6e22e">OnChanges</span> <span style="color: #f8f8f2">{</span>
-  <span style="color: #66d9ef">@Input</span><span style="color: #f8f8f2">()</span> <span style="color: #a6e22e">data</span>: <span style="color: #66d9ef">Array</span><span style="color: #f92672">&lt;</span><span style="color: #a6e22e">object</span><span style="color: #f92672">&gt;</span><span style="color: #f8f8f2">;</span>
+<span style="color:#66d9ef">@Component</span>({
+  <span style="color:#a6e22e">selector</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;hopla-component&#39;</span>,
+  <span style="color:#a6e22e">template</span><span style="color:#f92672">:</span> <span style="color:#e6db74">`
+</span><span style="color:#e6db74">    &lt;div&gt;Hopla Hopla&lt;/div&gt;
+</span><span style="color:#e6db74">  `</span>
+})
+<span style="color:#66d9ef">export</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">HoplaComponent</span> <span style="color:#66d9ef">implements</span> <span style="color:#a6e22e">OnInit</span>, <span style="color:#a6e22e">OnChanges</span> {
+  <span style="color:#66d9ef">@Input</span>() <span style="color:#a6e22e">data</span>: <span style="color:#66d9ef">Array</span><span style="color:#f92672">&lt;</span><span style="color:#a6e22e">object</span><span style="color:#f92672">&gt;</span>;
 
-  <span style="color: #a6e22e">ngOnInit</span><span style="color: #f8f8f2">(){</span>
-    <span style="color: #75715e">// do something</span>
-  <span style="color: #f8f8f2">}</span>
+  <span style="color:#a6e22e">ngOnInit</span>(){
+    <span style="color:#75715e">// do something
+</span><span style="color:#75715e"></span>  }
 
-  <span style="color: #a6e22e">ngOnChanges</span><span style="color: #f8f8f2">(){</span>
-    <span style="color: #a6e22e">superFunction</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">data</span><span style="color: #f8f8f2">)</span>
-  <span style="color: #f8f8f2">}</span>
+  <span style="color:#a6e22e">ngOnChanges</span>(){
+    <span style="color:#a6e22e">superFunction</span>(<span style="color:#a6e22e">data</span>)
+  }
 
-  <span style="color: #a6e22e">superFunction</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">input</span><span style="color: #f8f8f2">)</span> <span style="color: #f92672">=&gt;</span> <span style="color: #f8f8f2">{</span>
-    <span style="color: #75715e">// do something with input</span>
-  <span style="color: #f8f8f2">}</span>
-<span style="color: #f8f8f2">}</span>
-</pre></div>
-
+  <span style="color:#a6e22e">superFunction</span>(<span style="color:#a6e22e">input</span>) <span style="color:#f92672">=&gt;</span> {
+    <span style="color:#75715e">// do something with input
+</span><span style="color:#75715e"></span>  }
+}</code></pre></div>
 <h3 id="unit-test">Unit test</h3>
-<div class="highlight" style="background: #272822"><pre style="line-height: 125%"><span></span><span style="color: #a6e22e">it</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;OnChanges: updates the form with the site value&#39;</span><span style="color: #f8f8f2">,</span> <span style="color: #f8f8f2">()</span> <span style="color: #f92672">=&gt;</span> <span style="color: #f8f8f2">{</span>
-  <span style="color: #66d9ef">const</span> <span style="color: #a6e22e">superFunctionSpy</span> <span style="color: #f92672">=</span> <span style="color: #a6e22e">spyOn</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">comp</span><span style="color: #f8f8f2">,</span> <span style="color: #e6db74">&#39;superFunction&#39;</span><span style="color: #f8f8f2">);</span>
-  <span style="color: #66d9ef">const</span> <span style="color: #a6e22e">data</span> <span style="color: #f92672">=</span> <span style="color: #f8f8f2">[{</span><span style="color: #a6e22e">value</span>: <span style="color: #66d9ef">1</span><span style="color: #f8f8f2">},</span> <span style="color: #f8f8f2">{</span><span style="color: #a6e22e">value</span>: <span style="color: #66d9ef">2</span><span style="color: #f8f8f2">}]</span>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-typescript" data-lang="typescript"><span style="color:#a6e22e">it</span>(<span style="color:#e6db74">&#39;OnChanges: updates the form with the site value&#39;</span>, () <span style="color:#f92672">=&gt;</span> {
+  <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">superFunctionSpy</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">spyOn</span>(<span style="color:#a6e22e">comp</span>, <span style="color:#e6db74">&#39;superFunction&#39;</span>);
+  <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">data</span> <span style="color:#f92672">=</span> [{<span style="color:#a6e22e">value</span>: <span style="color:#66d9ef">1</span>}, {<span style="color:#a6e22e">value</span>: <span style="color:#66d9ef">2</span>}]
 
-  <span style="color: #a6e22e">fixture</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">detectChanges</span><span style="color: #f8f8f2">();</span>
-  <span style="color: #a6e22e">comp</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">data</span> <span style="color: #f92672">=</span> <span style="color: #a6e22e">data</span><span style="color: #f8f8f2">;</span>
+  <span style="color:#a6e22e">fixture</span>.<span style="color:#a6e22e">detectChanges</span>();
+  <span style="color:#a6e22e">comp</span>.<span style="color:#a6e22e">data</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">data</span>;
 
-  <span style="color: #a6e22e">comp</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">ngOnChanges</span><span style="color: #f8f8f2">();</span>
-  <span style="color: #a6e22e">expect</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">superFunctionSpy</span><span style="color: #f8f8f2">).</span><span style="color: #a6e22e">toHaveBeenCalledWith</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">data</span><span style="color: #f8f8f2">);</span>
-<span style="color: #f8f8f2">});</span>
-</pre></div>
-
+  <span style="color:#a6e22e">comp</span>.<span style="color:#a6e22e">ngOnChanges</span>();
+  <span style="color:#a6e22e">expect</span>(<span style="color:#a6e22e">superFunctionSpy</span>).<span style="color:#a6e22e">toHaveBeenCalledWith</span>(<span style="color:#a6e22e">data</span>);
+});</code></pre></div>
 <p>The trick is first to call <code>fixture.detectChanges()</code> to trigger <code>ngOnInit</code> then change the input and call <code>ngOnChanges</code> manually.</p>
 
   			</section>

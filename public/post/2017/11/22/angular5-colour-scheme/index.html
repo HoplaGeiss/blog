@@ -168,11 +168,9 @@ html{font-family:sans-serif;line-height:1.15;-ms-text-size-adjust:100%;-webkit-t
 <h3 id="bacic-implementation-static-colour-scheme">Bacic implementation - static colour scheme</h3>
 
 <p>The most basic implementation is to have a scss file with variables for your colours scheme.</p>
-<div class="highlight" style="background: #272822"><pre style="line-height: 125%"><span></span>  <span style="color: #f8f8f2">$primary</span><span style="color: #f92672">:</span> <span style="color: #ae81ff">#57a1c6</span><span style="color: #f8f8f2">;</span>
-  <span style="color: #f8f8f2">$highlight</span><span style="color: #f92672">:</span> <span style="color: #ae81ff">#4fc3f7</span><span style="color: #f8f8f2">;</span>
-  <span style="color: #f8f8f2">$accent</span><span style="color: #f92672">:</span> <span style="color: #ae81ff">#ee7175</span><span style="color: #f8f8f2">;</span>
-</pre></div>
-
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-scss" data-lang="scss">  $primary<span style="color:#f92672">:</span> <span style="color:#ae81ff">#57a1c6</span>;
+  $highlight<span style="color:#f92672">:</span> <span style="color:#ae81ff">#4fc3f7</span>;
+  $accent<span style="color:#f92672">:</span> <span style="color:#ae81ff">#ee7175</span>;</code></pre></div>
 <p>However that only works if you have a single colour scheme.</p>
 
 <h3 id="advances-implementation-dynamic-colour-scheme">Advances implementation - dynamic colour scheme</h3>
@@ -180,58 +178,54 @@ html{font-family:sans-serif;line-height:1.15;-ms-text-size-adjust:100%;-webkit-t
 <p>To have a dynamic colour scheme, first you need a place to persist the user&rsquo;s choice. I choose to put in a Mongo collection. Then once the user is logged in I am retrieving this and using the user&rsquo;s colours scheme thanks to a directive.</p>
 
 <h5 id="directive">Directive</h5>
-<div class="highlight" style="background: #272822"><pre style="line-height: 125%"><span></span><span style="color: #66d9ef">import</span> <span style="color: #f8f8f2">{</span> <span style="color: #a6e22e">Directive</span><span style="color: #f8f8f2">,</span> <span style="color: #a6e22e">ElementRef</span><span style="color: #f8f8f2">,</span> <span style="color: #a6e22e">Renderer</span><span style="color: #f8f8f2">,</span> <span style="color: #a6e22e">OnInit</span><span style="color: #f8f8f2">,</span> <span style="color: #a6e22e">HostListener</span><span style="color: #f8f8f2">,</span> <span style="color: #a6e22e">Input</span> <span style="color: #f8f8f2">}</span> <span style="color: #a6e22e">from</span> <span style="color: #e6db74">&#39;@angular/core&#39;</span><span style="color: #f8f8f2">;</span>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-typescript" data-lang="typescript"><span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">Directive</span>, <span style="color:#a6e22e">ElementRef</span>, <span style="color:#a6e22e">Renderer</span>, <span style="color:#a6e22e">OnInit</span>, <span style="color:#a6e22e">HostListener</span>, <span style="color:#a6e22e">Input</span> } <span style="color:#a6e22e">from</span> <span style="color:#e6db74">&#39;@angular/core&#39;</span>;
 
-<span style="color: #75715e">// Services</span>
-<span style="color: #66d9ef">import</span> <span style="color: #f8f8f2">{</span> <span style="color: #a6e22e">ColourService</span> <span style="color: #f8f8f2">}</span> <span style="color: #a6e22e">from</span> <span style="color: #e6db74">&#39;./colour.service&#39;</span><span style="color: #f8f8f2">;</span>
+<span style="color:#75715e">// Services
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">ColourService</span> } <span style="color:#a6e22e">from</span> <span style="color:#e6db74">&#39;./colour.service&#39;</span>;
 
-<span style="color: #66d9ef">@Directive</span><span style="color: #f8f8f2">({</span>
-  <span style="color: #a6e22e">selector</span><span style="color: #f92672">:</span> <span style="color: #e6db74">&#39;[hoplaColour]&#39;</span>
-<span style="color: #f8f8f2">})</span>
-<span style="color: #66d9ef">export</span> <span style="color: #66d9ef">class</span> <span style="color: #a6e22e">ColourDirective</span> <span style="color: #66d9ef">implements</span> <span style="color: #a6e22e">OnInit</span> <span style="color: #f8f8f2">{</span>
-  <span style="color: #66d9ef">@Input</span><span style="color: #f8f8f2">()</span> <span style="color: #a6e22e">attribute</span> <span style="color: #f92672">=</span> <span style="color: #e6db74">&#39;color&#39;</span><span style="color: #f8f8f2">;</span>
-  <span style="color: #66d9ef">@Input</span><span style="color: #f8f8f2">()</span> <span style="color: #a6e22e">type</span> <span style="color: #f92672">=</span> <span style="color: #e6db74">&#39;primary&#39;</span><span style="color: #f8f8f2">;</span>
+<span style="color:#66d9ef">@Directive</span>({
+  <span style="color:#a6e22e">selector</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;[hoplaColour]&#39;</span>
+})
+<span style="color:#66d9ef">export</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">ColourDirective</span> <span style="color:#66d9ef">implements</span> <span style="color:#a6e22e">OnInit</span> {
+  <span style="color:#66d9ef">@Input</span>() <span style="color:#a6e22e">attribute</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;color&#39;</span>;
+  <span style="color:#66d9ef">@Input</span>() <span style="color:#a6e22e">type</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;primary&#39;</span>;
 
-  <span style="color: #a6e22e">ngOnInit() {</span>
-    <span style="color: #66d9ef">this</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">changeColour</span><span style="color: #f8f8f2">(</span><span style="color: #66d9ef">this</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">colourService</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">getColour</span><span style="color: #f8f8f2">(</span><span style="color: #66d9ef">undefined</span><span style="color: #f8f8f2">,</span> <span style="color: #66d9ef">this</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">type</span><span style="color: #f8f8f2">));</span>
-  <span style="color: #f8f8f2">}</span>
+  <span style="color:#a6e22e">ngOnInit() {</span>
+    <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">changeColour</span>(<span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">colourService</span>.<span style="color:#a6e22e">getColour</span>(<span style="color:#66d9ef">undefined</span>, <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">type</span>));
+  }
 
-  <span style="color: #66d9ef">constructor</span><span style="color: #f8f8f2">(</span>
-    <span style="color: #66d9ef">private</span> <span style="color: #a6e22e">el</span>: <span style="color: #66d9ef">ElementRef</span><span style="color: #f8f8f2">,</span>
-    <span style="color: #66d9ef">private</span> <span style="color: #a6e22e">render</span>: <span style="color: #66d9ef">Renderer</span><span style="color: #f8f8f2">,</span>
-    <span style="color: #66d9ef">private</span> <span style="color: #a6e22e">colourService</span>: <span style="color: #66d9ef">ColourService</span>
-  <span style="color: #f8f8f2">)</span> <span style="color: #f8f8f2">{}</span>
+  <span style="color:#66d9ef">constructor</span>(
+    <span style="color:#66d9ef">private</span> <span style="color:#a6e22e">el</span>: <span style="color:#66d9ef">ElementRef</span>,
+    <span style="color:#66d9ef">private</span> <span style="color:#a6e22e">render</span>: <span style="color:#66d9ef">Renderer</span>,
+    <span style="color:#66d9ef">private</span> <span style="color:#a6e22e">colourService</span>: <span style="color:#66d9ef">ColourService</span>
+  ) {}
 
-  <span style="color: #66d9ef">private</span> <span style="color: #a6e22e">changeColour</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">colour</span>: <span style="color: #66d9ef">string</span><span style="color: #f8f8f2">)</span> <span style="color: #f8f8f2">{</span>
-    <span style="color: #66d9ef">this</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">render</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">setElementStyle</span><span style="color: #f8f8f2">(</span><span style="color: #66d9ef">this</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">el</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">nativeElement</span><span style="color: #f8f8f2">,</span> <span style="color: #66d9ef">this</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">attribute</span><span style="color: #f8f8f2">,</span> <span style="color: #a6e22e">colour</span><span style="color: #f8f8f2">);</span>
-  <span style="color: #f8f8f2">}</span>
-<span style="color: #f8f8f2">}</span>
-</pre></div>
-
+  <span style="color:#66d9ef">private</span> <span style="color:#a6e22e">changeColour</span>(<span style="color:#a6e22e">colour</span>: <span style="color:#66d9ef">string</span>) {
+    <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">render</span>.<span style="color:#a6e22e">setElementStyle</span>(<span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">el</span>.<span style="color:#a6e22e">nativeElement</span>, <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">attribute</span>, <span style="color:#a6e22e">colour</span>);
+  }
+}</code></pre></div>
 <p>This directive has two inputs, type which is the type of colours I want. As you can see in the styling file I posted above, I have 3 types: primary, secondary and highlight. The second input is attribute, this controls the css attribute I want to affect, this could be a border-color, background-color or just color for example.</p>
 
 <h5 id="service">Service</h5>
-<div class="highlight" style="background: #272822"><pre style="line-height: 125%"><span></span><span style="color: #66d9ef">import</span> <span style="color: #f8f8f2">{</span> <span style="color: #a6e22e">Injectable</span> <span style="color: #f8f8f2">}</span> <span style="color: #a6e22e">from</span> <span style="color: #e6db74">&#39;@angular/core&#39;</span><span style="color: #f8f8f2">;</span>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-typescript" data-lang="typescript"><span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">Injectable</span> } <span style="color:#a6e22e">from</span> <span style="color:#e6db74">&#39;@angular/core&#39;</span>;
 
-<span style="color: #75715e">// Services</span>
-<span style="color: #66d9ef">import</span> <span style="color: #f8f8f2">{</span> <span style="color: #a6e22e">ConfigService</span> <span style="color: #f8f8f2">}</span> <span style="color: #a6e22e">from</span> <span style="color: #e6db74">&#39;../../config/config.service&#39;</span><span style="color: #f8f8f2">;</span>
+<span style="color:#75715e">// Services
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">ConfigService</span> } <span style="color:#a6e22e">from</span> <span style="color:#e6db74">&#39;../../config/config.service&#39;</span>;
 
-<span style="color: #66d9ef">@Injectable</span><span style="color: #f8f8f2">()</span>
-<span style="color: #66d9ef">export</span> <span style="color: #66d9ef">class</span> <span style="color: #a6e22e">ColourService</span> <span style="color: #f8f8f2">{</span>
-  <span style="color: #66d9ef">constructor</span> <span style="color: #f8f8f2">(</span>
-    <span style="color: #66d9ef">private</span> <span style="color: #a6e22e">configService</span>: <span style="color: #66d9ef">ConfigService</span>
-  <span style="color: #f8f8f2">)</span> <span style="color: #f8f8f2">{}</span>
+<span style="color:#66d9ef">@Injectable</span>()
+<span style="color:#66d9ef">export</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">ColourService</span> {
+  <span style="color:#66d9ef">constructor</span> (
+    <span style="color:#66d9ef">private</span> <span style="color:#a6e22e">configService</span>: <span style="color:#66d9ef">ConfigService</span>
+  ) {}
 
-  <span style="color: #a6e22e">getColour</span> <span style="color: #f92672">=</span> <span style="color: #f8f8f2">(</span><span style="color: #a6e22e">type</span>: <span style="color: #66d9ef">string</span><span style="color: #f8f8f2">)</span><span style="color: #f92672">:</span> <span style="color: #66d9ef">string</span> <span style="color: #f92672">=&gt;</span> <span style="color: #f8f8f2">{</span>
-    <span style="color: #66d9ef">const</span> <span style="color: #a6e22e">colours</span> <span style="color: #f92672">=</span> <span style="color: #66d9ef">this</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">configService</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">configSubject</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">getValue</span><span style="color: #f8f8f2">().</span><span style="color: #a6e22e">colours</span><span style="color: #f8f8f2">;</span>
+  <span style="color:#a6e22e">getColour</span> <span style="color:#f92672">=</span> (<span style="color:#a6e22e">type</span>: <span style="color:#66d9ef">string</span>)<span style="color:#f92672">:</span> <span style="color:#66d9ef">string</span> <span style="color:#f92672">=&gt;</span> {
+    <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">colours</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">configService</span>.<span style="color:#a6e22e">configSubject</span>.<span style="color:#a6e22e">getValue</span>().<span style="color:#a6e22e">colours</span>;
 
-    <span style="color: #66d9ef">if</span> <span style="color: #f8f8f2">(</span><span style="color: #a6e22e">type</span> <span style="color: #66d9ef">in</span> <span style="color: #a6e22e">colours</span><span style="color: #f8f8f2">)</span> <span style="color: #66d9ef">return</span> <span style="color: #a6e22e">colours</span><span style="color: #f8f8f2">[</span><span style="color: #a6e22e">type</span><span style="color: #f8f8f2">];</span>
+    <span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">type</span> <span style="color:#66d9ef">in</span> <span style="color:#a6e22e">colours</span>) <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">colours</span>[<span style="color:#a6e22e">type</span>];
 
-    <span style="color: #66d9ef">return</span> <span style="color: #a6e22e">colours</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">primary</span><span style="color: #f8f8f2">;</span>
-  <span style="color: #f8f8f2">}</span>
-<span style="color: #f8f8f2">}</span>
-</pre></div>
-
+    <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">colours</span>.<span style="color:#a6e22e">primary</span>;
+  }
+}</code></pre></div>
 <p>All this service does is using the colours stored in an Observable inside <code>configService.configSubject</code> and returning the colour in function of the type selected.</p>
 
   			</section>

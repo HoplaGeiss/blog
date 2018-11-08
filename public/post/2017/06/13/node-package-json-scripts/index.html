@@ -181,25 +181,21 @@ html{font-family:sans-serif;line-height:1.15;-ms-text-size-adjust:100%;-webkit-t
 <p>2- configure jasmine</p>
 
 <p>spec/support/jasmine.json</p>
-<div class="highlight" style="background: #272822"><pre style="line-height: 125%"><span></span><span style="color: #f8f8f2">{</span>
-  <span style="color: #f92672">&quot;spec_dir&quot;</span><span style="color: #f8f8f2">:</span> <span style="color: #e6db74">&quot;&quot;</span><span style="color: #f8f8f2">,</span>
-  <span style="color: #f92672">&quot;spec_files&quot;</span><span style="color: #f8f8f2">:</span> <span style="color: #f8f8f2">[</span>
-    <span style="color: #e6db74">&quot;services/**/*.spec.js&quot;</span><span style="color: #f8f8f2">,</span>
-    <span style="color: #e6db74">&quot;controllers/**/*.spec.js&quot;</span>
-  <span style="color: #f8f8f2">],</span>
-  <span style="color: #f92672">&quot;stopSpecOnExpectationFailure&quot;</span><span style="color: #f8f8f2">:</span> <span style="color: #66d9ef">false</span><span style="color: #f8f8f2">,</span>
-  <span style="color: #f92672">&quot;random&quot;</span><span style="color: #f8f8f2">:</span> <span style="color: #66d9ef">false</span>
-<span style="color: #f8f8f2">}</span>
-</pre></div>
-
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-json" data-lang="json">{
+  <span style="color:#f92672">&#34;spec_dir&#34;</span>: <span style="color:#e6db74">&#34;&#34;</span>,
+  <span style="color:#f92672">&#34;spec_files&#34;</span>: [
+    <span style="color:#e6db74">&#34;services/**/*.spec.js&#34;</span>,
+    <span style="color:#e6db74">&#34;controllers/**/*.spec.js&#34;</span>
+  ],
+  <span style="color:#f92672">&#34;stopSpecOnExpectationFailure&#34;</span>: <span style="color:#66d9ef">false</span>,
+  <span style="color:#f92672">&#34;random&#34;</span>: <span style="color:#66d9ef">false</span>
+}</code></pre></div>
 <p>3- Configure scripts in package.json</p>
-<div class="highlight" style="background: #272822"><pre style="line-height: 125%"><span></span><span style="color: #f8f8f2">{</span>
-  <span style="color: #f92672">&quot;scripts&quot;</span><span style="color: #f8f8f2">:</span> <span style="color: #f8f8f2">{</span>
-    <span style="color: #f92672">&quot;test&quot;</span><span style="color: #f8f8f2">:</span> <span style="color: #e6db74">&quot;./node_modules/nodemon/bin/nodemon.js --exec ./node_modules/jasmine/bin/jasmine.js&quot;</span><span style="color: #f8f8f2">,</span>
-  <span style="color: #f8f8f2">}</span>
-<span style="color: #f8f8f2">}</span>
-</pre></div>
-
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-json" data-lang="json">{
+  <span style="color:#f92672">&#34;scripts&#34;</span>: {
+    <span style="color:#f92672">&#34;test&#34;</span>: <span style="color:#e6db74">&#34;./node_modules/nodemon/bin/nodemon.js --exec ./node_modules/jasmine/bin/jasmine.js&#34;</span>,
+  }
+}</code></pre></div>
 <h1 id="ng-test-code-coverage">ng test &ndash;code-coverage</h1>
 
 <p>Running the test and generating the coverage report with istanbul is another awesome feature of @angular/cli. To implement this we just need to install istanbul have set it up.</p>
@@ -208,27 +204,23 @@ html{font-family:sans-serif;line-height:1.15;-ms-text-size-adjust:100%;-webkit-t
 <code>npm install istanbul --save-dev</code></p>
 
 <p>2- configure istanbul</p>
-<div class="highlight" style="background: #272822"><pre style="line-height: 125%"><span></span><span style="color: #75715e"># .istanbul.yml</span>
-<span style="color: #ae81ff">instrumentation</span><span style="color: #f8f8f2">:</span>
-  <span style="color: #ae81ff">include-all-sources</span><span style="color: #f8f8f2">:</span> <span style="color: #ae81ff">true</span>
-  <span style="color: #ae81ff">verbose</span><span style="color: #f8f8f2">:</span> <span style="color: #ae81ff">true</span>
-  <span style="color: #ae81ff">excludes</span><span style="color: #f8f8f2">:</span> <span style="color: #f8f8f2">[</span><span style="color: #e6db74">&quot;**/*.spec.js&quot;</span><span style="color: #f8f8f2">]</span>
-<span style="color: #ae81ff">reporting</span><span style="color: #f8f8f2">:</span>
-  <span style="color: #ae81ff">dir</span><span style="color: #f8f8f2">:</span> <span style="color: #e6db74">&quot;coverage&quot;</span>
-</pre></div>
-
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#75715e"># .istanbul.yml</span>
+instrumentation:
+  include-all-sources: <span style="color:#66d9ef">true</span>
+  verbose: <span style="color:#66d9ef">true</span>
+  excludes: [<span style="color:#e6db74">&#34;**/*.spec.js&#34;</span>]
+reporting:
+  dir: <span style="color:#e6db74">&#34;coverage&#34;</span></code></pre></div>
 <p>Two very important settings here that I struggled to find:
 - <code>include-all-sources</code>: this makes sure all the files are included in the report, not just only the one loaded by the spec files.
 - <code>excludes</code>: this removes the spec files from the report.</p>
 
 <p>3- Configure scripts in package.json</p>
-<div class="highlight" style="background: #272822"><pre style="line-height: 125%"><span></span><span style="color: #f8f8f2">{</span>
-  <span style="color: #f92672">&quot;scripts&quot;</span><span style="color: #f8f8f2">:</span> <span style="color: #f8f8f2">{</span>
-    <span style="color: #f92672">&quot;coverage&quot;</span><span style="color: #f8f8f2">:</span> <span style="color: #e6db74">&quot;node_modules/istanbul/lib/cli.js cover node_modules/jasmine/bin/jasmine.js&quot;</span>
-  <span style="color: #f8f8f2">}</span>
-<span style="color: #f8f8f2">}</span>
-</pre></div>
-
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-json" data-lang="json">{
+  <span style="color:#f92672">&#34;scripts&#34;</span>: {
+    <span style="color:#f92672">&#34;coverage&#34;</span>: <span style="color:#e6db74">&#34;node_modules/istanbul/lib/cli.js cover node_modules/jasmine/bin/jasmine.js&#34;</span>
+  }
+}</code></pre></div>
 <p>Note: the only difference with @angular/cli is there will be a couple more files in the coverage folder, I didn&rsquo;t find out how to crack this, but I guess it works alright like this.</p>
 
 <h1 id="ng-lint">ng lint</h1>
@@ -245,13 +237,11 @@ html{font-family:sans-serif;line-height:1.15;-ms-text-size-adjust:100%;-webkit-t
 Anyhow make sure you have an eslint configuration at the root folder</p>
 
 <p>3- Configure scripts in package.json</p>
-<div class="highlight" style="background: #272822"><pre style="line-height: 125%"><span></span><span style="color: #f8f8f2">{</span>
-  <span style="color: #f92672">&quot;scripts&quot;</span><span style="color: #f8f8f2">:</span> <span style="color: #f8f8f2">{</span>
-    <span style="color: #f92672">&quot;lint&quot;</span><span style="color: #f8f8f2">:</span> <span style="color: #e6db74">&quot;node_modules/.bin/eslint **/*.js&quot;</span>
-  <span style="color: #f8f8f2">}</span>
-<span style="color: #f8f8f2">}</span>
-</pre></div>
-
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-json" data-lang="json">{
+  <span style="color:#f92672">&#34;scripts&#34;</span>: {
+    <span style="color:#f92672">&#34;lint&#34;</span>: <span style="color:#e6db74">&#34;node_modules/.bin/eslint **/*.js&#34;</span>
+  }
+}</code></pre></div>
   			</section>
 
   			<footer class="post-footer">

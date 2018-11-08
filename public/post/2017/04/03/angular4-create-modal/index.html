@@ -95,7 +95,7 @@
         },
         "datePublished": "2017-04-03",
         "dateModified": "2017-04-03",
-        "wordCount": 529,
+        "wordCount": 528,
         "keywords": ["angular4"]
     }
     </script>
@@ -153,7 +153,7 @@ html{font-family:sans-serif;line-height:1.15;-ms-text-size-adjust:100%;-webkit-t
 
   			<header class="post-header">
   				<span class="post-meta">
-						<span class="post-date">3 Apr 2017</span> <span class="reading-time">| <span class="estimated-reading-time">3 min.</span> (<span class="word-count">529</span> words)</span></span>
+						<span class="post-date">3 Apr 2017</span> <span class="reading-time">| <span class="estimated-reading-time">3 min.</span> (<span class="word-count">528</span> words)</span></span>
   				</span>
   				<div class="clear"></div>
   				<h1 class="post-title">Angular 4 - Create a modal</h1>
@@ -170,198 +170,190 @@ To create the modal I used two files <code>modal.component.ts</code> and <code>m
 <p>Source Code: <a href="https://github.com/HoplaGeiss/hopla-modal">https://github.com/HoplaGeiss/hopla-modal</a></p>
 
 <p>Now let&rsquo;s take a look at both files.</p>
-<div class="highlight" style="background: #272822"><pre style="line-height: 125%"><span></span><span style="color: #75715e">// modal/modal.component.ts</span>
-<span style="color: #66d9ef">import</span> <span style="color: #f8f8f2">{</span> <span style="color: #a6e22e">Component</span><span style="color: #f8f8f2">,</span> <span style="color: #a6e22e">Input</span><span style="color: #f8f8f2">,</span> <span style="color: #a6e22e">OnInit</span><span style="color: #f8f8f2">,</span> <span style="color: #a6e22e">HostListener</span> <span style="color: #f8f8f2">}</span> <span style="color: #a6e22e">from</span> <span style="color: #e6db74">&#39;@angular/core&#39;</span><span style="color: #f8f8f2">;</span>
-<span style="color: #66d9ef">import</span> <span style="color: #f8f8f2">{</span> <span style="color: #a6e22e">ModalService</span> <span style="color: #f8f8f2">}</span> <span style="color: #a6e22e">from</span> <span style="color: #e6db74">&#39;./modal.service&#39;</span><span style="color: #f8f8f2">;</span>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-typescript" data-lang="typescript"><span style="color:#75715e">// modal/modal.component.ts
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">Component</span>, <span style="color:#a6e22e">Input</span>, <span style="color:#a6e22e">OnInit</span>, <span style="color:#a6e22e">HostListener</span> } <span style="color:#a6e22e">from</span> <span style="color:#e6db74">&#39;@angular/core&#39;</span>;
+<span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">ModalService</span> } <span style="color:#a6e22e">from</span> <span style="color:#e6db74">&#39;./modal.service&#39;</span>;
 
-<span style="color: #66d9ef">@Component</span><span style="color: #f8f8f2">({</span>
-    <span style="color: #a6e22e">selector</span><span style="color: #f92672">:</span> <span style="color: #e6db74">&#39;app-modal&#39;</span><span style="color: #f8f8f2">,</span>
-    <span style="color: #a6e22e">styleUrls</span><span style="color: #f92672">:</span> <span style="color: #f8f8f2">[</span><span style="color: #e6db74">&#39;./modal.scss&#39;</span><span style="color: #f8f8f2">],</span>
-    <span style="color: #a6e22e">template</span><span style="color: #f92672">:</span> <span style="color: #e6db74">`</span>
-<span style="color: #e6db74">      &lt;div [ngClass]=&quot;{&#39;closed&#39;: !isOpen}&quot;&gt;</span>
-<span style="color: #e6db74">        &lt;div class=&quot;modal-overlay&quot; (click)=&quot;close(true)&quot;&gt;&lt;/div&gt;</span>
+<span style="color:#66d9ef">@Component</span>({
+    <span style="color:#a6e22e">selector</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;app-modal&#39;</span>,
+    <span style="color:#a6e22e">styleUrls</span><span style="color:#f92672">:</span> [<span style="color:#e6db74">&#39;./modal.scss&#39;</span>],
+    <span style="color:#a6e22e">template</span><span style="color:#f92672">:</span> <span style="color:#e6db74">`
+</span><span style="color:#e6db74">      &lt;div [ngClass]=&#34;{&#39;closed&#39;: !isOpen}&#34;&gt;
+</span><span style="color:#e6db74">        &lt;div class=&#34;modal-overlay&#34; (click)=&#34;close(true)&#34;&gt;&lt;/div&gt;
+</span><span style="color:#e6db74">
+</span><span style="color:#e6db74">        &lt;div class=&#34;modal&#34;&gt;
+</span><span style="color:#e6db74">          &lt;div class=&#34;title&#34; *ngIf=&#34;modalTitle&#34;&gt;
+</span><span style="color:#e6db74">            &lt;span class=&#34;title-text&#34;&gt;{{ modalTitle }}&lt;/span&gt;
+</span><span style="color:#e6db74">            &lt;span class=&#34;right-align&#34; (click)=&#34;close(true)&#34;&gt;&lt;i class=&#34;material-icons md-24&#34;&gt;clear&lt;/i&gt;&lt;/span&gt;
+</span><span style="color:#e6db74">          &lt;/div&gt;
+</span><span style="color:#e6db74">
+</span><span style="color:#e6db74">          &lt;div class=&#34;body&#34;&gt;
+</span><span style="color:#e6db74">            &lt;ng-content&gt;&lt;/ng-content&gt;
+</span><span style="color:#e6db74">          &lt;/div&gt;
+</span><span style="color:#e6db74">        &lt;/div&gt;
+</span><span style="color:#e6db74">      &lt;/div&gt;
+</span><span style="color:#e6db74">    `</span>
+})
+<span style="color:#66d9ef">export</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">ModalComponent</span> <span style="color:#66d9ef">implements</span> <span style="color:#a6e22e">OnInit</span> {
+  <span style="color:#66d9ef">@Input</span>() <span style="color:#a6e22e">modalId</span>: <span style="color:#66d9ef">string</span>;
+  <span style="color:#66d9ef">@Input</span>() <span style="color:#a6e22e">modalTitle</span>: <span style="color:#66d9ef">string</span>;
+  <span style="color:#66d9ef">@Input</span>() <span style="color:#a6e22e">blocking</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">false</span>;
+  <span style="color:#a6e22e">isOpen</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">false</span>;
 
-<span style="color: #e6db74">        &lt;div class=&quot;modal&quot;&gt;</span>
-<span style="color: #e6db74">          &lt;div class=&quot;title&quot; *ngIf=&quot;modalTitle&quot;&gt;</span>
-<span style="color: #e6db74">            &lt;span class=&quot;title-text&quot;&gt;{{ modalTitle }}&lt;/span&gt;</span>
-<span style="color: #e6db74">            &lt;span class=&quot;right-align&quot; (click)=&quot;close(true)&quot;&gt;&lt;i class=&quot;material-icons md-24&quot;&gt;clear&lt;/i&gt;&lt;/span&gt;</span>
-<span style="color: #e6db74">          &lt;/div&gt;</span>
+  <span style="color:#66d9ef">@HostListener</span>(<span style="color:#e6db74">&#39;keyup&#39;</span>) <span style="color:#a6e22e">onMouseEnter</span>(<span style="color:#a6e22e">event</span>) {
+    <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">keyup</span>(<span style="color:#a6e22e">event</span>);
+  }
 
-<span style="color: #e6db74">          &lt;div class=&quot;body&quot;&gt;</span>
-<span style="color: #e6db74">            &lt;ng-content&gt;&lt;/ng-content&gt;</span>
-<span style="color: #e6db74">          &lt;/div&gt;</span>
-<span style="color: #e6db74">        &lt;/div&gt;</span>
-<span style="color: #e6db74">      &lt;/div&gt;</span>
-<span style="color: #e6db74">    `</span>
-<span style="color: #f8f8f2">})</span>
-<span style="color: #66d9ef">export</span> <span style="color: #66d9ef">class</span> <span style="color: #a6e22e">ModalComponent</span> <span style="color: #66d9ef">implements</span> <span style="color: #a6e22e">OnInit</span> <span style="color: #f8f8f2">{</span>
-  <span style="color: #66d9ef">@Input</span><span style="color: #f8f8f2">()</span> <span style="color: #a6e22e">modalId</span>: <span style="color: #66d9ef">string</span><span style="color: #f8f8f2">;</span>
-  <span style="color: #66d9ef">@Input</span><span style="color: #f8f8f2">()</span> <span style="color: #a6e22e">modalTitle</span>: <span style="color: #66d9ef">string</span><span style="color: #f8f8f2">;</span>
-  <span style="color: #66d9ef">@Input</span><span style="color: #f8f8f2">()</span> <span style="color: #a6e22e">blocking</span> <span style="color: #f92672">=</span> <span style="color: #66d9ef">false</span><span style="color: #f8f8f2">;</span>
-  <span style="color: #a6e22e">isOpen</span> <span style="color: #f92672">=</span> <span style="color: #66d9ef">false</span><span style="color: #f8f8f2">;</span>
+  <span style="color:#66d9ef">constructor</span>(<span style="color:#66d9ef">private</span> <span style="color:#a6e22e">modalService</span>: <span style="color:#66d9ef">ModalService</span>) {
+  }
 
-  <span style="color: #66d9ef">@HostListener</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;keyup&#39;</span><span style="color: #f8f8f2">)</span> <span style="color: #a6e22e">onMouseEnter</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">event</span><span style="color: #f8f8f2">)</span> <span style="color: #f8f8f2">{</span>
-    <span style="color: #66d9ef">this</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">keyup</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">event</span><span style="color: #f8f8f2">);</span>
-  <span style="color: #f8f8f2">}</span>
+  <span style="color:#a6e22e">ngOnInit() {</span>
+    <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">modalService</span>.<span style="color:#a6e22e">registerModal</span>(<span style="color:#66d9ef">this</span>);
+  }
 
-  <span style="color: #66d9ef">constructor</span><span style="color: #f8f8f2">(</span><span style="color: #66d9ef">private</span> <span style="color: #a6e22e">modalService</span>: <span style="color: #66d9ef">ModalService</span><span style="color: #f8f8f2">)</span> <span style="color: #f8f8f2">{</span>
-  <span style="color: #f8f8f2">}</span>
+  <span style="color:#a6e22e">close</span>(<span style="color:#a6e22e">checkBlocking</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">false</span>)<span style="color:#f92672">:</span> <span style="color:#66d9ef">void</span> {
+    <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">modalService</span>.<span style="color:#a6e22e">close</span>(<span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">modalId</span>, <span style="color:#a6e22e">checkBlocking</span>);
+  }
 
-  <span style="color: #a6e22e">ngOnInit() {</span>
-    <span style="color: #66d9ef">this</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">modalService</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">registerModal</span><span style="color: #f8f8f2">(</span><span style="color: #66d9ef">this</span><span style="color: #f8f8f2">);</span>
-  <span style="color: #f8f8f2">}</span>
+  <span style="color:#66d9ef">private</span> <span style="color:#a6e22e">keyup</span>(<span style="color:#a6e22e">event</span>: <span style="color:#66d9ef">KeyboardEvent</span>)<span style="color:#f92672">:</span> <span style="color:#66d9ef">void</span> {
+    <span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">event</span>.<span style="color:#a6e22e">keyCode</span> <span style="color:#f92672">===</span> <span style="color:#ae81ff">27</span>) {
+      <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">modalService</span>.<span style="color:#a6e22e">close</span>(<span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">modalId</span>, <span style="color:#66d9ef">true</span>);
+    }
+  }
+}</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-typescript" data-lang="typescript"><span style="color:#75715e">// modal/modal.service.ts
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">Injectable</span> } <span style="color:#a6e22e">from</span> <span style="color:#e6db74">&#39;@angular/core&#39;</span>;
+<span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">ModalComponent</span> } <span style="color:#a6e22e">from</span> <span style="color:#e6db74">&#39;./modal.component&#39;</span>;
 
-  <span style="color: #a6e22e">close</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">checkBlocking</span> <span style="color: #f92672">=</span> <span style="color: #66d9ef">false</span><span style="color: #f8f8f2">)</span><span style="color: #f92672">:</span> <span style="color: #66d9ef">void</span> <span style="color: #f8f8f2">{</span>
-    <span style="color: #66d9ef">this</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">modalService</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">close</span><span style="color: #f8f8f2">(</span><span style="color: #66d9ef">this</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">modalId</span><span style="color: #f8f8f2">,</span> <span style="color: #a6e22e">checkBlocking</span><span style="color: #f8f8f2">);</span>
-  <span style="color: #f8f8f2">}</span>
+<span style="color:#66d9ef">@Injectable</span>()
+<span style="color:#66d9ef">export</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">ModalService</span> {
+  <span style="color:#66d9ef">private</span> <span style="color:#a6e22e">modals</span>: <span style="color:#66d9ef">Array</span><span style="color:#f92672">&lt;</span><span style="color:#a6e22e">ModalComponent</span><span style="color:#f92672">&gt;</span>;
 
-  <span style="color: #66d9ef">private</span> <span style="color: #a6e22e">keyup</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">event</span>: <span style="color: #66d9ef">KeyboardEvent</span><span style="color: #f8f8f2">)</span><span style="color: #f92672">:</span> <span style="color: #66d9ef">void</span> <span style="color: #f8f8f2">{</span>
-    <span style="color: #66d9ef">if</span> <span style="color: #f8f8f2">(</span><span style="color: #a6e22e">event</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">keyCode</span> <span style="color: #f92672">===</span> <span style="color: #ae81ff">27</span><span style="color: #f8f8f2">)</span> <span style="color: #f8f8f2">{</span>
-      <span style="color: #66d9ef">this</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">modalService</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">close</span><span style="color: #f8f8f2">(</span><span style="color: #66d9ef">this</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">modalId</span><span style="color: #f8f8f2">,</span> <span style="color: #66d9ef">true</span><span style="color: #f8f8f2">);</span>
-    <span style="color: #f8f8f2">}</span>
-  <span style="color: #f8f8f2">}</span>
-<span style="color: #f8f8f2">}</span>
-</pre></div>
-<div class="highlight" style="background: #272822"><pre style="line-height: 125%"><span></span><span style="color: #75715e">// modal/modal.service.ts</span>
-<span style="color: #66d9ef">import</span> <span style="color: #f8f8f2">{</span> <span style="color: #a6e22e">Injectable</span> <span style="color: #f8f8f2">}</span> <span style="color: #a6e22e">from</span> <span style="color: #e6db74">&#39;@angular/core&#39;</span><span style="color: #f8f8f2">;</span>
-<span style="color: #66d9ef">import</span> <span style="color: #f8f8f2">{</span> <span style="color: #a6e22e">ModalComponent</span> <span style="color: #f8f8f2">}</span> <span style="color: #a6e22e">from</span> <span style="color: #e6db74">&#39;./modal.component&#39;</span><span style="color: #f8f8f2">;</span>
+  <span style="color:#66d9ef">constructor</span>() {
+    <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">modals</span> <span style="color:#f92672">=</span> [];
+  }
 
-<span style="color: #66d9ef">@Injectable</span><span style="color: #f8f8f2">()</span>
-<span style="color: #66d9ef">export</span> <span style="color: #66d9ef">class</span> <span style="color: #a6e22e">ModalService</span> <span style="color: #f8f8f2">{</span>
-  <span style="color: #66d9ef">private</span> <span style="color: #a6e22e">modals</span>: <span style="color: #66d9ef">Array</span><span style="color: #f92672">&lt;</span><span style="color: #a6e22e">ModalComponent</span><span style="color: #f92672">&gt;</span><span style="color: #f8f8f2">;</span>
+  <span style="color:#a6e22e">registerModal</span>(<span style="color:#a6e22e">newModal</span>: <span style="color:#66d9ef">ModalComponent</span>)<span style="color:#f92672">:</span> <span style="color:#66d9ef">void</span> {
+    <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">modal</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">findModal</span>(<span style="color:#a6e22e">newModal</span>.<span style="color:#a6e22e">modalId</span>);
 
-  <span style="color: #66d9ef">constructor</span><span style="color: #f8f8f2">()</span> <span style="color: #f8f8f2">{</span>
-    <span style="color: #66d9ef">this</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">modals</span> <span style="color: #f92672">=</span> <span style="color: #f8f8f2">[];</span>
-  <span style="color: #f8f8f2">}</span>
+    <span style="color:#75715e">// Delete existing to replace the modal
+</span><span style="color:#75715e"></span>    <span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">modal</span>) {
+      <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">modals</span>.<span style="color:#a6e22e">splice</span>(<span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">modals</span>.<span style="color:#a6e22e">indexOf</span>(<span style="color:#a6e22e">modal</span>));
+    }
 
-  <span style="color: #a6e22e">registerModal</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">newModal</span>: <span style="color: #66d9ef">ModalComponent</span><span style="color: #f8f8f2">)</span><span style="color: #f92672">:</span> <span style="color: #66d9ef">void</span> <span style="color: #f8f8f2">{</span>
-    <span style="color: #66d9ef">const</span> <span style="color: #a6e22e">modal</span> <span style="color: #f92672">=</span> <span style="color: #66d9ef">this</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">findModal</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">newModal</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">modalId</span><span style="color: #f8f8f2">);</span>
+    <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">modals</span>.<span style="color:#a6e22e">push</span>(<span style="color:#a6e22e">newModal</span>);
+  }
 
-    <span style="color: #75715e">// Delete existing to replace the modal</span>
-    <span style="color: #66d9ef">if</span> <span style="color: #f8f8f2">(</span><span style="color: #a6e22e">modal</span><span style="color: #f8f8f2">)</span> <span style="color: #f8f8f2">{</span>
-      <span style="color: #66d9ef">this</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">modals</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">splice</span><span style="color: #f8f8f2">(</span><span style="color: #66d9ef">this</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">modals</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">indexOf</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">modal</span><span style="color: #f8f8f2">));</span>
-    <span style="color: #f8f8f2">}</span>
+  <span style="color:#a6e22e">open</span>(<span style="color:#a6e22e">modalId</span>: <span style="color:#66d9ef">string</span>)<span style="color:#f92672">:</span> <span style="color:#66d9ef">void</span> {
+    <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">modal</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">findModal</span>(<span style="color:#a6e22e">modalId</span>);
 
-    <span style="color: #66d9ef">this</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">modals</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">push</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">newModal</span><span style="color: #f8f8f2">);</span>
-  <span style="color: #f8f8f2">}</span>
+    <span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">modal</span>) {
+      <span style="color:#a6e22e">modal</span>.<span style="color:#a6e22e">isOpen</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">true</span>;
+    }
+  }
 
-  <span style="color: #a6e22e">open</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">modalId</span>: <span style="color: #66d9ef">string</span><span style="color: #f8f8f2">)</span><span style="color: #f92672">:</span> <span style="color: #66d9ef">void</span> <span style="color: #f8f8f2">{</span>
-    <span style="color: #66d9ef">const</span> <span style="color: #a6e22e">modal</span> <span style="color: #f92672">=</span> <span style="color: #66d9ef">this</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">findModal</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">modalId</span><span style="color: #f8f8f2">);</span>
+  <span style="color:#a6e22e">close</span>(<span style="color:#a6e22e">modalId</span>: <span style="color:#66d9ef">string</span>, <span style="color:#a6e22e">checkBlocking</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">false</span>)<span style="color:#f92672">:</span> <span style="color:#66d9ef">void</span> {
+    <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">modal</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">findModal</span>(<span style="color:#a6e22e">modalId</span>);
 
-    <span style="color: #66d9ef">if</span> <span style="color: #f8f8f2">(</span><span style="color: #a6e22e">modal</span><span style="color: #f8f8f2">)</span> <span style="color: #f8f8f2">{</span>
-      <span style="color: #a6e22e">modal</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">isOpen</span> <span style="color: #f92672">=</span> <span style="color: #66d9ef">true</span><span style="color: #f8f8f2">;</span>
-    <span style="color: #f8f8f2">}</span>
-  <span style="color: #f8f8f2">}</span>
+    <span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">modal</span>) {
+      <span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">checkBlocking</span> <span style="color:#f92672">&amp;&amp;</span> <span style="color:#a6e22e">modal</span>.<span style="color:#a6e22e">blocking</span>) {
+        <span style="color:#66d9ef">return</span>;
+      }
 
-  <span style="color: #a6e22e">close</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">modalId</span>: <span style="color: #66d9ef">string</span><span style="color: #f8f8f2">,</span> <span style="color: #a6e22e">checkBlocking</span> <span style="color: #f92672">=</span> <span style="color: #66d9ef">false</span><span style="color: #f8f8f2">)</span><span style="color: #f92672">:</span> <span style="color: #66d9ef">void</span> <span style="color: #f8f8f2">{</span>
-    <span style="color: #66d9ef">const</span> <span style="color: #a6e22e">modal</span> <span style="color: #f92672">=</span> <span style="color: #66d9ef">this</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">findModal</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">modalId</span><span style="color: #f8f8f2">);</span>
+      <span style="color:#a6e22e">modal</span>.<span style="color:#a6e22e">isOpen</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">false</span>;
+    }
+  }
 
-    <span style="color: #66d9ef">if</span> <span style="color: #f8f8f2">(</span><span style="color: #a6e22e">modal</span><span style="color: #f8f8f2">)</span> <span style="color: #f8f8f2">{</span>
-      <span style="color: #66d9ef">if</span> <span style="color: #f8f8f2">(</span><span style="color: #a6e22e">checkBlocking</span> <span style="color: #f92672">&amp;&amp;</span> <span style="color: #a6e22e">modal</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">blocking</span><span style="color: #f8f8f2">)</span> <span style="color: #f8f8f2">{</span>
-        <span style="color: #66d9ef">return</span><span style="color: #f8f8f2">;</span>
-      <span style="color: #f8f8f2">}</span>
-
-      <span style="color: #a6e22e">modal</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">isOpen</span> <span style="color: #f92672">=</span> <span style="color: #66d9ef">false</span><span style="color: #f8f8f2">;</span>
-    <span style="color: #f8f8f2">}</span>
-  <span style="color: #f8f8f2">}</span>
-
-  <span style="color: #66d9ef">private</span> <span style="color: #a6e22e">findModal</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">modalId</span>: <span style="color: #66d9ef">string</span><span style="color: #f8f8f2">)</span><span style="color: #f92672">:</span> <span style="color: #a6e22e">ModalComponent</span> <span style="color: #f8f8f2">{</span>
-    <span style="color: #66d9ef">for</span> <span style="color: #f8f8f2">(</span><span style="color: #66d9ef">const</span> <span style="color: #a6e22e">modal</span> <span style="color: #a6e22e">of</span> <span style="color: #66d9ef">this</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">modals</span><span style="color: #f8f8f2">)</span> <span style="color: #f8f8f2">{</span>
-      <span style="color: #66d9ef">if</span> <span style="color: #f8f8f2">(</span><span style="color: #a6e22e">modal</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">modalId</span> <span style="color: #f92672">===</span> <span style="color: #a6e22e">modalId</span><span style="color: #f8f8f2">)</span> <span style="color: #f8f8f2">{</span>
-        <span style="color: #66d9ef">return</span> <span style="color: #a6e22e">modal</span><span style="color: #f8f8f2">;</span>
-      <span style="color: #f8f8f2">}</span>
-    <span style="color: #f8f8f2">}</span>
-    <span style="color: #66d9ef">return</span> <span style="color: #66d9ef">null</span><span style="color: #f8f8f2">;</span>
-  <span style="color: #f8f8f2">}</span>
-<span style="color: #f8f8f2">}</span>
-</pre></div>
-
+  <span style="color:#66d9ef">private</span> <span style="color:#a6e22e">findModal</span>(<span style="color:#a6e22e">modalId</span>: <span style="color:#66d9ef">string</span>)<span style="color:#f92672">:</span> <span style="color:#a6e22e">ModalComponent</span> {
+    <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">const</span> <span style="color:#a6e22e">modal</span> <span style="color:#a6e22e">of</span> <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">modals</span>) {
+      <span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">modal</span>.<span style="color:#a6e22e">modalId</span> <span style="color:#f92672">===</span> <span style="color:#a6e22e">modalId</span>) {
+        <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">modal</span>;
+      }
+    }
+    <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">null</span>;
+  }
+}</code></pre></div>
 <p>As you can see the user can pass the <code>modalTitle</code> and <code>blocking</code> as parameters to the modal. A blocking modal is a modal that can&rsquo;t be closed unless its the user completed an action, a non-blocking modal can be closed by clicking outside of the modal or by clicking the cross on top right.</p>
 
 <p>Now lets see how to use this modal.</p>
-<div class="highlight" style="background: #272822"><pre style="line-height: 125%"><span></span><span style="color: #75715e">// app.component.ts</span>
-<span style="color: #66d9ef">import</span> <span style="color: #f8f8f2">{</span> <span style="color: #a6e22e">Component</span> <span style="color: #f8f8f2">}</span> <span style="color: #a6e22e">from</span> <span style="color: #e6db74">&#39;@angular/core&#39;</span><span style="color: #f8f8f2">;</span>
-<span style="color: #66d9ef">import</span> <span style="color: #f8f8f2">{</span> <span style="color: #a6e22e">ModalService</span> <span style="color: #f8f8f2">}</span> <span style="color: #a6e22e">from</span> <span style="color: #e6db74">&#39;./modal/modal.service&#39;</span><span style="color: #f8f8f2">;</span>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-typescript" data-lang="typescript"><span style="color:#75715e">// app.component.ts
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">Component</span> } <span style="color:#a6e22e">from</span> <span style="color:#e6db74">&#39;@angular/core&#39;</span>;
+<span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">ModalService</span> } <span style="color:#a6e22e">from</span> <span style="color:#e6db74">&#39;./modal/modal.service&#39;</span>;
 
-<span style="color: #66d9ef">@Component</span><span style="color: #f8f8f2">({</span>
-  <span style="color: #a6e22e">selector</span><span style="color: #f92672">:</span> <span style="color: #e6db74">&#39;app-root&#39;</span><span style="color: #f8f8f2">,</span>
-  <span style="color: #a6e22e">styleUrls</span><span style="color: #f92672">:</span> <span style="color: #f8f8f2">[</span><span style="color: #e6db74">&#39;./app.component.scss&#39;</span><span style="color: #f8f8f2">],</span>
-  <span style="color: #a6e22e">template</span><span style="color: #f92672">:</span> <span style="color: #e6db74">`</span>
-<span style="color: #e6db74">    &lt;button (click)=&#39;modalService.open(modalId)&#39;&gt;Open Modal&lt;/button&gt;</span>
-<span style="color: #e6db74">    &lt;app-modal [modalTitle]=&quot;&#39;Some title&#39;&quot; [blocking]=&#39;false&#39; [modalId]=&#39;modalId&#39;&gt;</span>
-<span style="color: #e6db74">      &lt;div&gt;Text inside the modal&lt;/div&gt;</span>
-<span style="color: #e6db74">    &lt;/app-modal&gt;</span>
-<span style="color: #e6db74">  `</span>
-<span style="color: #f8f8f2">})</span>
-<span style="color: #66d9ef">export</span> <span style="color: #66d9ef">class</span> <span style="color: #a6e22e">AppComponent</span> <span style="color: #f8f8f2">{</span>
-  <span style="color: #a6e22e">modalId</span> <span style="color: #f92672">=</span> <span style="color: #e6db74">&#39;hoplaModal&#39;</span><span style="color: #f8f8f2">;</span>
+<span style="color:#66d9ef">@Component</span>({
+  <span style="color:#a6e22e">selector</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;app-root&#39;</span>,
+  <span style="color:#a6e22e">styleUrls</span><span style="color:#f92672">:</span> [<span style="color:#e6db74">&#39;./app.component.scss&#39;</span>],
+  <span style="color:#a6e22e">template</span><span style="color:#f92672">:</span> <span style="color:#e6db74">`
+</span><span style="color:#e6db74">    &lt;button (click)=&#39;modalService.open(modalId)&#39;&gt;Open Modal&lt;/button&gt;
+</span><span style="color:#e6db74">    &lt;app-modal [modalTitle]=&#34;&#39;Some title&#39;&#34; [blocking]=&#39;false&#39; [modalId]=&#39;modalId&#39;&gt;
+</span><span style="color:#e6db74">      &lt;div&gt;Text inside the modal&lt;/div&gt;
+</span><span style="color:#e6db74">    &lt;/app-modal&gt;
+</span><span style="color:#e6db74">  `</span>
+})
+<span style="color:#66d9ef">export</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">AppComponent</span> {
+  <span style="color:#a6e22e">modalId</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;hoplaModal&#39;</span>;
 
-  <span style="color: #66d9ef">constructor</span><span style="color: #f8f8f2">(</span>
-    <span style="color: #66d9ef">public</span> <span style="color: #a6e22e">modalService</span>: <span style="color: #66d9ef">ModalService</span>
-  <span style="color: #f8f8f2">)</span> <span style="color: #f8f8f2">{}</span>
-<span style="color: #f8f8f2">}</span>
-</pre></div>
-
+  <span style="color:#66d9ef">constructor</span>(
+    <span style="color:#66d9ef">public</span> <span style="color:#a6e22e">modalService</span>: <span style="color:#66d9ef">ModalService</span>
+  ) {}
+}</code></pre></div>
 <p>To finish here is some styling for our modal. Note the use of animation to display and hide the modal and the overlay!</p>
-<div class="highlight" style="background: #272822"><pre style="line-height: 125%"><span></span><span style="color: #75715e">// modal/modal.component.scss</span>
-<span style="color: #a6e22e">.modal-overlay</span> <span style="color: #f8f8f2">{</span>
-  <span style="color: #f92672">background-color</span><span style="color: #a6e22e">:</span> <span style="color: #f92672">rgba(0,</span> <span style="color: #f92672">0,</span> <span style="color: #f92672">0,</span> <span style="color: #a6e22e">.4</span><span style="color: #f92672">);</span>
-  <span style="color: #f92672">bottom</span><span style="color: #a6e22e">:</span> <span style="color: #f92672">0;</span>
-  <span style="color: #f92672">left</span><span style="color: #a6e22e">:</span> <span style="color: #f92672">0;</span>
-  <span style="color: #f92672">position</span><span style="color: #a6e22e">:</span> <span style="color: #f92672">fixed;</span>
-  <span style="color: #f92672">right</span><span style="color: #a6e22e">:</span> <span style="color: #f92672">0;</span>
-  <span style="color: #f92672">top</span><span style="color: #a6e22e">:</span> <span style="color: #f92672">0;</span>
-  <span style="color: #f92672">z-index</span><span style="color: #a6e22e">:</span> <span style="color: #f92672">1000;</span>
-<span style="color: #f8f8f2">}</span>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-scss" data-lang="scss"><span style="color:#75715e">// modal/modal.component.scss
+</span><span style="color:#75715e"></span><span style="color:#a6e22e">.modal-overlay</span> {
+  <span style="color:#f92672">background-color</span><span style="color:#a6e22e">:</span> <span style="color:#f92672">rgba</span><span style="color:#f92672">(</span><span style="color:#f92672">0</span><span style="color:#f92672">,</span> <span style="color:#f92672">0</span><span style="color:#f92672">,</span> <span style="color:#f92672">0</span><span style="color:#f92672">,</span> <span style="color:#a6e22e">.4</span><span style="color:#f92672">);</span>
+  <span style="color:#f92672">bottom</span><span style="color:#a6e22e">:</span> <span style="color:#f92672">0</span><span style="color:#f92672">;</span>
+  <span style="color:#f92672">left</span><span style="color:#a6e22e">:</span> <span style="color:#f92672">0</span><span style="color:#f92672">;</span>
+  <span style="color:#f92672">position</span><span style="color:#a6e22e">:</span> <span style="color:#f92672">fixed</span><span style="color:#f92672">;</span>
+  <span style="color:#f92672">right</span><span style="color:#a6e22e">:</span> <span style="color:#f92672">0</span><span style="color:#f92672">;</span>
+  <span style="color:#f92672">top</span><span style="color:#a6e22e">:</span> <span style="color:#f92672">0</span><span style="color:#f92672">;</span>
+  <span style="color:#f92672">z-index</span><span style="color:#a6e22e">:</span> <span style="color:#f92672">1000</span><span style="color:#f92672">;</span>
+}
 
-<span style="color: #a6e22e">.closed</span> <span style="color: #f8f8f2">{</span>
-  <span style="color: #a6e22e">.modal</span><span style="color: #f8f8f2">{</span>
-    <span style="color: #f92672">top</span><span style="color: #a6e22e">:</span> <span style="color: #f92672">-50</span><span style="color: #960050; background-color: #1e0010">%</span><span style="color: #f92672">;</span>
-  <span style="color: #f8f8f2">}</span>
-  <span style="color: #a6e22e">.modal-overlay</span><span style="color: #f8f8f2">{</span>
-    <span style="color: #f92672">display</span><span style="color: #a6e22e">:</span> <span style="color: #f92672">none;</span>
-  <span style="color: #f8f8f2">}</span>
-<span style="color: #f8f8f2">}</span>
+<span style="color:#a6e22e">.closed</span> {
+  <span style="color:#a6e22e">.modal</span>{
+    <span style="color:#f92672">top</span><span style="color:#a6e22e">:</span> <span style="color:#f92672">-50</span><span style="color:#960050;background-color:#1e0010">%</span><span style="color:#f92672">;</span>
+  }
+  <span style="color:#a6e22e">.modal-overlay</span>{
+    <span style="color:#f92672">display</span><span style="color:#a6e22e">:</span> <span style="color:#f92672">none</span><span style="color:#f92672">;</span>
+  }
+}
 
-<span style="color: #a6e22e">.modal</span> <span style="color: #f8f8f2">{</span>
-  <span style="color: #f92672">box-shadow</span><span style="color: #a6e22e">:</span> <span style="color: #f92672">0</span> <span style="color: #f92672">12px</span> <span style="color: #f92672">15px</span> <span style="color: #f92672">0</span> <span style="color: #f92672">rgba(0,</span> <span style="color: #f92672">0,</span> <span style="color: #f92672">0,</span> <span style="color: #a6e22e">.22</span><span style="color: #f92672">),</span> <span style="color: #f92672">0</span> <span style="color: #f92672">17px</span> <span style="color: #f92672">20px</span> <span style="color: #f92672">0</span> <span style="color: #f92672">rgba(0,</span> <span style="color: #f92672">0,</span> <span style="color: #f92672">0,</span> <span style="color: #a6e22e">.12</span><span style="color: #f92672">);</span>
+<span style="color:#a6e22e">.modal</span> {
+  <span style="color:#f92672">box-shadow</span><span style="color:#a6e22e">:</span> <span style="color:#f92672">0</span> <span style="color:#f92672">12px</span> <span style="color:#f92672">15px</span> <span style="color:#f92672">0</span> <span style="color:#f92672">rgba</span><span style="color:#f92672">(</span><span style="color:#f92672">0</span><span style="color:#f92672">,</span> <span style="color:#f92672">0</span><span style="color:#f92672">,</span> <span style="color:#f92672">0</span><span style="color:#f92672">,</span> <span style="color:#a6e22e">.22</span><span style="color:#f92672">),</span> <span style="color:#f92672">0</span> <span style="color:#f92672">17px</span> <span style="color:#f92672">20px</span> <span style="color:#f92672">0</span> <span style="color:#f92672">rgba</span><span style="color:#f92672">(</span><span style="color:#f92672">0</span><span style="color:#f92672">,</span> <span style="color:#f92672">0</span><span style="color:#f92672">,</span> <span style="color:#f92672">0</span><span style="color:#f92672">,</span> <span style="color:#a6e22e">.12</span><span style="color:#f92672">);</span>
 
-  <span style="color: #f92672">background-color</span><span style="color: #a6e22e">:</span> <span style="color: #f92672">white;</span>
-  <span style="color: #f92672">left</span><span style="color: #a6e22e">:</span> <span style="color: #f92672">calc(50</span><span style="color: #960050; background-color: #1e0010">%</span> <span style="color: #f92672">-</span> <span style="color: #f92672">300px);</span>
-  <span style="color: #f92672">max-height</span><span style="color: #a6e22e">:</span> <span style="color: #f92672">calc(100</span><span style="color: #960050; background-color: #1e0010">%</span> <span style="color: #f92672">-</span> <span style="color: #f92672">10em);</span>
-  <span style="color: #f92672">overflow-y</span><span style="color: #a6e22e">:</span> <span style="color: #f92672">auto;</span>
-  <span style="color: #f92672">position</span><span style="color: #a6e22e">:</span> <span style="color: #f92672">fixed;</span>
-  <span style="color: #f92672">top</span><span style="color: #a6e22e">:</span> <span style="color: #f92672">5em;</span>
-  <span style="color: #f92672">width</span><span style="color: #a6e22e">:</span> <span style="color: #f92672">600px;</span>
-  <span style="color: #f92672">z-index</span><span style="color: #a6e22e">:</span> <span style="color: #f92672">1100;</span>
-  <span style="color: #f92672">transition</span><span style="color: #a6e22e">:</span> <span style="color: #f92672">all</span> <span style="color: #a6e22e">.5s</span> <span style="color: #f92672">ease;</span>
+  <span style="color:#f92672">background-color</span><span style="color:#a6e22e">:</span> <span style="color:#f92672">white</span><span style="color:#f92672">;</span>
+  <span style="color:#f92672">left</span><span style="color:#a6e22e">:</span> <span style="color:#f92672">calc</span><span style="color:#f92672">(</span><span style="color:#f92672">50</span><span style="color:#960050;background-color:#1e0010">%</span> <span style="color:#f92672">-</span> <span style="color:#f92672">300px</span><span style="color:#f92672">);</span>
+  <span style="color:#f92672">max-height</span><span style="color:#a6e22e">:</span> <span style="color:#f92672">calc</span><span style="color:#f92672">(</span><span style="color:#f92672">100</span><span style="color:#960050;background-color:#1e0010">%</span> <span style="color:#f92672">-</span> <span style="color:#f92672">10em</span><span style="color:#f92672">);</span>
+  <span style="color:#f92672">overflow-y</span><span style="color:#a6e22e">:</span> <span style="color:#f92672">auto</span><span style="color:#f92672">;</span>
+  <span style="color:#f92672">position</span><span style="color:#a6e22e">:</span> <span style="color:#f92672">fixed</span><span style="color:#f92672">;</span>
+  <span style="color:#f92672">top</span><span style="color:#a6e22e">:</span> <span style="color:#f92672">5em</span><span style="color:#f92672">;</span>
+  <span style="color:#f92672">width</span><span style="color:#a6e22e">:</span> <span style="color:#f92672">600px</span><span style="color:#f92672">;</span>
+  <span style="color:#f92672">z-index</span><span style="color:#a6e22e">:</span> <span style="color:#f92672">1100</span><span style="color:#f92672">;</span>
+  <span style="color:#f92672">transition</span><span style="color:#a6e22e">:</span> <span style="color:#f92672">all</span> <span style="color:#a6e22e">.5s</span> <span style="color:#f92672">ease</span><span style="color:#f92672">;</span>
 
-  <span style="color: #a6e22e">.title</span> <span style="color: #f8f8f2">{</span>
-    <span style="color: #f92672">background-color</span><span style="color: #a6e22e">:</span> <span style="color: #f92672">red;</span>
-    <span style="color: #f92672">text-align</span><span style="color: #a6e22e">:</span> <span style="color: #f92672">center;</span>
-    <span style="color: #f92672">color</span><span style="color: #a6e22e">:</span> <span style="color: #f92672">white;</span>
-    <span style="color: #f92672">line-height</span><span style="color: #a6e22e">:</span> <span style="color: #f92672">40px;</span>
+  <span style="color:#a6e22e">.title</span> {
+    <span style="color:#f92672">background-color</span><span style="color:#a6e22e">:</span> <span style="color:#f92672">red</span><span style="color:#f92672">;</span>
+    <span style="color:#f92672">text-align</span><span style="color:#a6e22e">:</span> <span style="color:#f92672">center</span><span style="color:#f92672">;</span>
+    <span style="color:#f92672">color</span><span style="color:#a6e22e">:</span> <span style="color:#f92672">white</span><span style="color:#f92672">;</span>
+    <span style="color:#f92672">line-height</span><span style="color:#a6e22e">:</span> <span style="color:#f92672">40px</span><span style="color:#f92672">;</span>
 
-    <span style="color: #a6e22e">.right-align</span> <span style="color: #f8f8f2">{</span>
-      <span style="color: #f92672">position</span><span style="color: #a6e22e">:</span> <span style="color: #f92672">absolute;</span>
-      <span style="color: #f92672">right</span><span style="color: #a6e22e">:</span> <span style="color: #f92672">5px;</span>
-      <span style="color: #66d9ef">&amp;</span><span style="color: #f92672">,</span> <span style="color: #f92672">i</span><span style="color: #f8f8f2">{</span>
-        <span style="color: #f92672">line-height</span><span style="color: #a6e22e">:</span> <span style="color: #f92672">40px;</span>
-      <span style="color: #f8f8f2">}</span>
+    <span style="color:#a6e22e">.right-align</span> {
+      <span style="color:#f92672">position</span><span style="color:#a6e22e">:</span> <span style="color:#f92672">absolute</span><span style="color:#f92672">;</span>
+      <span style="color:#f92672">right</span><span style="color:#a6e22e">:</span> <span style="color:#f92672">5px</span><span style="color:#f92672">;</span>
+      <span style="color:#66d9ef">&amp;</span><span style="color:#f92672">,</span> <span style="color:#f92672">i</span>{
+        <span style="color:#f92672">line-height</span><span style="color:#a6e22e">:</span> <span style="color:#f92672">40px</span><span style="color:#f92672">;</span>
+      }
 
-      <span style="color: #66d9ef">&amp;</span><span style="color: #a6e22e">:hover</span><span style="color: #f8f8f2">{</span>
-        <span style="color: #f92672">cursor</span><span style="color: #a6e22e">:</span> <span style="color: #f92672">pointer;</span>
-        <span style="color: #f92672">transform</span><span style="color: #a6e22e">:</span> <span style="color: #f92672">scale(1</span><span style="color: #a6e22e">.1</span><span style="color: #f92672">);</span>
-      <span style="color: #f8f8f2">}</span>
-    <span style="color: #f8f8f2">}</span>
-  <span style="color: #f8f8f2">}</span>
+      <span style="color:#66d9ef">&amp;</span><span style="color:#a6e22e">:hover</span>{
+        <span style="color:#f92672">cursor</span><span style="color:#a6e22e">:</span> <span style="color:#f92672">pointer</span><span style="color:#f92672">;</span>
+        <span style="color:#f92672">transform</span><span style="color:#a6e22e">:</span> <span style="color:#f92672">scale</span><span style="color:#f92672">(</span><span style="color:#f92672">1</span><span style="color:#a6e22e">.1</span><span style="color:#f92672">);</span>
+      }
+    }
+  }
 
-  <span style="color: #a6e22e">.body</span><span style="color: #f8f8f2">{</span>
-    <span style="color: #f92672">padding</span><span style="color: #a6e22e">:</span> <span style="color: #f92672">1</span><span style="color: #a6e22e">.2em</span><span style="color: #f92672">;</span>
-  <span style="color: #f8f8f2">}</span>
-<span style="color: #f8f8f2">}</span>
-</pre></div>
-
+  <span style="color:#a6e22e">.body</span>{
+    <span style="color:#f92672">padding</span><span style="color:#a6e22e">:</span> <span style="color:#f92672">1</span><span style="color:#a6e22e">.2em</span><span style="color:#f92672">;</span>
+  }
+}</code></pre></div>
   			</section>
 
   			<footer class="post-footer">

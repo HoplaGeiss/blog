@@ -6,10 +6,34 @@
     <description>Recent content in Angular5 on Gabriel Muller - JavaScript and Angular articles</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-gb</language>
-    <lastBuildDate>Thu, 30 Nov 2017 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Thu, 08 Nov 2018 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="http://www.muller.tech/tags/angular5/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Ngrx Guards and Resolvers</title>
+      <link>http://www.muller.tech/post/2018/11/08/ngrx-resolvers-guards/</link>
+      <pubDate>Thu, 08 Nov 2018 00:00:00 +0000</pubDate>
+      
+      <guid>http://www.muller.tech/post/2018/11/08/ngrx-resolvers-guards/</guid>
+      <description>In this post, we will have a look at an example of an ngrx application using guards and resolvers. Based on this, we will see when guards and resolvers are best using with ngrx.
+Personally, I find one of the main advantages of using ngrx is to handle data in a more efficient way, e.g. not re-loading the data when it&amp;rsquo;s already in state.
+All the example I found online while learning about ngrx were using guards, and I didn&amp;rsquo;t quite understand why that was.</description>
+    </item>
+    
+    <item>
+      <title>Angular 5 - Input directive</title>
+      <link>http://www.muller.tech/post/2017/12/01/angular5-input-directive/</link>
+      <pubDate>Fri, 01 Dec 2017 00:00:00 +0000</pubDate>
+      
+      <guid>http://www.muller.tech/post/2017/12/01/angular5-input-directive/</guid>
+      <description>In this post you will learn how to create an input directive that highlights errors.
+Take a look at the demo: http://www.muller.tech/hopla-input/
+If you are in a hurry, you can checkout the source code here: https://github.com/HoplaGeiss/hopla-input
+Let&amp;rsquo;s dive in!
+Input directive import { Directive, Input, HostBinding, OnChanges } from &amp;#39;@angular/core&amp;#39;; import { ColourService } from &amp;#39;../colour/colour.service&amp;#39;; @Directive({ selector: &amp;#39;[appInput]&amp;#39; }) export class InputDirective implements OnChanges { @Input() error: boolean; @HostBinding(&amp;#39;style.</description>
+    </item>
     
     <item>
       <title>Angular 5 - Search directive to filter a list</title>
@@ -41,7 +65,7 @@ If you are in a hurry, you can checkout the source code here: https://github.</d
       <guid>http://www.muller.tech/post/2017/11/22/angular5-colour-scheme/</guid>
       <description>If you are developing a large application, chances are you already have thought of how to adapt the app&amp;rsquo;s colour scheme to the user. In this post you will discover just how to do this!
 Bacic implementation - static colour scheme The most basic implementation is to have a scss file with variables for your colours scheme.
- $primary: #57a1c6; $highlight: #4fc3f7; $accent: #ee7175;  However that only works if you have a single colour scheme.</description>
+$primary: #57a1c6; $highlight: #4fc3f7; $accent: #ee7175; However that only works if you have a single colour scheme.</description>
     </item>
     
     <item>
@@ -51,7 +75,7 @@ Bacic implementation - static colour scheme The most basic implementation is to 
       
       <guid>http://www.muller.tech/post/2017/11/22/angular5-unittest-ngonchanges/</guid>
       <description>In this post you will learn how to unit test a component that uses ngOnChanges.
-Component under test import { Component, OnInit, OnChanges } from &amp;#39;@angular/core&amp;#39;; @Component({ selector: &amp;#39;hopla-component&amp;#39;, template: ` &amp;lt;div&amp;gt;Hopla Hopla&amp;lt;/div&amp;gt; ` }) export class HoplaComponent implements OnInit, OnChanges { @Input() data: Array&amp;lt;object&amp;gt;; ngOnInit(){ // do something } ngOnChanges(){ superFunction(data) } superFunction(input) =&amp;gt; { // do something with input } }  Unit test it(&amp;#39;OnChanges: updates the form with the site value&amp;#39;, () =&amp;gt; { const superFunctionSpy = spyOn(comp, &amp;#39;superFunction&amp;#39;); const data = [{value: 1}, {value: 2}] fixture.</description>
+Component under test import { Component, OnInit, OnChanges } from &amp;#39;@angular/core&amp;#39;; @Component({ selector: &amp;#39;hopla-component&amp;#39;, template: ` &amp;lt;div&amp;gt;Hopla Hopla&amp;lt;/div&amp;gt; ` }) export class HoplaComponent implements OnInit, OnChanges { @Input() data: Array&amp;lt;object&amp;gt;; ngOnInit(){ // do something  } ngOnChanges(){ superFunction(data) } superFunction(input) =&amp;gt; { // do something with input  } } Unit test it(&amp;#39;OnChanges: updates the form with the site value&amp;#39;, () =&amp;gt; { const superFunctionSpy = spyOn(comp, &amp;#39;superFunction&amp;#39;); const data = [{value: 1}, {value: 2}] fixture.</description>
     </item>
     
     <item>

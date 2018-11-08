@@ -169,31 +169,28 @@ html{font-family:sans-serif;line-height:1.15;-ms-text-size-adjust:100%;-webkit-t
 <p>In this example we would like to mock a simple service returning a promise.</p>
 
 <p>This is a real life example, of an application, calling an <code>employeeService</code> to retrieve the <code>notificationCount</code>.</p>
-<div class="highlight" style="background: #272822"><pre style="line-height: 125%"><span></span><span style="color: #a6e22e">employeeService</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">getEmployee</span><span style="color: #f8f8f2">().</span><span style="color: #a6e22e">then</span><span style="color: #f8f8f2">(</span><span style="color: #66d9ef">function</span> <span style="color: #f8f8f2">(</span><span style="color: #a6e22e">employee</span><span style="color: #f8f8f2">)</span> <span style="color: #f8f8f2">{</span>
-  <span style="color: #a6e22e">$scope</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">unreadNotifications</span> <span style="color: #f92672">=</span> <span style="color: #a6e22e">employee</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">notificationCount</span><span style="color: #f8f8f2">;</span>
-<span style="color: #f8f8f2">});</span>
-</pre></div>
-
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-javascript" data-lang="javascript"><span style="color:#a6e22e">employeeService</span>.<span style="color:#a6e22e">getEmployee</span>().<span style="color:#a6e22e">then</span>(<span style="color:#66d9ef">function</span> (<span style="color:#a6e22e">employee</span>) {
+  <span style="color:#a6e22e">$scope</span>.<span style="color:#a6e22e">unreadNotifications</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">employee</span>.<span style="color:#a6e22e">notificationCount</span>;
+});
+</code></pre></div>
 <p>Usually to mock a function, we would just do:</p>
-<div class="highlight" style="background: #272822"><pre style="line-height: 125%"><span></span><span style="color: #a6e22e">employeeService</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">getEmployee</span> <span style="color: #f92672">=</span> <span style="color: #66d9ef">function</span> <span style="color: #f8f8f2">()</span> <span style="color: #f8f8f2">{</span>
-  <span style="color: #66d9ef">return</span> <span style="color: #f8f8f2">{</span>
-    <span style="color: #a6e22e">notification</span><span style="color: #f92672">:</span> <span style="color: #ae81ff">2</span>
-  <span style="color: #f8f8f2">}</span>
-<span style="color: #f8f8f2">}</span>
-</pre></div>
-
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-javascript" data-lang="javascript"><span style="color:#a6e22e">employeeService</span>.<span style="color:#a6e22e">getEmployee</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">function</span> () {
+  <span style="color:#66d9ef">return</span> {
+    <span style="color:#a6e22e">notification</span><span style="color:#f92672">:</span> <span style="color:#ae81ff">2</span>
+  }
+}
+</code></pre></div>
 <p>However that wouldn&rsquo;t work here since <code>employeeService.getEmployee</code> returns a promise.</p>
 
 <h3 id="solution">Solution</h3>
-<div class="highlight" style="background: #272822"><pre style="line-height: 125%"><span></span><span style="color: #a6e22e">employeeService</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">getEmployee</span> <span style="color: #f92672">=</span> <span style="color: #66d9ef">function</span> <span style="color: #f8f8f2">()</span> <span style="color: #f8f8f2">{</span>
-  <span style="color: #66d9ef">var</span> <span style="color: #a6e22e">deferred</span> <span style="color: #f92672">=</span> <span style="color: #a6e22e">$q</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">defer</span><span style="color: #f8f8f2">();</span>
-  <span style="color: #a6e22e">deferred</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">resolve</span><span style="color: #f8f8f2">({</span>
-    <span style="color: #a6e22e">notificationCount</span><span style="color: #f92672">:</span> <span style="color: #ae81ff">2</span>
-  <span style="color: #f8f8f2">});</span>
-  <span style="color: #66d9ef">return</span> <span style="color: #a6e22e">deferred</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">promise</span><span style="color: #f8f8f2">;</span>
-<span style="color: #f8f8f2">};</span>
-</pre></div>
-
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-javascript" data-lang="javascript"><span style="color:#a6e22e">employeeService</span>.<span style="color:#a6e22e">getEmployee</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">function</span> () {
+  <span style="color:#66d9ef">var</span> <span style="color:#a6e22e">deferred</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">$q</span>.<span style="color:#a6e22e">defer</span>();
+  <span style="color:#a6e22e">deferred</span>.<span style="color:#a6e22e">resolve</span>({
+    <span style="color:#a6e22e">notificationCount</span><span style="color:#f92672">:</span> <span style="color:#ae81ff">2</span>
+  });
+  <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">deferred</span>.<span style="color:#a6e22e">promise</span>;
+};
+</code></pre></div>
 <h3 id="analysis">Analysis</h3>
 
 <ul>

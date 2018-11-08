@@ -40,7 +40,7 @@ getUnreadNotificationsCount: function (employeeId) { return $http.</description>
       
       <guid>http://www.muller.tech/post/2017/01/09/unit-test-events/</guid>
       <description>Scenario In this example I will demonstrate how to unit test an event. The difficulty here, is to set the element&amp;rsquo;s target.
-$scope.toggleRadioButton = function (e) { e.stopImmediatePropagation(); if (angular.element(e.target).hasClass(&amp;#39;my-radio-button&amp;#39;)) { $scope.selectedButton = true; } };  Solution it(&amp;#39;stopImmediatePropagation is called and $scope.selectedButton is set to true&amp;#39;, function () { elem = angular.element(&amp;#39;&amp;lt;div class=&amp;quot;my-radio-button&amp;quot;&amp;gt;&amp;lt;/div&amp;gt;&amp;#39;); event = { target: elem, stopImmediatePropagation: function () {} }; spyOn(event, &amp;#39;stopImmediatePropagation&amp;#39;); scope.toggleRadioButton(event); expect(event.stopImmediatePropagation).toHaveBeenCalled(); expect(scope.selectedButton).toEqual(true); });  Analysis  We create an element with the class my-radio-button We create an event with two parameters, the element we just created and a fake stopImmediatePropagation function We spy on event.</description>
+$scope.toggleRadioButton = function (e) { e.stopImmediatePropagation(); if (angular.element(e.target).hasClass(&amp;#39;my-radio-button&amp;#39;)) { $scope.selectedButton = true; } };  Solution it(&amp;#39;stopImmediatePropagation is called and $scope.selectedButton is set to true&amp;#39;, function () { elem = angular.element(&amp;#39;&amp;lt;div class=&amp;#34;my-radio-button&amp;#34;&amp;gt;&amp;lt;/div&amp;gt;&amp;#39;); event = { target: elem, stopImmediatePropagation: function () {} }; spyOn(event, &amp;#39;stopImmediatePropagation&amp;#39;); scope.toggleRadioButton(event); expect(event.stopImmediatePropagation).toHaveBeenCalled(); expect(scope.selectedButton).toEqual(true); });  Analysis  We create an element with the class my-radio-button We create an event with two parameters, the element we just created and a fake stopImmediatePropagation function We spy on event.</description>
     </item>
     
     <item>
@@ -86,7 +86,7 @@ $stateProvider.state(&amp;#39;locales&amp;#39;, { url: &amp;#39;/locales&amp;#39
       <guid>http://www.muller.tech/post/2016/12/22/unit-test-removal-of-a-class/</guid>
       <description>Scenario My app loads with a splash screen, this splash screen disappears after a timeout. I would like to unit test the disparition of the splash screen.
 Splash screen:
-&amp;lt;div class=&amp;quot;splash on&amp;quot;&amp;gt;&amp;lt;/div&amp;gt;  Code driving the disparition of the splash screen:
+&amp;lt;div class=&amp;#34;splash on&amp;#34;&amp;gt;&amp;lt;/div&amp;gt; Code driving the disparition of the splash screen:
 $timeout(function () { angular .element(&amp;#39;.splash&amp;#39;) .removeClass(&amp;#39;on&amp;#39;); }, 2000);  Solution First we need a way to create find the element in the DOM. We need to assert the element has the close on, then wait for the $timeout to finish and finally assert again that class on disappeared.</description>
     </item>
     

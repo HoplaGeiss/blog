@@ -19,7 +19,7 @@
       <guid>http://www.muller.tech/post/2017/11/22/angular5-colour-scheme/</guid>
       <description>If you are developing a large application, chances are you already have thought of how to adapt the app&amp;rsquo;s colour scheme to the user. In this post you will discover just how to do this!
 Bacic implementation - static colour scheme The most basic implementation is to have a scss file with variables for your colours scheme.
- $primary: #57a1c6; $highlight: #4fc3f7; $accent: #ee7175;  However that only works if you have a single colour scheme.</description>
+$primary: #57a1c6; $highlight: #4fc3f7; $accent: #ee7175; However that only works if you have a single colour scheme.</description>
     </item>
     
   </channel>

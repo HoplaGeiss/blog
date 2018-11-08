@@ -6,10 +6,34 @@
     <description>Recent content in Posts on Gabriel Muller - JavaScript and Angular articles</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-gb</language>
-    <lastBuildDate>Thu, 30 Nov 2017 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Thu, 08 Nov 2018 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="http://www.muller.tech/post/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Ngrx Guards and Resolvers</title>
+      <link>http://www.muller.tech/post/2018/11/08/ngrx-resolvers-guards/</link>
+      <pubDate>Thu, 08 Nov 2018 00:00:00 +0000</pubDate>
+      
+      <guid>http://www.muller.tech/post/2018/11/08/ngrx-resolvers-guards/</guid>
+      <description>In this post, we will have a look at an example of an ngrx application using guards and resolvers. Based on this, we will see when guards and resolvers are best using with ngrx.
+Personally, I find one of the main advantages of using ngrx is to handle data in a more efficient way, e.g. not re-loading the data when it&amp;rsquo;s already in state.
+All the example I found online while learning about ngrx were using guards, and I didn&amp;rsquo;t quite understand why that was.</description>
+    </item>
+    
+    <item>
+      <title>Angular 5 - Input directive</title>
+      <link>http://www.muller.tech/post/2017/12/01/angular5-input-directive/</link>
+      <pubDate>Fri, 01 Dec 2017 00:00:00 +0000</pubDate>
+      
+      <guid>http://www.muller.tech/post/2017/12/01/angular5-input-directive/</guid>
+      <description>In this post you will learn how to create an input directive that highlights errors.
+Take a look at the demo: http://www.muller.tech/hopla-input/
+If you are in a hurry, you can checkout the source code here: https://github.com/HoplaGeiss/hopla-input
+Let&amp;rsquo;s dive in!
+Input directive import { Directive, Input, HostBinding, OnChanges } from &amp;#39;@angular/core&amp;#39;; import { ColourService } from &amp;#39;../colour/colour.service&amp;#39;; @Directive({ selector: &amp;#39;[appInput]&amp;#39; }) export class InputDirective implements OnChanges { @Input() error: boolean; @HostBinding(&amp;#39;style.</description>
+    </item>
     
     <item>
       <title>Angular 5 - Search directive to filter a list</title>
@@ -41,7 +65,7 @@ If you are in a hurry, you can checkout the source code here: https://github.</d
       <guid>http://www.muller.tech/post/2017/11/22/angular5-colour-scheme/</guid>
       <description>If you are developing a large application, chances are you already have thought of how to adapt the app&amp;rsquo;s colour scheme to the user. In this post you will discover just how to do this!
 Bacic implementation - static colour scheme The most basic implementation is to have a scss file with variables for your colours scheme.
- $primary: #57a1c6; $highlight: #4fc3f7; $accent: #ee7175;  However that only works if you have a single colour scheme.</description>
+$primary: #57a1c6; $highlight: #4fc3f7; $accent: #ee7175; However that only works if you have a single colour scheme.</description>
     </item>
     
     <item>
@@ -51,7 +75,7 @@ Bacic implementation - static colour scheme The most basic implementation is to 
       
       <guid>http://www.muller.tech/post/2017/11/22/angular5-unittest-ngonchanges/</guid>
       <description>In this post you will learn how to unit test a component that uses ngOnChanges.
-Component under test import { Component, OnInit, OnChanges } from &amp;#39;@angular/core&amp;#39;; @Component({ selector: &amp;#39;hopla-component&amp;#39;, template: ` &amp;lt;div&amp;gt;Hopla Hopla&amp;lt;/div&amp;gt; ` }) export class HoplaComponent implements OnInit, OnChanges { @Input() data: Array&amp;lt;object&amp;gt;; ngOnInit(){ // do something } ngOnChanges(){ superFunction(data) } superFunction(input) =&amp;gt; { // do something with input } }  Unit test it(&amp;#39;OnChanges: updates the form with the site value&amp;#39;, () =&amp;gt; { const superFunctionSpy = spyOn(comp, &amp;#39;superFunction&amp;#39;); const data = [{value: 1}, {value: 2}] fixture.</description>
+Component under test import { Component, OnInit, OnChanges } from &amp;#39;@angular/core&amp;#39;; @Component({ selector: &amp;#39;hopla-component&amp;#39;, template: ` &amp;lt;div&amp;gt;Hopla Hopla&amp;lt;/div&amp;gt; ` }) export class HoplaComponent implements OnInit, OnChanges { @Input() data: Array&amp;lt;object&amp;gt;; ngOnInit(){ // do something  } ngOnChanges(){ superFunction(data) } superFunction(input) =&amp;gt; { // do something with input  } } Unit test it(&amp;#39;OnChanges: updates the form with the site value&amp;#39;, () =&amp;gt; { const superFunctionSpy = spyOn(comp, &amp;#39;superFunction&amp;#39;); const data = [{value: 1}, {value: 2}] fixture.</description>
     </item>
     
     <item>
@@ -124,7 +148,7 @@ If you are in a hurry, you can checkout the source code here: https://github.</d
       <description>Dropdowns are a very common way of displaying multiple choice inputs. Today&amp;rsquo;s post is about creating a dropdown without using bootstrap or other styling frameworks.
 If you are in a hurry, you can checkout the code on my github account: https://github.com/HoplaGeiss/hopla-dropdown
 Let&amp;rsquo;s first take a look at the main component.
-// app.component.ts import { Component, OnInit } from &amp;#39;@angular/core&amp;#39;; @Component({ selector: &amp;#39;app-root&amp;#39;, styleUrls: [&amp;#39;./app.component.scss&amp;#39;], template: ` &amp;lt;div class=&amp;#39;wrapper&amp;#39;&amp;gt; &amp;lt;div class=&amp;#39;selected-item&amp;#39; fxLayout=&amp;quot;row&amp;quot; fxLayoutAlign=&amp;quot;space-between center&amp;quot; [ngClass]=&amp;#39;{&amp;quot;active&amp;quot;: dropdownActive}&amp;#39;&amp;gt; &amp;lt;div&amp;gt;{{selectedItem}}&amp;lt;/div&amp;gt; &amp;lt;i class=&amp;#39;material-icons&amp;#39; (click)=&amp;#39;toggleDropdown()&amp;#39;&amp;gt;keyboard_arrow_down&amp;lt;/i&amp;gt; &amp;lt;div class=&amp;#39;dropdown&amp;#39; [hidden]=&amp;#39;!</description>
+// app.component.ts import { Component, OnInit } from &amp;#39;@angular/core&amp;#39;; @Component({ selector: &amp;#39;app-root&amp;#39;, styleUrls: [&amp;#39;./app.component.scss&amp;#39;], template: ` &amp;lt;div class=&amp;#39;wrapper&amp;#39;&amp;gt; &amp;lt;div class=&amp;#39;selected-item&amp;#39; fxLayout=&amp;#34;row&amp;#34; fxLayoutAlign=&amp;#34;space-between center&amp;#34; [ngClass]=&amp;#39;{&amp;#34;active&amp;#34;: dropdownActive}&amp;#39;&amp;gt; &amp;lt;div&amp;gt;{{selectedItem}}&amp;lt;/div&amp;gt; &amp;lt;i class=&amp;#39;material-icons&amp;#39; (click)=&amp;#39;toggleDropdown()&amp;#39;&amp;gt;keyboard_arrow_down&amp;lt;/i&amp;gt; &amp;lt;div class=&amp;#39;dropdown&amp;#39; [hidden]=&amp;#39;!</description>
     </item>
     
     <item>
@@ -156,7 +180,7 @@ Following the DRY principle, you should aim at having a template for the home an
       <guid>http://www.muller.tech/post/2017/07/26/angular4-switch-button/</guid>
       <description>Ever wondered how to create a switch button in angular4 without using css frameworks? Here we go..
 Let&amp;rsquo;s take a look at the component first.
-// app.component.ts import { Component } from &amp;#39;@angular/core&amp;#39;; @Component({ selector: &amp;#39;app-root&amp;#39;, template: ` &amp;lt;div class=&amp;quot;switch&amp;quot;&amp;gt; &amp;lt;input id=&amp;#39;switch-input&amp;#39; type=&amp;#39;checkbox&amp;#39; [checked]=&amp;#39;switchActive&amp;#39; (click)=&amp;#39;toggle()&amp;#39;&amp;gt; &amp;lt;label for=&amp;#39;switch-input&amp;#39;&amp;gt;&amp;lt;/label&amp;gt; &amp;lt;/div&amp;gt; ` }) export class AppComponent { switchActive = false toggle = () =&amp;gt; { if (this.switchActive) { // Do something } else { // Do something else } this.</description>
+// app.component.ts import { Component } from &amp;#39;@angular/core&amp;#39;; @Component({ selector: &amp;#39;app-root&amp;#39;, template: ` &amp;lt;div class=&amp;#34;switch&amp;#34;&amp;gt; &amp;lt;input id=&amp;#39;switch-input&amp;#39; type=&amp;#39;checkbox&amp;#39; [checked]=&amp;#39;switchActive&amp;#39; (click)=&amp;#39;toggle()&amp;#39;&amp;gt; &amp;lt;label for=&amp;#39;switch-input&amp;#39;&amp;gt;&amp;lt;/label&amp;gt; &amp;lt;/div&amp;gt; ` }) export class AppComponent { switchActive = false toggle = () =&amp;gt; { if (this.switchActive) { // Do something  } else { // Do something else  } this.</description>
     </item>
     
     <item>
@@ -212,7 +236,7 @@ You need to make sure your package.</description>
       
       <guid>http://www.muller.tech/post/2017/03/07/create-pre-bootstrap-animation/</guid>
       <description>After a while it gets annoying to see angular2&amp;rsquo;s native loading.. everytime to start your app. Today&amp;rsquo;s post will show you how to change this. It is fairly easy to do, first let&amp;rsquo;s take a look at our index.html file. I am going to use a pre-bootstrap wrapper to position our animation pre-bootstrap-spinner and a small label pre-bootstrap-text.
-&amp;lt;!doctype html&amp;gt; &amp;lt;html&amp;gt; &amp;lt;head&amp;gt; &amp;lt;meta charset=&amp;quot;utf-8&amp;quot;&amp;gt; &amp;lt;title&amp;gt;XapiDemo&amp;lt;/title&amp;gt; &amp;lt;base href=&amp;quot;/&amp;quot;&amp;gt; &amp;lt;meta name=&amp;quot;viewport&amp;quot; content=&amp;quot;width=device-width, initial-scale=1&amp;quot;&amp;gt; &amp;lt;link rel=&amp;quot;icon&amp;quot; type=&amp;quot;image/x-icon&amp;quot; href=&amp;quot;favicon.</description>
+&amp;lt;!doctype html&amp;gt; &amp;lt;html&amp;gt; &amp;lt;head&amp;gt; &amp;lt;meta charset=&amp;#34;utf-8&amp;#34;&amp;gt; &amp;lt;title&amp;gt;XapiDemo&amp;lt;/title&amp;gt; &amp;lt;base href=&amp;#34;/&amp;#34;&amp;gt; &amp;lt;meta name=&amp;#34;viewport&amp;#34; content=&amp;#34;width=device-width, initial-scale=1&amp;#34;&amp;gt; &amp;lt;link rel=&amp;#34;icon&amp;#34; type=&amp;#34;image/x-icon&amp;#34; href=&amp;#34;favicon.</description>
     </item>
     
     <item>
@@ -232,7 +256,7 @@ You need to make sure your package.</description>
       
       <guid>http://www.muller.tech/post/2017/02/16/angular2-observable-stream-continuation/</guid>
       <description>Keeping an observable stream up and running is a common use case for many application. Lets take the example of an application with an input field taking a location as parameter which then calls foursquare&amp;rsquo;s API at each key stroke to query the recommended location nearby. If an HTTP call to foursquare fails, we want our observable stream to stay up and running.
-// home.component.ts @Component({ selector: &amp;#39;vs-home&amp;#39;, template: ` &amp;lt;div class=&amp;quot;home&amp;quot;&amp;gt; &amp;lt;form [formGroup]=&amp;quot;form&amp;quot;&amp;gt; &amp;lt;md-input-container class=&amp;quot;form-group&amp;quot; &amp;gt; &amp;lt;input md-input class=&amp;quot;form-control&amp;quot; formControlName=&amp;quot;location&amp;quot; placeholder=&amp;quot;Choose a Location&amp;quot;&amp;gt; &amp;lt;/md-input-container&amp;gt; &amp;lt;/form&amp;gt; &amp;lt;h2&amp;gt;Recommended venues close to this location:&amp;lt;/h2&amp;gt; &amp;lt;div *ngFor=&amp;quot;let venue of venues | async&amp;quot; &amp;gt; &amp;lt;vs-venue [venue]=&amp;quot;venue&amp;quot;&amp;gt;&amp;lt;/vs-venue&amp;gt; &amp;lt;/div&amp;gt; &amp;lt;/div&amp;gt; ` }) export class HomeComponent implements OnInit { venues: Observable&amp;lt;Venue[]&amp;gt;; form: any; constructor( private venueService: VenueService, private formBuilder: FormBuilder ) {} ngOnInit() { this.</description>
+// home.component.ts @Component({ selector: &amp;#39;vs-home&amp;#39;, template: ` &amp;lt;div class=&amp;#34;home&amp;#34;&amp;gt; &amp;lt;form [formGroup]=&amp;#34;form&amp;#34;&amp;gt; &amp;lt;md-input-container class=&amp;#34;form-group&amp;#34; &amp;gt; &amp;lt;input md-input class=&amp;#34;form-control&amp;#34; formControlName=&amp;#34;location&amp;#34; placeholder=&amp;#34;Choose a Location&amp;#34;&amp;gt; &amp;lt;/md-input-container&amp;gt; &amp;lt;/form&amp;gt; &amp;lt;h2&amp;gt;Recommended venues close to this location:&amp;lt;/h2&amp;gt; &amp;lt;div *ngFor=&amp;#34;let venue of venues | async&amp;#34; &amp;gt; &amp;lt;vs-venue [venue]=&amp;#34;venue&amp;#34;&amp;gt;&amp;lt;/vs-venue&amp;gt; &amp;lt;/div&amp;gt; &amp;lt;/div&amp;gt; ` }) export class HomeComponent implements OnInit { venues: Observable&amp;lt;Venue[]&amp;gt;; form: any; constructor( private venueService: VenueService, private formBuilder: FormBuilder ) {} ngOnInit() { this.</description>
     </item>
     
     <item>
@@ -252,7 +276,7 @@ I am going to take a real life example of a home page with an search bar that dr
       
       <guid>http://www.muller.tech/post/2017/01/23/angular2-pipe-does-not-detect-change/</guid>
       <description>The goal of this post, is to explore how pipe work and to make them do what we expect of them! Before futher due, let&amp;rsquo;s see an example. The example I am going to use, is a list of trainers filtered by sports, this list is driven by an input field.
-Scenario &amp;lt;md-card *ngFor=&amp;quot;let trainer of trainers | criteria:&amp;#39;sport&amp;#39;:sportSearch&amp;quot;&amp;gt; {{ trainer.name }} {{ trainer.sport }} &amp;lt;/md-card&amp;gt;  The behavior you would expect, is that every time you modify the list of sportSearch, the list of trainers gets updated.</description>
+Scenario &amp;lt;md-card *ngFor=&amp;#34;let trainer of trainers | criteria:&amp;#39;sport&amp;#39;:sportSearch&amp;#34;&amp;gt; {{ trainer.name }} {{ trainer.sport }} &amp;lt;/md-card&amp;gt; The behavior you would expect, is that every time you modify the list of sportSearch, the list of trainers gets updated.</description>
     </item>
     
     <item>
@@ -304,7 +328,7 @@ getUnreadNotificationsCount: function (employeeId) { return $http.</description>
       
       <guid>http://www.muller.tech/post/2017/01/09/unit-test-events/</guid>
       <description>Scenario In this example I will demonstrate how to unit test an event. The difficulty here, is to set the element&amp;rsquo;s target.
-$scope.toggleRadioButton = function (e) { e.stopImmediatePropagation(); if (angular.element(e.target).hasClass(&amp;#39;my-radio-button&amp;#39;)) { $scope.selectedButton = true; } };  Solution it(&amp;#39;stopImmediatePropagation is called and $scope.selectedButton is set to true&amp;#39;, function () { elem = angular.element(&amp;#39;&amp;lt;div class=&amp;quot;my-radio-button&amp;quot;&amp;gt;&amp;lt;/div&amp;gt;&amp;#39;); event = { target: elem, stopImmediatePropagation: function () {} }; spyOn(event, &amp;#39;stopImmediatePropagation&amp;#39;); scope.toggleRadioButton(event); expect(event.stopImmediatePropagation).toHaveBeenCalled(); expect(scope.selectedButton).toEqual(true); });  Analysis  We create an element with the class my-radio-button We create an event with two parameters, the element we just created and a fake stopImmediatePropagation function We spy on event.</description>
+$scope.toggleRadioButton = function (e) { e.stopImmediatePropagation(); if (angular.element(e.target).hasClass(&amp;#39;my-radio-button&amp;#39;)) { $scope.selectedButton = true; } };  Solution it(&amp;#39;stopImmediatePropagation is called and $scope.selectedButton is set to true&amp;#39;, function () { elem = angular.element(&amp;#39;&amp;lt;div class=&amp;#34;my-radio-button&amp;#34;&amp;gt;&amp;lt;/div&amp;gt;&amp;#39;); event = { target: elem, stopImmediatePropagation: function () {} }; spyOn(event, &amp;#39;stopImmediatePropagation&amp;#39;); scope.toggleRadioButton(event); expect(event.stopImmediatePropagation).toHaveBeenCalled(); expect(scope.selectedButton).toEqual(true); });  Analysis  We create an element with the class my-radio-button We create an event with two parameters, the element we just created and a fake stopImmediatePropagation function We spy on event.</description>
     </item>
     
     <item>
@@ -350,7 +374,7 @@ $stateProvider.state(&amp;#39;locales&amp;#39;, { url: &amp;#39;/locales&amp;#39
       <guid>http://www.muller.tech/post/2016/12/22/unit-test-removal-of-a-class/</guid>
       <description>Scenario My app loads with a splash screen, this splash screen disappears after a timeout. I would like to unit test the disparition of the splash screen.
 Splash screen:
-&amp;lt;div class=&amp;quot;splash on&amp;quot;&amp;gt;&amp;lt;/div&amp;gt;  Code driving the disparition of the splash screen:
+&amp;lt;div class=&amp;#34;splash on&amp;#34;&amp;gt;&amp;lt;/div&amp;gt; Code driving the disparition of the splash screen:
 $timeout(function () { angular .element(&amp;#39;.splash&amp;#39;) .removeClass(&amp;#39;on&amp;#39;); }, 2000);  Solution First we need a way to create find the element in the DOM. We need to assert the element has the close on, then wait for the $timeout to finish and finally assert again that class on disappeared.</description>
     </item>
     

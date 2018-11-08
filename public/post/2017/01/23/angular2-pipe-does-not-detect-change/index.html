@@ -166,12 +166,10 @@ html{font-family:sans-serif;line-height:1.15;-ms-text-size-adjust:100%;-webkit-t
 The example I am going to use, is a list of trainers filtered by sports, this list is driven by an input field.</p>
 
 <h3 id="scenario">Scenario</h3>
-<div class="highlight" style="background: #272822"><pre style="line-height: 125%"><span></span><span style="color: #f92672">&lt;</span><span style="color: #a6e22e">md</span><span style="color: #f92672">-</span><span style="color: #a6e22e">card</span> <span style="color: #f92672">*</span><span style="color: #a6e22e">ngFor</span><span style="color: #f92672">=</span><span style="color: #e6db74">&quot;let trainer of trainers | criteria:&#39;sport&#39;:sportSearch&quot;</span><span style="color: #f92672">&gt;</span>
-  <span style="color: #f8f8f2">{{</span> <span style="color: #a6e22e">trainer</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">name</span> <span style="color: #f8f8f2">}}</span>
-  <span style="color: #f8f8f2">{{</span> <span style="color: #a6e22e">trainer</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">sport</span> <span style="color: #f8f8f2">}}</span>
-<span style="color: #f92672">&lt;</span><span style="color: #960050; background-color: #1e0010">/md-card&gt;</span>
-</pre></div>
-
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-typescript" data-lang="typescript"><span style="color:#f92672">&lt;</span><span style="color:#a6e22e">md</span><span style="color:#f92672">-</span><span style="color:#a6e22e">card</span> <span style="color:#f92672">*</span><span style="color:#a6e22e">ngFor</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;let trainer of trainers | criteria:&#39;sport&#39;:sportSearch&#34;</span><span style="color:#f92672">&gt;</span>
+  {{ <span style="color:#a6e22e">trainer</span>.<span style="color:#a6e22e">name</span> }}
+  {{ <span style="color:#a6e22e">trainer</span>.<span style="color:#a6e22e">sport</span> }}
+<span style="color:#f92672">&lt;</span><span style="color:#960050;background-color:#1e0010">/md-card&gt;</span></code></pre></div>
 <p>The behavior you would expect, is that every time you modify the list of <code>sportSearch</code>, the list of trainers gets updated. However, when a trainer
 is added, the array reference doesn&rsquo;t change hence the stateless pipe is not executed.</p>
 
@@ -184,23 +182,19 @@ The second solution feels a little bit like a hack, but it is a lot more efficie
 A stateful pipe will evaluate the input at each cycle, which makes it computational heavy.</p>
 
 <h5 id="stateful-pipe">Stateful pipe</h5>
-<div class="highlight" style="background: #272822"><pre style="line-height: 125%"><span></span><span style="color: #66d9ef">import</span> <span style="color: #f8f8f2">{</span> <span style="color: #a6e22e">Pipe</span><span style="color: #f8f8f2">,</span> <span style="color: #a6e22e">PipeTransform</span> <span style="color: #f8f8f2">}</span> <span style="color: #a6e22e">from</span> <span style="color: #e6db74">&#39;@angular/core&#39;</span><span style="color: #f8f8f2">;</span>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-typescript" data-lang="typescript"><span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">Pipe</span>, <span style="color:#a6e22e">PipeTransform</span> } <span style="color:#a6e22e">from</span> <span style="color:#e6db74">&#39;@angular/core&#39;</span>;
 
-<span style="color: #66d9ef">@Pipe</span><span style="color: #f8f8f2">({</span>
-  <span style="color: #a6e22e">name</span><span style="color: #f92672">:</span> <span style="color: #e6db74">&#39;criteria&#39;</span><span style="color: #f8f8f2">,</span>
-  <span style="color: #a6e22e">pure</span>: <span style="color: #66d9ef">false</span>
-<span style="color: #f8f8f2">})</span>
-</pre></div>
-
+<span style="color:#66d9ef">@Pipe</span>({
+  <span style="color:#a6e22e">name</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;criteria&#39;</span>,
+  <span style="color:#a6e22e">pure</span>: <span style="color:#66d9ef">false</span>
+})</code></pre></div>
 <h5 id="changes-reference">Changes reference</h5>
 
 <p>To change the value of <code>sportSearch</code>, we execute this: <code>this.sportSearch = search</code>. But that doesn&rsquo;t work because it doesn&rsquo;t change
 the reference of <code>sportSearch</code>.</p>
 
 <p>One way to change the reference of <code>sportSearch</code>, is to use <code>slice</code> like so:</p>
-<div class="highlight" style="background: #272822"><pre style="line-height: 125%"><span></span><span style="color: #66d9ef">this</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">sportSearch</span> <span style="color: #f92672">=</span> <span style="color: #a6e22e">search</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">slice</span><span style="color: #f8f8f2">()</span>
-</pre></div>
-
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-typescript" data-lang="typescript"><span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">sportSearch</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">search</span>.<span style="color:#a6e22e">slice</span>()</code></pre></div>
 <p>Since we did not give any parameter to slice, it doesn&rsquo;t have any effect on the content of <code>sportSearch</code>, but it is creating a new array every time.</p>
 
   			</section>

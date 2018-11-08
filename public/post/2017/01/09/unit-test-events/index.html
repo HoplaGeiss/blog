@@ -166,31 +166,29 @@ html{font-family:sans-serif;line-height:1.15;-ms-text-size-adjust:100%;-webkit-t
 
 <p>In this example I will demonstrate how to unit test an event.
 The difficulty here, is to set the element&rsquo;s target.</p>
-<div class="highlight" style="background: #272822"><pre style="line-height: 125%"><span></span><span style="color: #a6e22e">$scope</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">toggleRadioButton</span> <span style="color: #f92672">=</span> <span style="color: #66d9ef">function</span> <span style="color: #f8f8f2">(</span><span style="color: #a6e22e">e</span><span style="color: #f8f8f2">)</span> <span style="color: #f8f8f2">{</span>
-  <span style="color: #a6e22e">e</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">stopImmediatePropagation</span><span style="color: #f8f8f2">();</span>
-  <span style="color: #66d9ef">if</span> <span style="color: #f8f8f2">(</span><span style="color: #a6e22e">angular</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">element</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">e</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">target</span><span style="color: #f8f8f2">).</span><span style="color: #a6e22e">hasClass</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;my-radio-button&#39;</span><span style="color: #f8f8f2">))</span> <span style="color: #f8f8f2">{</span>
-    <span style="color: #a6e22e">$scope</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">selectedButton</span> <span style="color: #f92672">=</span> <span style="color: #66d9ef">true</span><span style="color: #f8f8f2">;</span>
-  <span style="color: #f8f8f2">}</span>
-<span style="color: #f8f8f2">};</span>
-</pre></div>
-
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-javascript" data-lang="javascript"><span style="color:#a6e22e">$scope</span>.<span style="color:#a6e22e">toggleRadioButton</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">function</span> (<span style="color:#a6e22e">e</span>) {
+  <span style="color:#a6e22e">e</span>.<span style="color:#a6e22e">stopImmediatePropagation</span>();
+  <span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">angular</span>.<span style="color:#a6e22e">element</span>(<span style="color:#a6e22e">e</span>.<span style="color:#a6e22e">target</span>).<span style="color:#a6e22e">hasClass</span>(<span style="color:#e6db74">&#39;my-radio-button&#39;</span>)) {
+    <span style="color:#a6e22e">$scope</span>.<span style="color:#a6e22e">selectedButton</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">true</span>;
+  }
+};
+</code></pre></div>
 <h3 id="solution">Solution</h3>
-<div class="highlight" style="background: #272822"><pre style="line-height: 125%"><span></span><span style="color: #a6e22e">it</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;stopImmediatePropagation is called and $scope.selectedButton is set to true&#39;</span><span style="color: #f8f8f2">,</span> <span style="color: #66d9ef">function</span> <span style="color: #f8f8f2">()</span> <span style="color: #f8f8f2">{</span>
-  <span style="color: #a6e22e">elem</span> <span style="color: #f92672">=</span> <span style="color: #a6e22e">angular</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">element</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;&lt;div class=&quot;my-radio-button&quot;&gt;&lt;/div&gt;&#39;</span><span style="color: #f8f8f2">);</span>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-javascript" data-lang="javascript"><span style="color:#a6e22e">it</span>(<span style="color:#e6db74">&#39;stopImmediatePropagation is called and $scope.selectedButton is set to true&#39;</span>, <span style="color:#66d9ef">function</span> () {
+  <span style="color:#a6e22e">elem</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">angular</span>.<span style="color:#a6e22e">element</span>(<span style="color:#e6db74">&#39;&lt;div class=&#34;my-radio-button&#34;&gt;&lt;/div&gt;&#39;</span>);
 
-  <span style="color: #a6e22e">event</span> <span style="color: #f92672">=</span> <span style="color: #f8f8f2">{</span>
-    <span style="color: #a6e22e">target</span><span style="color: #f92672">:</span> <span style="color: #a6e22e">elem</span><span style="color: #f8f8f2">,</span>
-    <span style="color: #a6e22e">stopImmediatePropagation</span><span style="color: #f92672">:</span> <span style="color: #66d9ef">function</span> <span style="color: #f8f8f2">()</span> <span style="color: #f8f8f2">{}</span>
-  <span style="color: #f8f8f2">};</span>
+  <span style="color:#a6e22e">event</span> <span style="color:#f92672">=</span> {
+    <span style="color:#a6e22e">target</span><span style="color:#f92672">:</span> <span style="color:#a6e22e">elem</span>,
+    <span style="color:#a6e22e">stopImmediatePropagation</span><span style="color:#f92672">:</span> <span style="color:#66d9ef">function</span> () {}
+  };
 
-  <span style="color: #a6e22e">spyOn</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">event</span><span style="color: #f8f8f2">,</span> <span style="color: #e6db74">&#39;stopImmediatePropagation&#39;</span><span style="color: #f8f8f2">);</span>
-  <span style="color: #a6e22e">scope</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">toggleRadioButton</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">event</span><span style="color: #f8f8f2">);</span>
+  <span style="color:#a6e22e">spyOn</span>(<span style="color:#a6e22e">event</span>, <span style="color:#e6db74">&#39;stopImmediatePropagation&#39;</span>);
+  <span style="color:#a6e22e">scope</span>.<span style="color:#a6e22e">toggleRadioButton</span>(<span style="color:#a6e22e">event</span>);
 
-  <span style="color: #a6e22e">expect</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">event</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">stopImmediatePropagation</span><span style="color: #f8f8f2">).</span><span style="color: #a6e22e">toHaveBeenCalled</span><span style="color: #f8f8f2">();</span>
-  <span style="color: #a6e22e">expect</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">scope</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">selectedButton</span><span style="color: #f8f8f2">).</span><span style="color: #a6e22e">toEqual</span><span style="color: #f8f8f2">(</span><span style="color: #66d9ef">true</span><span style="color: #f8f8f2">);</span>
-<span style="color: #f8f8f2">});</span>
-</pre></div>
-
+  <span style="color:#a6e22e">expect</span>(<span style="color:#a6e22e">event</span>.<span style="color:#a6e22e">stopImmediatePropagation</span>).<span style="color:#a6e22e">toHaveBeenCalled</span>();
+  <span style="color:#a6e22e">expect</span>(<span style="color:#a6e22e">scope</span>.<span style="color:#a6e22e">selectedButton</span>).<span style="color:#a6e22e">toEqual</span>(<span style="color:#66d9ef">true</span>);
+});
+</code></pre></div>
 <h3 id="analysis">Analysis</h3>
 
 <ul>

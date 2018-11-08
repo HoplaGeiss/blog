@@ -28,7 +28,7 @@ You need to make sure your package.</description>
       
       <guid>http://www.muller.tech/post/2017/03/07/create-pre-bootstrap-animation/</guid>
       <description>After a while it gets annoying to see angular2&amp;rsquo;s native loading.. everytime to start your app. Today&amp;rsquo;s post will show you how to change this. It is fairly easy to do, first let&amp;rsquo;s take a look at our index.html file. I am going to use a pre-bootstrap wrapper to position our animation pre-bootstrap-spinner and a small label pre-bootstrap-text.
-&amp;lt;!doctype html&amp;gt; &amp;lt;html&amp;gt; &amp;lt;head&amp;gt; &amp;lt;meta charset=&amp;quot;utf-8&amp;quot;&amp;gt; &amp;lt;title&amp;gt;XapiDemo&amp;lt;/title&amp;gt; &amp;lt;base href=&amp;quot;/&amp;quot;&amp;gt; &amp;lt;meta name=&amp;quot;viewport&amp;quot; content=&amp;quot;width=device-width, initial-scale=1&amp;quot;&amp;gt; &amp;lt;link rel=&amp;quot;icon&amp;quot; type=&amp;quot;image/x-icon&amp;quot; href=&amp;quot;favicon.</description>
+&amp;lt;!doctype html&amp;gt; &amp;lt;html&amp;gt; &amp;lt;head&amp;gt; &amp;lt;meta charset=&amp;#34;utf-8&amp;#34;&amp;gt; &amp;lt;title&amp;gt;XapiDemo&amp;lt;/title&amp;gt; &amp;lt;base href=&amp;#34;/&amp;#34;&amp;gt; &amp;lt;meta name=&amp;#34;viewport&amp;#34; content=&amp;#34;width=device-width, initial-scale=1&amp;#34;&amp;gt; &amp;lt;link rel=&amp;#34;icon&amp;#34; type=&amp;#34;image/x-icon&amp;#34; href=&amp;#34;favicon.</description>
     </item>
     
     <item>
@@ -38,7 +38,7 @@ You need to make sure your package.</description>
       
       <guid>http://www.muller.tech/post/2017/02/16/angular2-observable-stream-continuation/</guid>
       <description>Keeping an observable stream up and running is a common use case for many application. Lets take the example of an application with an input field taking a location as parameter which then calls foursquare&amp;rsquo;s API at each key stroke to query the recommended location nearby. If an HTTP call to foursquare fails, we want our observable stream to stay up and running.
-// home.component.ts @Component({ selector: &amp;#39;vs-home&amp;#39;, template: ` &amp;lt;div class=&amp;quot;home&amp;quot;&amp;gt; &amp;lt;form [formGroup]=&amp;quot;form&amp;quot;&amp;gt; &amp;lt;md-input-container class=&amp;quot;form-group&amp;quot; &amp;gt; &amp;lt;input md-input class=&amp;quot;form-control&amp;quot; formControlName=&amp;quot;location&amp;quot; placeholder=&amp;quot;Choose a Location&amp;quot;&amp;gt; &amp;lt;/md-input-container&amp;gt; &amp;lt;/form&amp;gt; &amp;lt;h2&amp;gt;Recommended venues close to this location:&amp;lt;/h2&amp;gt; &amp;lt;div *ngFor=&amp;quot;let venue of venues | async&amp;quot; &amp;gt; &amp;lt;vs-venue [venue]=&amp;quot;venue&amp;quot;&amp;gt;&amp;lt;/vs-venue&amp;gt; &amp;lt;/div&amp;gt; &amp;lt;/div&amp;gt; ` }) export class HomeComponent implements OnInit { venues: Observable&amp;lt;Venue[]&amp;gt;; form: any; constructor( private venueService: VenueService, private formBuilder: FormBuilder ) {} ngOnInit() { this.</description>
+// home.component.ts @Component({ selector: &amp;#39;vs-home&amp;#39;, template: ` &amp;lt;div class=&amp;#34;home&amp;#34;&amp;gt; &amp;lt;form [formGroup]=&amp;#34;form&amp;#34;&amp;gt; &amp;lt;md-input-container class=&amp;#34;form-group&amp;#34; &amp;gt; &amp;lt;input md-input class=&amp;#34;form-control&amp;#34; formControlName=&amp;#34;location&amp;#34; placeholder=&amp;#34;Choose a Location&amp;#34;&amp;gt; &amp;lt;/md-input-container&amp;gt; &amp;lt;/form&amp;gt; &amp;lt;h2&amp;gt;Recommended venues close to this location:&amp;lt;/h2&amp;gt; &amp;lt;div *ngFor=&amp;#34;let venue of venues | async&amp;#34; &amp;gt; &amp;lt;vs-venue [venue]=&amp;#34;venue&amp;#34;&amp;gt;&amp;lt;/vs-venue&amp;gt; &amp;lt;/div&amp;gt; &amp;lt;/div&amp;gt; ` }) export class HomeComponent implements OnInit { venues: Observable&amp;lt;Venue[]&amp;gt;; form: any; constructor( private venueService: VenueService, private formBuilder: FormBuilder ) {} ngOnInit() { this.</description>
     </item>
     
     <item>
@@ -58,7 +58,7 @@ I am going to take a real life example of a home page with an search bar that dr
       
       <guid>http://www.muller.tech/post/2017/01/23/angular2-pipe-does-not-detect-change/</guid>
       <description>The goal of this post, is to explore how pipe work and to make them do what we expect of them! Before futher due, let&amp;rsquo;s see an example. The example I am going to use, is a list of trainers filtered by sports, this list is driven by an input field.
-Scenario &amp;lt;md-card *ngFor=&amp;quot;let trainer of trainers | criteria:&amp;#39;sport&amp;#39;:sportSearch&amp;quot;&amp;gt; {{ trainer.name }} {{ trainer.sport }} &amp;lt;/md-card&amp;gt;  The behavior you would expect, is that every time you modify the list of sportSearch, the list of trainers gets updated.</description>
+Scenario &amp;lt;md-card *ngFor=&amp;#34;let trainer of trainers | criteria:&amp;#39;sport&amp;#39;:sportSearch&amp;#34;&amp;gt; {{ trainer.name }} {{ trainer.sport }} &amp;lt;/md-card&amp;gt; The behavior you would expect, is that every time you modify the list of sportSearch, the list of trainers gets updated.</description>
     </item>
     
   </channel>
