@@ -5,3 +5,4 @@ This is the code source of my personnal blog. I wrote it using [hugo](https://go
 [http://muller.tech](http://muller.tech)
 
 ### Publish a new post
+Just run `./deploy.sh`
