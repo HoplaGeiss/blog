@@ -185,3 +185,6 @@ So here you go that's the trade of using resolvers instead of state:
 - Semantically more correct, as you are trying to load data and not protect a route.
 - Gives you access to the data directly, so you don't need to import the state in your component.
 - It's a one time load. Your data does not get updated. To do so, you would need to subscribe to the state.
+
+That’s it! Have a look there for the source code: [https://github.com/HoplaGeiss/hopla-resolver-guard](https://github.com/HoplaGeiss/hopla-resolver-guard)
+
