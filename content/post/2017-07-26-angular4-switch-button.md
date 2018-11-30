@@ -7,27 +7,33 @@ date: "2017-07-26"
 featured: false
 slug: angular4-switch-button
 image: /images/switchButton.jpg
+draft: true
 ---
 
 Ever wondered how to create a switch button in angular4 without using css frameworks? Here we go..
 
 Let's take a look at the component first.
 
-``` typescript
+```typescript
 // app.component.ts
-import { Component } from '@angular/core';
+import { Component } from "@angular/core";
 
 @Component({
-  selector: 'app-root',
+  selector: "app-root",
   template: `
     <div class="switch">
-      <input id='switch-input' type='checkbox' [checked]='switchActive' (click)='toggle()'>
-      <label for='switch-input'></label>
+      <input
+        id="switch-input"
+        type="checkbox"
+        [checked]="switchActive"
+        (click)="toggle()"
+      />
+      <label for="switch-input"></label>
     </div>
   `
 })
 export class AppComponent {
-  switchActive = false
+  switchActive = false;
 
   toggle = () => {
     if (this.switchActive) {
@@ -37,14 +43,14 @@ export class AppComponent {
     }
 
     this.switchActive = !this.switchActive;
-  }
+  };
 }
 ```
 
 As you can see the component is base on a simple checkbox element and a toggle function to change the state of this component. Let's put some styling on top of that..
 
-``` scss
-/deep/ .switch{
+```scss
+/deep/ .switch {
   input {
     position: absolute;
     margin-left: -9999px;
@@ -63,7 +69,7 @@ As you can see the component is base on a simple checkbox element and a toggle f
     transition: background 0.4s;
     border: 2px solid #dddddd;
 
-    &:after{
+    &:after {
       display: block;
       position: absolute;
       content: "";

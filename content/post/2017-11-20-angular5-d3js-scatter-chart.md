@@ -8,6 +8,7 @@ date: "2017-11-20"
 featured: false
 slug: angular5-d3js-scatter-chart
 image: /images/scatter-chart.png
+draft: true
 ---
 
 In this post you will learn how to create a scatter chart with angular5 and d3.js.
@@ -22,22 +23,22 @@ Now, let's dive in!
 ### Component skeleton
 
 ```typescript
-import { Component, ElementRef, ViewChild, OnInit, Input } from '@angular/core';
-import * as d3 from 'd3';
+import { Component, ElementRef, ViewChild, OnInit, Input } from "@angular/core";
+import * as d3 from "d3";
 
 @Component({
-  selector: 'app-scatter-chart',
-  styleUrls: ['./scatter-chart.component.scss'],
+  selector: "app-scatter-chart",
+  styleUrls: ["./scatter-chart.component.scss"],
   template: `
-    <div class='scatter-chart' #scatterChartContainer>
-      <div class='tooltip'>
-        <span class='highlight'>Device discovered:</span> {{node?.value}}
+    <div class="scatter-chart" #scatterChartContainer>
+      <div class="tooltip">
+        <span class="highlight">Device discovered:</span> {{ node?.value }}
       </div>
     </div>
   `
 })
 export class ScatterChartComponent implements OnInit {
-  @ViewChild('scatterChartContainer') private chartContainer: ElementRef;
+  @ViewChild("scatterChartContainer") private chartContainer: ElementRef;
   @Input() private data: Array<any>;
   @Input() monthsAgo: number;
 
@@ -74,15 +75,11 @@ export class ScatterChartComponent implements OnInit {
 
   node: any;
 
-  constructor(
-    private elementRef: ElementRef
-  ) {}
+  constructor(private elementRef: ElementRef) {}
 }
-
 ```
 
 Not so much going on here. In the template we define the containers for the svg and for the tooltip. In the component itself we just define loads and loads of variables.
-
 
 ### Initialization
 
@@ -121,61 +118,67 @@ In this init method, we already have more stuff going on! We instantiate the hos
 
 ```typescript
 render = () => {
-    this.xAxisScale = d3.scaleTime()
-      .domain([this.minDt, this.maxDt]) // Defines min and max of the x axis
-      .range([this.groupWidth, this.width]);  // Defines where the x axus label begin and end
+  this.xAxisScale = d3
+    .scaleTime()
+    .domain([this.minDt, this.maxDt]) // Defines min and max of the x axis
+    .range([this.groupWidth, this.width]); // Defines where the x axus label begin and end
 
-    this.xAxis = d3.axisBottom(this.xAxisScale)
-      .tickSize(-this.height - 10); // Defines the height of the vertical ligne above the x-axis
+  this.xAxis = d3.axisBottom(this.xAxisScale).tickSize(-this.height - 10); // Defines the height of the vertical ligne above the x-axis
 
-    this.zoom = d3.zoom()
-      .on('zoom', this.zoomFn);
+  this.zoom = d3.zoom().on("zoom", this.zoomFn);
 
-    this.svg = d3.select(this.hostElement)
-      .append('svg')
-      .attr('width', this.width + this.margin.left + this.margin.right)
-      .attr('height', this.height + this.margin.top + this.margin.bottom)
-      .append('g')
-      .attr('transform', 'translate(' + this.margin.left + ',' + this.margin.top + ')')
-      .call(this.zoom);
+  this.svg = d3
+    .select(this.hostElement)
+    .append("svg")
+    .attr("width", this.width + this.margin.left + this.margin.right)
+    .attr("height", this.height + this.margin.top + this.margin.bottom)
+    .append("g")
+    .attr(
+      "transform",
+      "translate(" + this.margin.left + "," + this.margin.top + ")"
+    )
+    .call(this.zoom);
 
-    this.view = this.svg
-      .append('defs')
-      .append('clipPath')
-      .attr('id', 'chart-content')
-      .append('rect')
-      .attr('x', this.groupWidth)
-      .attr('y', 0)
-      .attr('height', this.height)
-      .attr('width', this.width - this.groupWidth);
+  this.view = this.svg
+    .append("defs")
+    .append("clipPath")
+    .attr("id", "chart-content")
+    .append("rect")
+    .attr("x", this.groupWidth)
+    .attr("y", 0)
+    .attr("height", this.height)
+    .attr("width", this.width - this.groupWidth);
 
-    // Rectangle with data
-    this.svg.append('rect')
-      .attr('class', 'chart-bounds')
-      .attr('x', this.groupWidth)
-      .attr('y', 0)
-      .attr('height', this.height)
-      .attr('width', this.width - this.groupWidth);
+  // Rectangle with data
+  this.svg
+    .append("rect")
+    .attr("class", "chart-bounds")
+    .attr("x", this.groupWidth)
+    .attr("y", 0)
+    .attr("height", this.height)
+    .attr("width", this.width - this.groupWidth);
 
-    // Rectangle with groups
-    this.svg.append('rect')
-      .attr('class', 'group-bounds')
-      .attr('x', 0)
-      .attr('y', 0)
-      .attr('height', this.height)
-      .attr('width', this.groupWidth);
+  // Rectangle with groups
+  this.svg
+    .append("rect")
+    .attr("class", "group-bounds")
+    .attr("x", 0)
+    .attr("y", 0)
+    .attr("height", this.height)
+    .attr("width", this.groupWidth);
 
-    // Dates of the x axis
-    this.gX = this.svg.append('g')
-      .attr('class', 'x axis')
-      .attr('transform', 'translate(0,' + (this.height + 10) + ')')
-      .call(this.xAxis);
+  // Dates of the x axis
+  this.gX = this.svg
+    .append("g")
+    .attr("class", "x axis")
+    .attr("transform", "translate(0," + (this.height + 10) + ")")
+    .call(this.xAxis);
 
-    this.drawBorders();
-    this.createHorizontalSectionLines();
-    this.createSectionLabels();
-    this.createCircles();
-  }
+  this.drawBorders();
+  this.createHorizontalSectionLines();
+  this.createSectionLabels();
+  this.createCircles();
+};
 ```
 
 Here is where the magic happens. We create and svg, we put in place elements to allow panning and zooming, we define the zones where the labels and the data will be displayed, we put in place the x-axis and to finish we call the other methods to draw the borders, create the section lines, create the section labels and finally create the circles.
@@ -184,75 +187,83 @@ Here is where the magic happens. We create and svg, we put in place elements to 
 
 ```typescript
 createSectionLabels = () => {
-  this.svg.selectAll('.group-label')
+  this.svg
+    .selectAll(".group-label")
     .data(this.data)
     .enter()
-    .append('text')
-    .attr('class', 'group-label')
-    .attr('x', 0)
-    .attr('y', (d, i) =>  this.groupHeight * i + this.groupHeight / 2 + 5.5)
-    .attr('dx', '0.5em').text(d => d.label)
-    .attr('fill', d => this.labelColours(d.label));
-}
+    .append("text")
+    .attr("class", "group-label")
+    .attr("x", 0)
+    .attr("y", (d, i) => this.groupHeight * i + this.groupHeight / 2 + 5.5)
+    .attr("dx", "0.5em")
+    .text(d => d.label)
+    .attr("fill", d => this.labelColours(d.label));
+};
 
 createHorizontalSectionLines = () => {
-  this.svg.selectAll('.group-section')
+  this.svg
+    .selectAll(".group-section")
     .data(this.data)
     .enter()
-    .append('line')
-    .attr('class', 'group-section')
-    .attr('x1', 0)
-    .attr('x2', this.width)
-    .attr('y1',  (d, i) => this.groupHeight * (i + 1))
-    .attr('y2', (d, i) => this.groupHeight * (i + 1));
-}
+    .append("line")
+    .attr("class", "group-section")
+    .attr("x1", 0)
+    .attr("x2", this.width)
+    .attr("y1", (d, i) => this.groupHeight * (i + 1))
+    .attr("y2", (d, i) => this.groupHeight * (i + 1));
+};
 
 createCircles = () => {
   // Create groups of items with different colours
-  this.groupCircles = this.svg.selectAll('.group-dot-item')
+  this.groupCircles = this.svg
+    .selectAll(".group-dot-item")
     .data(this.data)
     .enter()
-    .append('g')
-    .attr('clip-path', 'url(#chart-content)')
-    .attr('class', 'item')
-    .attr('transform', (d, i) => 'translate(0, ' + this.groupHeight * i + ')')
-    .attr('fill', d => this.dotColours(d.label))
-    .selectAll('.dot')
-    .data(d => d.data).enter();
+    .append("g")
+    .attr("clip-path", "url(#chart-content)")
+    .attr("class", "item")
+    .attr("transform", (d, i) => "translate(0, " + this.groupHeight * i + ")")
+    .attr("fill", d => this.dotColours(d.label))
+    .selectAll(".dot")
+    .data(d => d.data)
+    .enter();
 
   // Group the outer and inner circle together
-  this.circles = this.groupCircles.append('g')
-    .attr('class', 'circle')
-    .on('mouseover', node => this.mouseOverFn(node))
-    .on('mouseout', node => this.mouseOutFn());
+  this.circles = this.groupCircles
+    .append("g")
+    .attr("class", "circle")
+    .on("mouseover", node => this.mouseOverFn(node))
+    .on("mouseout", node => this.mouseOutFn());
 
-  this.outerCircle = this.circles.append('circle')
-    .attr('class', 'dot')
-    .attr('cx', d => this.xAxisScale(d.time))
-    .attr('cy', this.groupHeight / 2)
-    .attr('r', 7);
+  this.outerCircle = this.circles
+    .append("circle")
+    .attr("class", "dot")
+    .attr("cx", d => this.xAxisScale(d.time))
+    .attr("cy", this.groupHeight / 2)
+    .attr("r", 7);
 
-  this.innerCircle = this.circles.append('circle')
-    .attr('class', 'inner-circle')
-    .attr('cx', d => this.xAxisScale(d.time))
-    .attr('cy', this.groupHeight / 2)
-    .attr('r', 3)
-    .attr('fill', 'white');
-}
+  this.innerCircle = this.circles
+    .append("circle")
+    .attr("class", "inner-circle")
+    .attr("cx", d => this.xAxisScale(d.time))
+    .attr("cy", this.groupHeight / 2)
+    .attr("r", 3)
+    .attr("fill", "white");
+};
 
-mouseOverFn = (node) => {
+mouseOverFn = node => {
   this.node = node;
 
-  this.tooltip.style.visibility = 'visible';
+  this.tooltip.style.visibility = "visible";
   this.tooltip.style.opacity = 0.9;
-  this.tooltip.style.top = (d3.event.pageY - 35) + 'px';
-  this.tooltip.style.left = (d3.event.pageX - 35) + 'px';
-}
+  this.tooltip.style.top = d3.event.pageY - 35 + "px";
+  this.tooltip.style.left = d3.event.pageX - 35 + "px";
+};
 
 mouseOutFn = () => {
-  this.tooltip.style.visibility = 'hidden';
+  this.tooltip.style.visibility = "hidden";
   this.tooltip.style.opacity = 0;
-}
+};
 
 zoomFn = () => {
   // Transform the xAxis
@@ -260,43 +271,47 @@ zoomFn = () => {
 
   // Translate circle on the X axis
   const newXScale = d3.event.transform.rescaleX(this.xAxisScale);
-  this.innerCircle.attr('cx', d => newXScale(d.time));
-  this.outerCircle.attr('cx', d => newXScale(d.time));
-}
+  this.innerCircle.attr("cx", d => newXScale(d.time));
+  this.outerCircle.attr("cx", d => newXScale(d.time));
+};
 
 addMonths = (date, months) => {
   date.setMonth(date.getMonth() + months);
   return date;
-}
+};
 
 drawBorders = () => {
   // left border
-  this.svg.append('line')
-    .attr('class', 'border')
-    .attr('y1', 0)
-    .attr('y2', this.height);
+  this.svg
+    .append("line")
+    .attr("class", "border")
+    .attr("y1", 0)
+    .attr("y2", this.height);
 
   // right border
-  this.svg.append('line')
-    .attr('class', 'border')
-    .attr('x1', this.width)
-    .attr('x2', this.width)
-    .attr('y1', 0)
-    .attr('y2', this.height);
+  this.svg
+    .append("line")
+    .attr("class", "border")
+    .attr("x1", this.width)
+    .attr("x2", this.width)
+    .attr("y1", 0)
+    .attr("y2", this.height);
 
   // top border
-  this.svg.append('line')
-    .attr('class', 'border')
-    .attr('x1', 0)
-    .attr('x2', this.width);
+  this.svg
+    .append("line")
+    .attr("class", "border")
+    .attr("x1", 0)
+    .attr("x2", this.width);
 
   // Line between groups label on the left and plot ( make it thicker)
-  this.svg.append('line')
-    .attr('x1', this.groupWidth)
-    .attr('x2', this.groupWidth)
-    .attr('y1', 0)
-    .attr('y2', this.height);
-}
+  this.svg
+    .append("line")
+    .attr("x1", this.groupWidth)
+    .attr("x2", this.groupWidth)
+    .attr("y1", 0)
+    .attr("y2", this.height);
+};
 ```
 
 I let you go through this method, they are fairly straightforward.
@@ -304,7 +319,7 @@ I let you go through this method, they are fairly straightforward.
 ### Data service
 
 ```typescript
-import { Injectable } from '@angular/core';
+import { Injectable } from "@angular/core";
 
 @Injectable()
 export class ScatterDataService {
@@ -316,7 +331,11 @@ export class ScatterDataService {
       const result = {
         id: i,
         singleRun: booleans[Math.floor(Math.random() * 2)],
-        startDateUtc: new Date(2017, Math.floor(Math.random() * 12), Math.floor(Math.random() * 25)),
+        startDateUtc: new Date(
+          2017,
+          Math.floor(Math.random() * 12),
+          Math.floor(Math.random() * 25)
+        ),
         totalDevicesFound: Math.floor(1 + Math.random() * 10)
       };
 
@@ -324,7 +343,7 @@ export class ScatterDataService {
     }
 
     return results;
-  }
+  };
 
   parseData = (discoveries: any) => {
     const single = [];
@@ -345,10 +364,10 @@ export class ScatterDataService {
     });
 
     return [
-      { label: 'Periodic', data: periodic },
-      { label: 'Single', data: single }
+      { label: "Periodic", data: periodic },
+      { label: "Single", data: single }
     ];
-  }
+  };
 }
 ```
 

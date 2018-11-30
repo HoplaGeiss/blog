@@ -7,6 +7,7 @@ date: "2017-11-29"
 featured: false
 slug: angular5-tabs
 image: /images/tabs.png
+draft: true
 ---
 
 In this post you will learn how to create a tab component with the following features:

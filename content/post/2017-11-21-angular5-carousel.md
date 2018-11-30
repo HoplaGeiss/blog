@@ -7,6 +7,7 @@ date: "2017-11-21"
 featured: false
 slug: angular5-carousel
 image: /images/carousel.png
+draft: true
 ---
 
 In this post you will learn how to create a carousel with angular5.
@@ -58,10 +59,10 @@ Let's dive in!
 ```
 
 Our template is clearly separated in there parts:
+
 - The carousel with an icon and a label for each item
 - The left arrow which is disabled when the user looks at the first batch of items.
 - The right arrow which is disabled when the user looks at the last batch of items.
-
 
 ### Component with life cycle methods
 
@@ -79,19 +80,24 @@ export class CarouselComponent implements OnInit, AfterViewChecked {
   carouselWrapper: any;
   carouselWrapperWidth: number;
 
-  constructor (
+  constructor(
     private elementRef: ElementRef,
     private changeDetectorRef: ChangeDetectorRef
   ) {}
 
   ngOnInit() {
-    this.carousel = this.elementRef.nativeElement.querySelector('.carousel');
-    this.carouselWrapper = this.elementRef.nativeElement.querySelector('.carousel-wrapper');
+    this.carousel = this.elementRef.nativeElement.querySelector(".carousel");
+    this.carouselWrapper = this.elementRef.nativeElement.querySelector(
+      ".carousel-wrapper"
+    );
   }
 
   // On size changes, recalculate the bacthes
   ngAfterViewChecked() {
-    if (this.carouselWrapper.offsetWidth !== 0 && this.carouselWrapper.offsetWidth !== this.carouselWrapperWidth) {
+    if (
+      this.carouselWrapper.offsetWidth !== 0 &&
+      this.carouselWrapper.offsetWidth !== this.carouselWrapperWidth
+    ) {
       this.carouselWrapperWidth = this.carouselWrapper.offsetWidth;
 
       this.renderBatches();
@@ -118,27 +124,27 @@ renderBatches = () => {
   this.batches = this.chunk(this.items, this.elementsPerSlide);
 
   // The carousel is 100 * ng batches wide
-  this.carousel.style.width = 100 * this.batches.length + '%';
+  this.carousel.style.width = 100 * this.batches.length + "%";
 
-  this.increment = (100 / this.batches.length);
+  this.increment = 100 / this.batches.length;
 
   this.changeDetectorRef.detectChanges();
-}
+};
 ```
 
-this methods calculates the number of elements to show per page based on the width of the carousel's wrapper and on the width of the elements. It then updates the width of the carousel, which needs to be 100 * number of batches.
+this methods calculates the number of elements to show per page based on the width of the carousel's wrapper and on the width of the elements. It then updates the width of the carousel, which needs to be 100 \* number of batches.
 
 ### setBatchSize
 
 ```typescript
 setBatchSize = () => {
-  const ulElements = this.elementRef.nativeElement.querySelectorAll('ul');
+  const ulElements = this.elementRef.nativeElement.querySelectorAll("ul");
 
   // Each ul element needs to be 100 / nb batches wide.
   for (let i = 0; i < ulElements.length; i++) {
-    ulElements[i].style.width = 100 / this.batches.length + '%';
+    ulElements[i].style.width = 100 / this.batches.length + "%";
   }
-}
+};
 ```
 
 setBatchSize sets the width of each `ul` elements. Side by side the ul elements need to take the full width of the carousel.
@@ -148,9 +154,9 @@ setBatchSize sets the width of each `ul` elements. Side by side the ul elements 
 ```typescript
 slide = (direction: number) => {
   this.currentItem = this.currentItem - direction;
-  this.translation  = this.translation + direction * this.increment;
-  this.carousel.style.transform = 'translateX(' + this.translation + '%)';
-}
+  this.translation = this.translation + direction * this.increment;
+  this.carousel.style.transform = "translateX(" + this.translation + "%)";
+};
 ```
 
 The slide method is called each time we click on an arrow. It is used to translate from one batch to the other.
@@ -159,8 +165,10 @@ The slide method is called each time we click on an arrow. It is used to transla
 
 ```typescript
 chunk = (arr, n) => {
-  return arr.slice(0, (arr.length + n - 1) / n | 0).map((c, i) => arr.slice(n * i , n * i + n));
-}
+  return arr
+    .slice(0, ((arr.length + n - 1) / n) | 0)
+    .map((c, i) => arr.slice(n * i, n * i + n));
+};
 ```
 
 chunk is a simple method to split an array in an array of arrays of a specific size.
@@ -171,13 +179,13 @@ To finish find bellow how to use the carousel and the styling file I am using.
 
 ```typescript
 // app.component.ts
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit } from "@angular/core";
 
 @Component({
-  selector: 'app-root',
-  styleUrls: ['./app.component.scss'],
+  selector: "app-root",
+  styleUrls: ["./app.component.scss"],
   template: `
-    <app-carousel [items]='widgets'></app-carousel>
+    <app-carousel [items]="widgets"></app-carousel>
   `
 })
 export class AppComponent implements OnInit {
@@ -190,20 +198,20 @@ export class AppComponent implements OnInit {
   generateWidgets = (num: number) => {
     const result = [];
     for (let i = 0; i < num; i++) {
-      result.push({title: 'Widget' + i});
+      result.push({ title: "Widget" + i });
     }
     return result;
-  }
+  };
 }
 ```
 
 ```scss
-.wrapper{
+.wrapper {
   width: 100%;
   position: relative;
 }
 
-.carousel-wrapper{
+.carousel-wrapper {
   box-sizing: border-box;
   padding: 0 40px;
   overflow: hidden;
@@ -211,24 +219,25 @@ export class AppComponent implements OnInit {
   position: relative;
 }
 
-.carousel{
+.carousel {
   position: relative;
   overflow: hidden;
   transition-duration: 1000ms;
 }
 
-ul{
+ul {
   list-style: none;
   position: relative;
   float: left;
-  width: 100%
+  width: 100%;
 }
 
-li{
+li {
   width: 130px;
 }
 
-.arrow-left, .arrow-right{
+.arrow-left,
+.arrow-right {
   position: absolute;
   top: 6px;
   bottom: 6px;
@@ -241,32 +250,32 @@ li{
   background: white;
   z-index: 2;
 
-  &:not(.disabled):hover{
+  &:not(.disabled):hover {
     cursor: pointer;
     background: orange;
 
-    i{
+    i {
       color: white;
     }
   }
 
-  &.disabled{
-    i{
+  &.disabled {
+    i {
       color: grey !important;
     }
   }
 
-  i{
+  i {
     font-size: 3.2em;
     pointer-events: none;
   }
 }
 
-.arrow-left{
+.arrow-left {
   left: 0px;
 }
 
-.arrow-right{
+.arrow-right {
   right: 0px;
 }
 ```

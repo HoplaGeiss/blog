@@ -7,6 +7,7 @@ date: "2017-04-03"
 featured: false
 slug: "create-angular4-accordion"
 image: "/images/accordion.jpg"
+draft: true
 ---
 
 After looking for a while for a simple accordion component on npm I was very surprised not to find any. So I began implementing my own.
@@ -20,17 +21,15 @@ Demo: [http://www.muller.tech/hopla-accordion/index.html](http://www.muller.tech
 
 Source Code: [https://github.com/HoplaGeiss/hopla-accordion](https://github.com/HoplaGeiss/hopla-accordion)
 
-``` typescript
+```typescript
 // ./accordion/accordion.component.ts
-import { Component, Input } from '@angular/core';
-import { AccordionGroupComponent } from './accordion-group/accordion-group.component';
+import { Component, Input } from "@angular/core";
+import { AccordionGroupComponent } from "./accordion-group/accordion-group.component";
 
 @Component({
-  selector: 'accordion',
+  selector: "accordion",
   template: `
-    <div class="accordion">
-      <ng-content></ng-content>
-    </div>
+    <div class="accordion"><ng-content></ng-content></div>
   `
 })
 export class AccordionComponent {
@@ -60,26 +59,29 @@ export class AccordionComponent {
 ```typescript
 // ./accordion/accordion-group/accordion-group.component.ts
 
-import { Component, OnDestroy, Input, OnChanges, SimpleChange } from '@angular/core';
-import { AccordionComponent } from '../accordion.component';
+import {
+  Component,
+  OnDestroy,
+  Input,
+  OnChanges,
+  SimpleChange
+} from "@angular/core";
+import { AccordionComponent } from "../accordion.component";
 
 @Component({
-  selector: 'accordion-group',
-  styleUrls: ['./accordion-group.component.scss'],
+  selector: "accordion-group",
+  styleUrls: ["./accordion-group.component.scss"],
   template: `
-    <div class="accordion-group" [ngClass]="{'closed': !isOpen}">
+    <div class="accordion-group" [ngClass]="{ closed: !isOpen }">
       <div class="panel-heading" (click)="toggleOpen()">
-        <span>{{heading}}</span>
+        <span>{{ heading }}</span>
       </div>
       <div class="panel-collapse">
-        <div class="panel-body">
-          <ng-content></ng-content>
-        </div>
+        <div class="panel-body"><ng-content></ng-content></div>
       </div>
     </div>
   `
 })
-
 export class AccordionGroupComponent implements OnDestroy, OnChanges {
   @Input() heading: string;
   @Input() isOpen: boolean;
@@ -93,7 +95,7 @@ export class AccordionGroupComponent implements OnDestroy, OnChanges {
     this.accordion.removeGroup(this);
   }
 
-  ngOnChanges(changes: {[propKey: string]: SimpleChange}) {
+  ngOnChanges(changes: { [propKey: string]: SimpleChange }) {
     for (const propName in changes) {
       if (changes.hasOwnProperty(propName)) {
         const changedProp = changes[propName];
@@ -119,50 +121,49 @@ As you can see most of the logic happens in `AccordionGroupComponent`, its const
 To finish here is an example of how to use the accordion:
 
 ```typescript
-import { Component } from '@angular/core';
+import { Component } from "@angular/core";
 
 @Component({
-  selector: 'hopla-root',
+  selector: "hopla-root",
   template: `
     <accordion>
-      <accordion-group heading="Heading 1" [index]=0 [isOpen]=true>
+      <accordion-group heading="Heading 1" [index]="0" [isOpen]="true">
         <span>Content 1</span>
       </accordion-group>
 
-      <accordion-group heading="Heading 2" [index]=1 [isOpen]=false>
+      <accordion-group heading="Heading 2" [index]="1" [isOpen]="false">
         <span>Content 2</span>
       </accordion-group>
 
-      <accordion-group heading="Heading 3" [index]=2 [isOpen]=false>
+      <accordion-group heading="Heading 3" [index]="2" [isOpen]="false">
         <span>Content 3</span>
       </accordion-group>
     </accordion>
   `
 })
-export class AppComponent {
-}
+export class AppComponent {}
 ```
 
 Also you can add some transition on the scss to make it more smooth like so:
 
 ```scss
 // ./accordion/accordion-group/accordion-group.scss
-.accordion-group{
+.accordion-group {
   position: relative;
 
-  &.closed{
-    .panel-collapse{
+  &.closed {
+    .panel-collapse {
       max-height: 0;
     }
   }
 
-  .panel-heading{
+  .panel-heading {
     cursor: pointer;
   }
 
-  .panel-collapse{
+  .panel-collapse {
     transition-property: all;
-    transition: .5s ease;
+    transition: 0.5s ease;
 
     overflow-y: hidden;
     max-height: 1000px;

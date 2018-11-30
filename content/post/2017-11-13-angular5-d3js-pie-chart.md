@@ -8,6 +8,7 @@ date: "2017-11-13"
 featured: false
 slug: angular5-d3js-pie-chart
 image: /images/pie-chart.png
+draft: true
 ---
 
 In this post you will learn how to create a dynamic and resizable pie chart with angular5 and d3.js.
@@ -23,48 +24,71 @@ Now, let's dive in!
 ### Component skeleton
 
 ```typescript
-import { Component, OnInit, OnChanges, ViewChild, ElementRef, Input } from '@angular/core';
-import * as d3 from 'd3';
-import { SumPipe } from '../_pipes/sum.pipe';
-import * as _ from 'underscore';
+import {
+  Component,
+  OnInit,
+  OnChanges,
+  ViewChild,
+  ElementRef,
+  Input
+} from "@angular/core";
+import * as d3 from "d3";
+import { SumPipe } from "../_pipes/sum.pipe";
+import * as _ from "underscore";
 
 @Component({
-    selector: 'app-pie-chart',
-    styleUrls: ['./pie-chart.component.scss'],
-    template: `
-      <div class='wrapper'>
-        <div class='pie-chart' #containerPieChart></div>
+  selector: "app-pie-chart",
+  styleUrls: ["./pie-chart.component.scss"],
+  template: `
+    <div class="wrapper">
+      <div class="pie-chart" #containerPieChart></div>
 
-        <div *ngIf='labels'class='legend' fxLayout='row' fxLayoutAlign='center center'>
-          <div *ngFor='let label of labels; let i = index' fxLayout='row' fxLayoutAlign='start center' class='item'>
-            <div class='circle' [ngStyle]='{"background": colourSlices[i]}'></div>
-            <div>{{label}}</div>
+      <div
+        *ngIf="labels"
+        class="legend"
+        fxLayout="row"
+        fxLayoutAlign="center center"
+      >
+        <div
+          *ngFor="let label of labels; let i = index"
+          fxLayout="row"
+          fxLayoutAlign="start center"
+          class="item"
+        >
+          <div class="circle" [ngStyle]="{ background: colourSlices[i] }"></div>
+          <div>{{ label }}</div>
+        </div>
+      </div>
+
+      <div class="tooltip drilldownData">
+        <div class="header" *ngIf="selectedSlice">
+          <div fxLayout="row" fxLayoutAlign="start center">
+            <img
+              [src]="'assets/Icon-' + selectedSlice.familyType + '.svg'"
+              alt="Database Icon"
+            />
+            <div fxLayout="column" fxLayoutAlign="center start">
+              <div class="title">{{ selectedSlice.familyType }}</div>
+              <div>Queries</div>
+            </div>
           </div>
         </div>
-
-        <div class='tooltip drilldownData'>
-          <div class='header' *ngIf='selectedSlice'>
-            <div fxLayout='row' fxLayoutAlign='start center'>
-              <img [src]='"assets/Icon-" + selectedSlice.familyType + ".svg"' alt='Database Icon'>
-              <div fxLayout='column' fxLayoutAlign='center start'>
-                <div class='title'>{{selectedSlice.familyType}}</div>
-                <div>Queries</div>
-              </div>
-            </div>
-          </div>
-          <div class='body' fxLayout='row' fxLayoutWrap *ngIf='selectedSlice'>
-            <div *ngFor='let item of selectedSlice.types' class='item' fxFlex="50%">
-              <div class='label'>{{item.type}}</div>
-              <div class='value'>{{item.amount}}</div>
-            </div>
+        <div class="body" fxLayout="row" fxLayoutWrap *ngIf="selectedSlice">
+          <div
+            *ngFor="let item of selectedSlice.types"
+            class="item"
+            fxFlex="50%"
+          >
+            <div class="label">{{ item.type }}</div>
+            <div class="value">{{ item.amount }}</div>
           </div>
         </div>
       </div>
-    `
+    </div>
+  `
 })
-
 export class PieChartComponent implements OnInit, OnChanges {
-  @ViewChild('containerPieChart') chartContainer: ElementRef;
+  @ViewChild("containerPieChart") chartContainer: ElementRef;
   @Input() data: any;
   @Input() colours: Array<string>;
 
@@ -89,9 +113,7 @@ export class PieChartComponent implements OnInit, OnChanges {
   arc: any;
   arcEnter: any;
 
-  constructor(
-    private elRef: ElementRef
-  ) {}
+  constructor(private elRef: ElementRef) {}
 }
 ```
 
@@ -102,20 +124,31 @@ It is also worth noticing the inputs of this component. `data` is an array of ob
 ### Data Service
 
 ```typescript
-import { Injectable } from '@angular/core';
+import { Injectable } from "@angular/core";
 
 @Injectable()
 export class PieDataService {
   generateData = (num: number) => {
     const operations = [];
-    const labels = ['Devices', 'Database', 'API'];
-    const types = ['SnmpV1', 'SnmpV2c', 'SnmpV3', 'HttpApi', 'HttpBasic', 'SshBasic', 'SshRsa', 'Wmi', 'Sql', 'MongoDb'];
+    const labels = ["Devices", "Database", "API"];
+    const types = [
+      "SnmpV1",
+      "SnmpV2c",
+      "SnmpV3",
+      "HttpApi",
+      "HttpBasic",
+      "SshBasic",
+      "SshRsa",
+      "Wmi",
+      "Sql",
+      "MongoDb"
+    ];
 
     for (let i = 0; i < Math.floor(1 + Math.random() * num); i++) {
       const operation = {
         id: i,
         familyType: labels[Math.floor(Math.random() * labels.length)],
-        name: 'MAN1-APC-01-Get-Power-Consumption',
+        name: "MAN1-APC-01-Get-Power-Consumption",
         type: types[Math.floor(Math.random() * types.length)]
       };
 
@@ -123,7 +156,7 @@ export class PieDataService {
     }
 
     return operations;
-  }
+  };
 }
 ```
 
@@ -136,37 +169,56 @@ createChart = () => {
   // chart configuration
   this.hostElement = this.chartContainer.nativeElement;
 
-  this.radius = Math.min(this.hostElement.offsetWidth, this.hostElement.offsetHeight) / 2;
+  this.radius =
+    Math.min(this.hostElement.offsetWidth, this.hostElement.offsetHeight) / 2;
   const innerRadius = this.radius - 80;
   const outerRadius = this.radius - 15;
   const hoverRadius = this.radius - 5;
-  this.pieColours = this.colours ? d3.scaleOrdinal().range(this.colours) : d3.scaleOrdinal(d3.schemeCategory20c);
-  this.tooltip = this.elRef.nativeElement.querySelector('.tooltip');
+  this.pieColours = this.colours
+    ? d3.scaleOrdinal().range(this.colours)
+    : d3.scaleOrdinal(d3.schemeCategory20c);
+  this.tooltip = this.elRef.nativeElement.querySelector(".tooltip");
 
   // create a pie generator and tell it where to get numeric values from and whether sorting is needed or not
   // this is just a function that will be called to obtain data prior binding that data to elements of the chart
-  this.pieGenerator = d3.pie().sort(null).value((d: number) => d)([0, 0, 0]);
+  this.pieGenerator = d3
+    .pie()
+    .sort(null)
+    .value((d: number) => d)([0, 0, 0]);
 
   // create an arc generator and configure it
   // this is just a function that will be called to obtain data prior binding that data to arc elements of the chart
-  this.arcGenerator = d3.arc()
+  this.arcGenerator = d3
+    .arc()
     .innerRadius(innerRadius)
     .outerRadius(outerRadius);
 
-  this.arcHover = d3.arc()
+  this.arcHover = d3
+    .arc()
     .innerRadius(innerRadius)
     .outerRadius(hoverRadius);
 
   // create svg element, configure dimentions and centre and add to DOM
-  this.svg = d3.select(this.hostElement).append('svg')
-    .attr('viewBox', '0, 0, ' + this.hostElement.offsetWidth + ', ' + this.hostElement.offsetHeight)
-    .append('g')
-    .attr('transform', `translate(${this.hostElement.offsetWidth / 2}, ${this.hostElement.offsetHeight / 2})`);
-}
+  this.svg = d3
+    .select(this.hostElement)
+    .append("svg")
+    .attr(
+      "viewBox",
+      "0, 0, " +
+        this.hostElement.offsetWidth +
+        ", " +
+        this.hostElement.offsetHeight
+    )
+    .append("g")
+    .attr(
+      "transform",
+      `translate(${this.hostElement.offsetWidth / 2}, ${this.hostElement
+        .offsetHeight / 2})`
+    );
+};
 ```
 
 In this `createChart` method we mostly define variables and create the svg.
-
 
 ### updateChart
 
@@ -176,39 +228,49 @@ updateChart = (firstRun: boolean) => {
 
   this.slices = this.updateSlices(this.data);
   this.labels = this.slices.map(slice => slice.familyType);
-  this.colourSlices = this.slices.map(slice => this.pieColours(slice.familyType));
+  this.colourSlices = this.slices.map(slice =>
+    this.pieColours(slice.familyType)
+  );
 
-  this.values = firstRun ? [0, 0, 0] : _.toArray(this.slices).map(slice => slice.amount);
+  this.values = firstRun
+    ? [0, 0, 0]
+    : _.toArray(this.slices).map(slice => slice.amount);
 
-  this.pieGenerator = d3.pie().sort(null).value((d: number) => d)(this.values);
+  this.pieGenerator = d3
+    .pie()
+    .sort(null)
+    .value((d: number) => d)(this.values);
 
-  const arc = this.svg.selectAll('.arc')
-    .data(this.pieGenerator);
+  const arc = this.svg.selectAll(".arc").data(this.pieGenerator);
 
   arc.exit().remove();
 
-  const arcEnter = arc.enter().append('g')
-    .attr('class', 'arc');
+  const arcEnter = arc
+    .enter()
+    .append("g")
+    .attr("class", "arc");
 
-  arcEnter.append('path')
-    .attr('d', this.arcGenerator)
-    .each((values) => firstRun ? values.storedValues = values : null)
-    .on('mouseover', this.mouseover)
-    .on('mouseout', this.mouseout);
+  arcEnter
+    .append("path")
+    .attr("d", this.arcGenerator)
+    .each(values => (firstRun ? (values.storedValues = values) : null))
+    .on("mouseover", this.mouseover)
+    .on("mouseout", this.mouseout);
 
   // configure a transition to play on d elements of a path
   // whenever new values are passed in, the values and the previously stored values will be used
   // to compute the transition using interpolation
-  d3.select(this.hostElement).selectAll('path')
+  d3.select(this.hostElement)
+    .selectAll("path")
     .data(this.pieGenerator)
-    .attr('fill', (datum, index) => this.pieColours(this.labels[index]))
-    .attr('d', this.arcGenerator)
+    .attr("fill", (datum, index) => this.pieColours(this.labels[index]))
+    .attr("d", this.arcGenerator)
     .transition()
     .duration(750)
-    .attrTween('d', function(newValues, i){
+    .attrTween("d", function(newValues, i) {
       return vm.arcTween(newValues, i, this);
     });
-}
+};
 ```
 
 In the `updateChart` we do a number of things:
@@ -219,7 +281,6 @@ In the `updateChart` we do a number of things:
 - Define the behaviour on enter. (`mouseover` and `mouseout`)
 - Define the behaviour on update. (re-calculate the angles of the slices )
 - Defined the behaviour on exit. (remove)
-
 
 ### Other methods
 

@@ -23,52 +23,6 @@ All the example I found online while learning about ngrx were using guards, and 
     </item>
     
     <item>
-      <title>Angular 5 - Input directive</title>
-      <link>http://www.muller.tech/post/2017/12/01/angular5-input-directive/</link>
-      <pubDate>Fri, 01 Dec 2017 00:00:00 +0000</pubDate>
-      
-      <guid>http://www.muller.tech/post/2017/12/01/angular5-input-directive/</guid>
-      <description>In this post you will learn how to create an input directive that highlights errors.
-Take a look at the demo: http://www.muller.tech/hopla-input/
-If you are in a hurry, you can checkout the source code here: https://github.com/HoplaGeiss/hopla-input
-Let&amp;rsquo;s dive in!
-Input directive import { Directive, Input, HostBinding, OnChanges } from &amp;#39;@angular/core&amp;#39;; import { ColourService } from &amp;#39;../colour/colour.service&amp;#39;; @Directive({ selector: &amp;#39;[appInput]&amp;#39; }) export class InputDirective implements OnChanges { @Input() error: boolean; @HostBinding(&amp;#39;style.</description>
-    </item>
-    
-    <item>
-      <title>Angular 5 - Search directive to filter a list</title>
-      <link>http://www.muller.tech/post/2017/11/30/angular5-search-filter/</link>
-      <pubDate>Thu, 30 Nov 2017 00:00:00 +0000</pubDate>
-      
-      <guid>http://www.muller.tech/post/2017/11/30/angular5-search-filter/</guid>
-      <description>In this post you will learn how to create a search directive filtering a dynamic list with the following features:
- The directive will have as input a list of items, the output will be a filtered list of items. The directive needs to be able to react to a change in the input.  Take a look at the demo: http://www.muller.tech/hopla-search/
-If you are in a hurry, you can checkout the source code here: https://github.</description>
-    </item>
-    
-    <item>
-      <title>Angular 5 - Tabs</title>
-      <link>http://www.muller.tech/post/2017/11/29/angular5-tabs/</link>
-      <pubDate>Wed, 29 Nov 2017 00:00:00 +0000</pubDate>
-      
-      <guid>http://www.muller.tech/post/2017/11/29/angular5-tabs/</guid>
-      <description>In this post you will learn how to create a tab component with the following features:
- Resize of the tab on window resize and on tab addition / deletion. Two modes: deletion of tabs allowed / not allowed. The text in the tab needs to truncate according to the tab&amp;rsquo;s size. The active tab needs to be highlighted.  Take a look at the demo: http://www.muller.tech/hopla-tabs/
-If you are in a hurry, you can checkout the source code here: https://github.</description>
-    </item>
-    
-    <item>
-      <title>Angular 5 - Colour Scheme directive</title>
-      <link>http://www.muller.tech/post/2017/11/22/angular5-colour-scheme/</link>
-      <pubDate>Wed, 22 Nov 2017 00:00:00 +0000</pubDate>
-      
-      <guid>http://www.muller.tech/post/2017/11/22/angular5-colour-scheme/</guid>
-      <description>If you are developing a large application, chances are you already have thought of how to adapt the app&amp;rsquo;s colour scheme to the user. In this post you will discover just how to do this!
-Bacic implementation - static colour scheme The most basic implementation is to have a scss file with variables for your colours scheme.
-$primary: #57a1c6; $highlight: #4fc3f7; $accent: #ee7175; However that only works if you have a single colour scheme.</description>
-    </item>
-    
-    <item>
       <title>Angular 5 - Unit Test ngOnChanges</title>
       <link>http://www.muller.tech/post/2017/11/22/angular5-unittest-ngonchanges/</link>
       <pubDate>Wed, 22 Nov 2017 00:00:00 +0000</pubDate>
@@ -76,79 +30,6 @@ $primary: #57a1c6; $highlight: #4fc3f7; $accent: #ee7175; However that only work
       <guid>http://www.muller.tech/post/2017/11/22/angular5-unittest-ngonchanges/</guid>
       <description>In this post you will learn how to unit test a component that uses ngOnChanges.
 Component under test import { Component, OnInit, OnChanges } from &amp;#39;@angular/core&amp;#39;; @Component({ selector: &amp;#39;hopla-component&amp;#39;, template: ` &amp;lt;div&amp;gt;Hopla Hopla&amp;lt;/div&amp;gt; ` }) export class HoplaComponent implements OnInit, OnChanges { @Input() data: Array&amp;lt;object&amp;gt;; ngOnInit(){ // do something  } ngOnChanges(){ superFunction(data) } superFunction(input) =&amp;gt; { // do something with input  } } Unit test it(&amp;#39;OnChanges: updates the form with the site value&amp;#39;, () =&amp;gt; { const superFunctionSpy = spyOn(comp, &amp;#39;superFunction&amp;#39;); const data = [{value: 1}, {value: 2}] fixture.</description>
-    </item>
-    
-    <item>
-      <title>Angular 5 carousel</title>
-      <link>http://www.muller.tech/post/2017/11/21/angular5-carousel/</link>
-      <pubDate>Tue, 21 Nov 2017 00:00:00 +0000</pubDate>
-      
-      <guid>http://www.muller.tech/post/2017/11/21/angular5-carousel/</guid>
-      <description>In this post you will learn how to create a carousel with angular5. Requirements for our carousel
- Take as an input an array of object. Have a left and a right arrow for navigation. Distribute batches of items evenly across the width of the screen. Update of screen resize.  Take a look at the demo: http://www.muller.tech/hopla-carousel/
-If you are in a hurry, you can checkout the source code here: https://github.</description>
-    </item>
-    
-    <item>
-      <title>Angular 5 / d3.js - Bubble Chart</title>
-      <link>http://www.muller.tech/post/2017/11/20/angular5-d3js-bubble-chart/</link>
-      <pubDate>Mon, 20 Nov 2017 00:00:00 +0000</pubDate>
-      
-      <guid>http://www.muller.tech/post/2017/11/20/angular5-d3js-bubble-chart/</guid>
-      <description>In this post you will learn how to create a dynamic and resizable bubble chart with angular5 and d3.js.
-Take a look at the demo: http://www.muller.tech/hopla-bubble-chart/
-If you are in a hurry, you can checkout the source code here: https://github.com/HoplaGeiss/hopla-bubble-chart
-Now, let&amp;rsquo;s dive in!
-Component skeleton import { Component, ElementRef, Input, ViewChild, OnInit, OnChanges, AfterViewChecked } from &amp;#39;@angular/core&amp;#39;; import * as d3 from &amp;#39;d3&amp;#39;; import * as _ from &amp;#39;underscore&amp;#39;; @Component({ selector: &amp;#39;app-bubble-chart&amp;#39;, styleUrls: [&amp;#39;.</description>
-    </item>
-    
-    <item>
-      <title>Angular 5 / d3.js - Force Directed Chart</title>
-      <link>http://www.muller.tech/post/2017/11/20/angular5-d3js-force-directed-chart/</link>
-      <pubDate>Mon, 20 Nov 2017 00:00:00 +0000</pubDate>
-      
-      <guid>http://www.muller.tech/post/2017/11/20/angular5-d3js-force-directed-chart/</guid>
-      <description>In this post you will learn how to create a dynamic and resizeable force directed chart with angular5 and d3.js.
-Take a look at the demo: http://www.muller.tech/hopla-force-directed-chart/
-If you are in a hurry, you can checkout the source code here: https://github.com/HoplaGeiss/hopla-force-directed-chart
-Now, let&amp;rsquo;s dive in!
-Component skeleton import { Component, OnInit, OnChanges, ViewChild, ElementRef, Input, AfterViewChecked } from &amp;#39;@angular/core&amp;#39;; import * as d3 from &amp;#39;d3&amp;#39;; import * as _ from &amp;#39;underscore&amp;#39;; @Component({ selector: &amp;#39;app-force-directed-chart&amp;#39;, styleUrls: [&amp;#39;.</description>
-    </item>
-    
-    <item>
-      <title>Angular 5 / d3.js - Scatter Chart</title>
-      <link>http://www.muller.tech/post/2017/11/20/angular5-d3js-scatter-chart/</link>
-      <pubDate>Mon, 20 Nov 2017 00:00:00 +0000</pubDate>
-      
-      <guid>http://www.muller.tech/post/2017/11/20/angular5-d3js-scatter-chart/</guid>
-      <description>In this post you will learn how to create a scatter chart with angular5 and d3.js.
-Take a look at the demo: http://www.muller.tech/hopla-scatter-chart/
-If you are in a hurry, you can checkout the source code here: https://github.com/HoplaGeiss/hopla-scatter-chart
-Now, let&amp;rsquo;s dive in!
-Component skeleton import { Component, ElementRef, ViewChild, OnInit, Input } from &amp;#39;@angular/core&amp;#39;; import * as d3 from &amp;#39;d3&amp;#39;; @Component({ selector: &amp;#39;app-scatter-chart&amp;#39;, styleUrls: [&amp;#39;./scatter-chart.component.scss&amp;#39;], template: ` &amp;lt;div class=&amp;#39;scatter-chart&amp;#39; #scatterChartContainer&amp;gt; &amp;lt;div class=&amp;#39;tooltip&amp;#39;&amp;gt; &amp;lt;span class=&amp;#39;highlight&amp;#39;&amp;gt;Device discovered:&amp;lt;/span&amp;gt; {{node?</description>
-    </item>
-    
-    <item>
-      <title>Angular 5 / d3.js - Pie Chart</title>
-      <link>http://www.muller.tech/post/2017/11/13/angular5-d3js-pie-chart/</link>
-      <pubDate>Mon, 13 Nov 2017 00:00:00 +0000</pubDate>
-      
-      <guid>http://www.muller.tech/post/2017/11/13/angular5-d3js-pie-chart/</guid>
-      <description>In this post you will learn how to create a dynamic and resizable pie chart with angular5 and d3.js. Pie charts are very useful to present a number of data, however I couldn&amp;rsquo;t find any example online working with angular2+ and d3 v4, so I decided to implement my own from scratch.
-Take a look at the demo: http://www.muller.tech/hopla-pie-chart/
-If you are in a hurry, you can checkout the source code here: https://github.</description>
-    </item>
-    
-    <item>
-      <title>Angular 4 dropdown</title>
-      <link>http://www.muller.tech/post/2017/08/16/angular4-dropdown/</link>
-      <pubDate>Wed, 16 Aug 2017 00:00:00 +0000</pubDate>
-      
-      <guid>http://www.muller.tech/post/2017/08/16/angular4-dropdown/</guid>
-      <description>Dropdowns are a very common way of displaying multiple choice inputs. Today&amp;rsquo;s post is about creating a dropdown without using bootstrap or other styling frameworks.
-If you are in a hurry, you can checkout the code on my github account: https://github.com/HoplaGeiss/hopla-dropdown
-Let&amp;rsquo;s first take a look at the main component.
-// app.component.ts import { Component, OnInit } from &amp;#39;@angular/core&amp;#39;; @Component({ selector: &amp;#39;app-root&amp;#39;, styleUrls: [&amp;#39;./app.component.scss&amp;#39;], template: ` &amp;lt;div class=&amp;#39;wrapper&amp;#39;&amp;gt; &amp;lt;div class=&amp;#39;selected-item&amp;#39; fxLayout=&amp;#34;row&amp;#34; fxLayoutAlign=&amp;#34;space-between center&amp;#34; [ngClass]=&amp;#39;{&amp;#34;active&amp;#34;: dropdownActive}&amp;#39;&amp;gt; &amp;lt;div&amp;gt;{{selectedItem}}&amp;lt;/div&amp;gt; &amp;lt;i class=&amp;#39;material-icons&amp;#39; (click)=&amp;#39;toggleDropdown()&amp;#39;&amp;gt;keyboard_arrow_down&amp;lt;/i&amp;gt; &amp;lt;div class=&amp;#39;dropdown&amp;#39; [hidden]=&amp;#39;!</description>
     </item>
     
     <item>
@@ -173,17 +54,6 @@ Following the DRY principle, you should aim at having a template for the home an
     </item>
     
     <item>
-      <title>Angular 4 - Switch button</title>
-      <link>http://www.muller.tech/post/2017/07/26/angular4-switch-button/</link>
-      <pubDate>Wed, 26 Jul 2017 00:00:00 +0000</pubDate>
-      
-      <guid>http://www.muller.tech/post/2017/07/26/angular4-switch-button/</guid>
-      <description>Ever wondered how to create a switch button in angular4 without using css frameworks? Here we go..
-Let&amp;rsquo;s take a look at the component first.
-// app.component.ts import { Component } from &amp;#39;@angular/core&amp;#39;; @Component({ selector: &amp;#39;app-root&amp;#39;, template: ` &amp;lt;div class=&amp;#34;switch&amp;#34;&amp;gt; &amp;lt;input id=&amp;#39;switch-input&amp;#39; type=&amp;#39;checkbox&amp;#39; [checked]=&amp;#39;switchActive&amp;#39; (click)=&amp;#39;toggle()&amp;#39;&amp;gt; &amp;lt;label for=&amp;#39;switch-input&amp;#39;&amp;gt;&amp;lt;/label&amp;gt; &amp;lt;/div&amp;gt; ` }) export class AppComponent { switchActive = false toggle = () =&amp;gt; { if (this.switchActive) { // Do something  } else { // Do something else  } this.</description>
-    </item>
-    
-    <item>
       <title>Node.js - Package.json scripts</title>
       <link>http://www.muller.tech/post/2017/06/13/node-package-json-scripts/</link>
       <pubDate>Tue, 13 Jun 2017 00:00:00 +0000</pubDate>
@@ -191,32 +61,6 @@ Let&amp;rsquo;s take a look at the component first.
       <guid>http://www.muller.tech/post/2017/06/13/node-package-json-scripts/</guid>
       <description>If you are developing an angular application, chances are you are using @angular/cli. It is a fantastic tools which comes packed with awesome time saving features. Now recently I had to work on a node.js backend project and I dearly missed @angular/cli, so this post is about a couple tricks I found to mock @angular/cli&amp;rsquo;s features.
 ng test Usually angular&amp;rsquo;s unit test are along side the file they refer to, in node sadly most of the time it is not the case.</description>
-    </item>
-    
-    <item>
-      <title>Angular 4 - Create a modal</title>
-      <link>http://www.muller.tech/post/2017/04/03/angular4-create-modal/</link>
-      <pubDate>Mon, 03 Apr 2017 00:00:00 +0000</pubDate>
-      
-      <guid>http://www.muller.tech/post/2017/04/03/angular4-create-modal/</guid>
-      <description>After my previous post about creating a simple accordion with angular 4, I will now walk you through my implementation of a modal in angular 4. To create the modal I used two files modal.component.ts and modal.service.ts and organised it in the usual component based architecture.
-Demo: http://www.muller.tech/hopla-modal/
-Source Code: https://github.com/HoplaGeiss/hopla-modal
-Now let&amp;rsquo;s take a look at both files.
-// modal/modal.component.ts import { Component, Input, OnInit, HostListener } from &amp;#39;@angular/core&amp;#39;; import { ModalService } from &amp;#39;.</description>
-    </item>
-    
-    <item>
-      <title>Angular 4 - create an accordion</title>
-      <link>http://www.muller.tech/post/2017/04/03/create-angular4-accordion/</link>
-      <pubDate>Mon, 03 Apr 2017 00:00:00 +0000</pubDate>
-      
-      <guid>http://www.muller.tech/post/2017/04/03/create-angular4-accordion/</guid>
-      <description>After looking for a while for a simple accordion component on npm I was very surprised not to find any. So I began implementing my own. To create the accordion I used two components AccordionComponent and AccordionGroupComponent and organised it in the usual component based architecture.
-Now let&amp;rsquo;s take a look at both files.
-Demo: http://www.muller.tech/hopla-accordion/index.html
-Source Code: https://github.com/HoplaGeiss/hopla-accordion
-// ./accordion/accordion.component.ts import { Component, Input } from &amp;#39;@angular/core&amp;#39;; import { AccordionGroupComponent } from &amp;#39;.</description>
     </item>
     
     <item>

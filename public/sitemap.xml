@@ -8,58 +8,8 @@
   </url>
   
   <url>
-    <loc>http://www.muller.tech/post/2017/12/01/angular5-input-directive/</loc>
-    <lastmod>2017-12-01T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>http://www.muller.tech/post/2017/11/30/angular5-search-filter/</loc>
-    <lastmod>2017-11-30T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>http://www.muller.tech/post/2017/11/29/angular5-tabs/</loc>
-    <lastmod>2017-11-29T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>http://www.muller.tech/post/2017/11/22/angular5-colour-scheme/</loc>
-    <lastmod>2017-11-22T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
     <loc>http://www.muller.tech/post/2017/11/22/angular5-unittest-ngonchanges/</loc>
     <lastmod>2017-11-22T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>http://www.muller.tech/post/2017/11/21/angular5-carousel/</loc>
-    <lastmod>2017-11-21T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>http://www.muller.tech/post/2017/11/20/angular5-d3js-bubble-chart/</loc>
-    <lastmod>2017-11-20T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>http://www.muller.tech/post/2017/11/20/angular5-d3js-force-directed-chart/</loc>
-    <lastmod>2017-11-20T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>http://www.muller.tech/post/2017/11/20/angular5-d3js-scatter-chart/</loc>
-    <lastmod>2017-11-20T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>http://www.muller.tech/post/2017/11/13/angular5-d3js-pie-chart/</loc>
-    <lastmod>2017-11-13T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>http://www.muller.tech/post/2017/08/16/angular4-dropdown/</loc>
-    <lastmod>2017-08-16T00:00:00+00:00</lastmod>
   </url>
   
   <url>
@@ -73,23 +23,8 @@
   </url>
   
   <url>
-    <loc>http://www.muller.tech/post/2017/07/26/angular4-switch-button/</loc>
-    <lastmod>2017-07-26T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
     <loc>http://www.muller.tech/post/2017/06/13/node-package-json-scripts/</loc>
     <lastmod>2017-06-13T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>http://www.muller.tech/post/2017/04/03/angular4-create-modal/</loc>
-    <lastmod>2017-04-03T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>http://www.muller.tech/post/2017/04/03/create-angular4-accordion/</loc>
-    <lastmod>2017-04-03T00:00:00+00:00</lastmod>
   </url>
   
   <url>
@@ -175,7 +110,7 @@
   
   <url>
     <loc>http://www.muller.tech/tags/angular4/</loc>
-    <lastmod>2017-08-16T00:00:00+00:00</lastmod>
+    <lastmod>2017-08-04T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -188,12 +123,6 @@
   <url>
     <loc>http://www.muller.tech/tags/atom/</loc>
     <lastmod>2017-02-17T00:00:00+00:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>http://www.muller.tech/tags/d3.js/</loc>
-    <lastmod>2017-11-20T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -236,12 +165,6 @@
   <url>
     <loc>http://www.muller.tech/tags/resolvers/</loc>
     <lastmod>2018-11-08T00:00:00+00:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>http://www.muller.tech/tags/scss/</loc>
-    <lastmod>2017-11-22T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   

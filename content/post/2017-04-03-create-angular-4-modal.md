@@ -7,6 +7,7 @@ date: "2017-04-03"
 featured: false
 slug: angular4-create-modal
 image: /images/modal.png
+draft: true
 ---
 
 After my previous post about creating a simple accordion with angular 4, I will now walk you through my implementation of a modal in angular 4.
@@ -20,30 +21,30 @@ Source Code: [https://github.com/HoplaGeiss/hopla-modal](https://github.com/Hopl
 
 Now let's take a look at both files.
 
-``` typescript
+```typescript
 // modal/modal.component.ts
-import { Component, Input, OnInit, HostListener } from '@angular/core';
-import { ModalService } from './modal.service';
+import { Component, Input, OnInit, HostListener } from "@angular/core";
+import { ModalService } from "./modal.service";
 
 @Component({
-    selector: 'app-modal',
-    styleUrls: ['./modal.scss'],
-    template: `
-      <div [ngClass]="{'closed': !isOpen}">
-        <div class="modal-overlay" (click)="close(true)"></div>
+  selector: "app-modal",
+  styleUrls: ["./modal.scss"],
+  template: `
+    <div [ngClass]="{ closed: !isOpen }">
+      <div class="modal-overlay" (click)="close(true)"></div>
 
-        <div class="modal">
-          <div class="title" *ngIf="modalTitle">
-            <span class="title-text">{{ modalTitle }}</span>
-            <span class="right-align" (click)="close(true)"><i class="material-icons md-24">clear</i></span>
-          </div>
-
-          <div class="body">
-            <ng-content></ng-content>
-          </div>
+      <div class="modal">
+        <div class="title" *ngIf="modalTitle">
+          <span class="title-text">{{ modalTitle }}</span>
+          <span class="right-align" (click)="close(true)"
+            ><i class="material-icons md-24">clear</i></span
+          >
         </div>
+
+        <div class="body"><ng-content></ng-content></div>
       </div>
-    `
+    </div>
+  `
 })
 export class ModalComponent implements OnInit {
   @Input() modalId: string;
@@ -51,12 +52,12 @@ export class ModalComponent implements OnInit {
   @Input() blocking = false;
   isOpen = false;
 
-  @HostListener('keyup') onMouseEnter(event) {
+  @HostListener("keyup")
+  onMouseEnter(event) {
     this.keyup(event);
   }
 
-  constructor(private modalService: ModalService) {
-  }
+  constructor(private modalService: ModalService) {}
 
   ngOnInit() {
     this.modalService.registerModal(this);
@@ -76,8 +77,8 @@ export class ModalComponent implements OnInit {
 
 ```typescript
 // modal/modal.service.ts
-import { Injectable } from '@angular/core';
-import { ModalComponent } from './modal.component';
+import { Injectable } from "@angular/core";
+import { ModalComponent } from "./modal.component";
 
 @Injectable()
 export class ModalService {
@@ -135,35 +136,36 @@ Now lets see how to use this modal.
 
 ```typescript
 // app.component.ts
-import { Component } from '@angular/core';
-import { ModalService } from './modal/modal.service';
+import { Component } from "@angular/core";
+import { ModalService } from "./modal/modal.service";
 
 @Component({
-  selector: 'app-root',
-  styleUrls: ['./app.component.scss'],
+  selector: "app-root",
+  styleUrls: ["./app.component.scss"],
   template: `
-    <button (click)='modalService.open(modalId)'>Open Modal</button>
-    <app-modal [modalTitle]="'Some title'" [blocking]='false' [modalId]='modalId'>
+    <button (click)="modalService.open(modalId)">Open Modal</button>
+    <app-modal
+      [modalTitle]="'Some title'"
+      [blocking]="false"
+      [modalId]="modalId"
+    >
       <div>Text inside the modal</div>
     </app-modal>
   `
 })
 export class AppComponent {
-  modalId = 'hoplaModal';
+  modalId = "hoplaModal";
 
-  constructor(
-    public modalService: ModalService
-  ) {}
+  constructor(public modalService: ModalService) {}
 }
-
 ```
 
 To finish here is some styling for our modal. Note the use of animation to display and hide the modal and the overlay!
 
-``` scss
+```scss
 // modal/modal.component.scss
 .modal-overlay {
-  background-color: rgba(0, 0, 0, .4);
+  background-color: rgba(0, 0, 0, 0.4);
   bottom: 0;
   left: 0;
   position: fixed;
@@ -173,16 +175,16 @@ To finish here is some styling for our modal. Note the use of animation to displ
 }
 
 .closed {
-  .modal{
+  .modal {
     top: -50%;
   }
-  .modal-overlay{
+  .modal-overlay {
     display: none;
   }
 }
 
 .modal {
-  box-shadow: 0 12px 15px 0 rgba(0, 0, 0, .22), 0 17px 20px 0 rgba(0, 0, 0, .12);
+  box-shadow: 0 12px 15px 0 rgba(0, 0, 0, 0.22), 0 17px 20px 0 rgba(0, 0, 0, 0.12);
 
   background-color: white;
   left: calc(50% - 300px);
@@ -192,7 +194,7 @@ To finish here is some styling for our modal. Note the use of animation to displ
   top: 5em;
   width: 600px;
   z-index: 1100;
-  transition: all .5s ease;
+  transition: all 0.5s ease;
 
   .title {
     background-color: red;
@@ -203,18 +205,19 @@ To finish here is some styling for our modal. Note the use of animation to displ
     .right-align {
       position: absolute;
       right: 5px;
-      &, i{
+      &,
+      i {
         line-height: 40px;
       }
 
-      &:hover{
+      &:hover {
         cursor: pointer;
         transform: scale(1.1);
       }
     }
   }
 
-  .body{
+  .body {
     padding: 1.2em;
   }
 }

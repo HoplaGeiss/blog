@@ -7,6 +7,7 @@ date: "2017-08-16"
 featured: false
 slug: angular4-dropdown
 image: /images/dropdown.jpg
+draft: true
 ---
 
 Dropdowns are a very common way of displaying multiple choice inputs. Today's post is about creating a dropdown without using bootstrap or other styling frameworks.
@@ -15,24 +16,37 @@ If you are in a hurry, you can checkout the code on my github account: [https://
 
 Let's first take a look at the main component.
 
-``` typescript
+```typescript
 // app.component.ts
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit } from "@angular/core";
 
 @Component({
-  selector: 'app-root',
-  styleUrls: ['./app.component.scss'],
+  selector: "app-root",
+  styleUrls: ["./app.component.scss"],
   template: `
-    <div class='wrapper'>
-      <div class='selected-item' fxLayout="row" fxLayoutAlign="space-between center"
-        [ngClass]='{"active": dropdownActive}'>
-        <div>{{selectedItem}}</div>
-        <i class='material-icons' (click)='toggleDropdown()'>keyboard_arrow_down</i>
+    <div class="wrapper">
+      <div
+        class="selected-item"
+        fxLayout="row"
+        fxLayoutAlign="space-between center"
+        [ngClass]="{ active: dropdownActive }"
+      >
+        <div>{{ selectedItem }}</div>
+        <i class="material-icons" (click)="toggleDropdown()"
+          >keyboard_arrow_down</i
+        >
 
-        <div class='dropdown' [hidden]='!dropdownActive'>
-          <div *ngFor='let item of items | dropdownPipe:selectedItem; let last = last'
-            class='item' [ngClass]='{"last": last}' (click)='selectItem(item)'>
-            <span>{{item}}</span>
+        <div class="dropdown" [hidden]="!dropdownActive">
+          <div
+            *ngFor="
+              let item of (items | dropdownPipe: selectedItem);
+              let last = last
+            "
+            class="item"
+            [ngClass]="{ last: last }"
+            (click)="selectItem(item)"
+          >
+            <span>{{ item }}</span>
           </div>
         </div>
       </div>
@@ -46,18 +60,18 @@ export class AppComponent implements OnInit {
 
   ngOnInit() {
     this.dropdownActive = true;
-    this.items = ['item 1', 'item 2', 'item 3', 'item 4'];
+    this.items = ["item 1", "item 2", "item 3", "item 4"];
     this.selectedItem = this.items[0];
   }
 
   toggleDropdown = () => {
     this.dropdownActive = !this.dropdownActive;
-  }
+  };
 
   selectItem = (item: any) => {
     this.selectedItem = item;
     this.dropdownActive = false;
-  }
+  };
 }
 ```
 
@@ -65,7 +79,7 @@ I said we would look at any easy dropdown, but actually there is quite a bit goi
 
 We have three attributes:
 
--  `items` is a list of items to display. (here they are strings, but it would probably be something more complicated in real life)
+- `items` is a list of items to display. (here they are strings, but it would probably be something more complicated in real life)
 - `selectedItem` is an item from `items` which is currently selected.
 - `dropdownActive` a boolean that drives the state of the dropdown.
 
@@ -100,24 +114,22 @@ Now there are also some little details to notice:
 
 Alright, that's all for the components, let's have a quick look at the pipe for those interested.
 
-
-``` typescript
+```typescript
 // dropdown/dropdown.pipe.ts
 
-import { Pipe, PipeTransform } from '@angular/core';
+import { Pipe, PipeTransform } from "@angular/core";
 
 @Pipe({
-  name: 'dropdownPipe'
+  name: "dropdownPipe"
 })
 export class DropdownPipe implements PipeTransform {
-    transform(items: any, selectedItem: any): Array<any> {
-      if (!items || !selectedItem) return null;
+  transform(items: any, selectedItem: any): Array<any> {
+    if (!items || !selectedItem) return null;
 
-      return items.filter(item => {
-        if (item !== selectedItem)
-          return item;
-      });
-    }
+    return items.filter(item => {
+      if (item !== selectedItem) return item;
+    });
+  }
 }
 ```
 
@@ -125,34 +137,34 @@ Nothing crazy here, we just filter our the selected item from the items.
 
 Getting the styling right is arguably the hardest when doing a dropdown. Here is a modest attempt to create a scss file.
 
-``` scss
+```scss
 // app.component.scss
 
-.wrapper{
+.wrapper {
   position: relative;
   width: 200px;
 }
 
-.selected-item{
+.selected-item {
   background: grey;
   height: 40px;
   padding: 0 10px;
 
-  i{
+  i {
     cursor: pointer;
     user-select: none;
   }
 
-  &.active{
+  &.active {
     background: blue;
     color: white;
-    i{
+    i {
       transform: rotate(180deg);
     }
   }
 }
 
-.dropdown{
+.dropdown {
   position: absolute;
   top: 40px;
   width: calc(100% - 2px);
@@ -160,22 +172,21 @@ Getting the styling right is arguably the hardest when doing a dropdown. Here is
   color: black;
   border: 1px solid grey;
 
-  .item{
+  .item {
     border-bottom: 1px solid grey;
     padding: 5px 10px;
     cursor: pointer;
-    &:hover{
+    &:hover {
       background: grey;
     }
 
-    &.last{
+    &.last {
       border-bottom: 1px solid white;
-      &:hover{
+      &:hover {
         border-bottom: 1px solid grey;
       }
     }
   }
-
 }
 ```
 

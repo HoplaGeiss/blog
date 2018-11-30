@@ -8,6 +8,7 @@ date: "2017-11-20"
 featured: false
 slug: angular5-d3js-bubble-chart
 image: /images/bubble-chart.png
+draft: true
 ---
 
 In this post you will learn how to create a dynamic and resizable bubble chart with angular5 and d3.js.
@@ -103,22 +104,24 @@ Life cycle methods:
 createChart = () => {
   this.transition = 700;
 
-  const margin = { top: 0, right: 0, bottom: 0, left: 0};
+  const margin = { top: 0, right: 0, bottom: 0, left: 0 };
   const width = this.hostElement.offsetWidth - margin.left - margin.right;
   const height = this.hostElement.offsetHeight - margin.top - margin.bottom;
 
-  this.svg = d3.select(this.hostElement)
-    .append('svg')
-    .attr('width', width + margin.left + margin.right)
-    .attr('height', height + margin.top + margin.bottom);
+  this.svg = d3
+    .select(this.hostElement)
+    .append("svg")
+    .attr("width", width + margin.left + margin.right)
+    .attr("height", height + margin.top + margin.bottom);
 
-  this.pack = d3.pack()
+  this.pack = d3
+    .pack()
     .size([width, height])
     .padding(1.5);
 
   this.color = d3.scaleOrdinal(d3.schemeCategory20c);
-  this.tooltip = this.elementRef.nativeElement.querySelector('.tooltip');
-}
+  this.tooltip = this.elementRef.nativeElement.querySelector(".tooltip");
+};
 ```
 
 Here we:
@@ -129,64 +132,72 @@ Here we:
 
 ### Update the chart
 
-``` typescript
+```typescript
 updateChart = () => {
   this.bubbles = this.updateBubbles(this.data);
 
-  const hierarchy = d3.hierarchy({ children: this.bubbles })
-    .sum((d: any) => {
-      // Crazy stuff.. here in sum we path all the node, not only the leafs
-      // So we need to ignore the roots
-      if (d.children) return 0;
-      return d.amount;
-    });
+  const hierarchy = d3.hierarchy({ children: this.bubbles }).sum((d: any) => {
+    // Crazy stuff.. here in sum we path all the node, not only the leafs
+    // So we need to ignore the roots
+    if (d.children) return 0;
+    return d.amount;
+  });
 
   // JOIN
-  const node = this.svg.selectAll('g')
+  const node = this.svg
+    .selectAll("g")
     .data(this.pack(hierarchy).leaves(), d => d.data.type);
 
-  const nodeEnter = node.enter()
-    .append('g')
-    .attr('transform', d => 'translate(' + d.x + ', ' + d.y + ')');
+  const nodeEnter = node
+    .enter()
+    .append("g")
+    .attr("transform", d => "translate(" + d.x + ", " + d.y + ")");
 
   // ENTER
-  nodeEnter.append('circle')
-    .style('fill', '#fff')
-    .attr('r', d => 1e-6)
-    .on('mouseover', this.mouseover)
-    .on('mouseout', this.mouseout)
+  nodeEnter
+    .append("circle")
+    .style("fill", "#fff")
+    .attr("r", d => 1e-6)
+    .on("mouseover", this.mouseover)
+    .on("mouseout", this.mouseout)
     .transition()
     .duration(700)
-    .attr('r', d => d.r)
-    .style('fill', d => this.color(d.data.type));
+    .attr("r", d => d.r)
+    .style("fill", d => this.color(d.data.type));
 
-  nodeEnter.append('image')
-    .attr('xlink:href', d => 'assets/Icon-' + d.data.type + '-HL.svg')
-    .attr('width', 1e-6)
-    .attr('height', 1e-6)
-    .attr('x', d => - d.r / 2)
-    .attr('y', d => - d.r / 2)
-    .attr('pointer-events', 'none')
+  nodeEnter
+    .append("image")
+    .attr("xlink:href", d => "assets/Icon-" + d.data.type + "-HL.svg")
+    .attr("width", 1e-6)
+    .attr("height", 1e-6)
+    .attr("x", d => -d.r / 2)
+    .attr("y", d => -d.r / 2)
+    .attr("pointer-events", "none")
     .transition()
     .duration(this.transition)
-    .attr('width', d => d.r)
-    .attr('height', d => d.r);
+    .attr("width", d => d.r)
+    .attr("height", d => d.r);
 
   // EXIT
-  node.select('circle').exit()
+  node
+    .select("circle")
+    .exit()
     .transition()
     .duration(700)
-    .attr('r', d => 1e-6)
+    .attr("r", d => 1e-6)
     .remove();
 
-  node.select('image').exit()
+  node
+    .select("image")
+    .exit()
     .transition()
     .duration(700)
-    .attr('width', d => 1e-6)
-    .attr('height', d => 1e-6)
+    .attr("width", d => 1e-6)
+    .attr("height", d => 1e-6)
     .remove();
 
-  node.exit()
+  node
+    .exit()
     .transition()
     .duration(700)
     .remove();
@@ -195,20 +206,24 @@ updateChart = () => {
   node
     .transition()
     .duration(700)
-    .attr('transform', d => 'translate(' + d.x + ', ' + d.y + ')')
-    .style('fill', '#3a403d');
+    .attr("transform", d => "translate(" + d.x + ", " + d.y + ")")
+    .style("fill", "#3a403d");
 
-  node.select('circle').transition()
+  node
+    .select("circle")
+    .transition()
     .duration(700)
-    .attr('r', d => d.r);
+    .attr("r", d => d.r);
 
-  node.select('image').transition()
+  node
+    .select("image")
+    .transition()
     .duration(700)
-    .attr('x', d => - d.r / 2)
-    .attr('y', d => - d.r / 2)
-    .attr('width', d => d.r)
-    .attr('height', d => d.r);
-}
+    .attr("x", d => -d.r / 2)
+    .attr("y", d => -d.r / 2)
+    .attr("width", d => d.r)
+    .attr("height", d => d.r);
+};
 ```
 
 Here we crunch the data and define the enter, update and exit behaviour for the circles and the images.
@@ -216,50 +231,47 @@ Here we crunch the data and define the enter, update and exit behaviour for the 
 ### Helpers
 
 ```typescript
-
-  updateBubbles = (newData: Array<any>): Array<any> => {
-    const dataByTypes = _.groupBy(_.sortBy(newData, 'type'), 'type');
-    const results = [];
-    Object.keys(dataByTypes).map((key, index) => {
-      results.push({
-        type: key,
-        amount: dataByTypes[key].length
-      });
+updateBubbles = (newData: Array<any>): Array<any> => {
+  const dataByTypes = _.groupBy(_.sortBy(newData, "type"), "type");
+  const results = [];
+  Object.keys(dataByTypes).map((key, index) => {
+    results.push({
+      type: key,
+      amount: dataByTypes[key].length
     });
+  });
 
-    return results;
-  }
+  return results;
+};
 
-  mouseover = (d, i) => {
-    // placement
-    this.tooltip.style.visibility = 'visible';
-    this.tooltip.style.opacity = 0.9;
-    this.tooltip.style.top = d3.event.pageY + 'px';
-    this.tooltip.style.left = d3.event.pageX + 'px';
+mouseover = (d, i) => {
+  // placement
+  this.tooltip.style.visibility = "visible";
+  this.tooltip.style.opacity = 0.9;
+  this.tooltip.style.top = d3.event.pageY + "px";
+  this.tooltip.style.left = d3.event.pageX + "px";
 
-    // Values
-    this.amount = d.data.amount;
-    this.type = d.data.type;
-  }
+  // Values
+  this.amount = d.data.amount;
+  this.type = d.data.type;
+};
 
-  mouseout = () => {
-    this.tooltip.style.visibility = 'hidden';
-    this.tooltip.style.opacity = 0;
-  }
-
+mouseout = () => {
+  this.tooltip.style.visibility = "hidden";
+  this.tooltip.style.opacity = 0;
+};
 ```
-
 
 ### Data Service
 
 ```typescript
-import { Injectable } from '@angular/core';
+import { Injectable } from "@angular/core";
 
 @Injectable()
 export class BubbleChartDataService {
   generateData = (num: number) => {
     const results = [];
-    const devices = ['Printer', 'Router', 'Tablet', 'Workstation'];
+    const devices = ["Printer", "Router", "Tablet", "Workstation"];
 
     for (let i = 0; i < num; i++) {
       const result = {
@@ -271,22 +283,22 @@ export class BubbleChartDataService {
     }
 
     return results;
-  }
+  };
 }
 ```
 
 ### Styling
 
 ```scss
-.bubble-chart{
+.bubble-chart {
   width: 100%;
   height: 100% !important;
 }
 
-.tooltip{
+.tooltip {
   position: absolute;
   background: #f5f6f5;
-  box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
   padding: 20px;
   color: #57a1c6;
   opacity: 0;
@@ -294,7 +306,7 @@ export class BubbleChartDataService {
   visibility: hidden;
   pointer-events: none;
 
-  img{
+  img {
     margin-right: 20px;
   }
 }

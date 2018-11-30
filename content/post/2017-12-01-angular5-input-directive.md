@@ -7,6 +7,7 @@ date: "2017-12-01"
 featured: false
 slug: angular5-input-directive
 image: /images/input.png
+draft: true
 ---
 
 In this post you will learn how to create an input directive that highlights errors.
@@ -21,30 +22,29 @@ Let's dive in!
 ### Input directive
 
 ```typescript
-import { Directive, Input, HostBinding, OnChanges } from '@angular/core';
+import { Directive, Input, HostBinding, OnChanges } from "@angular/core";
 
-import { ColourService } from '../colour/colour.service';
+import { ColourService } from "../colour/colour.service";
 
 @Directive({
-  selector: '[appInput]'
+  selector: "[appInput]"
 })
 export class InputDirective implements OnChanges {
   @Input() error: boolean;
 
-  @HostBinding('style.border-bottom-color') borderColor: string;
-  @HostBinding('style.border-width') borderWidth = '0 0 2px 0';
-  @HostBinding('style.outline') outline = 'none';
+  @HostBinding("style.border-bottom-color") borderColor: string;
+  @HostBinding("style.border-width") borderWidth = "0 0 2px 0";
+  @HostBinding("style.outline") outline = "none";
 
-  constructor (
-    private colourService: ColourService
-  ) {}
+  constructor(private colourService: ColourService) {}
 
   ngOnChanges() {
-    const colourType = this.error ? 'accent' : 'primary';
+    const colourType = this.error ? "accent" : "primary";
     this.borderColor = this.colourService.getColour(colourType);
   }
 }
 ```
+
 3 things here:
 
 - I am using `@HostBinding` to change the styling of the input.
@@ -56,15 +56,15 @@ Let's have a look at this colourService
 ### Colour service
 
 ```typescript
-import { Injectable } from '@angular/core';
+import { Injectable } from "@angular/core";
 
 @Injectable()
 export class ColourService {
   getColour = (type: string): string => {
-    if (type === 'accent') return 'red';
+    if (type === "accent") return "red";
 
-    return 'blue';
-  }
+    return "blue";
+  };
 }
 ```
 
@@ -75,14 +75,20 @@ To finish let's see how to use the input directive!
 ### Usage of our new input directive
 
 ```typescript
-import { Component } from '@angular/core';
-import { FormControl } from '@angular/forms';
+import { Component } from "@angular/core";
+import { FormControl } from "@angular/forms";
 
 @Component({
-  selector: 'app-root',
-  styleUrls: ['./app.component.scss'],
+  selector: "app-root",
+  styleUrls: ["./app.component.scss"],
   template: `
-    <input appInput required [formControl]="termSearch" [error]='hasErrors()' required>
+    <input
+      appInput
+      required
+      [formControl]="termSearch"
+      [error]="hasErrors()"
+      required
+    />
   `
 })
 export class AppComponent {
@@ -90,7 +96,7 @@ export class AppComponent {
 
   hasErrors = (): boolean => {
     return this.termSearch.invalid && this.termSearch.dirty;
-  }
+  };
 }
 ```
 
