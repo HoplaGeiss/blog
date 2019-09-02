@@ -26,8 +26,7 @@
       <pubDate>Wed, 22 Nov 2017 00:00:00 +0000</pubDate>
       
       <guid>http://www.muller.tech/post/2017/11/22/angular5-unittest-ngonchanges/</guid>
-      <description>In this post you will learn how to unit test a component that uses ngOnChanges.
-Component under test import { Component, OnInit, OnChanges } from &amp;#39;@angular/core&amp;#39;; @Component({ selector: &amp;#39;hopla-component&amp;#39;, template: ` &amp;lt;div&amp;gt;Hopla Hopla&amp;lt;/div&amp;gt; ` }) export class HoplaComponent implements OnInit, OnChanges { @Input() data: Array&amp;lt;object&amp;gt;; ngOnInit(){ // do something  } ngOnChanges(){ superFunction(data) } superFunction(input) =&amp;gt; { // do something with input  } } Unit test it(&amp;#39;OnChanges: updates the form with the site value&amp;#39;, () =&amp;gt; { const superFunctionSpy = spyOn(comp, &amp;#39;superFunction&amp;#39;); const data = [{value: 1}, {value: 2}] fixture.</description>
+      <description>I moved the location of that post. Please visit: https://ludan.io/blog/angular_unit_test_ng_on_changes</description>
     </item>
     
   </channel>

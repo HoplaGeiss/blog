@@ -95,7 +95,7 @@
         },
         "datePublished": "2017-11-22",
         "dateModified": "2017-11-22",
-        "wordCount":  113 ,
+        "wordCount":  10 ,
         "keywords": "[\"angular5\"]"
     }
     </script>
@@ -145,53 +145,14 @@ html{font-family:sans-serif;line-height:1.15;-ms-text-size-adjust:100%;-webkit-t
 
   			<header class="post-header">
   				<span class="post-meta">
-						<span class="post-date">22 Nov 2017</span> <span class="reading-time">| <span class="estimated-reading-time">1 min.</span> (<span class="word-count">113</span> words)</span></span>
+						<span class="post-date">22 Nov 2017</span> <span class="reading-time">| <span class="estimated-reading-time">1 min.</span> (<span class="word-count">10</span> words)</span></span>
   				</span>
   				<div class="clear"></div>
   				<h1 class="post-title">Angular 5 - Unit Test ngOnChanges</h1>
   			</header>
 
   			<section class="post-content">
-  				
-
-<p>In this post you will learn how to unit test a component that uses <code>ngOnChanges</code>.</p>
-
-<h3 id="component-under-test">Component under test</h3>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-typescript" data-lang="typescript"><span style="color:#a90d91">import</span> { <span style="color:#000">Component</span>, <span style="color:#000">OnInit</span>, <span style="color:#000">OnChanges</span> } <span style="color:#000">from</span> <span style="color:#c41a16">&#39;@angular/core&#39;</span>;
-
-<span style="color:#a90d91">@Component</span>({
-  <span style="color:#000">selector</span><span style="color:#000">:</span> <span style="color:#c41a16">&#39;hopla-component&#39;</span>,
-  <span style="color:#000">template</span><span style="color:#000">:</span> <span style="color:#c41a16">`
-</span><span style="color:#c41a16">    &lt;div&gt;Hopla Hopla&lt;/div&gt;
-</span><span style="color:#c41a16">  `</span>
-})
-<span style="color:#a90d91">export</span> <span style="color:#a90d91">class</span> <span style="color:#000">HoplaComponent</span> <span style="color:#a90d91">implements</span> <span style="color:#000">OnInit</span>, <span style="color:#000">OnChanges</span> {
-  <span style="color:#a90d91">@Input</span>() <span style="color:#000">data</span>: <span style="color:#a90d91">Array</span><span style="color:#000">&lt;</span><span style="color:#000">object</span><span style="color:#000">&gt;</span>;
-
-  <span style="color:#000">ngOnInit</span>(){
-    <span style="color:#177500">// do something
-</span><span style="color:#177500"></span>  }
-
-  <span style="color:#000">ngOnChanges</span>(){
-    <span style="color:#000">superFunction</span>(<span style="color:#000">data</span>)
-  }
-
-  <span style="color:#000">superFunction</span>(<span style="color:#000">input</span>) <span style="color:#000">=&gt;</span> {
-    <span style="color:#177500">// do something with input
-</span><span style="color:#177500"></span>  }
-}</code></pre></div>
-<h3 id="unit-test">Unit test</h3>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-typescript" data-lang="typescript"><span style="color:#000">it</span>(<span style="color:#c41a16">&#39;OnChanges: updates the form with the site value&#39;</span>, () <span style="color:#000">=&gt;</span> {
-  <span style="color:#a90d91">const</span> <span style="color:#000">superFunctionSpy</span> <span style="color:#000">=</span> <span style="color:#000">spyOn</span>(<span style="color:#000">comp</span>, <span style="color:#c41a16">&#39;superFunction&#39;</span>);
-  <span style="color:#a90d91">const</span> <span style="color:#000">data</span> <span style="color:#000">=</span> [{<span style="color:#000">value</span>: <span style="color:#a90d91">1</span>}, {<span style="color:#000">value</span>: <span style="color:#a90d91">2</span>}]
-
-  <span style="color:#000">fixture</span>.<span style="color:#000">detectChanges</span>();
-  <span style="color:#000">comp</span>.<span style="color:#000">data</span> <span style="color:#000">=</span> <span style="color:#000">data</span>;
-
-  <span style="color:#000">comp</span>.<span style="color:#000">ngOnChanges</span>();
-  <span style="color:#000">expect</span>(<span style="color:#000">superFunctionSpy</span>).<span style="color:#000">toHaveBeenCalledWith</span>(<span style="color:#000">data</span>);
-});</code></pre></div>
-<p>The trick is first to call <code>fixture.detectChanges()</code> to trigger <code>ngOnInit</code> then change the input and call <code>ngOnChanges</code> manually.</p>
+  				<p>I moved the location of that post. Please visit: <a href="https://ludan.io/blog/angular_unit_test_ng_on_changes">https://ludan.io/blog/angular_unit_test_ng_on_changes</a></p>
 
   			</section>
 
@@ -280,18 +241,7 @@ html{font-family:sans-serif;line-height:1.15;-ms-text-size-adjust:100%;-webkit-t
         <a class="menu-close" data-action="toc" data-target="toc"></a>
     </div>
     <div id="toc" class="menu-list">
-        <nav id="TableOfContents">
-<ul>
-<li>
-<ul>
-<li>
-<ul>
-<li><a href="#component-under-test">Component under test</a></li>
-<li><a href="#unit-test">Unit test</a></li>
-</ul></li>
-</ul></li>
-</ul>
-</nav>
+        
     </div>
 </div>
 
