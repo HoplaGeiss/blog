@@ -17,9 +17,7 @@
       <pubDate>Thu, 08 Nov 2018 00:00:00 +0000</pubDate>
       
       <guid>http://www.muller.tech/post/2018/11/08/ngrx-resolvers-guards/</guid>
-      <description>In this post, we will have a look at an example of an ngrx application using guards and resolvers. Based on this, we will see when guards and resolvers are best using with ngrx.
-Personally, I find one of the main advantages of using ngrx is to handle data in a more efficient way, e.g. not re-loading the data when it&amp;rsquo;s already in state.
-All the example I found online while learning about ngrx were using guards, and I didn&amp;rsquo;t quite understand why that was.</description>
+      <description>I moved the location of that post. Please visit: https://ludan.io/blog/ngrx_guards_and_resolvers</description>
     </item>
     
     <item>
@@ -130,7 +128,7 @@ Scenario &amp;lt;md-card *ngFor=&amp;#34;let trainer of trainers | criteria:&amp
       
       <guid>http://www.muller.tech/post/2017/01/17/deploy-angular-app-on-github-pages/</guid>
       <description>A cheap way to deploy your angular project is to use Github pages. For a long time you needed to have a gh-pages branch containing your dist code, but recently Github allowed the dist code to be in docs which makes our life a little easier. Bellow is a little script script to build the production version of the dist file in the docs folder.
-ng build --target=production --base-href=/repository_name/ --output-path=docs  Once you ran this command, just push it on your github repo and you are done!</description>
+ng build --target=production --base-href=http://www.muller.tech/repository_name/ --output-path=docs  Once you ran this command, just push it on your github repo and you are done!</description>
     </item>
     
     <item>

@@ -3,7 +3,42 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>http://www.muller.tech/tags/angular5/</loc>
+    <lastmod>2018-11-08T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://www.muller.tech/</loc>
+    <lastmod>2018-11-08T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://www.muller.tech/tags/guards/</loc>
+    <lastmod>2018-11-08T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://www.muller.tech/tags/ngrx/</loc>
+    <lastmod>2018-11-08T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
     <loc>http://www.muller.tech/post/2018/11/08/ngrx-resolvers-guards/</loc>
+    <lastmod>2018-11-08T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://www.muller.tech/post/</loc>
+    <lastmod>2018-11-08T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://www.muller.tech/tags/resolvers/</loc>
+    <lastmod>2018-11-08T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://www.muller.tech/tags/</loc>
     <lastmod>2018-11-08T00:00:00+00:00</lastmod>
   </url>
   
@@ -18,13 +53,28 @@
   </url>
   
   <url>
+    <loc>http://www.muller.tech/tags/angular4/</loc>
+    <lastmod>2017-08-04T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
     <loc>http://www.muller.tech/post/2017/07/26/angular4-nested-routing/</loc>
     <lastmod>2017-07-26T00:00:00+00:00</lastmod>
   </url>
   
   <url>
+    <loc>http://www.muller.tech/tags/node.js/</loc>
+    <lastmod>2017-06-13T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
     <loc>http://www.muller.tech/post/2017/06/13/node-package-json-scripts/</loc>
     <lastmod>2017-06-13T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://www.muller.tech/tags/angular2/</loc>
+    <lastmod>2017-03-07T00:00:00+00:00</lastmod>
   </url>
   
   <url>
@@ -35,6 +85,11 @@
   <url>
     <loc>http://www.muller.tech/post/2017/03/07/create-pre-bootstrap-animation/</loc>
     <lastmod>2017-03-07T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://www.muller.tech/tags/atom/</loc>
+    <lastmod>2017-02-17T00:00:00+00:00</lastmod>
   </url>
   
   <url>
@@ -63,8 +118,18 @@
   </url>
   
   <url>
+    <loc>http://www.muller.tech/tags/git/</loc>
+    <lastmod>2017-01-17T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
     <loc>http://www.muller.tech/post/2017/01/17/git-cheat-sheet/</loc>
     <lastmod>2017-01-17T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://www.muller.tech/tags/unit-test/</loc>
+    <lastmod>2017-01-10T00:00:00+00:00</lastmod>
   </url>
   
   <url>
@@ -100,84 +165,6 @@
   <url>
     <loc>http://www.muller.tech/post/2016/12/22/unit-test-removal-of-a-class/</loc>
     <lastmod>2016-12-22T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>http://www.muller.tech/tags/angular2/</loc>
-    <lastmod>2017-03-07T00:00:00+00:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>http://www.muller.tech/tags/angular4/</loc>
-    <lastmod>2017-08-04T00:00:00+00:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>http://www.muller.tech/tags/angular5/</loc>
-    <lastmod>2018-11-08T00:00:00+00:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>http://www.muller.tech/tags/atom/</loc>
-    <lastmod>2017-02-17T00:00:00+00:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>http://www.muller.tech/</loc>
-    <lastmod>2018-11-08T00:00:00+00:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>http://www.muller.tech/tags/git/</loc>
-    <lastmod>2017-01-17T00:00:00+00:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>http://www.muller.tech/tags/guards/</loc>
-    <lastmod>2018-11-08T00:00:00+00:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>http://www.muller.tech/tags/ngrx/</loc>
-    <lastmod>2018-11-08T00:00:00+00:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>http://www.muller.tech/tags/node.js/</loc>
-    <lastmod>2017-06-13T00:00:00+00:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>http://www.muller.tech/post/</loc>
-    <lastmod>2018-11-08T00:00:00+00:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>http://www.muller.tech/tags/resolvers/</loc>
-    <lastmod>2018-11-08T00:00:00+00:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>http://www.muller.tech/tags/</loc>
-    <lastmod>2017-03-07T00:00:00+00:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>http://www.muller.tech/tags/unit-test/</loc>
-    <lastmod>2017-01-10T00:00:00+00:00</lastmod>
-    <priority>0</priority>
   </url>
   
 </urlset>

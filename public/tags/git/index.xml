@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Git on Gabriel Muller - JavaScript and Angular articles</title>
+    <title>git on Gabriel Muller - JavaScript and Angular articles</title>
     <link>http://www.muller.tech/tags/git/</link>
-    <description>Recent content in Git on Gabriel Muller - JavaScript and Angular articles</description>
+    <description>Recent content in git on Gabriel Muller - JavaScript and Angular articles</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-gb</language>
     <lastBuildDate>Tue, 17 Jan 2017 00:00:00 +0000</lastBuildDate>
@@ -18,7 +18,7 @@
       
       <guid>http://www.muller.tech/post/2017/01/17/deploy-angular-app-on-github-pages/</guid>
       <description>A cheap way to deploy your angular project is to use Github pages. For a long time you needed to have a gh-pages branch containing your dist code, but recently Github allowed the dist code to be in docs which makes our life a little easier. Bellow is a little script script to build the production version of the dist file in the docs folder.
-ng build --target=production --base-href=/repository_name/ --output-path=docs  Once you ran this command, just push it on your github repo and you are done!</description>
+ng build --target=production --base-href=http://www.muller.tech/repository_name/ --output-path=docs  Once you ran this command, just push it on your github repo and you are done!</description>
     </item>
     
     <item>

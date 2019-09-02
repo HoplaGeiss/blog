@@ -60,7 +60,7 @@
         "@type": "BlogPosting",
         "mainEntityOfPage": {
           "@type": "WebPage",
-          "@id": "http://www.muller.tech/post/2016/12/23/unit-test-controllers/"
+          "@id": "http:\/\/www.muller.tech\/post\/2016\/12\/23\/unit-test-controllers\/"
         },
         "headline": "Unit test controllers",
         "description": "Step by step guide of how to unit test controllers",
@@ -77,9 +77,9 @@
         },
         "publisher": {
           "@type": "Organization",
-          "@id": "http://www.muller.tech/",
+          "@id": "http:\/\/www.muller.tech\/",
           "name": "Gabriel Muller - JavaScript and Angular articles",
-          "url": "http://www.muller.tech/",
+          "url": "http:\/\/www.muller.tech\/",
           "logo": {
             "@type": "ImageObject",
             "url": "https:",
@@ -89,14 +89,14 @@
         },
         "image": {
           "@type": "ImageObject",
-          "url": "http://www.muller.tech/images/controller.jpg",
+          "url": "http:\/\/www.muller.tech\/images\/controller.jpg",
           "height": 133,
           "width": 200
         },
         "datePublished": "2016-12-23",
         "dateModified": "2016-12-23",
-        "wordCount": 291,
-        "keywords": ["unit test"]
+        "wordCount":  291 ,
+        "keywords": "[\"unit test\"]"
     }
     </script>
 
@@ -187,56 +187,58 @@ html{font-family:sans-serif;line-height:1.15;-ms-text-size-adjust:100%;-webkit-t
 
 <ul>
 <li>Check the controller is defined</li>
-<li>Check the scope variable are properly initialized initialized</li>
-</ul>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-javascript" data-lang="javascript">  (<span style="color:#a90d91">function</span> () {
-    <span style="color:#c41a16">&#39;use strict&#39;</span>;
 
-    <span style="color:#000">describe</span>(<span style="color:#c41a16">&#39;Controller: AboutCtrl&#39;</span>, <span style="color:#a90d91">function</span> () {
-      <span style="color:#a90d91">var</span> <span style="color:#000">AboutCtrl</span>,
-        <span style="color:#000">configuration</span>,
-        <span style="color:#000">appVersion</span>,
-        <span style="color:#000">scope</span>;
+<li><p>Check the scope variable are properly initialized initialized</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-javascript" data-lang="javascript">(<span style="color:#a90d91">function</span> () {
+<span style="color:#c41a16">&#39;use strict&#39;</span>;
 
-      <span style="color:#177500">// Initialize the controller and a mock scope
-</span><span style="color:#177500"></span>      <span style="color:#000">beforeEach</span>(<span style="color:#a90d91">function</span> () {
-        <span style="color:#000">module</span>(<span style="color:#c41a16">&#39;app.controllers&#39;</span>);
+<span style="color:#000">describe</span>(<span style="color:#c41a16">&#39;Controller: AboutCtrl&#39;</span>, <span style="color:#a90d91">function</span> () {
+  <span style="color:#a90d91">var</span> <span style="color:#000">AboutCtrl</span>,
+    <span style="color:#000">configuration</span>,
+    <span style="color:#000">appVersion</span>,
+    <span style="color:#000">scope</span>;
 
-        <span style="color:#000">inject</span>(<span style="color:#a90d91">function</span> (<span style="color:#000">$controller</span>, <span style="color:#000">$rootScope</span>, <span style="color:#000">_configuration_</span>, <span style="color:#000">_appVersion_</span>) {
-          <span style="color:#000">configuration</span> <span style="color:#000">=</span> <span style="color:#000">_configuration_</span>;
-          <span style="color:#000">appVersion</span> <span style="color:#000">=</span> <span style="color:#000">_appVersion_</span>;
+  <span style="color:#177500">// Initialize the controller and a mock scope
+</span><span style="color:#177500"></span>  <span style="color:#000">beforeEach</span>(<span style="color:#a90d91">function</span> () {
+    <span style="color:#000">module</span>(<span style="color:#c41a16">&#39;app.controllers&#39;</span>);
 
-          <span style="color:#000">appVersion</span>.<span style="color:#000">buildVersion</span> <span style="color:#000">=</span> <span style="color:#a90d91">function</span> () {
-            <span style="color:#a90d91">return</span> <span style="color:#c41a16">&#39;9.9.9b9&#39;</span>;
-          };
+    <span style="color:#000">inject</span>(<span style="color:#a90d91">function</span> (<span style="color:#000">$controller</span>, <span style="color:#000">$rootScope</span>, <span style="color:#000">_configuration_</span>, <span style="color:#000">_appVersion_</span>) {
+      <span style="color:#000">configuration</span> <span style="color:#000">=</span> <span style="color:#000">_configuration_</span>;
+      <span style="color:#000">appVersion</span> <span style="color:#000">=</span> <span style="color:#000">_appVersion_</span>;
 
-          <span style="color:#000">configuration</span>.<span style="color:#000">getAccountServiceConfig</span> <span style="color:#000">=</span> <span style="color:#a90d91">function</span> () {
-            <span style="color:#a90d91">return</span> <span style="color:#c41a16">&#39;hopla&#39;</span>
-          };
+      <span style="color:#000">appVersion</span>.<span style="color:#000">buildVersion</span> <span style="color:#000">=</span> <span style="color:#a90d91">function</span> () {
+        <span style="color:#a90d91">return</span> <span style="color:#c41a16">&#39;9.9.9b9&#39;</span>;
+      };
 
-          <span style="color:#000">scope</span> <span style="color:#000">=</span> <span style="color:#000">$rootScope</span>.<span style="color:#000">$new</span>();
+      <span style="color:#000">configuration</span>.<span style="color:#000">getAccountServiceConfig</span> <span style="color:#000">=</span> <span style="color:#a90d91">function</span> () {
+        <span style="color:#a90d91">return</span> <span style="color:#c41a16">&#39;hopla&#39;</span>
+      };
 
-          <span style="color:#000">AboutCtrl</span> <span style="color:#000">=</span> <span style="color:#000">$controller</span>(<span style="color:#c41a16">&#39;AboutCtrl&#39;</span>, {
-            <span style="color:#000">$scope</span><span style="color:#000">:</span> <span style="color:#000">scope</span>
-          });
+      <span style="color:#000">scope</span> <span style="color:#000">=</span> <span style="color:#000">$rootScope</span>.<span style="color:#000">$new</span>();
 
-          <span style="color:#000">$rootScope</span>.<span style="color:#000">$digest</span>();
-
-        });
+      <span style="color:#000">AboutCtrl</span> <span style="color:#000">=</span> <span style="color:#000">$controller</span>(<span style="color:#c41a16">&#39;AboutCtrl&#39;</span>, {
+        <span style="color:#000">$scope</span><span style="color:#000">:</span> <span style="color:#000">scope</span>
       });
 
-      <span style="color:#000">it</span>(<span style="color:#c41a16">&#39;is defined&#39;</span>, <span style="color:#a90d91">function</span> () {
-        <span style="color:#000">expect</span>(<span style="color:#000">AboutCtrl</span>).<span style="color:#000">toBeDefined</span>();
-      });
+      <span style="color:#000">$rootScope</span>.<span style="color:#000">$digest</span>();
 
-      <span style="color:#000">it</span>(<span style="color:#c41a16">&#39;is initialised&#39;</span>, <span style="color:#a90d91">function</span> () {
-        <span style="color:#000">expect</span>(<span style="color:#000">scope</span>.<span style="color:#000">buildVersion</span>).<span style="color:#000">toEqual</span>(<span style="color:#c41a16">&#39;9.9.9b9&#39;</span>);
-        <span style="color:#000">expect</span>(<span style="color:#000">scope</span>.<span style="color:#000">accountCode</span>).<span style="color:#000">toEqual</span>(<span style="color:#c41a16">&#39;hopla&#39;</span>);
-        <span style="color:#000">expect</span>(<span style="color:#000">scope</span>.<span style="color:#000">viewClassName</span>).<span style="color:#000">toEqual</span>(<span style="color:#c41a16">&#39;wps-view-about&#39;</span>);
-      });
     });
-  })();
-</code></pre></div>
+  });
+
+  <span style="color:#000">it</span>(<span style="color:#c41a16">&#39;is defined&#39;</span>, <span style="color:#a90d91">function</span> () {
+    <span style="color:#000">expect</span>(<span style="color:#000">AboutCtrl</span>).<span style="color:#000">toBeDefined</span>();
+  });
+
+  <span style="color:#000">it</span>(<span style="color:#c41a16">&#39;is initialised&#39;</span>, <span style="color:#a90d91">function</span> () {
+    <span style="color:#000">expect</span>(<span style="color:#000">scope</span>.<span style="color:#000">buildVersion</span>).<span style="color:#000">toEqual</span>(<span style="color:#c41a16">&#39;9.9.9b9&#39;</span>);
+    <span style="color:#000">expect</span>(<span style="color:#000">scope</span>.<span style="color:#000">accountCode</span>).<span style="color:#000">toEqual</span>(<span style="color:#c41a16">&#39;hopla&#39;</span>);
+    <span style="color:#000">expect</span>(<span style="color:#000">scope</span>.<span style="color:#000">viewClassName</span>).<span style="color:#000">toEqual</span>(<span style="color:#c41a16">&#39;wps-view-about&#39;</span>);
+  });
+});
+})();
+</code></pre></div></li>
+</ul>
+
 <h3 id="analysis">Analysis</h3>
 
 <h5 id="beforeeach">beforeEach</h5>
